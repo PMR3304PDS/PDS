@@ -14,7 +14,17 @@ public class AvaliacaoDO {
     private int Ava_cod;
     private int Medico_Usuario_Usu_cod;
     private int Paciente_Usuario_Usu_cod;
+    private int Num_Aval;
 
+    public int getNum_Aval() {
+        return Num_Aval;
+    }
+
+    public void setNum_Aval(int Num_Aval) {
+        this.Num_Aval = Num_Aval;
+    }
+
+    
     public int getAva_cod() {
         return Ava_cod;
     }
