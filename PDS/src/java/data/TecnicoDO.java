@@ -10,17 +10,8 @@ package data;
  * @author aluno
  */
 public class TecnicoDO extends UsuarioDO {
-    private int Usuario_usu_cod;
     private int Conselhos_Con_cod;
     private int Estado_Est_cod_conselho_emissor;
-
-    public int getUsuario_usu_cod() {
-        return Usuario_usu_cod;
-    }
-
-    public void setUsuario_usu_cod(int Usuario_usu_cod) {
-        this.Usuario_usu_cod = Usuario_usu_cod;
-    }
 
     public int getConselhos_Con_cod() {
         return Conselhos_Con_cod;
