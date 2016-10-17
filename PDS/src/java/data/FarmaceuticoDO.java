@@ -1,7 +1,7 @@
 package data;
 
 
-public class FarmaceuticoDO {
+public class FarmaceuticoDO extends UsuarioDO {
     
     private int Usuario_Usu_cod;
     private int Conselhos_Con_cod;
