@@ -1,14 +1,42 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package data;
 
-/**
- *
- * @author aluno
- */
+import java.sql.*;
+import java.util.*;
+import utils.Transacao;
+
 public class EspecialidadeDATA {
-    
-}
+
+  public void incluir(EspecialidadeDO contato, Transacao tr) throws Exception {
+     Connection con = tr.obterConexao();
+     String sql = "insert into Especialidade (Esp_cod, Esp_nome) values (?, ?)";
+     PreparedStatement ps = con.prepareStatement(sql);
+     ps.setInt(1, contato.getEsp_cod());
+     ps.setString(2, contato.getEsp_nome());
+     int result = ps.executeUpdate();
+  }
+
+
+  public void atualizar(EspecialidadeDO especialidade, Transacao tr) throws Exception {
+     Connection con = tr.obterConexao();
+     String sql = "update Especialidade set Esp_nome=? where Esp_cod=?";
+     PreparedStatement ps = con.prepareStatement(sql);
+     ps.setString(1, especialidade.getEsp_nome());
+     ps.setInt(2, especialidade.getEsp_cod());
+     int result = ps.executeUpdate();
+  } // atualizar
+
+  public EspecialidadeDO buscar(int idobj, Transacao tr) throws Exception {
+     Connection con = tr.obterConexao();
+     String sql = "select * from Especialidade where Esp_cod=?";
+     PreparedStatement ps = con.prepareStatement(sql);
+     ps.setInt(1, idobj);
+     ResultSet rs = ps.executeQuery();
+     rs.next();
+     EspecialidadeDO contato = new EspecialidadeDO();
+     contato.setEsp_cod (rs.getInt("Esp_cod"));
+     contato.setEsp_nome (rs.getString("Esp_nome"));
+     return contato;
+  } // buscar
+
+
+} 
