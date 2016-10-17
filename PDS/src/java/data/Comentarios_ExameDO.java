@@ -58,6 +58,4 @@ public class Comentarios_ExameDO {
         this.Com_Exa_excluido = Com_Exa_excluido;
     }
 
-    
-  
 } // ContatoDO

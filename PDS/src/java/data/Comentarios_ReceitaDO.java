@@ -67,9 +67,4 @@ public class Comentarios_ReceitaDO {
         this.Com_Rec_excluido = Com_Rec_excluido;
     }
   
-  
-
-  
-
 } // ContatoDO
-
