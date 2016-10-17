@@ -13,6 +13,15 @@ public class MedicoDO {
     private int Usuario_Usu_cod;
     private int Conselhos_Con_cond;
     private int Estado_Est_cod_conselho_emissor;
+    private String Med_NumRegistro;
+
+    public String getMed_NumRegistro() {
+        return Med_NumRegistro;
+    }
+
+    public void setMed_NumRegistro(String Med_NumRegistro) {
+        this.Med_NumRegistro = Med_NumRegistro;
+    }
 
     public int getUsuario_Usu_cod() {
         return Usuario_Usu_cod;
