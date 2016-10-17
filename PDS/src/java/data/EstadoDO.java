@@ -24,12 +24,10 @@ public class EstadoDO {
 
     public String getEst_nome() {
         return Est_nome;
-    }
+    }   
 
     public void setEst_nome(String Est_nome) {
         this.Est_nome = Est_nome;
     }
-    
-    
     
 }

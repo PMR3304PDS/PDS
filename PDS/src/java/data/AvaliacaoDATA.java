@@ -20,12 +20,13 @@ public class AvaliacaoDATA {
 
   public void atualizar(AvaliacaoDO avaliacao, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
-     String sql = "update Avaliacao set =? where Ava_cod=?";
+     String sql = "update Avaliacao set Medico_Usuario_Usu_cod=?,"
+             + "Paciente_Usuario_Usu_cod=?, Num_Aval=? where Ava_cod=?";
      PreparedStatement ps = con.prepareStatement(sql);
-     ps.setInt(1, avaliacao.getAva_cod());
-     ps.setInt(2, avaliacao.getMedico_Usuario_Usu_cod());
-     ps.setInt(3, avaliacao.getPaciente_Usuario_Usu_cod());
-     ps.setInt(4, avaliacao.getNum_Aval());
+     ps.setInt(1, avaliacao.getMedico_Usuario_Usu_cod());
+     ps.setInt(2, avaliacao.getPaciente_Usuario_Usu_cod());
+     ps.setInt(3, avaliacao.getNum_Aval());
+     ps.setInt(4, avaliacao.getAva_cod());
      int result = ps.executeUpdate();
   } // atualizar
   
