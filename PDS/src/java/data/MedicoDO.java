@@ -9,7 +9,7 @@ package data;
  *
  * @author aluno
  */
-public class MedicoDO {
+public class MedicoDO extends UsuarioDO {
     private int Usuario_Usu_cod;
     private int Conselhos_Con_cond;
     private int Estado_Est_cod_conselho_emissor;
