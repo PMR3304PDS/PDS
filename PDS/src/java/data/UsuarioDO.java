@@ -4,7 +4,6 @@ package data;
 import java.io.FileInputStream;
 
 public class UsuarioDO {
-
   private int _Usu_cod;
   private String _Usu_login;
   private String _Usu_senha;
@@ -76,7 +75,5 @@ public class UsuarioDO {
 
     public void setUsu_ativo(boolean _Usu_ativo) {
         this._Usu_ativo = _Usu_ativo;
-    }
-
-   
+    }  
 }

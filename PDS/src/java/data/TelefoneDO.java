@@ -30,5 +30,5 @@ private int _Usuario_Usu_Cod;
     public void setUsuario_Usu_Cod(int _Usuario_Usu_Cod) {
         this._Usuario_Usu_Cod = _Usuario_Usu_Cod;
     }
-  
+
 }

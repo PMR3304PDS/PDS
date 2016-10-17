@@ -22,5 +22,4 @@ private String _TipExa_descricao;
         this._TipExa_descricao = _TipExa_descricao;
     }
 
-  
 }
