@@ -11,7 +11,7 @@ import java.sql.Date;
  *
  * @author aluno
  */
-public class PacienteDO {
+public class PacienteDO extends UsuarioDO {
     private Date Pac_nascimento;
     private float Pac_peso;
     private float Pac_altura;
