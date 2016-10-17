@@ -1,6 +1,6 @@
 package data;
 
-public class ConselhosDO {
+public class PDS_ConselhosDO {
   private int Con_cod;
   private String Con_nome;
   private String Con_sigla;
