@@ -41,9 +41,9 @@ public class Documento {
     }
     
     public static void main(String[] args) throws FileNotFoundException, Exception {
-        /*
+        
             DocumentoDO documento = new DocumentoDO();
-            File file = new File("C:/Users/Lucas/Desktop/Teste.pdf");
+            File file = new File("C:/Users/aluno/Desktop/Teste.pdf");
             FileInputStream exame = new FileInputStream(file);
             documento.setExame(exame);
             documento.setResumo("teste");
@@ -57,7 +57,6 @@ public class Documento {
             
             Documento doc = new Documento();
             doc.incluir(documento);
-            */
         
         
     }

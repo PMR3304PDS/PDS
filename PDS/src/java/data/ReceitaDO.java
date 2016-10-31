@@ -5,6 +5,7 @@
  */
 package data;
 
+import java.io.InputStream;
 import java.sql.Date;
 
 /**
@@ -20,6 +21,8 @@ public class ReceitaDO {
     private int Tecnico_Usuario_Usu_cod;
     private int Medico_Usuario_Usu_cod;
     private boolean Rec_check;
+    private InputStream Rec_receita;
+    private String Rec_resumo;
 
     public int getRec_cod() {
         return Rec_cod;
@@ -83,6 +86,22 @@ public class ReceitaDO {
 
     public void setRec_check(boolean Rec_check) {
         this.Rec_check = Rec_check;
+    }
+
+    public InputStream getRec_receita() {
+        return Rec_receita;
+    }
+
+    public void setRec_receita(InputStream Rec_receita) {
+        this.Rec_receita = Rec_receita;
+    }
+
+    public String getRec_resumo() {
+        return Rec_resumo;
+    }
+
+    public void setRec_resumo(String Rec_resumo) {
+        this.Rec_resumo = Rec_resumo;
     }
     
     
