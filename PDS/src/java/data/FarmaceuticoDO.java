@@ -3,16 +3,15 @@ package data;
 
 public class FarmaceuticoDO extends UsuarioDO {
     
-    private int Usuario_Usu_cod;
     private int Conselhos_Con_cod;
     private int Estado_Est_cod_conselho_emissor;
 
     public int getUsuario_Usu_cod() {
-        return Usuario_Usu_cod;
+        return getUsu_cod();
     }
 
     public void setUsuario_Usu_cod(int Usuario_Usu_cod) {
-        this.Usuario_Usu_cod = Usuario_Usu_cod;
+        this.setUsu_cod(Usuario_Usu_cod);
     }
 
     public int getConselhos_Con_cod() {

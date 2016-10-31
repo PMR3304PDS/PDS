@@ -8,7 +8,7 @@ public class TecnicoDATA {
 
   public void incluir(TecnicoDO tecnico, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
-     String sql = "insert into Paciente (Conselhos_Con_cod, Estado_Est_cod_conselho_emissor) values (?, ?)";
+     String sql = "insert into Tecnico (Conselhos_Con_cod, Estado_Est_cod_conselho_emissor) values (?, ?)";
      PreparedStatement ps = con.prepareStatement(sql);
      ps.setInt(1, tecnico.getConselhos_Con_cod());
      ps.setInt(2, tecnico.getEstado_Est_cod_conselho_emissor());
@@ -38,7 +38,7 @@ public class TecnicoDATA {
   
   public TecnicoDO buscar(int idobj, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
-     String sql = "select * from Paciente where Usu_cod=?";
+     String sql = "select * from Tecnico where Usu_cod=?";
      PreparedStatement ps = con.prepareStatement(sql);
      ps.setInt(1, idobj);
      ResultSet rs = ps.executeQuery();
