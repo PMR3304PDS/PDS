@@ -1,14 +1,14 @@
 package data;
 
-import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.Date;
 
 public class ExameDO {
     
     private int Exa_cod;
     private String Exa_resumo;
-    private FileInputStream Exa_exame;
-    private FileInputStream Exa_Solicitar; 
+    private InputStream Exa_exame;
+    private InputStream Exa_Solicitar; 
     private int Tipo_Exame_TipExa_cod;
     private int Tecnico_Usuario_Usu_cod_uploader;
     private int Paciente_Usuario_Usu_cod;
@@ -17,19 +17,19 @@ public class ExameDO {
     private Date Exa_data_upload;
     private Date Exa_previsao;
 
-    public FileInputStream getExa_exame() {
+    public InputStream getExa_exame() {
         return Exa_exame;
     }
 
-    public void setExa_exame(FileInputStream Exa_exame) {
+    public void setExa_exame(InputStream Exa_exame) {
         this.Exa_exame = Exa_exame;
     }
 
-    public FileInputStream getExa_Solicitar() {
+    public InputStream getExa_Solicitar() {
         return Exa_Solicitar;
     }
 
-    public void setExa_Solicitar(FileInputStream Exa_Solicitar) {
+    public void setExa_Solicitar(InputStream Exa_Solicitar) {
         this.Exa_Solicitar = Exa_Solicitar;
     }
 
