@@ -18,10 +18,9 @@ public class EstadoDATA {
     
     public void incluir(EstadoDO estado, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
-     String sql = "insert into Estado (Est_cod, Est_nome) values (?, ?)";
+     String sql = "insert into Estado (Est_nome) values (?)";
      PreparedStatement ps = con.prepareStatement(sql);
-     ps.setInt(1, estado.getEst_cod());
-     ps.setString(2, estado.getEst_nome());
+     ps.setString(1, estado.getEst_nome());
      int result = ps.executeUpdate();
   }
 

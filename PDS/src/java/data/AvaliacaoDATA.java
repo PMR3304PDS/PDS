@@ -8,13 +8,12 @@ public class AvaliacaoDATA {
 
   public void incluir(AvaliacaoDO avaliacao, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
-     String sql = "insert into Avaliacao (Ava_cod, Medico_Usuario_Usu_cod, "
-     + "Paciente_Usuario_Usu_cod, Num_Aval) values (?, ?, ?, ?)";
+     String sql = "insert into Avaliacao (Medico_Usuario_Usu_cod, "
+     + "Paciente_Usuario_Usu_cod, Num_Aval) values (?, ?, ?)";
      PreparedStatement ps = con.prepareStatement(sql);
-     ps.setInt(1, avaliacao.getAva_cod());
-     ps.setInt(2, avaliacao.getMedico_Usuario_Usu_cod());
-     ps.setInt(3, avaliacao.getPaciente_Usuario_Usu_cod());
-     ps.setInt(4, avaliacao.getNum_Aval());
+     ps.setInt(1, avaliacao.getMedico_Usuario_Usu_cod());
+     ps.setInt(2, avaliacao.getPaciente_Usuario_Usu_cod());
+     ps.setInt(3, avaliacao.getNum_Aval());
      int result = ps.executeUpdate();
   }
 

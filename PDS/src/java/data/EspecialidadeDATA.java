@@ -8,10 +8,9 @@ public class EspecialidadeDATA {
 
   public void incluir(EspecialidadeDO contato, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
-     String sql = "insert into Especialidade (Esp_cod, Esp_nome) values (?, ?)";
+     String sql = "insert into Especialidade ( Esp_nome) values ( ?)";
      PreparedStatement ps = con.prepareStatement(sql);
-     ps.setInt(1, contato.getEsp_cod());
-     ps.setString(2, contato.getEsp_nome());
+     ps.setString(1, contato.getEsp_nome());
      int result = ps.executeUpdate();
   }
 

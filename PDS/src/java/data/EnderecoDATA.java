@@ -9,15 +9,14 @@ public class EnderecoDATA {
 
   public void incluir(EnderecoDO endereco, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
-     String sql = "insert into Endereco (End_cod, End_rua, End_num, End_bairro, Usuario_Usu_cod, Municipio_Mun_cod, Tipo_Endereco_TipEnd_cod) values (?, ?, ?, ?, ?, ?, ?)";
+     String sql = "insert into Endereco (End_rua, End_num, End_bairro, Usuario_Usu_cod, Municipio_Mun_cod, Tipo_Endereco_TipEnd_cod) values (?, ?, ?, ?, ?, ?)";
      PreparedStatement ps = con.prepareStatement(sql);
-     ps.setInt(1, endereco.getEnd_cod());
-     ps.setString(2, endereco.getEnd_rua());
-     ps.setInt(3, endereco.getEnd_num());
-     ps.setString(4, endereco.getEnd_bairro());
-     ps.setInt(5, endereco.getUsuario_Usu_cod());
-     ps.setInt(6, endereco.getMunicipio_Mun_cod());
-     ps.setInt(7, endereco.getTipo_Endereco_TipEnd_cod());
+     ps.setString(1, endereco.getEnd_rua());
+     ps.setInt(2, endereco.getEnd_num());
+     ps.setString(3, endereco.getEnd_bairro());
+     ps.setInt(4, endereco.getUsuario_Usu_cod());
+     ps.setInt(5, endereco.getMunicipio_Mun_cod());
+     ps.setInt(6, endereco.getTipo_Endereco_TipEnd_cod());
      int result = ps.executeUpdate();
   }
 

@@ -8,11 +8,10 @@ public class ConselhosDATA {
 
   public void incluir(ConselhosDO conselho, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
-     String sql = "insert into Conselhos (Con_cod, Con_nome, Con_sigla) values (?, ?, ?)";
+     String sql = "insert into Conselhos ( Con_nome, Con_sigla) values (?, ?)";
      PreparedStatement ps = con.prepareStatement(sql);
-     ps.setInt(1, conselho.getCon_cod());
-     ps.setString(2, conselho.getCon_nome());
-     ps.setString(3, conselho.getCon_sigla());
+     ps.setString(1, conselho.getCon_nome());
+     ps.setString(2, conselho.getCon_sigla());
      int result = ps.executeUpdate();
   }
 

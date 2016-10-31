@@ -29,7 +29,7 @@ public class Medico_has_EspecialidadeDATA {
 
   public Medico_has_EspecialidadeDO buscar(int idobj, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
-     String sql = "select * from Especialidade_Esp_cod where  Medico_Usuario_Usu_cod=?";
+     String sql = "select * from Medico_has_Especialidade where  Medico_Usuario_Usu_cod=?";
      PreparedStatement ps = con.prepareStatement(sql);
      ps.setInt(1, idobj);
      ResultSet rs = ps.executeQuery();

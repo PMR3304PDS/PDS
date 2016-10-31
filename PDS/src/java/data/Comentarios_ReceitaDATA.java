@@ -8,16 +8,15 @@ public class Comentarios_ReceitaDATA {
 
   public void incluir(Comentarios_ReceitaDO comentario, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
-     String sql = "insert into ComentarioReceita (ComRec_cod, ComRec_data, ComRec_comentario, "
-     + "Medico_Usuario_Usu_cod,Farmaceutico_Usuario_Usu_cod,Receita_Rec_cod,Com_Rec_excluido,) values (?, ?, ?, ?, ?, ?,?)";
+     String sql = "insert into ComentarioReceita (ComRec_data, ComRec_comentario, "
+     + "Medico_Usuario_Usu_cod,Farmaceutico_Usuario_Usu_cod,Receita_Rec_cod,Com_Rec_excluido,) values ( ?, ?, ?, ?, ?,?)";
      PreparedStatement ps = con.prepareStatement(sql);
-     ps.setInt(1, comentario.getComRec_cod());
-     ps.setDate(2, comentario.getComRec_data());
-     ps.setString(3, comentario.getComRec_comentario());
-     ps.setInt(4, comentario.getMedico_Usuario_Usu_cod());
-     ps.setInt(5, comentario.getFarmaceutico_Usuario_Usu_cod());
-     ps.setInt(6, comentario.getReceita_Rec_cod());
-     ps.setBoolean(7, comentario.isCom_Rec_excluido());
+     ps.setDate(1, comentario.getComRec_data());
+     ps.setString(2, comentario.getComRec_comentario());
+     ps.setInt(3, comentario.getMedico_Usuario_Usu_cod());
+     ps.setInt(4, comentario.getFarmaceutico_Usuario_Usu_cod());
+     ps.setInt(5, comentario.getReceita_Rec_cod());
+     ps.setBoolean(6, comentario.isCom_Rec_excluido());
      int result = ps.executeUpdate();
   }
   public void excluir(Comentarios_ReceitaDO comentario, Transacao tr) throws Exception {

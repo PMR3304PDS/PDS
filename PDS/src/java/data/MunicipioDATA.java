@@ -18,11 +18,10 @@ public class MunicipioDATA {
     
     public void incluir(MunicipioDO municipio, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
-     String sql = "insert into Municipio (Mun_cod, Mun_nome, Estado_Est_cod) values (?, ?, ?)";
+     String sql = "insert into Municipio (Mun_nome, Estado_Est_cod) values (?, ?)";
      PreparedStatement ps = con.prepareStatement(sql);
-     ps.setInt(1, municipio.getMun_cod());
-     ps.setString(2, municipio.getMun_nome());
-     ps.setInt(3, municipio.getEstado_Est_cod());
+     ps.setString(1, municipio.getMun_nome());
+     ps.setInt(2, municipio.getEstado_Est_cod());
      int result = ps.executeUpdate();
   }
 

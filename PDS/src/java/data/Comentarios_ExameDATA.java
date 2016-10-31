@@ -8,15 +8,14 @@ public class Comentarios_ExameDATA {
 
   public void incluir(Comentarios_ExameDO comentario, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
-     String sql = "insert into ComentarioExame (ComExa_cod, ComExa_data, ComExa_comentario, "
-             + "Medico_Usuario_Usu_cod,Exame_Exa_cod,Com_Exa_excluido) values (?, ?, ?, ?, ?, ?)";
+     String sql = "insert into ComentarioExame (ComExa_data, ComExa_comentario, "
+             + "Medico_Usuario_Usu_cod,Exame_Exa_cod,Com_Exa_excluido) values ( ?, ?, ?, ?, ?)";
      PreparedStatement ps = con.prepareStatement(sql);
-     ps.setInt(1, comentario.getComExa_cod());
-     ps.setDate(2, comentario.getComExa_data());
-     ps.setString(3, comentario.getComExa_comentario());
-     ps.setInt(4, comentario.getMedico_Usuario_Usu_cod());
-     ps.setInt(5, comentario.getExame_Exa_cod());
-     ps.setBoolean(6, comentario.isCom_Exa_excluido());
+     ps.setDate(1, comentario.getComExa_data());
+     ps.setString(2, comentario.getComExa_comentario());
+     ps.setInt(3, comentario.getMedico_Usuario_Usu_cod());
+     ps.setInt(4, comentario.getExame_Exa_cod());
+     ps.setBoolean(5, comentario.isCom_Exa_excluido());
      int result = ps.executeUpdate();
   }
 

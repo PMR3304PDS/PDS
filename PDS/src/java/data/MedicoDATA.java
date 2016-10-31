@@ -19,7 +19,7 @@ public class MedicoDATA {
 
   public void atualizar(MedicoDO medico, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
-     String sql = "update ComentarioExame set Estado_Est_cod_conselho_emissor=?, Med_NumRegistro=? where Conselhos_Con_cond=?";
+     String sql = "update Medico set Estado_Est_cod_conselho_emissor=?, Med_NumRegistro=? where Conselhos_Con_cond=?";
      PreparedStatement ps = con.prepareStatement(sql);
      ps.setInt(1, medico.getEstado_Est_cod_conselho_emissor());
      ps.setString(2, medico.getMed_NumRegistro());
