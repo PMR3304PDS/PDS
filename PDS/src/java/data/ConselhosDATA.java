@@ -33,9 +33,9 @@ public class ConselhosDATA {
      ResultSet rs = ps.executeQuery();
      rs.next();
      ConselhosDO conselho = new ConselhosDO();
-     conselho.setCon_cod (rs.getInt("id"));
-     conselho.setCon_nome (rs.getString("nome"));
-     conselho.setCon_sigla(rs.getString("telefone"));
+     conselho.setCon_cod (rs.getInt("Con_id"));
+     conselho.setCon_nome (rs.getString("Con_nome"));
+     conselho.setCon_sigla(rs.getString("Con_sigla"));
      return conselho;
   } // buscar
 
