@@ -1,7 +1,7 @@
 
 package data;
 
-import java.io.FileInputStream;
+import java.io.InputStream;
 
 public class UsuarioDO {
   private int Usu_cod;
@@ -10,7 +10,7 @@ public class UsuarioDO {
   private String Usu_nome;
   private String Usu_rg;
   private String Usu_cpf;
-  private FileInputStream Usu_foto;
+  private InputStream Usu_foto;
   private boolean Usu_ativo;
 
     public int getUsu_cod() {
@@ -61,11 +61,11 @@ public class UsuarioDO {
         this.Usu_cpf = Usu_cpf;
     }
 
-    public FileInputStream getUsu_foto() {
+    public InputStream getUsu_foto() {
         return Usu_foto;
     }
 
-    public void setUsu_foto(FileInputStream Usu_foto) {
+    public void setUsu_foto(InputStream Usu_foto) {
         this.Usu_foto = Usu_foto;
     }
 
