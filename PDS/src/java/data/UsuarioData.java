@@ -96,4 +96,24 @@ public class UsuarioData {
      return usuarios;
   } // pesquisarPorNome
 
+    public UsuarioDO pesquisarPorLogin(String login, Transacao tr) throws Exception {
+     Connection con = tr.obterConexao();
+     String sql = "select * from Usuario where  Usu_login=?";
+     PreparedStatement ps = con.prepareStatement(sql);
+     ps.setString(1, login);
+     ResultSet rs = ps.executeQuery();
+     rs.next();
+     UsuarioDO usuario = new UsuarioDO();
+     usuario.setUsu_cod(rs.getInt("Usu_cod"));
+     usuario.setUsu_login(rs.getString("Usu_login"));
+     usuario.setUsu_senha(rs.getString("Usu_senha"));
+     usuario.setUsu_nome(rs.getString("Usu_nome"));
+     usuario.setUsu_rg(rs.getString("Usu_rg"));
+     usuario.setUsu_cpf(rs.getString("Usu_cpf"));
+     
+     usuario.setUsu_foto(rs.getBinaryStream("Usu_foto"));
+     
+     usuario.setUsu_ativo(rs.getBoolean("Usu_ativo"));
+     return usuario;
+  } // buscar
 }
