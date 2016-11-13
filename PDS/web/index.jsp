@@ -13,7 +13,7 @@ and open the template in the editor.
     <body>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-                <%@ include file="header.jsp" %>
+                <%@ include file="Geral/header.jsp" %>
             </tr>
             <tr>
                 <h2>
@@ -33,7 +33,7 @@ and open the template in the editor.
                 </form>
             </tr>
             <tr>
-                <%@ include file="footer.jsp" %>
+                <%@ include file="Geral/footer.jsp" %>
             </tr>
         </table>
     </body>
