@@ -21,15 +21,11 @@ public class UsuarioData {
      int result = ps.executeUpdate();
   }
 
-  public void excluir(UsuarioDO usuario, Transacao tr) throws Exception {
-        excluir(usuario.getUsu_cod(), tr);
-  } // excluir
-
-  public void excluir (int idobj, Transacao tr) throws Exception {
+  public void excluir (UsuarioDO usuario, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
      String sql = "update Usuario set Usu_ativo=false where Usu_cod=?";
      PreparedStatement ps = con.prepareStatement(sql);
-     ps.setInt(1, idobj);
+     ps.setInt(1, usuario.getUsu_cod());
      int result = ps.executeUpdate();
   } // excluir
 

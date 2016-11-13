@@ -23,16 +23,8 @@ public class FarmaceuticoDATA {
      ps.setInt(2, farmaceutico.getEstado_Est_cod_conselho_emissor());
      int result = ps.executeUpdate();
   }
-//  public void excluir(PacienteDO comentario, Transacao tr) throws Exception {
-//        excluir(comentario.getUsu_cod(), tr);
-//  } // excluir
-//
-//  public void excluir (int idobj, Transacao tr) throws Exception {
-//     Connection con = tr.obterConexao();
-//     String sql = "update Paciente set Com_Rec_excluido=true where ComRec_cod=?";
-//     PreparedStatement ps = con.prepareStatement(sql);
-//     ps.setInt(1, idobj);
-//     int result = ps.executeUpdate();
+
+//  public void excluir (FarmaceuticoDO farmaceutico, Transacao tr) throws Exception {
 //  } // excluir 
 
   public void atualizar(FarmaceuticoDO farmaceutico, Transacao tr) throws Exception {

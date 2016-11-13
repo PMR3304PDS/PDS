@@ -15,12 +15,8 @@ public class Tipo_EnderecoData {
      int result = ps.executeUpdate();
   }
 
-  public void excluir(Tipo_EnderecoDO tipo_endereco, Transacao tr) throws Exception {
-     excluir(tipo_endereco.getTipEnd_cod(), tr);
-  } // excluir
-
-  public void excluir (int idobj, Transacao tr) throws Exception {
-  } // excluir 
+//  public void excluir(Tipo_EnderecoDO tipo_endereco, Transacao tr) throws Exception {
+//  } // excluir
 
   public void atualizar(Tipo_EnderecoDO tipo_endereco, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();

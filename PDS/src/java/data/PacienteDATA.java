@@ -19,16 +19,8 @@ public class PacienteDATA {
      ps.setString(6, paciente.getPac_doencas_tratamento());
      int result = ps.executeUpdate();
   }
-//  public void excluir(PacienteDO comentario, Transacao tr) throws Exception {
-//        excluir(comentario.getUsu_cod(), tr);
-//  } // excluir
-//
-//  public void excluir (int idobj, Transacao tr) throws Exception {
-//     Connection con = tr.obterConexao();
-//     String sql = "update Paciente set Com_Rec_excluido=true where ComRec_cod=?";
-//     PreparedStatement ps = con.prepareStatement(sql);
-//     ps.setInt(1, idobj);
-//     int result = ps.executeUpdate();
+
+//  public void excluir (PacienteDO paciente, Transacao tr) throws Exception {
 //  } // excluir 
 
   public void atualizar(PacienteDO paciente, Transacao tr) throws Exception {

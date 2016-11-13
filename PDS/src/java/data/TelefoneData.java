@@ -17,12 +17,8 @@ public class TelefoneData {
      int result = ps.executeUpdate();
   }
 
-  public void excluir(TelefoneDO telefone, Transacao tr) throws Exception {
-     excluir(telefone.getTel_cod(), tr);
-  } // excluir
-
-  public void excluir (int idobj, Transacao tr) throws Exception {
-  } // excluir 
+//  public void excluir(TelefoneDO telefone, Transacao tr) throws Exception {
+//  } // excluir
 
   public void atualizar(TelefoneDO telefone, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();

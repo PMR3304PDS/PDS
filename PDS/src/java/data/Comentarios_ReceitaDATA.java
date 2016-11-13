@@ -19,15 +19,12 @@ public class Comentarios_ReceitaDATA {
      ps.setBoolean(6, comentario.isCom_Rec_excluido());
      int result = ps.executeUpdate();
   }
-  public void excluir(Comentarios_ReceitaDO comentario, Transacao tr) throws Exception {
-        excluir(comentario.getComRec_cod(), tr);
-  } // excluir
-
-  public void excluir (int idobj, Transacao tr) throws Exception {
+  
+  public void excluir (Comentarios_ReceitaDO comentario, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
      String sql = "update ComentarioReceita set Com_Rec_excluido=true where ComRec_cod=?";
      PreparedStatement ps = con.prepareStatement(sql);
-     ps.setInt(1, idobj);
+     ps.setInt(1, comentario.getComRec_cod());
      int result = ps.executeUpdate();
   } // excluir 
 

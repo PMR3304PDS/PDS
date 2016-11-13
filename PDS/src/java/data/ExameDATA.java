@@ -27,15 +27,11 @@ public class ExameDATA {
   }
   
   
-  public void excluir(ExameDO exame, Transacao tr) throws Exception {
-        excluir(exame.getExa_cod(), tr);
-  } // excluir
-
-  public void excluir (int idobj, Transacao tr) throws Exception {
+  public void excluir (ExameDO exame, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
      String sql = "update Exame set Exa_excluido=true where Exa_cod=?";
      PreparedStatement ps = con.prepareStatement(sql);
-     ps.setInt(1, idobj);
+     ps.setInt(1, exame.getExa_cod());
      int result = ps.executeUpdate();
   } // excluir
   

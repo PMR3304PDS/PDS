@@ -16,12 +16,8 @@ public class Tipo_ExameData {
      int result = ps.executeUpdate();
   }
 
-  public void excluir(Tipo_ExameDO tipo_exame, Transacao tr) throws Exception {
-     excluir(tipo_exame.getTipExa_cod(), tr);
-  } // excluir
-
-  public void excluir (int idobj, Transacao tr) throws Exception {
-  } // excluir 
+//  public void excluir(Tipo_ExameDO tipo_exame, Transacao tr) throws Exception {
+//  } // excluir
 
   public void atualizar(Tipo_ExameDO tipo_exame, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();

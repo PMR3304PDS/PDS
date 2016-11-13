@@ -20,16 +20,12 @@ public class Comentarios_ExameDATA {
   }
 
   public void excluir(Comentarios_ExameDO comentario, Transacao tr) throws Exception {
-        excluir(comentario.getComExa_cod(), tr);
-  } // excluir
-
-  public void excluir (int idobj, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
      String sql = "update ComentarioExame set Com_Exa_excluido=true where ComExa_cod=?";
      PreparedStatement ps = con.prepareStatement(sql);
-     ps.setInt(1, idobj);
+     ps.setInt(1, comentario.getComExa_cod());
      int result = ps.executeUpdate();
-  } // excluir 
+  } // excluir
 
   public void atualizar(Comentarios_ExameDO comentario, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();

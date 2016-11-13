@@ -69,15 +69,11 @@ public class ReceitaDATA {
         int result = ps.executeUpdate();
     }//atualizar
     
-    public void excluir(ReceitaDO receita, Transacao tr) throws Exception {
-        excluir(receita.getRec_cod(), tr);
-  } // excluir
-
-    public void excluir (int idobj, Transacao tr) throws Exception {
+    public void excluir (ReceitaDO receita, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
      String sql = "update Receita set Rec_excluido=true where Rec_cod=?";
      PreparedStatement ps = con.prepareStatement(sql);
-     ps.setInt(1, idobj);
+     ps.setInt(1, receita.getRec_cod());
      int result = ps.executeUpdate();
   } // excluir
     
