@@ -30,13 +30,13 @@ public class TecnicoDATA {
   
   public TecnicoDO buscar(int idobj, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
-     String sql = "select * from Tecnico where Usu_cod=?";
+     String sql = "select * from Tecnico where Usuario_Usu_cod=?";
      PreparedStatement ps = con.prepareStatement(sql);
      ps.setInt(1, idobj);
      ResultSet rs = ps.executeQuery();
      rs.next();
      TecnicoDO tecnico = new TecnicoDO();
-     tecnico.setUsu_cod(rs.getInt("Usu_cod"));
+     tecnico.setUsu_cod(rs.getInt("Usuario_Usu_cod"));
      tecnico.setConselhos_Con_cod(rs.getInt("Conselhos_Con_cod"));
      tecnico.setEstado_Est_cod_conselho_emissor(rs.getInt("Estado_Est_cod_conselho_emissor"));
      return tecnico;
