@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>Login POLIdataSUS</title>
+        <title>POLIdataSUS</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -22,7 +22,7 @@ and open the template in the editor.
                 Se você já é cadastrado, prossiga para o login. <br>
 
                 Caso contrário, faça o cadastro! Isso levará apenas alguns instantes! <br>
-                <form action="login.jsp">
+                <form action="Geral/login.jsp">
                     <input type="submit" name="ok" value="login"/>
                 </form>
                 <form action="primeiro_acesso_paciente.jsp">
