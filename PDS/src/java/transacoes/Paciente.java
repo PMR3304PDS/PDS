@@ -67,7 +67,7 @@ public class Paciente {
 	   return p;
 	 } catch (Exception e) {
 	   tr.rollback();
-	   System.out.println("erro ao buscar" + idobj);
+	   System.out.println("erro ao buscar " + idobj);
 	   e.printStackTrace();
 	 }
 	 return null;
@@ -86,8 +86,8 @@ public class Paciente {
       Paciente p = new Paciente();
       PacienteDO paciente = new PacienteDO();
       try {
-	    paciente = p.buscar(6);
-		System.out.println(paciente.getPac_alergias());
+	    paciente = p.buscar(2);
+		System.out.println(paciente.getPac_nascimento());
       } catch(Exception e) {
           e.printStackTrace();
       }
