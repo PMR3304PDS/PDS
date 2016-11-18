@@ -25,7 +25,7 @@ and open the template in the editor.
                 <form action="Geral/login.jsp">
                     <input type="submit" name="ok" value="login"/>
                 </form>
-                <form action="primeiro_acesso_paciente.jsp">
+                <form action="Paciente/primeiro_acesso_paciente.jsp">
                     <input type="submit" name="ok" value="paciente"/>
                 </form>
                 <form action="primeiro_acesso_medico_tecnico.jsp">
