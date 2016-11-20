@@ -36,7 +36,24 @@
                 <br>
                 Realizar Indicação:
                 <br>
-                
+                Paciente: 
+                    <form action="IndicacaoMedico.jsp" method="Get">          
+                        RG<input type="radio" name="documento" value="RG">
+                        CPF<input type="radio" name="documento" value="CPF">  
+                        <input type="text" name="num_documento_paciente">
+                        <br>
+                Medico: 
+                        <br>
+                        CRM<input type="radio" name="CRM" value="CRM"> 
+                        <input type="text" name="num_CRM_medico">
+                        Estado <select name="estado">
+                        <option value="estado1">estado1</option>
+                        <option value="estado2">estado2</option>
+                        </select>
+                        <br>
+                        <br>
+                        <input type="submit" value="Indicar">
+                    </form>
                 </td>
             </tr>
             <tr>
