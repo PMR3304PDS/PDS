@@ -23,12 +23,12 @@
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td colspan="2">
-                    <%@ include file="../Geral/header.jsp" %>
+                    <%@ include file="/Geral/header.jsp" %>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <%@ include file="../Geral/menu.jsp" %>
+                    <%@ include file="/Geral/menu.jsp" %>
                 </td>
                 <td>
                     Cadastro - Alterar a senha
@@ -43,7 +43,7 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <%@ include file="../Geral/footer.jsp" %>
+                    <%@ include file="/Geral/footer.jsp" %>
                 </td>
             </tr>
         </table>
