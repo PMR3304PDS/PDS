@@ -10,6 +10,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <%@ page import="java.util.Vector" %>
+        <%@ page import="transacoes.Exame" %>
+        <%@ page import="data.ExameDO" %>
+        <%@ page import="data.PacienteDO" %>
         <%@ include file="../Geral/verifylogin.jsp" %>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -22,11 +26,6 @@
                     <%@ include file="../Geral/menu.jsp" %>
                 </td>
                 <td>
-                    <%@ page import="java.util.Vector" %>
-                    <%@ page import="transacoes.Exame" %>
-                    <%@ page import="data.ExameDO" %>
-                    <%@ page import="data.PacienteDO" %>
-                    
                     <%
                     String nome_paciente = (String)session.getAttribute("Usu_nome");
                     %>
