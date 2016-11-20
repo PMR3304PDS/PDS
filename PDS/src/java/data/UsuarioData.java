@@ -112,4 +112,59 @@ public class UsuarioData {
      usuario.setUsu_ativo(rs.getBoolean("Usu_ativo"));
      return usuario;
   } // buscar
+    
+    public Vector pesquisarPorRg(String rg, Transacao tr) throws Exception {
+     Connection con = tr.obterConexao();
+     String sql = "select * from Usuario where Usu_rg like ?";
+     PreparedStatement ps = con.prepareStatement(sql);
+     ps.setString(1, rg);
+     ResultSet rs = ps.executeQuery();
+     System.out.println("query executada");
+     Vector usuarios = new Vector();
+     while (rs.next()) {
+        UsuarioDO c = new UsuarioDO();
+        c.setUsu_cod(rs.getInt("Usu_cod"));
+        c.setUsu_nome(rs.getString("Usu_nome"));
+        System.out.println(" got " + c.getUsu_nome());
+        c.setUsu_login(rs.getString("Usu_login"));
+        c.setUsu_senha(rs.getString("Usu_senha"));
+        c.setUsu_rg(rs.getString("Usu_rg"));
+        c.setUsu_cpf(rs.getString("Usu_cpf"));
+        
+        c.setUsu_foto(rs.getBinaryStream("Usu_foto"));
+        
+        c.setUsu_ativo(rs.getBoolean("Usu_ativo"));
+        usuarios.add(c);
+     }
+     return usuarios;
+  }
+    
+    public Vector pesquisarPorCpf(String cpf, Transacao tr) throws Exception {
+     Connection con = tr.obterConexao();
+     String sql = "select * from Usuario where Usu_cpf like ?";
+     PreparedStatement ps = con.prepareStatement(sql);
+     ps.setString(1, cpf);
+     ResultSet rs = ps.executeQuery();
+     System.out.println("query executada");
+     Vector usuarios = new Vector();
+     while (rs.next()) {
+        UsuarioDO c = new UsuarioDO();
+        c.setUsu_cod(rs.getInt("Usu_cod"));
+        c.setUsu_nome(rs.getString("Usu_nome"));
+        System.out.println(" got " + c.getUsu_nome());
+        c.setUsu_login(rs.getString("Usu_login"));
+        c.setUsu_senha(rs.getString("Usu_senha"));
+        c.setUsu_rg(rs.getString("Usu_rg"));
+        c.setUsu_cpf(rs.getString("Usu_cpf"));
+        
+        c.setUsu_foto(rs.getBinaryStream("Usu_foto"));
+        
+        c.setUsu_ativo(rs.getBoolean("Usu_ativo"));
+        usuarios.add(c);
+     }
+     return usuarios;
+  }
+    
+    
+    
 }

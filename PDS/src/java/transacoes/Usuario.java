@@ -26,6 +26,71 @@ public class Usuario{
         return null;
     }
     
+    public Vector pesquisarPorNome(String nome) throws Exception {
+        if (isEmpty(nome)) {
+            return null;
+        }
+        
+        Transacao tr = new Transacao();
+        try {
+            tr.beginReadOnly();
+              UsuarioData cdata = new UsuarioData();
+              Vector v = cdata.pesquisarPorNome(nome, tr);
+            tr.commit();
+            return v;
+        } catch (Exception e) {
+            tr.rollback();
+            System.out.println("Error!");
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    
+    
+    public Vector pesquisarPorRg(String rg) throws Exception {
+        if (isEmpty(rg)) {
+            return null;
+        }
+        
+        Transacao tr = new Transacao();
+        try {
+            tr.beginReadOnly();
+              UsuarioData cdata = new UsuarioData();
+              Vector v = cdata.pesquisarPorRg(rg, tr);
+            tr.commit();
+            return v;
+        } catch (Exception e) {
+            tr.rollback();
+            System.out.println("Error!");
+            e.printStackTrace();
+        }
+        return null;
+    }
+      
+    
+    
+    public Vector pesquisarPorCpf(String cpf) throws Exception {
+        if (isEmpty(cpf)) {
+            return null;
+        }
+        
+        Transacao tr = new Transacao();
+        try {
+            tr.beginReadOnly();
+              UsuarioData cdata = new UsuarioData();
+              Vector v = cdata.pesquisarPorCpf(cpf, tr);
+            tr.commit();
+            return v;
+        } catch (Exception e) {
+            tr.rollback();
+            System.out.println("Error!");
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    
     public MedicoDO buscarMedico(int idobj) throws Exception {
         Transacao tr = new Transacao();
         try {
@@ -73,4 +138,13 @@ public class Usuario{
         }
         return null;
     }
+    
+    private boolean isEmpty(String s) {
+     if (null == s)
+       return true;
+     if (s.length() == 0)
+       return true;
+     return false;
+  }
+    
 }
