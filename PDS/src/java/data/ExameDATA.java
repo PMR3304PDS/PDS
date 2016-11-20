@@ -1,5 +1,6 @@
 package data;
 
+import java.io.InputStream.*;
 import java.sql.*;
 import java.io.InputStream.*;
 import java.util.*;
@@ -78,6 +79,7 @@ public class ExameDATA {
      
      return exame;
   } // buscar
+  
 
 } // ExameDATA
 
