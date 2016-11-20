@@ -1,1 +1,1 @@
-<a href="index.jsp"><img src= "<%=getServletContext().getContextPath()%>/Images/Logo.png"></a>
+<a href="<%=getServletContext().getContextPath()%>/index.jsp"><img src= "<%=getServletContext().getContextPath()%>/Images/Logo.png"></a>
