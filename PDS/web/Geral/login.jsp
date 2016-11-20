@@ -34,16 +34,24 @@
         boolean v = false;
         if ((user.length() <= 150) && (passwd.length() <= 20) && (u != null)) {
             v = u.getUsu_senha().equals(passwd);
+            session.setAttribute("cod", u.getUsu_cod());
             if (v) {
-                session.setAttribute("user_name", u.getUsu_nome());
-                if (tn.buscarMedico(u.getUsu_cod()) != null)
+                if (tn.buscarMedico(u.getUsu_cod()) != null) {
                     pageContext.forward("../Medico/modelo.jsp");
-                else if (tn.buscarTecnico(u.getUsu_cod()) != null)
+                    session.setAttribute("tipo", 'm');
+                }
+                else if (tn.buscarTecnico(u.getUsu_cod()) != null) {
                     pageContext.forward("../Tecnico/modelo.jsp");
-                else if (tn.buscarPaciente(u.getUsu_cod()) != null)
+                    session.setAttribute("tipo", 't');
+                }
+                else if (tn.buscarPaciente(u.getUsu_cod()) != null) {
                     pageContext.forward("../Paciente/modelo.jsp");
-                else
+                    session.setAttribute("tipo", 'p');
+                }
+                else {
                     pageContext.forward("temppage.jsp");
+                    session.setAttribute("tipo", 'x');
+                }
             }
         } else {
 %>
