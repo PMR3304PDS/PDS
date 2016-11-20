@@ -5,15 +5,7 @@ public class FarmaceuticoDO extends UsuarioDO {
     
     private int Conselhos_Con_cod;
     private int Estado_Est_cod_conselho_emissor;
-
-    public int getUsuario_Usu_cod() {
-        return getUsu_cod();
-    }
-
-    public void setUsuario_Usu_cod(int Usuario_Usu_cod) {
-        this.setUsu_cod(Usuario_Usu_cod);
-    }
-
+    
     public int getConselhos_Con_cod() {
         return Conselhos_Con_cod;
     }
@@ -29,7 +21,4 @@ public class FarmaceuticoDO extends UsuarioDO {
     public void setEstado_Est_cod_conselho_emissor(int Estado_Est_cod_conselho_emissor) {
         this.Estado_Est_cod_conselho_emissor = Estado_Est_cod_conselho_emissor;
     }
-    
-    
-    
 }

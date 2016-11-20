@@ -39,21 +39,33 @@ public class PacienteDATA {
   } // atualizar
   
   public PacienteDO buscar(int idobj, Transacao tr) throws Exception {
-     Connection con = tr.obterConexao();
-     String sql = "select * from Paciente where  Usuario_Usu_cod=?";
-     PreparedStatement ps = con.prepareStatement(sql);
-     ps.setInt(1, idobj);
-     ResultSet rs = ps.executeQuery();
-     rs.next();
-     PacienteDO paciente = new PacienteDO();
-     paciente.setUsu_cod(rs.getInt("Usuario_Usu_cod"));
-     paciente.setPac_nascimento(rs.getDate("Pac_nascimento"));
-     paciente.setPac_peso(rs.getFloat("Pac_peso"));
-     paciente.setPac_altura(rs.getFloat("Pac_altura"));
-     paciente.setPac_alergias(rs.getString("Pac_alergias"));
-     paciente.setPac_medicamentos(rs.getString("Pac_medicamentos"));
-     paciente.setPac_doencas_tratamento(rs.getString("Pac_doencas_tratamento"));
-     return paciente;
+    Connection con = tr.obterConexao();
+    String sql = "select u.*, p.* from Usuario as u inner join Paciente as p on u.Usu_cod = p.Usuario_Usu_cod where u.Usu_cod = ?";
+    PreparedStatement ps = con.prepareStatement(sql);
+    ps.setInt(1, idobj);
+    ResultSet rs = ps.executeQuery();
+
+    if (rs.next()) {
+      PacienteDO p = new PacienteDO();
+      if (rs.getBoolean("Usu_ativo")) {
+        p.setUsu_cod(rs.getInt("Usu_cod"));
+        p.setUsu_login(rs.getString("Usu_login"));
+        p.setUsu_rg(rs.getString("Usu_rg"));
+        p.setUsu_cpf(rs.getString("Usu_cpf"));
+        p.setUsu_nome(rs.getString("Usu_nome"));
+        p.setUsu_ativo(rs.getBoolean("Usu_ativo"));
+        p.setUsu_foto(rs.getBinaryStream("Usu_foto"));
+        p.setPac_nascimento(rs.getDate("Pac_nascimento"));
+        p.setPac_peso(rs.getFloat("Pac_peso"));
+        p.setPac_altura(rs.getFloat("Pac_altura"));
+        p.setPac_alergias(rs.getString("Pac_alergias"));
+        p.setPac_medicamentos(rs.getString("Pac_medicamentos"));
+        p.setPac_doencas_tratamento(rs.getString("Pac_doencas_tratamento"));
+        p.setPac_historico_doencas(rs.getString("Pac_historico_doencas"));
+      }
+      return p;
+    }
+    return null;
   } // buscar
 
 }

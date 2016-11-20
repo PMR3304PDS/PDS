@@ -29,17 +29,28 @@ public class TecnicoDATA {
   } // atualizar
   
   public TecnicoDO buscar(int idobj, Transacao tr) throws Exception {
-     Connection con = tr.obterConexao();
-     String sql = "select * from Tecnico where Usuario_Usu_cod=?";
-     PreparedStatement ps = con.prepareStatement(sql);
-     ps.setInt(1, idobj);
-     ResultSet rs = ps.executeQuery();
-     rs.next();
-     TecnicoDO tecnico = new TecnicoDO();
-     tecnico.setUsu_cod(rs.getInt("Usuario_Usu_cod"));
-     tecnico.setConselhos_Con_cod(rs.getInt("Conselhos_Con_cod"));
-     tecnico.setEstado_Est_cod_conselho_emissor(rs.getInt("Estado_Est_cod_conselho_emissor"));
-     return tecnico;
+    Connection con = tr.obterConexao();
+    String sql = "select u.*, t.* from Usuario as u inner join Tecnico as t on u.Usu_cod = t.Usuario_Usu_cod where u.Usu_cod = ?";
+    PreparedStatement ps = con.prepareStatement(sql);
+    ps.setInt(1, idobj);
+    ResultSet rs = ps.executeQuery();
+
+    if (rs.next()) {
+      TecnicoDO t = new TecnicoDO();
+      if (rs.getBoolean("Usu_ativo")) {
+        t.setUsu_cod(rs.getInt("Usu_cod"));
+        t.setUsu_login(rs.getString("Usu_login"));
+        t.setUsu_rg(rs.getString("Usu_rg"));
+        t.setUsu_cpf(rs.getString("Usu_cpf"));
+        t.setUsu_nome(rs.getString("Usu_nome"));
+        t.setUsu_ativo(rs.getBoolean("Usu_ativo"));
+        t.setUsu_foto(rs.getBinaryStream("Usu_foto"));
+        t.setConselhos_Con_cod(rs.getInt("Conselhos_Con_cod"));
+        t.setEstado_Est_cod_conselho_emissor(rs.getInt("Estado_Est_cod_conselho_emissor"));
+      }
+      return t;
+    }
+    return null;
   } // buscar
 
 }
