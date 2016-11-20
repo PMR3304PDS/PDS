@@ -10,7 +10,7 @@ package data;
  * @author aluno
  */
 public class MedicoDO extends UsuarioDO {
-    private int Conselhos_Con_cond;
+    private int Conselhos_Con_cod;
     private int Estado_Est_cod_conselho_emissor;
     private String Med_NumRegistro;
 
@@ -22,12 +22,12 @@ public class MedicoDO extends UsuarioDO {
         this.Med_NumRegistro = Med_NumRegistro;
     }
     
-    public int getConselhos_Con_cond() {
-        return Conselhos_Con_cond;
+    public int getConselhos_Con_cod() {
+        return Conselhos_Con_cod;
     }
 
-    public void setConselhos_Con_cond(int Conselhos_Con_cond) {
-        this.Conselhos_Con_cond = Conselhos_Con_cond;
+    public void setConselhos_Con_cod(int Conselhos_Con_cod) {
+        this.Conselhos_Con_cod = Conselhos_Con_cod;
     }
 
     public int getEstado_Est_cod_conselho_emissor() {
