@@ -62,19 +62,19 @@
             //if(tn.mudar_senha(usuario,senha_antiga,senha_nova))
             //{
         %>
-            <%-- Senha alterada com sucesso!
+            Senha alterada com sucesso!
             <form action=".main.jsp" method="post">
                 <input type=submit" name="voltar" value="Voltar" />
-            </form> --%>
+            </form>
         <%
             //}
             //else
             //{
         %>
-            <%-- Erro ao incluir ncluir usuario
+            Erro ao incluir incluir usuario
                 <form action=".mudar_senha.jsp" method="post">
                 <input type=submit" name="voltar" value="Voltar" />
-            </form> --%>
+            </form>
         <%
             //}
           
