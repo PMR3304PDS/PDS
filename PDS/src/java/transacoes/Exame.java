@@ -66,9 +66,9 @@ public Vector pesquisar(String nome) {
      try {
 	    tr.beginReadOnly();
             ExameDATA examedata = new ExameDATA();
-            Vector v = examedata.buscar(examedata.getExa_cod, tr);
+            //Vector v = examedata.buscar(, tr);
             tr.commit();
-            return v;
+            //return v;
      } catch(Exception e) {
             System.out.println("erro ao pesquisar " + nome);
             e.printStackTrace();
