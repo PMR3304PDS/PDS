@@ -21,7 +21,7 @@
                     <%@ include file="/Geral/menu.jsp" %>
                 </td>
                 <td>
-                    <a href="/PDS/Geral/visualiza.jsp?id=1">Gabriel Xavier</a>
+                    <a href="/PDS/Medico/visualiza_perfil.jsp?id=1&tipo=m">Gabriel Xavier</a>
                 </td>
             </tr>
             <tr>
