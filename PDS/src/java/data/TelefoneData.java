@@ -43,4 +43,21 @@ public class TelefoneData {
      
      return telefone;
   } // buscar
+  
+  public Vector pesquisarPorCod(int cod, Transacao tr) throws Exception {
+    Connection con = tr.obterConexao();
+    String sql = "select * from Telefone where Usuario_Usu_cod = ?";
+    PreparedStatement ps = con.prepareStatement(sql);
+    ps.setInt(1, cod);
+    ResultSet rs = ps.executeQuery();
+    Vector tel = new Vector();
+    while (rs.next()) {
+      TelefoneDO t = new TelefoneDO();
+      t.setTel_cod(rs.getInt("Tel_cod"));
+      t.setTel_numero(rs.getInt("Tel_numero"));
+      t.setUsuario_Usu_Cod(cod);
+      tel.add(t);
+    }
+    return tel;
+  }
 }

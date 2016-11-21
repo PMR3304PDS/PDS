@@ -39,5 +39,18 @@ public class Medico extends Usuario {
         return false;
     }
         
-    
+  public MedicoDO buscar(int idobj) throws Exception {
+    Transacao tr = new Transacao();
+    try {
+      tr.beginReadOnly();
+      MedicoDO t = (new MedicoDATA()).buscar(idobj, tr);
+      tr.commit();
+      return t;
+    } catch (Exception e) {
+      tr.rollback();
+      System.out.println("erro ao buscar " + idobj);
+      e.printStackTrace();
+    }
+    return null;
+  }
 }

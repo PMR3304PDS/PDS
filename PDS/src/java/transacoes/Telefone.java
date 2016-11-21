@@ -48,6 +48,21 @@ public class Telefone {
 	 }
 	 return false;
   } // atualizar
+  
+  public Vector pesquisar(int cod) throws Exception {
+    Transacao tr = new Transacao();
+    try {
+      tr.beginReadOnly();
+      Vector v = (new TelefoneData()).pesquisarPorCod(cod, tr);
+      tr.commit();
+      return v;
+    } catch (Exception e) {
+      tr.rollback();
+      System.out.println("erro ao pesquisar " + Integer.toString(cod));
+      e.printStackTrace();
+    }
+    return null;
+  }
     
     private boolean isEmpty(String s) {
      if (null == s)
