@@ -13,6 +13,8 @@
     <body>
         <%// Coloque aqui os imports%>
         <%@ include file="/Geral/verifylogin.jsp" %>
+        <% String paciente_nome = "teste";
+        %>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td colspan="2">
@@ -24,7 +26,23 @@
                     <%@ include file="/Geral/menu.jsp" %>
                 </td>
                 <td>
-                    ****Aqui vai o jsp da sua página******
+                    <b>Upload de arquivo</b>
+                    <br>
+                    <br>
+                    Paciente: <%= paciente_nome%>
+                    <br>
+                    Tipo de arquivo:
+                    <input type="radio" name="tipo_arquivo" value="receita"> Receita
+                    <input type="radio" name="tipo_arquivo" value="exame"> Exame
+                    <br>
+                    <input type="file" name="arquivo">
+                    <br>
+                    Resumo:
+                    <br>
+                    <textarea cols="10" rows="5" style="width:200px; height:50px;"  name="resumo"></textarea>
+                    <br>
+                    <input type="submit" name="concluir" value="concluir" />
+                    <input type="submit" name="cancelar" value="cancelar" />
                 </td>
             </tr>
             <tr>
