@@ -70,38 +70,6 @@
                         </tr>
                         <tr><td><br></td></tr>
                         <tr>
-                            <td>Tipo de Endereço</td>
-                            <td>
-                                <select name="tipoendereco">
-                                    <option value="Alameda">Alameda</option>
-                                    <option value="Avenida">Avenida</option>
-                                    <option value="Chácara">Chácara</option>
-                                    <option value="Condominio">Condominio</option>
-                                    <option value="Conjunto">Conjunto</option>
-                                    <option value="Estrada">Estrada</option>
-                                    <option value="Jardim">Jardim</option>
-                                    <option value="Ladeira">Ladeira</option>
-                                    <option value="Largo">Largo</option>
-                                    <option value="Parque">Parque</option>
-                                    <option value="Passarela">Passarela</option>
-                                    <option value="Pátio">Pátio</option>
-                                    <option value="Praça">Praça</option>
-                                    <option value="Quadra">Quadra</option>
-                                    <option value="Residencial">Residencial</option>
-                                    <option value="Rodovia">Rodovia</option>
-                                    <option value="Rua" selected>Rua</option>
-                                    <option value="Setor">Setor</option>
-                                    <option value="Sítio">Sítio</option>
-                                    <option value="Travessia">Travessia</option>
-                                    <option value="Trecho">Trecho</option>
-                                    <option value="Via">Via</option>
-                                    <option value="Viaduto">Viaduto</option>
-                                    <option value="Viela">Viela</option>
-                                    <option value="Vila">Vila</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
                             <td>Endereço</td>
                             <td><input type="text" name="endereco" maxlength="200" required/>
                         </tr>
@@ -268,60 +236,6 @@
        } else if (estado == "Tocantins"){
            cod_est = 27;
        }
-    
-       String tipoendereco = request.getParameter("tipoendereco");
-       int cod_end = 0;
-       if (tipoendereco == "Alameda"){
-           cod_end = 1;
-       } else if (tipoendereco == "Avenida"){
-           cod_end = 2;
-       } else if (tipoendereco == "Chácara"){
-           cod_end = 3;
-       } else if (tipoendereco == "Condomínio"){
-           cod_end = 4;
-       } else if (tipoendereco == "Conjunto"){
-           cod_end = 5;
-       } else if (tipoendereco == "Estrada"){
-           cod_end = 6;
-       } else if (tipoendereco == "Jardim"){
-           cod_end = 7;
-       } else if (tipoendereco == "Ladeira"){
-           cod_end = 8;
-       } else if (tipoendereco == "Largo"){
-           cod_end = 9;
-       } else if (tipoendereco == "Parque"){
-           cod_end = 10;
-       } else if (tipoendereco == "Passarela"){
-           cod_end = 11;
-       } else if (tipoendereco == "Pátio"){
-           cod_end = 12;
-       } else if (tipoendereco == "Praça"){
-           cod_end = 13;
-       } else if (tipoendereco == "Quadra"){
-           cod_end = 14;
-       } else if (tipoendereco == "Residencial"){
-           cod_end = 15;
-       } else if (tipoendereco == "Rodovia"){
-           cod_end = 16;
-       } else if (tipoendereco == "Rua"){
-           cod_end = 17;
-       } else if (tipoendereco == "Setor"){
-           cod_end = 18;
-       } else if (tipoendereco == "Sítio"){
-           cod_end = 19;
-       } else if (tipoendereco == "Travessa"){
-           cod_end = 20;
-       } else if (tipoendereco == "Trecho"){
-           cod_end = 21;
-       } else if (tipoendereco == "Via"){
-           cod_end = 22;
-       } else if (tipoendereco == "Viaduto"){
-           cod_end = 23;
-       } else if (tipoendereco == "Viela"){
-           cod_end = 24;
-       } else if (tipoendereco == "Vila"){
-           cod_end = 25;
-       } 
       
        String nome = request.getParameter("nome");
        String rg = request.getParameter("rg");
@@ -398,7 +312,7 @@
        end.setEnd_bairro(bairro);
        end.setUsuario_Usu_cod(cod);
        end.setMunicipio_Mun_cod(codmun);
-       end.setTipo_Endereco_TipEnd_cod(cod_end);
+       end.setTipo_Endereco_TipEnd_cod(1);
        
        te.incluir(end);
        
