@@ -51,6 +51,7 @@
                             Nome não encontrado!
                         <form action="/Tecnico/Busca.jsp" method="post">
                             <input type="submit" name="voltar" value="Voltar" />
+                            
                         </form>
                         <%     } else {
                         %>
@@ -63,13 +64,17 @@
                                     int uper_cod = Integer.parseInt(request.getParameter("Tecnico_Usuario_Usu_cod_uploader"));
                             %>
                             <tr>
-                                <td><%=exa_cod%></td>
+                                <td><a href="/Geral/VizualizaExames"><%=exa_cod%></a></td>
                                 <td><%=data%></td>
                                 <td><%=uper_cod%></td>      
                             </tr>     
                         </table>
                         <%}
-                                }%>        
+                                }%>  
+                        
+                        <form action="/Geral/upload_exame_receita.jsp" method="post">
+                        <input type="submit" name="Adicionar" value="Adicionar Exame" />
+                        </form>
             </tr>        
             <tr>
                 <td colspan="2">
