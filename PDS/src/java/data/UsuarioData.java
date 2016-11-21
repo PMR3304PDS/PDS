@@ -139,11 +139,53 @@ public class UsuarioData {
      return usuarios;
   }
     
-    public Vector pesquisarPorCpf(String cpf, Transacao tr) throws Exception {
+    public UsuarioDO pesquisarPorRg2(String rg, Transacao tr) throws Exception {
+     Connection con = tr.obterConexao();
+     String sql = "select * from Usuario where Usu_rg like ?";
+     PreparedStatement ps = con.prepareStatement(sql);
+     ps.setString(1, rg);
+     ResultSet rs = ps.executeQuery();
+     System.out.println("query executada");
+     rs.next();
+     UsuarioDO usuario = new UsuarioDO();
+     usuario.setUsu_cod(rs.getInt("Usu_cod"));
+     usuario.setUsu_nome(rs.getString("Usu_nome"));
+     System.out.println(" got " + usuario.getUsu_nome());
+     usuario.setUsu_login(rs.getString("Usu_login"));
+     usuario.setUsu_senha(rs.getString("Usu_senha"));
+     usuario.setUsu_rg(rs.getString("Usu_rg"));
+     usuario.setUsu_cpf(rs.getString("Usu_cpf"));
+     usuario.setUsu_foto(rs.getBinaryStream("Usu_foto"));
+     usuario.setUsu_ativo(rs.getBoolean("Usu_ativo"));
+     return usuario;
+  }
+    
+    public UsuarioDO pesquisarPorCpf2(String cpf, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
      String sql = "select * from Usuario where Usu_cpf like ?";
      PreparedStatement ps = con.prepareStatement(sql);
      ps.setString(1, cpf);
+     ResultSet rs = ps.executeQuery();
+     System.out.println("query executada");
+     rs.next();
+     UsuarioDO usuario = new UsuarioDO();
+     usuario.setUsu_cod(rs.getInt("Usu_cod"));
+     usuario.setUsu_nome(rs.getString("Usu_nome"));
+     System.out.println(" got " + usuario.getUsu_nome());
+     usuario.setUsu_login(rs.getString("Usu_login"));
+     usuario.setUsu_senha(rs.getString("Usu_senha"));
+     usuario.setUsu_rg(rs.getString("Usu_rg"));
+     usuario.setUsu_cpf(rs.getString("Usu_cpf"));
+     usuario.setUsu_foto(rs.getBinaryStream("Usu_foto"));
+     usuario.setUsu_ativo(rs.getBoolean("Usu_ativo"));
+     return usuario;
+  }
+    
+  public Vector pesquisarPorCpf(String rg, Transacao tr) throws Exception {
+     Connection con = tr.obterConexao();
+     String sql = "select * from Usuario where Usu_cpf like ?";
+     PreparedStatement ps = con.prepareStatement(sql);
+     ps.setString(1, rg);
      ResultSet rs = ps.executeQuery();
      System.out.println("query executada");
      Vector usuarios = new Vector();
@@ -156,15 +198,10 @@ public class UsuarioData {
         c.setUsu_senha(rs.getString("Usu_senha"));
         c.setUsu_rg(rs.getString("Usu_rg"));
         c.setUsu_cpf(rs.getString("Usu_cpf"));
-        
-        c.setUsu_foto(rs.getBinaryStream("Usu_foto"));
-        
+        c.setUsu_foto(rs.getBinaryStream("Usu_foto"));     
         c.setUsu_ativo(rs.getBoolean("Usu_ativo"));
         usuarios.add(c);
      }
      return usuarios;
-  }
-    
-    
-    
+  }  
 }
