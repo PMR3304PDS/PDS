@@ -170,7 +170,7 @@
                         </tr>
                         <tr><td><br></td></tr>
                         <tr>
-                            <td>Data de nascimento</td>
+                            <td>Data de nascimento (dd/mm/yyyy)</td>
                             <td><input type="text" name="data" maxlength="10" onkeypress="return isDate(event)" required/>
                         </tr>
                         <tr>
@@ -404,8 +404,6 @@
        
        
        if (tp.incluir(paciente) && t1.incluir(telefone1) && t2.incluir(telefone2) && tm.incluir(mun) && te.incluir(end)) {
-         
-         
 %>
           Transação realizada com sucesso!
           <form action="index.jsp" method="post">
