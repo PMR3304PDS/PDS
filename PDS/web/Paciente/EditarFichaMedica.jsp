@@ -13,6 +13,8 @@
         <%@page import="java.sql.Date"%>
         <%@page import="java.text.DateFormat"%>
         <%@page import="java.text.ParseException"%>
+        <%@ page import="transacoes.Paciente" %>
+        <%@ page import="data.PacienteDO" %>
         <%@ include file="/Geral/verifylogin.jsp" %>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -46,7 +48,7 @@
 	  transacoes.Paciente tn = new transacoes.Paciente();
           data.PacienteDO paciente = tn.buscar(Usu_cod);
 %>        
-          <form action="./EditarFichaMedica.jsp" method="post">   
+          <form action="/PDS/Paciente/EditarFichaMedica.jsp" method="post">   
               <table>
                <tr>
                   <td>Peso</td>
@@ -77,7 +79,7 @@
                           
              </table>
              <input type="submit" name="atualizar" value="atualizar" />
-             <a href="main.jsp">Voltar</a>
+             <a href="index.jsp">Voltar</a>
 	     <input type="hidden" name="Usu_cod" value=<%= Usu_cod %> />
 	     <input type="hidden" name="action" value="updateValues" />
 
@@ -102,7 +104,7 @@
        transacoes.Paciente tn = new transacoes.Paciente();
        data.PacienteDO paciente = new data.PacienteDO();
        
-       paciente.setPac_nascimento(paciente.getPac_nascimento());
+       paciente.setPac_nascimento(new Date(2000, 10, 10));
        paciente.setPac_peso(peso);
        paciente.setPac_altura(altura);
        paciente.setPac_alergias(alergias);
@@ -111,7 +113,7 @@
        paciente.setPac_historico_doencas(historico);
        
        try {
-          tn.atualizar(paciente);
+           tn.atualizar(paciente);
        } catch (Exception e) {
 %>           <%= e.toString() %>
 <%
