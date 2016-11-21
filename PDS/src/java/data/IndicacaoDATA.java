@@ -41,4 +41,22 @@ public class IndicacaoDATA {
      indicacao.setPaciente_Usuario_Usu_cod(rs.getInt("Paciente_Usuario_Usu_cod;"));
      return indicacao;
   } // buscar
+    
+    public Vector pesquisarporCRM(int crm, Transacao tr) throws Exception {
+     Connection con = tr.obterConexao();
+     String sql = "select * from Indicacao where Medico_Usuario_Usu_cod_indicado=?";
+     PreparedStatement ps = con.prepareStatement(sql);
+     ps.setInt(1, crm);
+     ResultSet rs = ps.executeQuery();
+     Vector indicacoes = new Vector();
+     while (rs.next()){
+        IndicacaoDO c = new IndicacaoDO();
+        c.setInd_cod(rs.getInt("Ind_cod"));
+        c.setMedico_Usuario_Usu_cod_indicante(rs.getInt("Medico_Usuario_Usu_cod_indicante"));
+        c.setMedico_Usuario_Usu_cod_indicado(rs.getInt("Medico_Usuario_Usu_cod_indicado"));
+        c.setPaciente_Usuario_Usu_cod(rs.getInt("Paciente_Usuario_Usu_cod;"));
+        indicacoes.add(c);
+     }
+     return indicacoes;
+  } // buscar
 }
