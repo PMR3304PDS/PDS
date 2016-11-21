@@ -31,4 +31,28 @@ public class Indicacao {
         return false;
     }
     
+    public boolean incluir (IndicacaoDO indicacao) throws Exception{
+
+     // validacao das regras de negocio
+     if (indicacao == null) {
+       return false;
+     }
+
+     // efetuando a transacao
+     Transacao tr = new Transacao();
+     try {
+       tr.begin();
+         IndicacaoDATA cdata = new IndicacaoDATA();
+         cdata.incluir(indicacao, tr);
+       tr.commit();
+       return true;
+       
+     } catch(Exception e) {
+         tr.rollback();
+         System.out.println("erro ao incluir ");
+         e.printStackTrace();
+     }
+     return false;
+  } // incluir 
+    
 }

@@ -68,6 +68,7 @@
 
                     <%
                         if (request.getParameter("pesquisar") != null) {
+                            System.out.print("Entrei");
                             String tipo = request.getParameter("tipo");
                             String modo = request.getParameter("modo");
                             Vector usuarios = new Vector();
@@ -78,6 +79,7 @@
                                 flag = 1;
 
                                 if (modo.equals("nome")) {
+                                    
                                     transacoes.Medico tn = new transacoes.Medico();
                                     String nome = request.getParameter("input");
                                     usuarios = tn.pesquisarMedicoPorNome(nome);
@@ -126,8 +128,8 @@
                             if ((usuarios == null) || (usuarios.size() == 0)) {
                     %>
                     Falha na busca!
-                    <form action="/Paciente/busca.jsp" method="post">
-                    <input type="submit" name="voltar" value="Voltar" />
+                    <form action="/PDS/Paciente/busca.jsp" method="post">
+                    <input type="submit" name="voltar" value="Tentar novamente" />
                     </form>
 
                     <%
@@ -145,7 +147,7 @@
                         %>
                         <tr>
                             <td>
-                                <a href="/PDS/Medico/visualiza_perfil.jsp?cod=<%= medico.getUsu_cod()%>" <%=medico.getUsu_nome()%> </a>
+                                <a href="/PDS/Medico/visualiza_perfil.jsp?cod=<%= medico.getUsu_cod()%>"  </a> <%=medico.getUsu_nome()%>
                             </td>
                             <td><%= medico.getUsu_cpf()%></td>
                         </tr>
@@ -159,7 +161,7 @@
                         %>
                         <tr>
                             <td>
-                                <a href="/PDS/Medico/visualiza_perfil.jsp?cod=<%= tecnico.getUsu_cod()%>"> <%=tecnico.getUsu_nome()%></a>
+                                <a href="/PDS/Medico/visualiza_perfil.jsp?cod=<%= tecnico.getUsu_cod()%>"> </a> <%=tecnico.getUsu_nome()%>
                             </td>
                             <td><%= tecnico.getUsu_cpf()%></td>
                         </tr>
