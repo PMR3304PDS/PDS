@@ -69,8 +69,8 @@ public class ExameDATA {
             exame.setExa_Solicitar(rs.getBinaryStream("Exa_Solicitar"));
             exame.setTipo_Exame_TipExa_cod(rs.getInt("Tipo_Exame_TipExa_cod"));
             exame.setTecnico_Usuario_Usu_cod_uploader(rs.getInt("Tecnico_Usuario_Usu_cod_uploader"));
-            exame.setPaciente_Usuario_Usu_cod(rs.getInt("Paciente_Usuario_Usu_cod;"));
-            exame.setMedico_Usuario_Usu_cod_uploader(rs.getInt("Medico_Usuario_Usu_cod_uploader;"));
+            exame.setPaciente_Usuario_Usu_cod(rs.getInt("Paciente_Usuario_Usu_cod"));
+            exame.setMedico_Usuario_Usu_cod_uploader(rs.getInt("Medico_Usuario_Usu_cod_uploader"));
             exame.setExa_excluido(rs.getBoolean("Exa_excluido"));
             exame.setExa_data_upload(rs.getDate("Exa_data_upload"));
             exame.setExa_previsao(rs.getDate("Exa_previsao"));

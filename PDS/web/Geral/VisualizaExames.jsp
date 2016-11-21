@@ -32,6 +32,7 @@
                             exame_cod = Integer.parseInt(request.getParameter("exame_cod"));
                             } catch (NumberFormatException e) {
                             exame_cod = 0;
+                       
                     %>
                 Erro ao tentar ver Exame!
                 <form action="login.jsp" method="post">
