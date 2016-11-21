@@ -147,7 +147,7 @@
                         %>
                         <tr>
                             <td>
-                                <a href="/PDS/Medico/visualiza_perfil.jsp?cod=<%= medico.getUsu_cod()%>" <%=medico.getUsu_nome()%> </a>
+                                <a href="/PDS/Medico/visualiza_perfil.jsp?cod=<%= medico.getUsu_cod()%>"  </a> <%=medico.getUsu_nome()%>
                             </td>
                             <td><%= medico.getUsu_cpf()%></td>
                         </tr>
@@ -161,7 +161,7 @@
                         %>
                         <tr>
                             <td>
-                                <a href="/PDS/Medico/visualiza_perfil.jsp?cod=<%= tecnico.getUsu_cod()%>"> <%=tecnico.getUsu_nome()%></a>
+                                <a href="/PDS/Medico/visualiza_perfil.jsp?cod=<%= tecnico.getUsu_cod()%>"> </a> <%=tecnico.getUsu_nome()%>
                             </td>
                             <td><%= tecnico.getUsu_cpf()%></td>
                         </tr>
