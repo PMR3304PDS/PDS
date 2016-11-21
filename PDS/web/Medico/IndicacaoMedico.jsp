@@ -30,7 +30,7 @@
                     </tr>  
                     <tr><% 
                     int i;
-                    int cod_med=Integer.parseInt(request.getParameter("cod"));
+                    int cod_med=((Integer)session.getAttribute("cod")).intValue();
                     int id_med_indicante;
                     int id_paciente;
                     String nome_medico_indicante;
