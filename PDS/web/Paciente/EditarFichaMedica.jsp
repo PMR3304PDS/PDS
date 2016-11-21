@@ -39,7 +39,7 @@
                         
                     </script>
                     
-<%     String action = request.getParameter("action");
+<%     String action = request.getParameter("atualizar");
        if ( null == action ) {
           action = "showEditForm";
           int Usu_cod =  ((Integer)session.getAttribute("Usu_cod")).intValue();
@@ -79,6 +79,7 @@
              <input type="submit" name="atualizar" value="atualizar" />
              <a href="main.jsp">Voltar</a>
 	     <input type="hidden" name="Usu_cod" value=<%= Usu_cod %> />
+	     <input type="hidden" name="action" value="updateValues" />
 
            </form>
 <%         
