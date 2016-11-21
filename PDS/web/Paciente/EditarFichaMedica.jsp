@@ -58,7 +58,6 @@
                   <td>Altura</td>
                   <td><input type="text" name="altura" maxlength="9" onkeypress='return isNumberKey(event)' value=<%= paciente.getPac_altura() %> />
                </tr>
-               <tr><td><br></td></tr>
                <tr>
                   <td>Alergias</td>
                   <td><textarea name="alergias" maxlength="300" rows="4" cols="50" value=<%= paciente.getPac_alergias() %>/></textarea>
