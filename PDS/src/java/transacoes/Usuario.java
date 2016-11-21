@@ -28,6 +28,42 @@ public class Usuario{
         return null;
     }
     
+    public UsuarioDO pesquisarPorRg2(String rg) throws Exception {
+        Transacao tr = new Transacao();
+        try {
+            tr.beginReadOnly();
+              UsuarioData cdata = new UsuarioData();
+              UsuarioDO c = cdata.pesquisarPorLogin(rg, tr);
+            tr.commit();
+            if (!c.isUsu_ativo())
+                return null;
+            return c;
+        } catch (Exception e) {
+            tr.rollback();
+            System.out.println("Error!");
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    public UsuarioDO pesquisarPorCpf2(String cpf) throws Exception {
+        Transacao tr = new Transacao();
+        try {
+            tr.beginReadOnly();
+              UsuarioData cdata = new UsuarioData();
+              UsuarioDO c = cdata.pesquisarPorLogin(cpf, tr);
+            tr.commit();
+            if (!c.isUsu_ativo())
+                return null;
+            return c;
+        } catch (Exception e) {
+            tr.rollback();
+            System.out.println("Error!");
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
     public Vector pesquisarPorNome(String nome) throws Exception {
         if (isEmpty(nome)) {
             return null;
