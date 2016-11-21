@@ -44,7 +44,7 @@
 <%     String action = request.getParameter("atualizar");
        if ( null == action ) {
           action = "showEditForm";
-          int Usu_cod =  ((Integer)session.getAttribute("Usu_cod")).intValue();
+          int Usu_cod =  ((Integer)session.getAttribute("cod")).intValue();
 	  transacoes.Paciente tn = new transacoes.Paciente();
           data.PacienteDO paciente = tn.buscar(Usu_cod);
 %>        
