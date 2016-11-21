@@ -68,7 +68,7 @@
                     Email <input type="text" name="usuario" />
                     <br>Senha <input type="password" name="senha" />
                     <br><input type="submit" name="enviar" value="Enviar" />
-                    <a href="temppage.jsp">Esqueci minha senha</a>
+                    <a href="EsqueciSenha.jsp">Esqueci minha senha</a>
                     <input type="hidden" name="campo_controle" />
                 </form>
             </tr>
