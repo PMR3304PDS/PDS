@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <%@ page import="transacoes.*"%>
+        <%@ page import="transacoes.Exame"%>
         <%@ page import="data.ExameDATA"%>
         <%@ page import="data.ExameDO"%>
         <%@ page import="java.util.*"%>
@@ -27,23 +27,49 @@
                     <%@ include file="/Geral/menu.jsp" %>
                 </td>
                 <td>
+                    <% int exame_cod;
+                        try {
+                            exame_cod = Integer.parseInt(request.getParameter("exame_cod"));
+                            } catch (NumberFormatException e) {
+                            exame_cod = 0;
+                    %>
+                Erro ao tentar ver Exame!
+                <form action="login.jsp" method="post">
+                <input type="submit" name="Voltar" value="Voltar" />
+                </form>
+                
+                <%
+                    }
+                    transacoes.Exame tn = new transacoes.Exame();
 
+                    data.ExameDO exame = tn.buscar(exame_cod);
 
+                    String resumo = exame.getExa_resumo();
+                   
+                    java.sql.Date data_up = exame.getExa_data_upload();
+                    
+                    java.sql.Date data_prev = exame.getExa_previsao();
+                %>
+                
+                <tr>
+                <td>
+                    <%@ include file="/Geral/menu.jsp" %>
+                </td>
+                <td>
+                    Código do Exame - <%= exame.getExa_cod() %>
+                    <br>
+                    Resumo do Exame - <%= resumo %>
+                    <br>
+                    Data Upload - <%= data_up %>
+                    Data Previsão - <%= data_prev%>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                    
+                    <br>
+                    <form action="login.jsp" method="post">
+                        <input type="submit" name="voltar" value="Voltar" />
+                    </form>
+                </td>
+            </tr>
 
                 </td>
             </tr>
