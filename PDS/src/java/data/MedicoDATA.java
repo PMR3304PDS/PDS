@@ -85,7 +85,7 @@ public class MedicoDATA {
      String sql = "select * "
              + "from Usuario inner join Medico "
              + "on Usuario.Usu_cod = Medico.Usuario_Usu_Cod "
-             + "where Usu_nom like ?";
+             + "where Usu_nome like ?";
      PreparedStatement ps = con.prepareStatement(sql);
      ps.setString(1, nome);
      ResultSet rs = ps.executeQuery();

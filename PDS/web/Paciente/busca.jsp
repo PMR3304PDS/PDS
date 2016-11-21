@@ -68,6 +68,7 @@
 
                     <%
                         if (request.getParameter("pesquisar") != null) {
+                            System.out.print("Entrei");
                             String tipo = request.getParameter("tipo");
                             String modo = request.getParameter("modo");
                             Vector usuarios = new Vector();
@@ -78,6 +79,7 @@
                                 flag = 1;
 
                                 if (modo.equals("nome")) {
+                                    
                                     transacoes.Medico tn = new transacoes.Medico();
                                     String nome = request.getParameter("input");
                                     usuarios = tn.pesquisarMedicoPorNome(nome);
@@ -126,8 +128,8 @@
                             if ((usuarios == null) || (usuarios.size() == 0)) {
                     %>
                     Falha na busca!
-                    <form action="/Paciente/busca.jsp" method="post">
-                    <input type="submit" name="voltar" value="Voltar" />
+                    <form action="/PDS/Paciente/busca.jsp" method="post">
+                    <input type="submit" name="voltar" value="Tentar novamente" />
                     </form>
 
                     <%
