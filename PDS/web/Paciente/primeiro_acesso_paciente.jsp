@@ -271,6 +271,7 @@
        paciente.setUsu_nome(nome);
        paciente.setUsu_rg(rg);
        paciente.setUsu_cpf(cpf);
+       paciente.setUsu_foto(null);
        paciente.setUsu_ativo(true);
        paciente.setPac_nascimento(sqldate);
        paciente.setPac_peso(peso);
