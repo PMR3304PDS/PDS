@@ -53,11 +53,13 @@ public class MedicoDATA {
     return null;
   } // buscar
   
-  public Vector pesquisarPorCrm(String crm, Transacao tr) throws Exception {
+  public Vector pesquisarPorCrm(String crm, String estado, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
-     String sql = "select * from Medico where Med_NumRegistro like ?";
+     String sql = "select * from Medico where Med_NumRegistro like ? and "
+             + "Estado_Est_cod_conselho_emissor like ?";
      PreparedStatement ps = con.prepareStatement(sql);
      ps.setString(1, crm);
+     ps.setString(2, estado);
      ResultSet rs = ps.executeQuery();
      Vector medicos = new Vector();
      while (rs.next()) {
@@ -78,6 +80,31 @@ public class MedicoDATA {
         medicos.add(c);
      }
      return medicos;
+  }
+  
+  public MedicoDO pesquisarPorCrm2(String crm, String estado, Transacao tr) throws Exception {
+     Connection con = tr.obterConexao();
+     String sql = "select * from Medico where Med_NumRegistro like ? and "
+             + "Estado_Est_cod_conselho_emissor like ?";
+     PreparedStatement ps = con.prepareStatement(sql);
+     ps.setString(1, crm);
+     ps.setString(2, estado);
+     ResultSet rs = ps.executeQuery();
+     rs.next();
+     MedicoDO c = new MedicoDO();
+     c.setUsu_cod(rs.getInt("Usu_cod"));
+     c.setUsu_nome(rs.getString("Usu_nome"));
+     System.out.println(" got " + c.getUsu_nome());
+     c.setUsu_login(rs.getString("Usu_login"));
+     c.setUsu_senha(rs.getString("Usu_senha"));
+     c.setUsu_rg(rs.getString("Usu_rg"));
+     c.setUsu_cpf(rs.getString("Usu_cpf"));
+     c.setUsu_foto(rs.getBinaryStream("Usu_foto"));
+     c.setUsu_ativo(rs.getBoolean("Usu_ativo"));
+     c.setConselhos_Con_cod(rs.getInt("Conselhos_Con_cod"));
+     c.setEstado_Est_cod_conselho_emissor(rs.getInt("Estado_Est_cod_conselho_emissor"));
+     c.setMed_NumRegistro(rs.getString("Med_NumRegistro"));
+     return c;
   }
   
   public Vector pesquisarMedicoPorNome(String nome, Transacao tr) throws Exception {
