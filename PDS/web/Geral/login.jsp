@@ -35,6 +35,7 @@
         if ((user.length() <= 150) && (passwd.length() <= 20) && (u != null)) {
             v = u.getUsu_senha().equals(passwd);
             session.setAttribute("cod", u.getUsu_cod());
+            session.setAttribute("Usu_nome", u.getUsu_nome());
             if (v) {
                 if (tn.buscarMedico(u.getUsu_cod()) != null) {
                     pageContext.forward("../Medico/modelo.jsp");

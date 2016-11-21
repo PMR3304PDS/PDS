@@ -57,22 +57,38 @@ public class Exame {
      return false;
         
   }
-    
-public Vector pesquisar(String nome) {
-     if ( isEmpty(nome) )
-        return null;
 
-     Transacao tr = new Transacao();
-     try {
-	    tr.beginReadOnly();
-            ExameDATA examedata = new ExameDATA();
-            //Vector v = examedata.buscar(, tr);
+
+  public ExameDO buscar(int cod) throws Exception {
+    Transacao tr = new Transacao();
+    try {
+      tr.beginReadOnly();
+      ExameDO c = (new ExameDATA()).buscar(cod, tr);
+      tr.commit();
+      return c;
+    } catch (Exception e) {
+      tr.rollback();
+      System.out.println("erro ao buscar" + cod);
+      e.printStackTrace();
+    }
+    return null;
+  }
+  
+  public Vector pesquisarPorCod(int cod) throws Exception {
+
+        Transacao tr = new Transacao();
+        try {
+            tr.beginReadOnly();
+              ExameDATA edata = new ExameDATA();
+              Vector v = edata.pesquisarPorCod(cod, tr);
             tr.commit();
-            //return v;
-     } catch(Exception e) {
-            System.out.println("erro ao pesquisar " + nome);
+            return v;
+        } catch (Exception e) {
+            tr.rollback();
+            System.out.println("Error!");
             e.printStackTrace();
-     }
-     return null;
-  } // pesquisar
+        }
+        return null;
+    }
+    
 }
