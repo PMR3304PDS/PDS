@@ -55,7 +55,7 @@ public class MedicoDATA {
   
   public Vector pesquisarPorCrm(String crm, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
-     String sql = "select * from Medico where Med_NumRegistro=?";
+     String sql = "select * from Medico where Med_NumRegistro like ?";
      PreparedStatement ps = con.prepareStatement(sql);
      ps.setString(1, crm);
      ResultSet rs = ps.executeQuery();
@@ -79,5 +79,95 @@ public class MedicoDATA {
      }
      return medicos;
   }
-
-} // MedicoDATA
+  
+  public Vector pesquisarMedicoPorNome(String nome, Transacao tr) throws Exception {
+     Connection con = tr.obterConexao();
+     String sql = "select * "
+             + "from Usuario inner join Medico "
+             + "on Usuario.Usu_cod = Medico.Usuario_Usu_Cod "
+             + "where Usu_nom like ?";
+     PreparedStatement ps = con.prepareStatement(sql);
+     ps.setString(1, nome);
+     ResultSet rs = ps.executeQuery();
+     Vector medicos = new Vector();
+     while (rs.next()) {
+        MedicoDO c = new MedicoDO();
+        c.setUsu_cod(rs.getInt("Usu_cod"));
+        c.setUsu_nome(rs.getString("Usu_nome"));
+        System.out.println(" got " + c.getUsu_nome());
+        c.setUsu_login(rs.getString("Usu_login"));
+        c.setUsu_senha(rs.getString("Usu_senha"));
+        c.setUsu_rg(rs.getString("Usu_rg"));
+        c.setUsu_cpf(rs.getString("Usu_cpf"));
+        c.setUsu_foto(rs.getBinaryStream("Usu_foto"));
+        c.setUsu_ativo(rs.getBoolean("Usu_ativo"));
+        c.setConselhos_Con_cod(rs.getInt("Conselhos_Con_cod"));
+        c.setEstado_Est_cod_conselho_emissor(rs.getInt("Estado_Est_cod_conselho_emissor"));
+        c.setMed_NumRegistro(rs.getString("Med_NumRegistro"));
+        
+        medicos.add(c);
+     }
+     return medicos;
+  }
+  
+  public Vector pesquisarMedicoPorRg(String rg, Transacao tr) throws Exception {
+     Connection con = tr.obterConexao();
+     String sql = "select * "
+             + "from Usuario inner join Medico "
+             + "on Usuario.Usu_cod = Medico.Usuario_Usu_Cod "
+             + "where Usu_rg like ?";
+     PreparedStatement ps = con.prepareStatement(sql);
+     ps.setString(1, rg);
+     ResultSet rs = ps.executeQuery();
+     Vector medicos = new Vector();
+     while (rs.next()) {
+        MedicoDO c = new MedicoDO();
+        c.setUsu_cod(rs.getInt("Usu_cod"));
+        c.setUsu_nome(rs.getString("Usu_nome"));
+        System.out.println(" got " + c.getUsu_nome());
+        c.setUsu_login(rs.getString("Usu_login"));
+        c.setUsu_senha(rs.getString("Usu_senha"));
+        c.setUsu_rg(rs.getString("Usu_rg"));
+        c.setUsu_cpf(rs.getString("Usu_cpf"));
+        c.setUsu_foto(rs.getBinaryStream("Usu_foto"));
+        c.setUsu_ativo(rs.getBoolean("Usu_ativo"));
+        c.setConselhos_Con_cod(rs.getInt("Conselhos_Con_cod"));
+        c.setEstado_Est_cod_conselho_emissor(rs.getInt("Estado_Est_cod_conselho_emissor"));
+        c.setMed_NumRegistro(rs.getString("Med_NumRegistro"));
+        
+        medicos.add(c);
+     }
+     return medicos;
+  }
+  
+  public Vector pesquisarMedicoPorCpf(String cpf, Transacao tr) throws Exception {
+     Connection con = tr.obterConexao();
+     String sql = "select * "
+             + "from Usuario inner join Medico "
+             + "on Usuario.Usu_cod = Medico.Usuario_Usu_Cod "
+             + "and Usu_cpf like ?";
+     PreparedStatement ps = con.prepareStatement(sql);
+     ps.setString(1, cpf);
+     ResultSet rs = ps.executeQuery();
+     Vector medicos = new Vector();
+     while (rs.next()) {
+        MedicoDO c = new MedicoDO();
+        c.setUsu_cod(rs.getInt("Usu_cod"));
+        c.setUsu_nome(rs.getString("Usu_nome"));
+        System.out.println(" got " + c.getUsu_nome());
+        c.setUsu_login(rs.getString("Usu_login"));
+        c.setUsu_senha(rs.getString("Usu_senha"));
+        c.setUsu_rg(rs.getString("Usu_rg"));
+        c.setUsu_cpf(rs.getString("Usu_cpf"));
+        c.setUsu_foto(rs.getBinaryStream("Usu_foto"));
+        c.setUsu_ativo(rs.getBoolean("Usu_ativo"));
+        c.setConselhos_Con_cod(rs.getInt("Conselhos_Con_cod"));
+        c.setEstado_Est_cod_conselho_emissor(rs.getInt("Estado_Est_cod_conselho_emissor"));
+        c.setMed_NumRegistro(rs.getString("Med_NumRegistro"));
+        
+        medicos.add(c);
+     }
+     return medicos;
+  }
+  
+}// MedicoDATA
