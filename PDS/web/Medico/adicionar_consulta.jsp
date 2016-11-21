@@ -15,6 +15,9 @@
         <%@page import = "data.ConsultaDO" %>
         <%@ include file="/Geral/verifylogin.jsp" %>
         <% String paciente_nome = "teste";
+            if(null != request.getParameter("voltar")){
+                pageContext.forward("./modelo.jsp");
+            }
         %>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -27,23 +30,32 @@
                     <%@ include file="/Geral/menu.jsp" %>
                 </td>
                 <td>
+                    <form action="./adicionar_consulta.jsp" method="post">
                     <b>Nova Consulta</b>
                     <br>
                     <br>
                     Nome do paciente: <%= paciente_nome%>
                     <br>
                     <br>
-                    Diagnóstico e/ou suspeita: <input type="text" name="diagnostico">
+                    Resumo da consulta:
                     <br>
-                    Comentários: <textarea cols="10" rows="5" style="width:200px; height:50px;"  name="resumo"></textarea>
+                    <textarea cols="10" rows="5" style="width:200px; height:50px;"  name="resumo"></textarea>
                     <br>
-                    Solicitar exame: <textarea cols="10" rows="5" style="width:200px; height:50px;"  name="exame"></textarea>
-                    <br>
-                    Receita:<textarea cols="10" rows="5" style="width:200px; height:50px;"  name="receita"></textarea>
-                    
                     <br>
                     <input type="submit" name="adicionar" value="adicionar" />
                     <input type="submit" name="voltar" value="voltar" />
+                    </form>
+                    <br>
+                    <%
+                    if(null != request.getParameter("adicionar")){
+                        
+                    %>
+                    Consulta adicionada
+                    <input type="submit" name="solicitar_exame" value="solicitar_exame">
+                    <input type="submit" name="adicionar_receita" value="adicionar_receita">
+                    <%    
+                    }
+                    %>
                 </td>
             </tr>
             <tr>
