@@ -13,8 +13,6 @@
         <%@page import="java.sql.Date"%>
         <%@page import="java.text.DateFormat"%>
         <%@page import="java.text.ParseException"%>
-        <%@ page import="transacoes.Paciente" %>
-        <%@ page import="data.PacienteDO" %>
         <%@ include file="/Geral/verifylogin.jsp" %>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
