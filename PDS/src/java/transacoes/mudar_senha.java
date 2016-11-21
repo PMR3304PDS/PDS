@@ -13,9 +13,9 @@ import data.*;
  * @author Eduardo Della Noce
  */
 public class mudar_senha {
-    public boolean mudar_senha(UsuarioDO usuario, String senha_antiga, String senha_nova) throws Exception
+    public boolean mudar_senha(int cod_usuario, String senha_antiga, String senha_nova) throws Exception
     {
-        if((usuario.getUsu_senha()==null)||(senha_antiga == null)||(senha_nova==null))
+        if((senha_antiga == null)||(senha_nova==null))
             return false;
         
         Transacao tr = new Transacao();
@@ -24,6 +24,8 @@ public class mudar_senha {
         {
             tr.begin();
             UsuarioData udata = new UsuarioData();
+            UsuarioDO usuario = new UsuarioDO();
+            usuario = udata.buscar(cod_usuario,tr);
             if(senha_antiga.equals(usuario.getUsu_senha()))
             {
                 usuario.setUsu_senha(senha_nova);
@@ -35,7 +37,7 @@ public class mudar_senha {
         catch(Exception e)
         {
             tr.rollback();
-            System.out.println("erro ao mudar a senha de " + usuario.getUsu_nome());
+            System.out.println("erro ao mudar a senha");
             e.printStackTrace();
         }
         return false;

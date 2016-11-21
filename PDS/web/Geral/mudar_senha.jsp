@@ -55,30 +55,28 @@
         %>
         
         <%
-            //String senha_antiga = request.getParameter(senha_antiga);
-            //String senha_nova = request.getParameter(senha_nova);
-            //transacoes.mudar_senha tn = new transacoes.mudar_senha();
-            //String nome = (String)session.getAttribute("user_name");
-            //if(tn.mudar_senha(usuario,senha_antiga,senha_nova))
-            //{
+            String senha_antiga = request.getParameter("senha_antiga");
+            String senha_nova = request.getParameter("senha_nova");
+            transacoes.mudar_senha tn = new transacoes.mudar_senha();
+            int cod = ((Integer)session.getAttribute("cod")).intValue();
+            if(tn.mudar_senha(cod,senha_antiga,senha_nova))
+            {
         %>
             Senha alterada com sucesso!
-            <form action=".main.jsp" method="post">
-                <input type=submit" name="voltar" value="Voltar" />
+            <form action="login.jsp" method="post">
+                <input type="submit" name="voltar" value="Voltar" />
             </form>
         <%
-            //}
-            //else
-            //{
+            }
+            else
+            {
         %>
-            Erro ao incluir incluir usuario
-                <form action=".mudar_senha.jsp" method="post">
-                <input type=submit" name="voltar" value="Voltar" />
+            Erro ao mudar senha!
+            <form action="mudar_senha.jsp" method="post">
+                <input type="submit" name="voltar" value="Voltar" />
             </form>
         <%
-            //}
-          
-        
+            }
             }
         %>
         
