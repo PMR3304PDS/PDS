@@ -28,11 +28,6 @@
                     <br>
                     <h1>Editar Ficha Médica</h1>
                     <br>
-<%     String action = request.getParameter("action");
-       if ( null == action ) {
-          action = "showSearchForm";
-%>
-                <form action="./EditarFichaMedica.jsp" method="post">
                     
                     <script>
                         function isNumberKey(evt){
@@ -44,45 +39,56 @@
                         
                     </script>
                     
-                    <table>
-         
-                        
-                        <tr>
-                            <td>Peso (Kg)</td>
-                            <td><input type="text" name="peso" maxlength="9" onkeypress='return isNumberKey(event)' required/>
-                        </tr>
-                        <tr>
-                            <td>Altura (m)</td>
-                            <td><input type="text" name="altura" maxlength="9" onkeypress='return isNumberKey(event)' required/>
-                        </tr>
-                        <tr><td><br></td></tr>
-                        <tr>
-                            <td>Alergias</td>
-                            <td><textarea name="alergias" maxlength="300" rows="4" cols="50"/></textarea>
-                        </tr>
-                        <tr>
-                            <td>Medicamentos</td>
-                            <td><textarea name="medicamentos" maxlength="300" rows="4" cols="50"/></textarea>
-                        </tr>
-                        <tr>
-                            <td>Doenças em tratamento</td>
-                            <td><textarea name="doencas" maxlength="300" rows="4" cols="50"/></textarea>
-                        </tr>
-                        <tr>
-                            <td>Histórico de doenças</td>
-                            <td><textarea name="historico" maxlength="300" rows="4" cols="50"/></textarea>
-                        </tr>
-                        <tr><td><br></td></tr>
-            
-                    </table>
-                    <input type="submit" name="incluir" value="incluir" />
-                </form>
-<%      } else { 
-%>  
+<%     String action = request.getParameter("action");
+       if ( null == action ) {
+          action = "showEditForm";
+          int Usu_cod =  ((Integer)session.getAttribute("Usu_cod")).intValue();
+	  transacoes.Paciente tn = new transacoes.Paciente();
+          data.PacienteDO paciente = tn.buscar(Usu_cod);
+%>        
+          <form action="./EditarFichaMedica.jsp" method="post">   
+              <table>
+               <tr>
+                  <td>Peso</td>
+                  <td><input type="text" name="peso" maxlength="9" onkeypress='return isNumberKey(event)' value=<%= paciente.getPac_peso() %> />
+               </tr>
+               <tr>
+                  <td>Altura</td>
+                  <td><input type="text" name="altura" maxlength="9" onkeypress='return isNumberKey(event)' value=<%= paciente.getPac_altura() %> />
+               </tr>
+               <tr><td><br></td></tr>
+               <tr>
+                  <td>Alergias</td>
+                  <td><textarea name="alergias" maxlength="300" rows="4" cols="50" value=<%= paciente.getPac_alergias() %>/></textarea>
+               </tr>
+               <tr>
+                  <td>Medicamentos</td>
+                  <td><textarea name="medicamentos" maxlength="300" rows="4" cols="50" value=<%= paciente.getPac_medicamentos() %>/></textarea>
+               </tr>
+               <tr>
+                   <td>Doenças em tratamento</td>
+                   <td><textarea name="doencas" maxlength="300" rows="4" cols="50" value=<%= paciente.getPac_doencas_tratamento() %>/></textarea>
+               </tr>
+               <tr>
+                   <td>Histórico de doenças</td>
+                   <td><textarea name="historico" maxlength="300" rows="4" cols="50" value=<%= paciente.getPac_historico_doencas() %>/></textarea>
+               </tr>
+               <tr><td><br></td></tr>
+                          
+             </table>
+             <input type="submit" name="atualizar" value="atualizar" />
+             <a href="main.jsp">Voltar</a>
+	     <input type="hidden" name="Usu_cod" value=<%= Usu_cod %> />
+
+           </form>
+<%         
+       } // showEditForm
+%>
+
 <! ------------------------------------------------------------------->
-<!--   se nao for o request inicial, acionar a transacao de negocio -->
 
 <%
+     if (action.equals("updateValues")) {
        String peso_s = request.getParameter("peso");
        float peso = Float.parseFloat(peso_s);
        String altura_s = request.getParameter("altura");
@@ -103,6 +109,13 @@
        paciente.setPac_doencas_tratamento(doencas);
        paciente.setPac_historico_doencas(historico);
        
+       try {
+          tn.atualizar(paciente);
+       } catch (Exception e) {
+%>           <%= e.toString() %>
+<%
+       }
+       
        if (tn.atualizar(paciente)) {
 
 %>
@@ -113,11 +126,12 @@
 <%     } else {
 %>
           Erro ao editar ficha médica          
-          <form action="primeiro_acesso_paciente.jsp" method="post">
+          <form action="EditarFichaMedica.jsp" method="post">
              <input type="submit" name="retry" value="Repetir" />
           </form>
 <%     }
-       }
+     }
+       
 %>
                     
                 </td>
