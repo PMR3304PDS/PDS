@@ -55,9 +55,11 @@
                 </td>
                 <td>
                     Consulta - <%= paciente.getUsu_nome() %>
-                    Medico - <%= medico.getUsu_nome() %>
-                    Data - <%= data %>
                     <br>
+                    Medico - <%= medico.getUsu_nome() %>
+                    <br>
+                    Data - <%= data %>
+                    <br><br>
                     Resumo - <%= resumo %>
                     
                     <%
