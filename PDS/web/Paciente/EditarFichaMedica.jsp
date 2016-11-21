@@ -58,19 +58,19 @@
                </tr>
                <tr>
                   <td>Alergias</td>
-                  <td><input name="alergias" maxlength="300" rows="4" cols="50" value=<%= paciente.getPac_alergias() %>/>
+                  <td><input type="text" name="alergias" maxlength="300" rows="4" cols="50" value=<%= paciente.getPac_alergias() %>/>
                </tr>
                <tr>
                   <td>Medicamentos</td>
-                  <td><input name="medicamentos" maxlength="300" rows="4" cols="50" value=<%= paciente.getPac_medicamentos() %>/>
+                  <td><input type="text" name="medicamentos" maxlength="300" rows="4" cols="50" value=<%= paciente.getPac_medicamentos() %>/>
                </tr>
                <tr>
                    <td>Doenças em tratamento</td>
-                   <td><input name="doencas" maxlength="300" rows="4" cols="50" value=<%= paciente.getPac_doencas_tratamento() %>/>
+                   <td><input type="text" name="doencas" maxlength="300" rows="4" cols="50" value=<%= paciente.getPac_doencas_tratamento() %>/>
                </tr>
                <tr>
                    <td>Histórico de doenças</td>
-                   <td><input name="historico" maxlength="300" rows="4" cols="50" value=<%= paciente.getPac_historico_doencas() %>/>
+                   <td><input type="text" name="historico" maxlength="300" rows="4" cols="50" value=<%= paciente.getPac_historico_doencas() %>/>
                </tr>
                <tr><td><br></td></tr>
                           
