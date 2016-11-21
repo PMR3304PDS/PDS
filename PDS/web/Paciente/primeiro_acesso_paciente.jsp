@@ -349,10 +349,9 @@
        String doencas = request.getParameter("doencas");
        String historico = request.getParameter("historico");
       
-       transacoes.Paciente tn = new transacoes.Paciente();
+       transacoes.Paciente tp = new transacoes.Paciente();
        data.PacienteDO paciente = new data.PacienteDO();
        
-       //paciente.setUsu_cod(null);
        paciente.setUsu_login(login);
        paciente.setUsu_senha(senha);
        paciente.setUsu_nome(nome);
@@ -367,49 +366,46 @@
        paciente.setPac_doencas_tratamento(doencas);
        paciente.setPac_historico_doencas(historico);
        
-       //String telefone = request.getParameter("telefone");
-       //transacoes.Contato tn = new transacoes.Contato();
-       //data.ContatoDO contato = new data.ContatoDO();
-       //contato.setNome(nome);
-       //contato.setTelefone(telefone); 
+       tp.incluir(paciente);
+       
+       int cod = paciente.getUsu_cod();
+       transacoes.Telefone t1 = new transacoes.Telefone();
+       data.TelefoneDO telefone1 = new data.TelefoneDO();
+       telefone1.setTel_numero(tel1);
+       telefone1.setUsuario_Usu_Cod(cod);
+       
+       t1.incluir(telefone1);
+         
+       transacoes.Telefone t2 = new transacoes.Telefone();
+       data.TelefoneDO telefone2 = new data.TelefoneDO();
+       telefone2.setTel_numero(tel2);
+       telefone2.setUsuario_Usu_Cod(cod);
+       
+       t2.incluir(telefone2);
+         
+       transacoes.Municipio tm = new transacoes.Municipio();
+       data.MunicipioDO mun = new data.MunicipioDO();
+       mun.setMun_nome(municipio);
+       mun.setEstado_Est_cod(cod_est);
+       
+       tm.incluir(mun);
+         
+       int codmun = mun.getMun_cod();
+       transacoes.Endereco te = new transacoes.Endereco();
+       data.EnderecoDO end = new data.EnderecoDO();
+       end.setEnd_rua(endereco);
+       end.setEnd_num(numero);
+       end.setEnd_bairro(bairro);
+       end.setUsuario_Usu_cod(cod);
+       end.setMunicipio_Mun_cod(codmun);
+       end.setTipo_Endereco_TipEnd_cod(cod_end);
+       
+       te.incluir(end);
        
        
-       if (tn.incluir(paciente)) {
+       if (tp.incluir(paciente) && t1.incluir(telefone1) && t2.incluir(telefone2) && tm.incluir(mun) && te.incluir(end)) {
          
-         //int cod = paciente.getUsu_cod();
          
-         //transacoes.Telefone t1 = new transacoes.Telefone();
-         //data.TelefoneDO telefone1 = new data.TelefoneDO();
-         //telefone1.setTel_cod(null);
-         //telefone1.setTel_numero(tel1);
-         //telefone1.setUsuario_Usu_Cod(cod);
-         //t1.incluir(telefone1);
-         
-         //transacoes.Telefone t2 = new transacoes.Telefone();
-         //data.TelefoneDO telefone2 = new data.TelefoneDO();
-         //telefone2.setTel_cod(null);
-         //telefone2.setTel_numero(tel2);
-         //telefone2.setUsuario_Usu_Cod(cod);
-         //t2.incluir(telefone2);
-         
-         //transacoes.Municipio tm = new transacoes.Municipio();
-         //data.MunicipioDO mun = new data.MunicipioDO();
-         //mun.setMun_cod(null);
-         //mun.setMun_nome(municipio);
-         //mun.setEstado_Est_cod(cod_est);
-         //tm.incluir(mun);
-         
-         //int codmun = mun.getMun_cod();
-         //transacoes.Endereco te = new transacoes.Endereco();
-         //data.EnderecoDO end = new data.EnderecoDO();
-         //end.setEnd_cod(null);
-         //end.setEnd_rua(endereco);
-         //end.setEnd_num(numero);
-         //end.setEnd_bairro(bairro);
-         //end.setUsuario_Usu_cod(cod);
-         //end.setMunicipio_Mun_cod(codmun);
-         //end.setTipo_Endereco_TipEnd_cod(cod_end);
-         //te.incluir(end);
 %>
           Transação realizada com sucesso!
           <form action="index.jsp" method="post">
