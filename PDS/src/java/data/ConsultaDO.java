@@ -2,10 +2,19 @@ package data;
 import java.sql.Date;
 
 public class ConsultaDO {
+  private int Cns_cod;
   private int Medico_Usuario_Usu_cod;
   private int Paciente_Usuario_Usu_cod;
   private Date Cns_data;
   private String Cns_resumo;
+  
+    public int getCns_cod() {
+        return Cns_cod;
+    }
+
+    public void setCns_cod(int Con_cod) {
+        this.Cns_cod = Con_cod;
+    }
 
     public int getMedico_Usuario_Usu_cod() {
         return Medico_Usuario_Usu_cod;

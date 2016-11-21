@@ -10,15 +10,11 @@
     </head>
     <body>
         <%@ include file="verifylogin.jsp" %>
-        <%@ page import="data.UsuarioDO" %>
-        <%@ page import="data.UsuarioData" %>
         
         <%
             if(null==request.getParameterValues("enviar"))
             {
         %>
-            
-        Olá, bem vindo ao trocador de senhas!
         
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
