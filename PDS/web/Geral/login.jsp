@@ -23,9 +23,7 @@
                 </h2>
 <%
     if ( request.getParameter("campo_controle") != null ) {
-        if (request.getParameter("forgot") == "Esqueci minha senha") {
-            pageContext.forward("temppage.jsp");
-        }
+        
         // processa login
         String user = request.getParameter("usuario");
         String passwd = request.getParameter("senha");
@@ -65,10 +63,10 @@
     // show login form
 %>
                 <form method="post" action=login.jsp>
-                    Email <input type="text" name="usuario" />
+                    Email &nbsp;<input type="text" name="usuario" />
                     <br>Senha <input type="password" name="senha" />
                     <br><input type="submit" name="enviar" value="Enviar" />
-                    <a href="EsqueciSenha.jsp">Esqueci minha senha</a>
+                    &nbsp;<a href="EsqueciSenha.jsp">Esqueci minha senha</a>
                     <input type="hidden" name="campo_controle" />
                 </form>
             </tr>

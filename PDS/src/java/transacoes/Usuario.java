@@ -17,6 +17,8 @@ public class Usuario{
               UsuarioData cdata = new UsuarioData();
               UsuarioDO c = cdata.pesquisarPorLogin(user_name, tr);
             tr.commit();
+            if (!c.isUsu_ativo())
+                return null;
             return c;
         } catch (Exception e) {
             tr.rollback();
