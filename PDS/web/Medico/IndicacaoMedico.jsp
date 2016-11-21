@@ -54,8 +54,8 @@
                 Realizar Indicação:
                 <br>
                 Paciente: 
-  <%--                  <%    if ( null == request.getParameterValues("incluir") ) {
-%>  --%>
+                   <%    if ( null == request.getParameterValues("Indicar1") ) {
+%>  
                     <form action="IndicacaoMedico.jsp" method="Get">          
                         RG<input type="radio" name="documento" value="RG">
                         CPF<input type="radio" name="documento" value="CPF">  
@@ -63,27 +63,25 @@
                         <br>
                 Medico: 
                         <br>
-                        CRM<input type="radio" name="CRM" value="CRM"> 
-                        <input type="text" name="num_CRM_medico">
+                        CRM: <input type="text" name="num_CRM_medico">
                         Estado <select name="estado">
-                        <option value="estado1">estado1</option>
+                        <option value="estado1">Amapá</option>
                         <option value="estado2">estado2</option>
                         </select>
                         <br>
                         <br>
-                        <input type="submit" value="Indicar">
+                        <input type="submit" name="Indicar1" value="Indicar">
                     </form>
-<%--              <script>
+              <script>
                   function isNumberKey(evt){
                             var charCode = (evt.which) ? evt.which : event.keyCode;
                             if (charCode > 31 && (charCode < 48 || charCode > 57))
                                 return false;
                             return true;
                         }
-                    </script> --%>
-  <%--                  <%      }else { 
+                    </script> 
+                   <%      }else { 
                                 String documento = request.getParameter("documento");
-                                String CRM = request.getParameter("CRM");
                                 String num_documento = request.getParameter("num_documento_paciente");
                                 String num_crm = request.getParameter("num_CRM_medico");
                                 String estado = request.getParameter("estado");
@@ -105,7 +103,7 @@
                                         }
                                 }
                             }
-%> --%>
+%> 
 
                 </td>
             </tr>

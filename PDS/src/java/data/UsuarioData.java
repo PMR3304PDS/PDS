@@ -146,8 +146,8 @@ public class UsuarioData {
      ps.setString(1, rg);
      ResultSet rs = ps.executeQuery();
      System.out.println("query executada");
-     rs.next();
      UsuarioDO usuario = new UsuarioDO();
+     if(rs.next()){      
      usuario.setUsu_cod(rs.getInt("Usu_cod"));
      usuario.setUsu_nome(rs.getString("Usu_nome"));
      System.out.println(" got " + usuario.getUsu_nome());
@@ -157,6 +157,7 @@ public class UsuarioData {
      usuario.setUsu_cpf(rs.getString("Usu_cpf"));
      usuario.setUsu_foto(rs.getBinaryStream("Usu_foto"));
      usuario.setUsu_ativo(rs.getBoolean("Usu_ativo"));
+     }
      return usuario;
   }
     
@@ -167,17 +168,18 @@ public class UsuarioData {
      ps.setString(1, cpf);
      ResultSet rs = ps.executeQuery();
      System.out.println("query executada");
-     rs.next();
      UsuarioDO usuario = new UsuarioDO();
-     usuario.setUsu_cod(rs.getInt("Usu_cod"));
-     usuario.setUsu_nome(rs.getString("Usu_nome"));
-     System.out.println(" got " + usuario.getUsu_nome());
-     usuario.setUsu_login(rs.getString("Usu_login"));
-     usuario.setUsu_senha(rs.getString("Usu_senha"));
-     usuario.setUsu_rg(rs.getString("Usu_rg"));
-     usuario.setUsu_cpf(rs.getString("Usu_cpf"));
-     usuario.setUsu_foto(rs.getBinaryStream("Usu_foto"));
-     usuario.setUsu_ativo(rs.getBoolean("Usu_ativo"));
+     if(rs.next()){
+        usuario.setUsu_cod(rs.getInt("Usu_cod"));
+        usuario.setUsu_nome(rs.getString("Usu_nome"));
+        System.out.println(" got " + usuario.getUsu_nome());
+        usuario.setUsu_login(rs.getString("Usu_login"));
+        usuario.setUsu_senha(rs.getString("Usu_senha"));
+        usuario.setUsu_rg(rs.getString("Usu_rg"));
+        usuario.setUsu_cpf(rs.getString("Usu_cpf"));
+        usuario.setUsu_foto(rs.getBinaryStream("Usu_foto"));
+        usuario.setUsu_ativo(rs.getBoolean("Usu_ativo"));
+     }
      return usuario;
   }
     
