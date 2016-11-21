@@ -63,8 +63,8 @@
     // show login form
 %>
                 <form method="post" action=login.jsp>
-                    Email &nbsp;<input type="text" name="usuario" />
-                    <br>Senha <input type="password" name="senha" />
+                    Email &nbsp;<input type="text" name="usuario" maxlength="150"/>
+                    <br>Senha <input type="password" name="senha" maxlength="20"/>
                     <br><input type="submit" name="enviar" value="Enviar" />
                     &nbsp;<a href="EsqueciSenha.jsp">Esqueci minha senha</a>
                     <input type="hidden" name="campo_controle" />
