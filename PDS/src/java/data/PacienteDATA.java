@@ -8,16 +8,17 @@ public class PacienteDATA {
 
   public void incluir(PacienteDO paciente, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
-     String sql = "insert into Paciente (Pac_nascimento, Pac_peso, Pac_altura, "
-     + "Pac_alergias,Pac_medicamentos,Pac_doencas_tratamento, Pac_historico_doencas) values (?, ?, ?, ?, ?, ?, ?)";
+     String sql = "insert into Paciente (Usu_cod, Pac_nascimento, Pac_peso, Pac_altura, "
+     + "Pac_alergias,Pac_medicamentos,Pac_doencas_tratamento, Pac_historico_doencas) values (?, ?, ?, ?, ?, ?, ?, ?)";
      PreparedStatement ps = con.prepareStatement(sql);
-     ps.setDate(1, paciente.getPac_nascimento());
-     ps.setFloat(2, paciente.getPac_peso());
-     ps.setFloat(3, paciente.getPac_altura());
-     ps.setString(4, paciente.getPac_alergias());
-     ps.setString(5, paciente.getPac_medicamentos());
-     ps.setString(6, paciente.getPac_doencas_tratamento());
-     ps.setString(7, paciente.getPac_historico_doencas());
+     ps.setInt(1, paciente.getUsu_cod());
+     ps.setDate(2, paciente.getPac_nascimento());
+     ps.setFloat(3, paciente.getPac_peso());
+     ps.setFloat(4, paciente.getPac_altura());
+     ps.setString(5, paciente.getPac_alergias());
+     ps.setString(6, paciente.getPac_medicamentos());
+     ps.setString(7, paciente.getPac_doencas_tratamento());
+     ps.setString(8, paciente.getPac_historico_doencas());
      int result = ps.executeUpdate();
   }
 

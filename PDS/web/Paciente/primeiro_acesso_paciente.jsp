@@ -132,8 +132,6 @@
                             </td>
                         </tr>
                         <%
-                    
-                      
                         if(request.getParameter("estado_id") != null){
                             
                             int cod = Integer.parseInt(request.getParameter("estado_id"));
@@ -219,7 +217,8 @@
 
 
 <%     
-       int cod_est = Integer.parseInt(request.getParameter("estado"));
+       int cod_est = Integer.parseInt(request.getParameter("estado_id"));
+       int cod_mun = Integer.parseInt(request.getParameter("municipio"));
       
        String nome = request.getParameter("nome");
        String rg = request.getParameter("rg");
@@ -282,27 +281,19 @@
        
        boolean c = t2.incluir(telefone2);
          
-       transacoes.Municipio tm = new transacoes.Municipio();
-       data.MunicipioDO mun = new data.MunicipioDO();
-       mun.setMun_nome(municipio);
-       mun.setEstado_Est_cod(cod_est);
-       
-       boolean d = tm.incluir(mun);
-         
-       int codmun = mun.getMun_cod();
        transacoes.Endereco te = new transacoes.Endereco();
        data.EnderecoDO end = new data.EnderecoDO();
-       end.setEnd_rua(endereco);
-       end.setEnd_num(numero);
        end.setEnd_bairro(bairro);
-       end.setUsuario_Usu_cod(cod);
-       end.setMunicipio_Mun_cod(codmun);
+       end.setEnd_num(numero);
+       end.setEnd_rua(endereco);
+       end.setMunicipio_Mun_cod(cod_mun);
        end.setTipo_Endereco_TipEnd_cod(1);
-       
+       end.setUsuario_Usu_cod(cod);
+          
        boolean e = te.incluir(end);
          
        
-       if (a && b && c && d && e) {
+       if (a && b && c && e) {
 %>
           Transação realizada com sucesso!
           <form action="index.jsp" method="post">
