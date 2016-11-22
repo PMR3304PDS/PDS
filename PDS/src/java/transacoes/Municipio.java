@@ -5,6 +5,48 @@ import data.*;
 import java.util.*;
 
 public class Municipio {
+    
+    public MunicipioDO pesquisarPorEstado(int cod_est) throws Exception {
+        if (isEmpty(Integer.toString(cod_est))) {
+            return null;
+        }
+        
+        Transacao tr = new Transacao();
+        try {
+            tr.beginReadOnly();
+              MunicipioDATA cdata = new MunicipioDATA();
+              MunicipioDO v = cdata.pesquisarPorEstado(cod_est, tr);
+            tr.commit();
+            return v;
+        } catch (Exception e) {
+            tr.rollback();
+            System.out.println("Error!");
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    public Vector pesquisarporEstado2(int cod_est) throws Exception {
+        if (isEmpty(Integer.toString(cod_est))) {
+            return null;
+        }
+        
+        Transacao tr = new Transacao();
+        try {
+            tr.beginReadOnly();
+              MunicipioDATA cdata = new MunicipioDATA();
+              Vector v = cdata.pesquisarPorEstado2(cod_est, tr);
+            tr.commit();
+            return v;
+        } catch (Exception e) {
+            tr.rollback();
+            System.out.println("Error!");
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+  
 
   public boolean incluir(MunicipioDO municipio) throws Exception {
 

@@ -8,6 +8,7 @@ package data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.*;
 import utils.Transacao;
 
 /**
@@ -48,5 +49,41 @@ public class MunicipioDATA {
      municipio.setEstado_Est_cod(rs.getInt("Estado_Est_cod"));
      return municipio;
   } // buscar
+  
+  public MunicipioDO pesquisarPorEstado(int cod_est, Transacao tr) throws Exception{
+     Connection con = tr.obterConexao();
+     String sql = "select * from Municipio where Estado_Est_cod like ?";
+     PreparedStatement ps = con.prepareStatement(sql);
+     ps.setInt(1, cod_est);
+     ResultSet rs = ps.executeQuery();
+     rs.next();
+     MunicipioDO c = new MunicipioDO();
+     c.setMun_cod(rs.getInt("Mun_cod"));
+     c.setMun_nome(rs.getString("Mun_nome"));
+     System.out.println(" got " + c.getMun_nome());
+     c.setEstado_Est_cod(rs.getInt("Estado_Est_cod"));
+     return c;
+      
+  }
+  
+  public Vector pesquisarPorEstado2(int cod_est, Transacao tr) throws Exception{
+     Connection con = tr.obterConexao();
+     String sql = "select * from Municipio where Estado_Est_cod like ?";
+     PreparedStatement ps = con.prepareStatement(sql);
+     ps.setInt(1, cod_est);
+     ResultSet rs = ps.executeQuery();
+     Vector municipios = new Vector();
+     while(rs.next()){
+         MunicipioDO c = new MunicipioDO();
+         c.setMun_cod(rs.getInt("Mun_cod"));
+         c.setMun_nome(rs.getString("Mun_nome"));
+         System.out.println(" got " + c.getMun_nome());
+         c.setEstado_Est_cod(rs.getInt("Estado_Est_cod"));
+         municipios.add(c);
+     }
+     
+     return municipios;
+      
+  }
     
 }
