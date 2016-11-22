@@ -31,28 +31,36 @@
                     <%@ include file="/Geral/menu.jsp" %>
                 </td>
                 <td>
-                    <% String nome_paciente = (String) session.getAttribute("Usu_buscado");
+                    <br>
+                    <br>
+                    <br>
+
+                    <% String nome_paciente = request.getParameter("Usu_buscado");
                     %>
 
                     Exames - <%= nome_paciente%> 
 
                     <br />
-
+                    <br />
+                    <br />
                     <table>
                         <tr>
-                            <th>Código do Exame</th>
-                            <th>Data</th>
-                            <th>Responsável por Adicionar Documento</th>
+                            <th>|--Código do Exame--|</th>                           
+                            <th>|----Data----|</th>
+                            <th>|Responsável por Adicionar Documento |</th>
                         </tr>
                         <tr>
                             <%
                                 //passar para cá o Paciente_Usuario_Usu_cod
                                 int cod = Integer.parseInt(request.getParameter("Paciente_Usuario_Usu_cod"));
+                                
                                 transacoes.Exame tn = new transacoes.Exame();
+                                
                                 Vector exames = tn.pesquisarPorCod(cod);
 
-                                if ((exames == null) || (exames.size() == 0)) {
+                                if ((exames.size() == 0)) {
                             %>
+
                             Lista de Exames não encontrada!
                         <form action="/Tecnico/Busca.jsp" method="post">
                             <input type="submit" name="voltar" value="Voltar" />
@@ -81,7 +89,7 @@
                             <tr>
                                 <td>
                                     <a href="/Geral/VizualizaExames.jsp?exame_cod=<%=exa_cod%>">
-                                    <%=exa_cod%></a>
+                                        <%=exa_cod%></a>
                                 </td>
                                 <td><%=data%></td>
                                 <td><%=nome_uper%></td>      
