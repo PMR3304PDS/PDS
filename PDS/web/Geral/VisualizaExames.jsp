@@ -35,7 +35,7 @@
                        
                     %>
                 Erro ao tentar ver Exame!
-                <form action="login.jsp" method="post">
+                <form action="/PDS/Tecnico/VisualizaListaExamesPaciente.jsp" method="post">
                 <input type="submit" name="Voltar" value="Voltar" />
                 </form>
                 
@@ -58,15 +58,15 @@
                 </td>
                 <td>
                     Código do Exame - <%= exame.getExa_cod() %>
-                    <br>
+                    <br />
                     Resumo do Exame - <%= resumo %>
-                    <br>
+                    <br />
                     Data Upload - <%= data_up %>
                     Data Previsão - <%= data_prev%>
 
                     
                     <br>
-                    <form action="login.jsp" method="post">
+                    <form action="/PDS/Tecnico/Busca.jsp" method="post">
                         <input type="submit" name="voltar" value="Voltar" />
                     </form>
                 </td>

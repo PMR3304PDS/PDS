@@ -35,7 +35,9 @@
                     <br>
                     <br>
 
-                    <% String nome_paciente = request.getParameter("Usu_buscado");
+                    <% 
+                        //passar o nome do paciente como Usu_buscado ao clicar no nome do paciente na tela anterior
+                        String nome_paciente = request.getParameter("Usu_buscado");
                     %>
 
                     Exames - <%= nome_paciente%> 
@@ -60,7 +62,7 @@
 
                                 if ((exames.size() == 0)) {
                             %>
-
+                            
                             Lista de Exames não encontrada!
                         <form action="/Tecnico/Busca.jsp" method="post">
                             <input type="submit" name="voltar" value="Voltar" />
@@ -71,15 +73,18 @@
                         <table>
                             <%
                                 for (int i = 0; i < exames.size(); i++) {
+                                    
                                     ExameDO exame = (ExameDO) exames.elementAt(i);
-                                    int exa_cod = Integer.parseInt(request.getParameter("Exa_cod"));
-                                    String data = request.getParameter("Exa_data_upload");
-                                    int uper_cod = Integer.parseInt(request.getParameter("Tecnico_Usuario_Usu_cod_uploader"));
+                                    int exa_cod = exame.getExa_cod();//pega o codigo do exame
+                                    Date data = exame.getExa_data_upload();//pega a data do upload                                
+                                    int uper_cod = exame.getTecnico_Usuario_Usu_cod_uploader();//pega o id de quem deu upload
+                                    
                                     //para ver se quem deu upload foi tecnico
-                                    if (uper_cod == 0) //se nao for tecnico, pegar o id o medico que deu upload
-                                    {
-                                        uper_cod = Integer.parseInt(request.getParameter("Medico_Usuario_Usu_cod_uploaderr"));
-                                    }
+                                    //if (uper_cod == 0) //se nao for tecnico, pegar o id o medico que deu upload
+                                    //{
+                                      //  uper_cod = Integer.parseInt(request.getParameter("Medico_Usuario_Usu_cod_uploader"));
+                                    //}
+                                    
                                     //pesquisando nome do usuario pelo id
                                     UsuarioDO usuario = new UsuarioDO();
                                     transacoes.Usuario tr = new transacoes.Usuario();
@@ -88,10 +93,12 @@
                             %>
                             <tr>
                                 <td>
-                                    <a href="/Geral/VizualizaExames.jsp?exame_cod=<%=exa_cod%>">
+                                    <a href="/PDS/Geral/VisualizaExames.jsp?exame_cod=<%=exa_cod%>">
                                         <%=exa_cod%></a>
                                 </td>
+                                <td>....................................</td>
                                 <td><%=data%></td>
+                                <td>........................</td>
                                 <td><%=nome_uper%></td>      
                             </tr>     
                         </table>
