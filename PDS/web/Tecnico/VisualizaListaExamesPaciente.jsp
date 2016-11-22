@@ -47,7 +47,7 @@
                         <tr>
                             <%
                                 //passar para cá o Paciente_Usuario_Usu_cod
-                                int cod = Integer.parseInt(request.getParameter("cod_buscado"));
+                                int cod = Integer.parseInt(request.getParameter("Paciente_Usuario_Usu_cod"));
                                 transacoes.Exame tn = new transacoes.Exame();
                                 Vector exames = tn.pesquisarPorCod(cod);
 
