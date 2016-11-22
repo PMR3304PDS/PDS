@@ -86,39 +86,58 @@
                         <tr>
                             <td>Estado</td>
                             <td>
-                                <select name="estado">
-                                    <option value="1">Acre</option>
-                                    <option value="2">Alagoas</option>
-                                    <option value="3">Amapá</option>
-                                    <option value="4">Amazonas</option>
-                                    <option value="5">Bahia</option>
-                                    <option value="6">Ceará</option>
-                                    <option value="7">Distrito Federal</option>
-                                    <option value="8">Espirito Santo</option>
-                                    <option value="9">Goiás</option>
-                                    <option value="10">Maranhão</option>
-                                    <option value="11">Mato Grosso</option>
-                                    <option value="12">Mato Grosso do Sul</option>
-                                    <option value="13">Minas Gerais</option>
-                                    <option value="14">Pará</option>
-                                    <option value="15">Paraíba</option>
-                                    <option value="16">Paraná</option>
-                                    <option value="17">Pernambuco</option>
-                                    <option value="18">Piauí</option>
-                                    <option value="19">Rio de Janeiro</option>
-                                    <option value="20">Rio Grande do Norte</option>
-                                    <option value="21">Rio Grande do Sul</option>
-                                    <option value="22">Rondônia</option>
-                                    <option value="23">Roraima</option>
-                                    <option value="24">Santa Catarina</option>
-                                    <option value="25">São Paulo</option>
-                                    <option value="26">Sergipe</option>
-                                    <option value="27">Tocantins</option>
+                        <%
+                        int cod1;
+                        if(request.getParameter("estado_id") != null){
+                            cod1 = Integer.parseInt(request.getParameter("estado_id"));
+                        %>
+                            <select name="estado_id" id="estado_id" value = cod1 onchange="this.form.submit()" required>
+                        <%
+                        }
+                        else {
+                            cod1 = 0;
+                        %>
+                             <select name="estado_id" id="estado_id" onchange="this.form.submit()" required>
+                        <%
+                        }
+                        %>                            
+                                    <option value="1" <% if (cod1 == 1) { %> selected <% } %> > Acre</option>
+                                    <option value="2" <% if (cod1 == 2) { %> selected <% } %> > Alagoas</option>
+                                    <option value="3" <% if (cod1 == 3) { %> selected <% } %> > Amapá</option>
+                                    <option value="4" <% if (cod1 == 4) { %> selected <% } %> > Amazonas</option>
+                                    <option value="5" <% if (cod1 == 5) { %> selected <% } %> > Bahia</option>
+                                    <option value="6" <% if (cod1 == 6) { %> selected <% } %> > Ceará</option>
+                                    <option value="7" <% if (cod1 == 7) { %> selected <% } %> > Distrito Federal</option>
+                                    <option value="8" <% if (cod1 == 8) { %> selected <% } %> > Espirito Santo</option>
+                                    <option value="9" <% if (cod1 == 9) { %> selected <% } %> > Goiás</option>
+                                    <option value="10" <% if (cod1 == 10) { %> selected <% } %> > Maranhão</option>
+                                    <option value="11" <% if (cod1 == 11) { %> selected <% } %> > Mato Grosso</option>
+                                    <option value="12" <% if (cod1 == 12) { %> selected <% } %> > Mato Grosso do Sul</option>
+                                    <option value="13" <% if (cod1 == 13) { %> selected <% } %> > Minas Gerais</option>
+                                    <option value="14" <% if (cod1 == 14) { %> selected <% } %> > Pará</option>
+                                    <option value="15" <% if (cod1 == 15) { %> selected <% } %> > Paraíba</option>
+                                    <option value="16" <% if (cod1 == 16) { %> selected <% } %> > Paraná</option>
+                                    <option value="17" <% if (cod1 == 17) { %> selected <% } %> > Pernambuco</option>
+                                    <option value="18" <% if (cod1 == 18) { %> selected <% } %> > Piauí</option>
+                                    <option value="19" <% if (cod1 == 19) { %> selected <% } %> > Rio de Janeiro</option>
+                                    <option value="20" <% if (cod1 == 20) { %> selected <% } %> > Rio Grande do Norte</option>
+                                    <option value="21" <% if (cod1 == 21) { %> selected <% } %> > Rio Grande do Sul</option>
+                                    <option value="22" <% if (cod1 == 22) { %> selected <% } %> > Rondônia</option>
+                                    <option value="23" <% if (cod1 == 23) { %> selected <% } %> > Roraima</option>
+                                    <option value="24" <% if (cod1 == 24) { %> selected <% } %> > Santa Catarina</option>
+                                    <option value="25" <% if (cod1 == 25) { %> selected <% } %> > São Paulo</option>
+                                    <option value="26" <% if (cod1 == 26) { %> selected <% } %> > Sergipe</option>
+                                    <option value="27" <% if (cod1 == 27) { %> selected <% } %> > Tocantins</option>
                                 </select>
                             </td>
                         </tr>
                         <%
-                            int cod = Integer.parseInt(request.getParameter("estado"));
+                    
+                      
+                        if(request.getParameter("estado_id") != null){
+                            
+                            int cod = Integer.parseInt(request.getParameter("estado_id"));
+                            
                             transacoes.Municipio tm = new transacoes.Municipio();
                             Vector municipios = tm.pesquisarporEstado2(cod);
                         %>
@@ -134,6 +153,8 @@
                                     <option value=<%= m.getMun_cod() %>> <%=m.getMun_nome() %></option>
                                     <%
                                         }
+                        }
+                    
                                     %>
                                 </select>
                             </td>
