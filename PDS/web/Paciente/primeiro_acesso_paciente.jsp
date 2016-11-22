@@ -281,7 +281,7 @@
        paciente.setPac_doencas_tratamento(doencas);
        paciente.setPac_historico_doencas(historico);
        
-       tp.incluir(paciente);
+       boolean a = tp.incluir(paciente);
        
        int cod = paciente.getUsu_cod();
        transacoes.Telefone t1 = new transacoes.Telefone();
@@ -289,21 +289,21 @@
        telefone1.setTel_numero(tel1);
        telefone1.setUsuario_Usu_Cod(cod);
        
-       t1.incluir(telefone1);
+       boolean b = t1.incluir(telefone1);
          
        transacoes.Telefone t2 = new transacoes.Telefone();
        data.TelefoneDO telefone2 = new data.TelefoneDO();
        telefone2.setTel_numero(tel2);
        telefone2.setUsuario_Usu_Cod(cod);
        
-       t2.incluir(telefone2);
+       boolean c = t2.incluir(telefone2);
          
        transacoes.Municipio tm = new transacoes.Municipio();
        data.MunicipioDO mun = new data.MunicipioDO();
        mun.setMun_nome(municipio);
        mun.setEstado_Est_cod(cod_est);
        
-       tm.incluir(mun);
+       boolean d = tm.incluir(mun);
          
        int codmun = mun.getMun_cod();
        transacoes.Endereco te = new transacoes.Endereco();
@@ -315,10 +315,10 @@
        end.setMunicipio_Mun_cod(codmun);
        end.setTipo_Endereco_TipEnd_cod(1);
        
-       te.incluir(end);
+       boolean e = te.incluir(end);
+         
        
-       
-       if (tp.incluir(paciente) && t1.incluir(telefone1) && t2.incluir(telefone2) && tm.incluir(mun) && te.incluir(end)) {
+       if (a && b && c && d && e) {
 %>
           Transação realizada com sucesso!
           <form action="index.jsp" method="post">

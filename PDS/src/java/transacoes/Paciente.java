@@ -27,7 +27,22 @@ public class Paciente {
     try {
 
       tr.begin();
+      
+      UsuarioData usudata = new UsuarioData();
+      UsuarioDO usudo = new UsuarioDO();
+      usudo.setUsu_cpf(paciente.getUsu_cpf());
+      usudo.setUsu_foto(null);
+      usudo.setUsu_nome(paciente.getUsu_nome());
+      usudo.setUsu_login(paciente.getUsu_login());
+      usudo.setUsu_rg(paciente.getUsu_rg());
+      usudo.setUsu_senha(paciente.getUsu_senha());
+      usudo.setUsu_ativo(true);
+      usudata.incluir(usudo, tr);
+      
+      UsuarioDO newusudo = usudata.pesquisarPorLogin(usudo.getUsu_login(), tr);
+      
       PacienteDATA pacdata = new PacienteDATA();
+      paciente.setUsu_cod(newusudo.getUsu_cod());
       pacdata.incluir(paciente, tr);
       tr.commit();
       return true;
