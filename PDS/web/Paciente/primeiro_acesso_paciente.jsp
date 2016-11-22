@@ -13,6 +13,8 @@
         <%@page import="java.sql.Date"%>
         <%@page import="java.text.DateFormat"%>
         <%@page import="java.text.ParseException"%>
+        <%@page import="java.util.*"%>
+        <%@page import="data.MunicipioDO"%>
         <%@ include file="/Geral/verifylogin.jsp" %>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -82,10 +84,6 @@
                             <td><input type="text" name="bairro" maxlength="200" required/>
                         </tr>
                         <tr>
-                            <td>Município</td>
-                            <td><input type="text" name="municipio" maxlength="200" required/>
-                        </tr>
-                        <tr>
                             <td>Estado</td>
                             <td>
                                 <select name="estado">
@@ -116,6 +114,27 @@
                                     <option value="25">São Paulo</option>
                                     <option value="26">Sergipe</option>
                                     <option value="27">Tocantins</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <%
+                            int cod = Integer.parseInt(request.getParameter("estado"));
+                            transacoes.Municipio tm = new transacoes.Municipio();
+                            Vector municipios = tm.pesquisarporEstado2(cod);
+                        %>
+                        <tr>
+                            <td>Municipio</td>
+                            <td>
+                                <select name="municipio">
+                                    <%
+                                        for(int i = 0; i<municipios.size();i++){
+                                            MunicipioDO m = new MunicipioDO();
+                                            m = (MunicipioDO)municipios.elementAt(i);                       
+                                    %>
+                                    <option value=<%= m.getMun_cod() %>> <%=m.getMun_nome() %></option>
+                                    <%
+                                        }
+                                    %>
                                 </select>
                             </td>
                         </tr>
@@ -179,7 +198,7 @@
 
 
 <%     
-       int cod_est = Integer.parseInt("estado");
+       int cod_est = Integer.parseInt(request.getParameter("estado"));
       
        String nome = request.getParameter("nome");
        String rg = request.getParameter("rg");
