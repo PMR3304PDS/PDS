@@ -46,6 +46,7 @@
                         </tr>
                         <tr>
                             <%
+                                //passar para cá o Paciente_Usuario_Usu_cod
                                 int cod = Integer.parseInt(request.getParameter("cod_buscado"));
                                 transacoes.Exame tn = new transacoes.Exame();
                                 Vector exames = tn.pesquisarPorCod(cod);
@@ -79,7 +80,7 @@
                             %>
                             <tr>
                                 <td>
-                                    <a href="/Geral/VizualizaExames.jsp?examecod=<%=exa_cod%>">
+                                    <a href="/Geral/VizualizaExames.jsp?exame_cod=<%=exa_cod%>">
                                     <%=exa_cod%></a>
                                 </td>
                                 <td><%=data%></td>

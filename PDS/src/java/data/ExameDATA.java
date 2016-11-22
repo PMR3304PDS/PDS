@@ -80,7 +80,7 @@ public class ExameDATA {
 
     public Vector pesquisarPorCod(int cod, Transacao tr) throws Exception {
         Connection con = tr.obterConexao();
-        String sql = "select * from Exame where Exa_cod=?";
+        String sql = "select * from Exame where Paciente_Usuario_Usu_cod=?";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, cod);
         ResultSet rs = ps.executeQuery();
