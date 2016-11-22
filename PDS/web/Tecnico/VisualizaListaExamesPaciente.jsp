@@ -78,7 +78,10 @@
                                     String nome_uper = usuario.getUsu_nome();
                             %>
                             <tr>
-                                <td><a href="/Geral/VizualizaExames.jsp"><%=exa_cod%></a></td>
+                                <td>
+                                    <a href="/Geral/VizualizaExames.jsp?examecod=<%=exa_cod%>">
+                                    <%=exa_cod%></a>
+                                </td>
                                 <td><%=data%></td>
                                 <td><%=nome_uper%></td>      
                             </tr>     
