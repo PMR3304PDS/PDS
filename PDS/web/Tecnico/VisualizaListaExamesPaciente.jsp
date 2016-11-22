@@ -14,8 +14,11 @@
         <%@ page import="java.util.Date"%>
         <%@ page import="java.sql.*"%>
         <%@ page import="transacoes.Exame" %>
+        <%@ page import="transacoes.Usuario"%>
         <%@ page import="data.ExameDO" %>
         <%@ page import="data.PacienteDO" %>
+        <%@ page import="data.UsuarioDO" %>
+        <%@ page import="data.UsuarioData" %>
         <%@ include file="/Geral/verifylogin.jsp" %>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -46,12 +49,13 @@
                                 int cod = Integer.parseInt(request.getParameter("cod_buscado"));
                                 transacoes.Exame tn = new transacoes.Exame();
                                 Vector exames = tn.pesquisarPorCod(cod);
+
                                 if ((exames == null) || (exames.size() == 0)) {
                             %>
-                            Nome não encontrado!
+                            Lista de Exames não encontrada!
                         <form action="/Tecnico/Busca.jsp" method="post">
                             <input type="submit" name="voltar" value="Voltar" />
-                            
+
                         </form>
                         <%     } else {
                         %>
@@ -62,18 +66,28 @@
                                     int exa_cod = Integer.parseInt(request.getParameter("Exa_cod"));
                                     String data = request.getParameter("Exa_data_upload");
                                     int uper_cod = Integer.parseInt(request.getParameter("Tecnico_Usuario_Usu_cod_uploader"));
+                                    //para ver se quem deu upload foi tecnico
+                                    if (uper_cod == 0) //se nao for tecnico, pegar o id o medico que deu upload
+                                    {
+                                        uper_cod = Integer.parseInt(request.getParameter("Medico_Usuario_Usu_cod_uploaderr"));
+                                    }
+                                    //pesquisando nome do usuario pelo id
+                                    UsuarioDO usuario = new UsuarioDO();
+                                    transacoes.Usuario tr = new transacoes.Usuario();
+                                    usuario = tr.pesquisarPorId(uper_cod);
+                                    String nome_uper = usuario.getUsu_nome();
                             %>
                             <tr>
-                                <td><a href="/Geral/VizualizaExames"><%=exa_cod%></a></td>
+                                <td><a href="/Geral/VizualizaExames.jsp"><%=exa_cod%></a></td>
                                 <td><%=data%></td>
-                                <td><%=uper_cod%></td>      
+                                <td><%=nome_uper%></td>      
                             </tr>     
                         </table>
                         <%}
-                                }%>  
-                        
+                            }%>  
+
                         <form action="/Geral/upload_exame_receita.jsp" method="post">
-                        <input type="submit" name="Adicionar" value="Adicionar Exame" />
+                            <input type="submit" name="Adicionar" value="Adicionar Exame" />
                         </form>
             </tr>        
             <tr>

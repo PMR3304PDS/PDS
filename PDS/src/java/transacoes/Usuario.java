@@ -47,15 +47,13 @@ public class Usuario{
         return null;
     }
     
-    public UsuarioDO pesquisarPorCpf2(String cpf) throws Exception {
-        if (isEmpty(cpf)) {
-            return null;
-        }
+
+    public UsuarioDO pesquisarPorId(int id) throws Exception {
         Transacao tr = new Transacao();
         try {
             tr.beginReadOnly();
               UsuarioData cdata = new UsuarioData();
-              UsuarioDO c = cdata.pesquisarPorLogin(cpf, tr);
+              UsuarioDO c = cdata.pesquisarPorId(id, tr);
             tr.commit();
             return c;
         } catch (Exception e) {
