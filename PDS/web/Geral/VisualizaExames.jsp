@@ -62,6 +62,7 @@
                     Resumo do Exame - <%= resumo %>
                     <br />
                     Data Upload - <%= data_up %>
+                    <br />
                     Data Previsão - <%= data_prev%>
 
                     
