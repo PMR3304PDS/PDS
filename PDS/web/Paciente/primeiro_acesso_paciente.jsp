@@ -89,33 +89,33 @@
                             <td>Estado</td>
                             <td>
                                 <select name="estado">
-                                    <option value="Acre">Acre</option>
-                                    <option value="Alagoas">Alagoas</option>
-                                    <option value="Amapá">Amapá</option>
-                                    <option value="Amazonas">Amazonas</option>
-                                    <option value="Bahia">Bahia</option>
-                                    <option value="Ceará">Ceará</option>
-                                    <option value="Distrito Federal">Distrito Federal</option>
-                                    <option value="Espirito Santo">Espirito Santo</option>
-                                    <option value="Goiás">Goiás</option>
-                                    <option value="Maranhão">Maranhão</option>
-                                    <option value="Mato Grosso">Mato Grosso</option>
-                                    <option value="Mato Grosso do Sul">Mato Grosso do Sul</option>
-                                    <option value="Minas Gerais">Minas Gerais</option>
-                                    <option value="Pará">Pará</option>
-                                    <option value="Paraíba">Paraíba</option>
-                                    <option value="Paraná">Paraná</option>
-                                    <option value="Pernambuco">Pernambuco</option>
-                                    <option value="Piauí">Piauí</option>
-                                    <option value="Rio de Janeiro">Rio de Janeiro</option>
-                                    <option value="Rio Grande do Norte">Rio Grande do Norte</option>
-                                    <option value="Rio Grande do Sul">Rio Grande do Sul</option>
-                                    <option value="Rondônia">Rondônia</option>
-                                    <option value="Roraima">Roraima</option>
-                                    <option value="Santa Catarina">Santa Catarina</option>
-                                    <option value="São Paulo">São Paulo</option>
-                                    <option value="Sergipe">Sergipe</option>
-                                    <option value="Tocantins">Tocantins</option>
+                                    <option value="1">Acre</option>
+                                    <option value="2">Alagoas</option>
+                                    <option value="3">Amapá</option>
+                                    <option value="4">Amazonas</option>
+                                    <option value="5">Bahia</option>
+                                    <option value="6">Ceará</option>
+                                    <option value="7">Distrito Federal</option>
+                                    <option value="8">Espirito Santo</option>
+                                    <option value="9">Goiás</option>
+                                    <option value="10">Maranhão</option>
+                                    <option value="11">Mato Grosso</option>
+                                    <option value="12">Mato Grosso do Sul</option>
+                                    <option value="13">Minas Gerais</option>
+                                    <option value="14">Pará</option>
+                                    <option value="15">Paraíba</option>
+                                    <option value="16">Paraná</option>
+                                    <option value="17">Pernambuco</option>
+                                    <option value="18">Piauí</option>
+                                    <option value="19">Rio de Janeiro</option>
+                                    <option value="20">Rio Grande do Norte</option>
+                                    <option value="21">Rio Grande do Sul</option>
+                                    <option value="22">Rondônia</option>
+                                    <option value="23">Roraima</option>
+                                    <option value="24">Santa Catarina</option>
+                                    <option value="25">São Paulo</option>
+                                    <option value="26">Sergipe</option>
+                                    <option value="27">Tocantins</option>
                                 </select>
                             </td>
                         </tr>
@@ -179,63 +179,7 @@
 
 
 <%     
-       String estado = request.getParameter("estado");
-       int cod_est = 0;
-       if (estado == "Acre"){
-           cod_est = 1;
-       } else if (estado == "Alagoas"){
-           cod_est = 2;
-       } else if (estado == "Amapá"){
-           cod_est = 3;
-       } else if (estado == "Amazonas"){
-           cod_est = 4;
-       } else if (estado == "Bahia"){
-           cod_est = 5;
-       } else if (estado == "Ceará"){
-           cod_est = 6;
-       } else if (estado == "Distrito Federal"){
-           cod_est = 7;
-       } else if (estado == "Espirito Santo"){
-           cod_est = 8;
-       } else if (estado == "Goiás"){
-           cod_est = 9;
-       } else if (estado == "Maranhão"){
-           cod_est = 10;
-       } else if (estado == "Mato Grosso"){
-           cod_est = 11;
-       } else if (estado == "Mato Grosso do Sul"){
-           cod_est = 12;
-       } else if (estado == "Minas Gerais"){
-           cod_est = 13;
-       } else if (estado == "Pará"){
-           cod_est = 14;
-       } else if (estado == "Paraíba"){
-           cod_est = 15;
-       } else if (estado == "Paraná"){
-           cod_est = 16;
-       } else if (estado == "Pernambuco"){
-           cod_est = 17;
-       } else if (estado == "Piauí"){
-           cod_est = 18;
-       } else if (estado == "Rio de Janeiro"){
-           cod_est = 19;
-       } else if (estado == "Rio Grande do Norte"){
-           cod_est = 20;
-       } else if (estado == "Rio Grande do Sul"){
-           cod_est = 21;
-       } else if (estado == "Rondônia"){
-           cod_est = 22;
-       } else if (estado == "Roraima"){
-           cod_est = 23;
-       } else if (estado == "Santa Catarina"){
-           cod_est = 24;
-       } else if (estado == "São Paulo"){
-           cod_est = 25;
-       } else if (estado == "Sergipe"){
-           cod_est = 26;
-       } else if (estado == "Tocantins"){
-           cod_est = 27;
-       }
+       int cod_est = Integer.parseInt("estado");
       
        String nome = request.getParameter("nome");
        String rg = request.getParameter("rg");
