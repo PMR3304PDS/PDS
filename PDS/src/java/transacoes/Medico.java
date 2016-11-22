@@ -11,8 +11,8 @@ import java.util.*;
  */
 public class Medico extends Usuario {
     
-    public Vector pesquisarPorCrm(String crm, String estado) throws Exception {
-        if (isEmpty(crm)&& isEmpty(estado)) {
+    public Vector pesquisarPorCrm(String crm) throws Exception {
+        if (isEmpty(crm)) {
             return null;
         }
         
@@ -20,7 +20,7 @@ public class Medico extends Usuario {
         try {
             tr.beginReadOnly();
               MedicoDATA cdata = new MedicoDATA();
-              Vector v = cdata.pesquisarPorCrm(crm, estado, tr);
+              Vector v = cdata.pesquisarPorCrm(crm,tr);
             tr.commit();
             return v;
         } catch (Exception e) {

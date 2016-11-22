@@ -53,13 +53,11 @@ public class MedicoDATA {
     return null;
   } // buscar
   
-  public Vector pesquisarPorCrm(String crm, String estado, Transacao tr) throws Exception {
+  public Vector pesquisarPorCrm(String crm, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
-     String sql = "select * from Medico where Med_NumRegistro like ? and "
-             + "Estado_Est_cod_conselho_emissor like ?";
+     String sql = "select * from Medico where Med_NumRegistro like ?";
      PreparedStatement ps = con.prepareStatement(sql);
      ps.setString(1, crm);
-     ps.setString(2, estado);
      ResultSet rs = ps.executeQuery();
      Vector medicos = new Vector();
      while (rs.next()) {
