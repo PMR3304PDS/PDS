@@ -185,7 +185,7 @@ public class Usuario{
      return false;
     }
     
-    public boolean mudar_senha(int cod_usuario, String senha_antiga, String senha_nova) throws Exception
+    public boolean mudar_senha(UsuarioDO usuario, String senha_antiga, String senha_nova) throws Exception
     {
         if((senha_antiga == null)||(senha_nova==null))
             return false;
@@ -196,8 +196,6 @@ public class Usuario{
         {
             tr.begin();
             UsuarioData udata = new UsuarioData();
-            UsuarioDO usuario = new UsuarioDO();
-            usuario = udata.buscar(cod_usuario,tr);
             if(senha_antiga.equals(usuario.getUsu_senha()))
             {
                 usuario.setUsu_senha(senha_nova);

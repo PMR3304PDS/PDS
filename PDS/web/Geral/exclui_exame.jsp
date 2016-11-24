@@ -34,10 +34,10 @@
                         {
                             exa_cod=0;
                     %>
-                            Erro ao tentar encontrar exame no banco de dados!
-                            <form action="login.jsp" method="post">
-                                <input type="submit" name="voltar" value="Voltar" />
-                            </form>
+                        Erro ao tentar encontrar exame no banco de dados!
+                        <form action="login.jsp" method="post">
+                            <input type="submit" name="voltar" value="Voltar" />
+                        </form>
                     <%
                             return;
                         }
