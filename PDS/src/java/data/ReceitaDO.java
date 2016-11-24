@@ -104,5 +104,9 @@ public class ReceitaDO {
         this.Rec_resumo = Rec_resumo;
     }
     
+    public String getRec_resumo(String Rec_resumo) {
+        return Rec_resumo;
+    }
+    
     
 }

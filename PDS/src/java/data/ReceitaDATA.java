@@ -6,6 +6,7 @@
 package data;
 
 import java.sql.*;
+import java.util.Vector;
 import utils.Transacao;
 
 /**
@@ -85,7 +86,7 @@ public class ReceitaDATA {
         ResultSet rs = ps.executeQuery();
         rs.next();
         ReceitaDO receita = new ReceitaDO();
-        receita.setRec_cod(rs.getInt("Exa_cod"));
+        receita.setRec_cod(rs.getInt("Rec_cod"));
         receita.setRec_excluido(rs.getBoolean("Rec_excluido"));
         receita.setRec_data_upload(rs.getDate("Rec_data_upload"));
         receita.setPaciente_Usuario_Usu_cod(rs.getInt("Paciente_Usuario_Usu_cod"));
@@ -98,5 +99,29 @@ public class ReceitaDATA {
         
         return receita;
     }//buscar
+    
+    public Vector GetListaReceitas(int cod, Transacao tr) throws Exception {
+        Connection con = tr.obterConexao();
+        String sql = "select * from Receita where Paciente_Usuario_Usu_cod=?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, cod);
+        ResultSet rs = ps.executeQuery();
+        Vector receitas = new Vector();
+        while (rs.next()) {
+            ReceitaDO c = new ReceitaDO();
+            c.setRec_cod(rs.getInt("Rec_cod"));
+            c.setRec_excluido(rs.getBoolean("Rec_excluido"));
+            c.setRec_data_upload(rs.getDate("Rec_data_upload"));
+            c.setPaciente_Usuario_Usu_cod(rs.getInt("Paciente_Usuario_Usu_cod"));
+            c.setFarmaceutico_Usuario_Usu_cod(rs.getInt("Farmaceutico_Usuario_Usu_cod"));
+            c.setTecnico_Usuario_Usu_cod(rs.getInt("Tecnico_Usuario_Usu_cod"));
+            c.setMedico_Usuario_Usu_cod(rs.getInt("Medico_Usuario_Usu_cod"));
+            c.setRec_check(rs.getBoolean("Rec_check"));
+            c.setRec_receita(rs.getBinaryStream("Rec_receita"));
+            c.setRec_resumo(rs.getString("Rec_resumo"));
+            receitas.add(c);
+        }
+        return receitas;
+    }// buscar
     
 }
