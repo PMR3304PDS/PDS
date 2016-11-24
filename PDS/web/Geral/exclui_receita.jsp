@@ -25,21 +25,7 @@
                     <%-- Começo JSP --%>
                     <%
                         int rec_cod;
-                        try
-                        {
-                          rec_cod = Integer.parseInt(request.getParameter("rec_cod"));
-                        }
-                        catch(NumberFormatException e)
-                        {
-                            rec_cod=0;
-                    %>
-                            Erro ao tentar encontrar receita no banco de dados!
-                            <form action="login.jsp" method="post">
-                                <input type="submit" name="voltar" value="Voltar" />
-                            </form>
-                    <%
-                            return;
-                        }
+                        rec_cod = Integer.parseInt(request.getParameter("rec_cod"));
                         transacoes.Receita tn_rec = new transacoes.Receita();
                         if(tn_rec.excluir(rec_cod))
                         {

@@ -25,39 +25,25 @@
                     <%-- Começo JSP --%>
                     <%
                         int exa_cod;
-                        try
-                        {
-                          exa_cod = Integer.parseInt(request.getParameter("exa_cod"));
-                        }
-                        catch(NumberFormatException e)
-                        {
-                            exa_cod=0;
-                    %>
-                        Erro ao tentar encontrar exame no banco de dados!
-                        <form action="login.jsp" method="post">
-                            <input type="submit" name="voltar" value="Voltar" />
-                        </form>
-                    <%
-                            return;
-                        }
+                        exa_cod = Integer.parseInt(request.getParameter("exa_cod"));
                         transacoes.Exame tn_exa = new transacoes.Exame();
                         if(tn_exa.excluir(exa_cod))
                         {
                     %>
-                        Exame excluido com sucesso!
-                        <form action="login.jsp" method="post">
-                            <input type="submit" name="voltar" value="Voltar" />
-                        </form>
+                            Exame excluido com sucesso!
+                            <form action="login.jsp" method="post">
+                                <input type="submit" name="voltar" value="Voltar" />
+                            </form>
                     <%
                         }
                         else
                         {
                     %>
-                        Exame não pode ser excluido!
-                        <br>
-                        <form action="exclui_exame.jsp" method="post">
-                            <input type="submit" name="voltar" value="Voltar" />
-                        </form>
+                            Exame não pode ser excluido!
+                            <br>
+                            <form action="exclui_exame.jsp" method="post">
+                                <input type="submit" name="voltar" value="Voltar" />
+                            </form>
                     <%
                         }
                     %>

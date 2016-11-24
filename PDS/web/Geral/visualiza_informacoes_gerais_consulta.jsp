@@ -25,21 +25,7 @@
                     <%-- Começo JSP --%>
                     <%
                         int cns_cod;
-                        try
-                        {
-                            cns_cod = Integer.parseInt(request.getParameter("cns_cod"));
-                        }
-                        catch(NumberFormatException e)
-                        {
-                            cns_cod=0;
-                    %>
-                            Erro ao tentar verificar consulta!
-                            <form action="login.jsp" method="post">
-                                <input type="submit" name="Editar Resumo" value="Editar resumo" />
-                            </form>
-                    <%
-                            return;
-                        }
+                        cns_cod = Integer.parseInt(request.getParameter("cns_cod"));
                         transacoes.Consulta tn_cns = new transacoes.Consulta();
                         data.ConsultaDO consulta = tn_cns.busca_cns(cns_cod);
 
@@ -61,19 +47,18 @@
                         Data - <%= data %>
                         <br><br>
                         Resumo - <%= resumo %>
+                        <br><br>
                     <%
                         int medicoatual = ((Integer)session.getAttribute("cod")).intValue();
                         if(medicoatual==med_cod)
                         {
                     %>
-                            <br>
-                            <form action="edita_resumo_consulta.jsp?cns_cod=<%=cns_cod%>" method="post">
+                            <form action="../Medico/edita_resumo_consulta.jsp?cns_cod=<%=cns_cod%>" method="post">
                                 <input type="submit" name="Editar Resumo" value="Editar resumo" />
                             </form>
                     <%
                         }
                     %>
-                        <br>
                         <form action="login.jsp" method="post">
                             <input type="submit" name="voltar" value="Voltar" />
                         </form>

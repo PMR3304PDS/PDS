@@ -34,7 +34,7 @@ public class Consulta {
         return false;
     }
     
-    public ConsultaDO busca_cns(int cns_cod)
+    public ConsultaDO busca_cns(int cns_cod) throws Exception
     {
         Transacao tr = new Transacao();
         
@@ -48,7 +48,7 @@ public class Consulta {
         }
         catch(Exception e)
         {
-            //tr.rollback();
+            tr.rollback();
             System.out.println("erro ao buscar consulta");
             e.printStackTrace();
             return null;
@@ -61,5 +61,31 @@ public class Consulta {
         if (s.length() == 0)
             return true;
         return false;
+    }
+    
+    public boolean atualizar(ConsultaDO consulta) throws Exception
+    {
+        if (isEmpty(consulta.getCns_resumo()))
+        {
+            return false;
+        }
+     
+        Transacao tr = new Transacao();
+        try 
+        {
+
+            tr.begin();
+            ConsultaDATA cdata = new ConsultaDATA();
+            cdata.atualizar(consulta, tr);
+            tr.commit();
+        } 
+        catch(Exception e) 
+        {
+            tr.rollback();
+            System.out.println("erro ao atualizar consulta");
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 }
