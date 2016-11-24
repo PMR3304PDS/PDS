@@ -44,13 +44,13 @@
                     <br />
                     <br />
                     <br />
-                    <table>
+                    <table  border="1">
                         <tr>
                             <th>|--Código do Exame--|</th>                           
                             <th>|----Data----|</th>
                             <th>|Responsável por Adicionar Documento |</th>
                         </tr>
-
+                    
                         <tr>
                             <%
                                 //passar para cá o Paciente_Usuario_Usu_cod
@@ -70,7 +70,7 @@
                         </form>
                         <%     } else {
                         %>
-                        <table>
+                        
                             <%
                                 for (int i = 0; i < exames.size(); i++) {
 
@@ -91,14 +91,14 @@
                                     String nome_uper = usuario.getUsu_nome();
                             %>
                             <tr>
-                                <td>............</td>
+                                
                                 <td>
                                     <a href="/PDS/Geral/VisualizaExames.jsp?exame_cod=<%=exa_cod%>">
                                         <%=exa_cod%></a>
                                 </td>
-                                <td>.......................</td>
+                                
                                 <td><%=data%></td>
-                                <td>........................</td>
+                                
                                 <td><%=nome_uper%></td>      
                             </tr>     
                         </table>

@@ -56,6 +56,7 @@
                 <td>
   
                 </td>
+                
                 <td>
                     Código do Exame - <%= exame.getExa_cod() %>
                     <br />
