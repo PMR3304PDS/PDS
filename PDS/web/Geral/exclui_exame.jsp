@@ -11,19 +11,18 @@
     <body>
         <%@ include file="verifylogin.jsp" %>
         
-        
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td colspan="2">
                     <%@ include file="/Geral/header.jsp" %>
                 </td>
             </tr>
-            
             <tr>
                 <td>
                     <%@ include file="/Geral/menu.jsp" %>
                 </td>
                 <td>
+                    <%-- Começo JSP --%>
                     <%
                         int exa_cod;
                         try
@@ -62,6 +61,7 @@
                     <%
                         }
                     %>
+                    <%-- Fim JSP --%>
                 </td>
             </tr>
             <tr>
@@ -70,6 +70,5 @@
                 </td>
             </tr>
         </table>
-        
     </body>
 </html>

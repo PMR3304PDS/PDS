@@ -11,19 +11,18 @@
     <body>
         <%@ include file="verifylogin.jsp" %>
         
-        
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td colspan="2">
                     <%@ include file="/Geral/header.jsp" %>
                 </td>
             </tr>
-            
             <tr>
                 <td>
                     <%@ include file="/Geral/menu.jsp" %>
                 </td>
                 <td>
+                    <%-- Começo JSP --%>
                     <%
                         int rec_cod;
                         try
@@ -34,10 +33,10 @@
                         {
                             rec_cod=0;
                     %>
-                        Erro ao tentar encontrar receita no banco de dados!
-                        <form action="login.jsp" method="post">
-                            <input type="submit" name="voltar" value="Voltar" />
-                        </form>
+                            Erro ao tentar encontrar receita no banco de dados!
+                            <form action="login.jsp" method="post">
+                                <input type="submit" name="voltar" value="Voltar" />
+                            </form>
                     <%
                             return;
                         }
@@ -45,23 +44,24 @@
                         if(tn_rec.excluir(rec_cod))
                         {
                     %>
-                        Receita excluida com sucesso!
-                        <form action="login.jsp" method="post">
-                            <input type="submit" name="voltar" value="Voltar" />
-                        </form>
+                            Receita excluida com sucesso!
+                            <form action="login.jsp" method="post">
+                                <input type="submit" name="voltar" value="Voltar" />
+                            </form>
                     <%
                         }
                         else
                         {
                     %>
-                        Receita não pode ser excluida!
-                        <br>
-                        <form action="exclui_receita.jsp" method="post">
-                            <input type="submit" name="voltar" value="Voltar" />
-                        </form>
+                            Receita não pode ser excluida!
+                            <br>
+                            <form action="exclui_receita.jsp" method="post">
+                                <input type="submit" name="voltar" value="Voltar" />
+                            </form>
                     <%
                         }
                     %>
+                    <%-- Fim JSP --%>
                 </td>
             </tr>
             <tr>
@@ -70,6 +70,5 @@
                 </td>
             </tr>
         </table>
-        
     </body>
 </html>
