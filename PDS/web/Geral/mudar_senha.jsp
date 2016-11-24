@@ -53,7 +53,7 @@
         <%
             String senha_antiga = request.getParameter("senha_antiga");
             String senha_nova = request.getParameter("senha_nova");
-            transacoes.mudar_senha tn = new transacoes.mudar_senha();
+            transacoes.Usuario tn = new transacoes.Usuario();
             int cod = ((Integer)session.getAttribute("cod")).intValue();
             if(tn.mudar_senha(cod,senha_antiga,senha_nova))
             {

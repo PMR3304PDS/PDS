@@ -34,6 +34,27 @@ public class Consulta {
         return false;
     }
     
+    public ConsultaDO busca_cns(int cns_cod)
+    {
+        Transacao tr = new Transacao();
+        
+        try
+        {
+            tr.beginReadOnly();
+            ConsultaDATA cdata = new ConsultaDATA();
+            ConsultaDO cdo = new ConsultaDO();
+            cdo = cdata.buscar(cns_cod, tr);
+            return cdo;
+        }
+        catch(Exception e)
+        {
+            //tr.rollback();
+            System.out.println("erro ao buscar consulta");
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
     private boolean isEmpty(String s){
         if (null == s)
             return true;

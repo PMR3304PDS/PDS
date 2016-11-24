@@ -35,15 +35,16 @@
                 </form>
             <%
             }
-            transacoes.vis_inf_cns tn = new transacoes.vis_inf_cns();
-            
-            data.ConsultaDO consulta = tn.busca_cns(cns_cod);
+            transacoes.Consulta tn_cns = new transacoes.Consulta();
+            data.ConsultaDO consulta = tn_cns.busca_cns(cns_cod);
             
             int med_cod = consulta.getMedico_Usuario_Usu_cod();
-            data.MedicoDO medico = tn.busca_med(med_cod);
+            transacoes.Medico tn_med = new transacoes.Medico();
+            data.MedicoDO medico = tn_med.buscar(med_cod);
             
             int pac_cod = consulta.getPaciente_Usuario_Usu_cod();
-            data.PacienteDO paciente = tn.busca_pac(pac_cod);
+            transacoes.Paciente tn_pac = new transacoes.Paciente();
+            data.PacienteDO paciente = tn_pac.buscar(pac_cod);
             
             java.sql.Date data = consulta.getCns_data();
             String resumo = consulta.getCns_resumo();
