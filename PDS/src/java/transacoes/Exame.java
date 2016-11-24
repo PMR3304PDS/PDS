@@ -90,5 +90,26 @@ public class Exame {
         }
         return null;
     }
+  
+    public boolean excluir(int cod) throws Exception
+    {
+        Transacao tr = new Transacao();
+        try
+        {
+            tr.begin();
+            ExameDATA edata = new ExameDATA();
+            ExameDO edo = edata.buscar(cod, tr);
+            edata.excluir(edo,tr);
+            tr.commit();
+        }
+        catch (Exception e)
+        {
+            tr.rollback();
+            System.out.println("Error!");
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
     
 }
