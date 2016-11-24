@@ -85,7 +85,7 @@ public class Exame {
             return v;
         } catch (Exception e) {
             tr.rollback();
-            System.out.println("Error!");
+            System.out.println("Erro ao procurar pelo código do paciente");
             e.printStackTrace();
         }
         return null;
