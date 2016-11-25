@@ -25,6 +25,7 @@
                     Olá Bem-vindo <%--=nome--%>!
                     <br>
                     Você tem uma nova indicação blabla
+                    Add botão de logout
                 </td>
             </tr>
             <tr>

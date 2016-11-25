@@ -26,6 +26,7 @@
                     Olá Bem-vindo <%--=nome--%>!
                     <br>
                     Você tem uma nova receita e exame 
+                    Add botão de logout
                 </td>
             </tr>
             <tr>

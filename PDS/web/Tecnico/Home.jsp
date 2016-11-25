@@ -25,6 +25,7 @@
                     ****Aqui vai o jsp da sua página******
                     Olá Bem-vindo <%--=nome--%>!
                     <br>
+                    Add botão de logout
                 </td>
             </tr>
             <tr>
