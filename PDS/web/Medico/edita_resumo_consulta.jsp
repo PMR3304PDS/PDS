@@ -48,7 +48,7 @@
                             {
                     %>
                                 Consulta atualizada com sucesso!
-                                <form action="../Geral/login.jsp" method="post">
+                                <form action="../Medico/modelo.jsp" method="post">
                                     <input type="submit" name="voltar" value="Voltar" />
                                 </form>
                     <%

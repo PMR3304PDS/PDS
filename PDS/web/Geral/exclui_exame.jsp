@@ -31,7 +31,7 @@
                         {
                     %>
                             Exame excluido com sucesso!
-                            <form action="login.jsp" method="post">
+                            <form action="../Medico/modelo.jsp" method="post">
                                 <input type="submit" name="voltar" value="Voltar" />
                             </form>
                     <%
