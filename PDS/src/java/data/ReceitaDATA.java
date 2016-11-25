@@ -33,7 +33,6 @@ public class ReceitaDATA {
         ps.setDate(2, receita.getRec_data_upload());
         ps.setInt(3, receita.getPaciente_Usuario_Usu_cod());
         ps.setInt(4, receita.getFarmaceutico_Usuario_Usu_cod());
-        ps.setInt(5, receita.getTecnico_Usuario_Usu_cod());
         ps.setInt(6, receita.getMedico_Usuario_Usu_cod());
         ps.setBoolean(7, receita.isRec_check());
         ps.setBinaryStream(8, receita.getRec_receita());
@@ -60,7 +59,6 @@ public class ReceitaDATA {
         ps.setDate(2, receita.getRec_data_upload());
         ps.setInt(3, receita.getPaciente_Usuario_Usu_cod());
         ps.setInt(4, receita.getFarmaceutico_Usuario_Usu_cod());
-        ps.setInt(5, receita.getTecnico_Usuario_Usu_cod());
         ps.setInt(6, receita.getMedico_Usuario_Usu_cod());
         ps.setBoolean(7, receita.isRec_check());
         ps.setBinaryStream(8, receita.getRec_receita());
@@ -91,7 +89,6 @@ public class ReceitaDATA {
         receita.setRec_data_upload(rs.getDate("Rec_data_upload"));
         receita.setPaciente_Usuario_Usu_cod(rs.getInt("Paciente_Usuario_Usu_cod"));
         receita.setFarmaceutico_Usuario_Usu_cod(rs.getInt("Farmaceutico_Usuario_Usu_cod"));
-        receita.setTecnico_Usuario_Usu_cod(rs.getInt("Tecnico_Usuario_Usu_cod"));
         receita.setMedico_Usuario_Usu_cod(rs.getInt("Medico_Usuario_Usu_cod"));
         receita.setRec_check(rs.getBoolean("Rec_check"));
         receita.setRec_receita(rs.getBinaryStream("Rec_receita"));
@@ -114,7 +111,6 @@ public class ReceitaDATA {
             c.setRec_data_upload(rs.getDate("Rec_data_upload"));
             c.setPaciente_Usuario_Usu_cod(rs.getInt("Paciente_Usuario_Usu_cod"));
             c.setFarmaceutico_Usuario_Usu_cod(rs.getInt("Farmaceutico_Usuario_Usu_cod"));
-            c.setTecnico_Usuario_Usu_cod(rs.getInt("Tecnico_Usuario_Usu_cod"));
             c.setMedico_Usuario_Usu_cod(rs.getInt("Medico_Usuario_Usu_cod"));
             c.setRec_check(rs.getBoolean("Rec_check"));
             c.setRec_receita(rs.getBinaryStream("Rec_receita"));
