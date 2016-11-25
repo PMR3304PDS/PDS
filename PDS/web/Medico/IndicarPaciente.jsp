@@ -81,7 +81,7 @@
                                 || request.getParameter("num_documento_paciente") == null
                                 || request.getParameter("num_CRM_medico") == null
                                 || request.getParameter("estado") == null) {
-                    %> Preencha todos os campo, por favor! 
+                    %> Preencha todos os campos, por favor! 
                     <form action="./IndicarPaciente.jsp" method="post">
                         <input type="submit" name="retry" value="Repetir" />
                     </form><%
