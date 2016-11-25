@@ -1,5 +1,5 @@
 <%-- 
-    *******PDSM005 - Indicação de outros médicos para pacientes*********
+    *******PDSM005 - Visualização das indicações*********
 --%>
 
 <html>
