@@ -1,16 +1,22 @@
 <%
     String type = request.getParameter("tipo");
-    type="paciente";
-    if (type.equals("medico")||type.equals("tecnico")) {
+    type="medico";
+    if (type.equals("medico")) {
         %>
-                <a href="/PDS/Geral/temppage.jsp">Home</a><br>
+                <a href="/PDS/Medico/Home.jsp">Home</a><br>
+                <a href="/PDS/Geral/temppage.jsp">Dados pessoais</a><br>
+                <a href="/PDS/Geral/temppage.jsp">Busca</a><br>
+        <%
+    }else if (type.equals("tecnico")) {
+        %>
+                <a href="/PDS/Home/Tecnico.jsp">Home</a><br>
                 <a href="/PDS/Geral/temppage.jsp">Dados pessoais</a><br>
                 <a href="/PDS/Geral/temppage.jsp">Busca</a><br>
         <%
     }
     else{
         %>
-                <a href="/PDS/Geral/temppage.jsp">Home</a><br>
+                <a href="/PDS/Paciente/Home.jsp">Home</a><br>
                 <a href="/PDS/Geral/temppage.jsp">Dados pessoais</a><br>
                 <a href="/PDS/Geral/temppage.jsp">Ficha médica</a><br>
                 <a href="/PDS/Geral/temppage.jsp">Consulta</a><br>
