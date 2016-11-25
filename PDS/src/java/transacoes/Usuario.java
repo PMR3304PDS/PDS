@@ -36,12 +36,31 @@ public class Usuario{
         try {
             tr.beginReadOnly();
               UsuarioData cdata = new UsuarioData();
-              UsuarioDO c = cdata.pesquisarPorLogin(rg, tr);
+              UsuarioDO c = cdata.pesquisarPorRg2(rg, tr);
             tr.commit();
             return c;
         } catch (Exception e) {
             tr.rollback();
             System.out.println("Error por rg!");
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    public UsuarioDO pesquisarPorCpf2(String cpf) throws Exception {
+        if (isEmpty(cpf)) {
+            return null;
+        }
+        Transacao tr = new Transacao();
+        try {
+            tr.beginReadOnly();
+              UsuarioData cdata = new UsuarioData();
+              UsuarioDO c = cdata.pesquisarPorCpf2(cpf, tr);
+            tr.commit();
+            return c;
+        } catch (Exception e) {
+            tr.rollback();
+            System.out.println("Error por cpf!");
             e.printStackTrace();
         }
         return null;

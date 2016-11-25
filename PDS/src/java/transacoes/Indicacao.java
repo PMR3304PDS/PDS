@@ -42,8 +42,8 @@ public class Indicacao {
      Transacao tr = new Transacao();
      try {
        tr.begin();
-         IndicacaoDATA cdata = new IndicacaoDATA();
-         cdata.incluir(indicacao, tr);
+         IndicacaoDATA idata = new IndicacaoDATA();
+         idata.incluir(indicacao, tr);
        tr.commit();
        return true;
        

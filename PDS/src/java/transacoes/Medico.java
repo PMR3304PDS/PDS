@@ -31,8 +31,8 @@ public class Medico extends Usuario {
         return null;
     }
     
-    public MedicoDO pesquisarPorCrm2(String crm, String estado) throws Exception {
-        if (isEmpty(crm)&& isEmpty(estado)) {
+    public MedicoDO pesquisarPorCrm2(String crm, int estado) throws Exception {
+        if (isEmpty(crm)) {
             return null;
         }
         

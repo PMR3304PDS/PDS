@@ -8,10 +8,10 @@ public class IndicacaoDATA {
     
     public void incluir(IndicacaoDO indicacao, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
-     String sql = "insert into Indicacao (Medico_Usuario_Usu_cod_indicante, Medico_Usuario_Usu_cod_indicado, Paciente_Usuario_Usu_cod) values (?, ?, ?)";
+     String sql = "insert into Indicacao (Medico_Usuario_Usu_cod_indicante, Medico_Usuario_Usu_cod_indicado, Paciente_Usuario_Usu_cod) values (?, ?,?)";
      PreparedStatement ps = con.prepareStatement(sql);
-     ps.setInt(1, indicacao.getMedico_Usuario_Usu_cod_indicado());
-     ps.setInt(2, indicacao.getMedico_Usuario_Usu_cod_indicante());
+     ps.setInt(1, indicacao.getMedico_Usuario_Usu_cod_indicante());
+     ps.setInt(2, indicacao.getMedico_Usuario_Usu_cod_indicado());
      ps.setInt(3, indicacao.getPaciente_Usuario_Usu_cod());
      int result = ps.executeUpdate();
   }
