@@ -10,13 +10,21 @@ public class ConsultaDATA {
   public void incluir(ConsultaDO consulta, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
      String sql = "insert into Consulta (Cns_cod, Medico_Usuario_Usu_cod, Paciente_Usuario_Usu_cod, Cns_data, Cns_resumo) values (?, ?, ?, ?, ?)";
-     PreparedStatement ps = con.prepareStatement(sql);
+     PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
      ps.setInt(1, consulta.getCns_cod());
      ps.setInt(2, consulta.getMedico_Usuario_Usu_cod());
      ps.setInt(3, consulta.getPaciente_Usuario_Usu_cod());
      ps.setDate(4, consulta.getCns_data());
      ps.setString(5, consulta.getCns_resumo());
      int result = ps.executeUpdate();
+     
+     ResultSet rs = ps.getGeneratedKeys();
+
+     int key = 0;
+     if (rs.next()) {
+        key = rs.getInt(4);
+     }
+     consulta.setCns_cod(key);
   }
 
 

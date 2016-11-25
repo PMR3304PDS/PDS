@@ -11,14 +11,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <%@ page import = "transacoes.Consulta"%>
-        <%@page import = "data.ConsultaDO" %>
+        <%@ page import = "transacoes.*"%>
+        <%@page import = "data.*" %>
+        <%@page import="java.util.*"%>
         <%@ include file="/Geral/verifylogin.jsp" %>
-        <% String paciente_nome = "teste";
-            if(null != request.getParameter("voltar")){
-                pageContext.forward("./modelo.jsp");
-            }
-        %>
+        
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td colspan="2">
@@ -30,31 +27,68 @@
                     <%@ include file="/Geral/menu.jsp" %>
                 </td>
                 <td>
+                    <%
+                        int med_cod = Integer.parseInt((String)session.getAttribute("cod"));
+                        int pac_cod = Integer.parseInt((String)session.getAttribute("pac_name"));
+                        transacoes.Paciente tn_p = new transacoes.Paciente();
+                        data.PacienteDO paciente = new data.PacienteDO();
+                        paciente = tn_p.buscar(pac_cod);
+                        String paciente_nome = paciente.getUsu_nome();
+                        if(null != request.getParameter("voltar")){
+                            pageContext.forward("./modelo.jsp");
+                        }
+                        if(null != request.getParameter("adicionar")){
+                    %>
                     <form action="./adicionar_consulta.jsp" method="post">
-                    <b>Nova Consulta</b>
-                    <br>
-                    <br>
-                    Nome do paciente: <%= paciente_nome%>
-                    <br>
-                    <br>
-                    Resumo da consulta:
-                    <br>
-                    <textarea cols="10" rows="5" style="width:200px; height:50px;"  name="resumo"></textarea>
-                    <br>
-                    <br>
-                    <input type="submit" name="adicionar" value="adicionar" />
-                    <input type="submit" name="voltar" value="voltar" />
+                        <b>Nova Consulta</b>
+                        <br>
+                        <br>
+                        Nome do paciente: <%= paciente_nome%>
+                        <br>
+                        <br>
+                        Resumo da consulta:
+                        <br>
+                        <textarea cols="10" rows="5" style="width:500px; height:300px;"  name="resumo"></textarea>
+                        <br>
+                        <br>
+                        <input type="submit" name="adicionar" value="Adicionar" />
+                        <input type="submit" name="voltar" value="Voltar" />
                     </form>
                     <br>
                     <%
-                    if(null != request.getParameter("adicionar")){
-                        
-                    %>
-                    Consulta adicionada
-                    <input type="submit" name="solicitar_exame" value="solicitar_exame">
-                    <input type="submit" name="adicionar_receita" value="adicionar_receita">
-                    <%    
-                    }
+                        }else{
+                            String resumo = request.getParameter("resumo");
+                            Date data = new Date();
+                            java.sql.Date dataSQL = new java.sql.Date(data.getYear(), data.getMonth(), data.getDay());
+                            transacoes.Consulta tn = new transacoes.Consulta();
+                            data.ConsultaDO consulta = new data.ConsultaDO();
+                            consulta.setMedico_Usuario_Usu_cod(med_cod);
+                            consulta.setPaciente_Usuario_Usu_cod(pac_cod);
+                            consulta.setCns_data(dataSQL);
+                            consulta.setCns_resumo(resumo);
+                            if(tn.incluir(consulta)){
+                                int cns_cod = consulta.getCns_cod();
+                            %>
+                                Consulta adicionada
+                                <form action="./edita_resumo_consulta.jsp?cns_cod=<%=cns_cod%>" method="post">
+                                    <input type="submit" name="editar" value="Editar">
+                                </form>
+                                <form action="./modelo.jsp" method="post">
+                                    <input type="submit" name="solicitar_exame" value="Solicitar exame">
+                                </form>
+                                <form action="./modelo.jsp" method="post">
+                                    <input type="submit" name="adicionar_receita" value="Adicionar receita">
+                                </form>
+                            <%    
+                            }else{
+                            %>
+                                Erro ao adicionar consulta          
+                                <form action="./insert.jsp" method="post">
+                                   <input type="submit" name="retry" value="Tentar novamente" />
+                                </form>
+                            <%
+                            }
+                        }
                     %>
                 </td>
             </tr>

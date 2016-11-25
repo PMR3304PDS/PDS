@@ -50,8 +50,8 @@
                     <br>
                     <textarea cols="10" rows="5" style="width:200px; height:50px;"  name="resumo"></textarea>
                     <br>
-                    <input type="submit" name="concluir" value="concluir" />
-                    <input type="submit" name="cancelar" value="cancelar" />
+                    <input type="submit" name="concluir" value="Concluir" />
+                    <input type="submit" name="cancelar" value="Cancelar" />
                     </form>
                 </td>
             </tr>
