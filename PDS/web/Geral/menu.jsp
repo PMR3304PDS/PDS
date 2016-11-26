@@ -6,14 +6,12 @@
                 <a href="/PDS/Medico/Home.jsp">Home</a><br>
                 <a href="/PDS/Geral/temppage.jsp">Dados pessoais</a><br>
                 <a href="/PDS/Geral/temppage.jsp">Busca</a><br>
-                <a href="/PDS/Geral/Logout.jsp">Logout</a><br>
         <%
     }else if (type=='t') {
         %>
                 <a href="/PDS/Tecnico/Home.jsp">Home</a><br>
                 <a href="/PDS/Geral/temppage.jsp">Dados pessoais</a><br>
                 <a href="/PDS/Tecnico/Busca.jsp">Busca</a><br>
-                <a href="/PDS/Geral/Logout.jsp">Logout</a><br>
         <%
     }
 else if (type=='p'){
@@ -25,11 +23,11 @@ else if (type=='p'){
                 <a href="/PDS/Geral/temppage.jsp">Exame</a><br>
                 <a href="/PDS/Geral/temppage.jsp">Receitas</a><br>
                 <a href="/PDS/Paciente/busca.jsp">Busca</a><br>
-                <a href="/PDS/Geral/Logout.jsp">Logout</a><br>
         <%
     }
 %>
 <a href="/PDS/Geral/mudar_senha.jsp">Mudar Senha</a><br>
+<br><a href="/PDS/Geral/Logout.jsp">Logout</a><br>
 
 <%
 //<a href="/PDS/Geral/temppage.jsp">Link 1</a><br>
