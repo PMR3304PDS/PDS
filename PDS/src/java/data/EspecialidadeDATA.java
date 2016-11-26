@@ -54,8 +54,8 @@ public class EspecialidadeDATA {
   
    public Vector pesquisarEspecialidadesdoMedico(int idobj, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
-     String sql = "select * from Especialidade inner join Medico_has_especialidade"
-             + "on Especialidade.Esp_cod = Medico_has_especialidade.Especialidade_Esp_cod"
+     String sql = "select * from Especialidade inner join Medico_has_especialidade "
+             + "on Especialidade.Esp_cod = Medico_has_especialidade.Especialidade_Esp_cod "
              + "where Medico_Usuario_Usu_cod like ?";
      PreparedStatement ps = con.prepareStatement(sql);
      ps.setInt(1, idobj);

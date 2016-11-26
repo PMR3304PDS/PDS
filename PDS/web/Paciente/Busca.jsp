@@ -38,7 +38,7 @@
                     <br>
                     <br>
                     
-                    <form action="/PDS/Paciente/busca.jsp" method="post">
+                    <form action="/PDS/Paciente/Busca.jsp" method="post">
                     Selecione por quem deseja buscar:
                         <select name = "tipo">
                             <option value="medico">Médico</option>
