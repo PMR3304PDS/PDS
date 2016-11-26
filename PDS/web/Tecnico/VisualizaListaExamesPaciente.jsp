@@ -107,7 +107,7 @@
                         <br />
                         <br />
                         <br />
-                        <form action="/Geral/upload_exame_receita.jsp" method="post">
+                        <form action="/Geral/upload_exame_receita.jsp?cod_paciente=<%=cod%>" method="post">
                             <input type="submit" name="Adicionar" value="Adicionar Exame" />
                         </form>
             </tr>        
