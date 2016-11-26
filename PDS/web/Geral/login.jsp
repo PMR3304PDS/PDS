@@ -1,7 +1,5 @@
 <%-- 
-    Document   : login
-    Created on : Nov 1, 2016, 5:56:21 PM
-    Author     : Renan
+    *******Login*******
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

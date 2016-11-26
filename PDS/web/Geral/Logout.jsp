@@ -38,7 +38,7 @@
                         <%@ include file="/Geral/header.jsp" %>
                     </tr>
                     <center> Deseja Sair? </center>
-                    <form method="post" action="logout.jsp">
+                    <form method="post" action="Logout.jsp">
                         <center>
                             <input type="submit" name="yes" value="Sim">
                             &nbsp;<input type="submit" name="no" value="Não">
