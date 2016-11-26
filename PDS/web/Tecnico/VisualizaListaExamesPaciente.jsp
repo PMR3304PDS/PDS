@@ -69,26 +69,19 @@
 
                         </form>
                         <%     } else {
-                        %>
-                        
-                            <%
+
                                 for (int i = 0; i < exames.size(); i++) {
 
                                     ExameDO exame = (ExameDO) exames.elementAt(i);
                                     int exa_cod = exame.getExa_cod();//pega o codigo do exame
                                     Date data = exame.getExa_data_upload();//pega a data do upload                                
                                     int uper_cod = exame.getTecnico_Usuario_Usu_cod_uploader();//pega o id de quem deu upload
-
-                                    //para ver se quem deu upload foi tecnico
-                                    //if (uper_cod == 0) //se nao for tecnico, pegar o id o medico que deu upload
-                                    //{
-                                    //  uper_cod = Integer.parseInt(request.getParameter("Medico_Usuario_Usu_cod_uploader"));
-                                    //}
-                                    //pesquisando nome do usuario pelo id
                                     UsuarioDO usuario = new UsuarioDO();
                                     transacoes.Usuario tr = new transacoes.Usuario();
                                     usuario = tr.pesquisarPorId(uper_cod);
                                     String nome_uper = usuario.getUsu_nome();
+                                    
+                                    if (exame.isExa_excluido() == true){
                             %>
                             <tr>
                                 
@@ -101,9 +94,15 @@
                                 
                                 <td><%=nome_uper%></td>      
                             </tr>     
+                        
+                        <%         
+
+                                }  
+                            }   
+
+                        }
+                        %>  
                         </table>
-                        <%}
-                            }%>  
                         <br />
                         <br />
                         <br />

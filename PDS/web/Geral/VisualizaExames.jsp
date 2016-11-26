@@ -41,15 +41,10 @@
                 
                 <%
                     }
+
                     transacoes.Exame tn = new transacoes.Exame();
+                    data.ExameDO exame = tn.buscar(exame_cod);                                   
 
-                    data.ExameDO exame = tn.buscar(exame_cod);
-
-                    String resumo = exame.getExa_resumo();
-                   
-                    java.sql.Date data_up = exame.getExa_data_upload();
-                    
-                    java.sql.Date data_prev = exame.getExa_previsao();
                 %>
                 
                 <tr>
@@ -61,13 +56,13 @@
                     Código do Exame - <%= exame.getExa_cod() %>
                     <br />
                     <br />
-                    Resumo do Exame - <%= resumo %>
+                    Resumo do Exame - <%= exame.getExa_resumo() %>
                     <br />
                     <br />
-                    Data Upload - <%= data_up %>
+                    Data Upload - <%= exame.getExa_data_upload() %>
                     <br />
                     <br />
-                    Data Previsão - <%= data_prev%>
+                    Data Previsão - <%= exame.getExa_previsao()%>
 <br /><br />
                     
                     <br>
