@@ -1,5 +1,5 @@
 <%-- 
-    *******Nome do UC*********
+    *******Altera Status Exame*********
 --%>
 
 <html>
@@ -26,14 +26,29 @@
                     <br>
                     <h1>Altera Status Exame</h1>
                     <br>
+                    
                     <% 
+                    
+                    if (null == request.getParameter("excluir") && null == request.getParameter("editar")){
                     //int Exa_cod = Integer.parseInt(request.getParameter("exame_cod"));
-                    int Exa_cod = 2;                    
+                    int Exa_cod = 4;
                     transacoes.Exame tn = new transacoes.Exame();
-                    data.ExameDO exame = tn.buscar(Exa_cod);                                   
-                    %>
-                </td>
-            </tr>
+                    data.ExameDO exame = new data.ExameDO();
+                    try{
+                    exame = tn.buscar(Exa_cod);
+                    } catch(Exception e){
+%>           <%= e.toString() %>
+<%
+                    }
+                    if (exame == null){
+%>
+                    Exame inexistente!
+<%                  
+                    }else{
+ %>
+                
+            
+            <form action="/PDS/Tecnico/AlteraStatusExame.jsp" method="post">
             <table>
             <td>
                     Código do Exame - <%= Exa_cod %>
@@ -50,11 +65,54 @@
             <br /><br />
             </td>
             </table>
-                    
-            <input type="submit" name="editar" value="editar datas" />
-            <input type="submit" name="excluir" value="excluir" />
-            <input type="submit" name="voltar" value="voltar" />
             
+            
+                <input type="submit" name="voltar" value="voltar" />
+                <input type="submit" name="editar" value="editar datas" />  
+                <input type="submit" name="excluir" value="excluir" />
+            </form>
+ 
+        <%    }
+             }    
+       if (null != request.getParameter("voltar")) {
+            response.sendRedirect("/PDS/Tecnico/Home.jsp"); 
+       }
+       
+       if (null != request.getParameter("editar datas")) {
+        // fazer
+       }
+       
+       if (null != request.getParameter("excluir")) {
+           int Exa_cod = 4; 
+           //int Exa_cod = Integer.parseInt(request.getParameter("exame_cod"));
+           transacoes.Exame tn = new transacoes.Exame(); 
+           try {       
+                
+                tn.excluir(Exa_cod);
+       } catch (Exception e) {
+%>           <%= e.toString() %>
+<%
+       }
+       
+       if (tn.excluir(Exa_cod)) {
+
+%>
+          Transação realizada com sucesso!
+          <form action="/PDS/Tecnico/Home.jsp" method="post">
+             <input type="submit" name="voltar" value="Voltar" />
+          </form>
+<%     } else {
+%>
+          Erro ao editar ficha médica          
+          <form action="/PDS/Tecnico/AlteraStatusExame.jsp" method="post">
+             <input type="submit" name="retry" value="Repetir" />
+          </form>
+<%     }
+       }
+       
+        %>
+                </td>
+            </tr>
             <tr>
                 <td colspan="2">
                     <%@ include file="/Geral/footer.jsp" %>

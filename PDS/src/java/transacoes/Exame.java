@@ -56,12 +56,18 @@ public class Exame {
 //        
 //  }
   public ExameDO buscar(int cod) throws Exception {
+        
     Transacao tr = new Transacao();
     try {
       tr.beginReadOnly();
       ExameDO c = (new ExameDATA()).buscar(cod, tr);
+      
+      if (c.isExa_excluido() == true){
+         return null; 
+      } else{
       tr.commit();
       return c;
+      }
     } catch (Exception e) {
       tr.rollback();
       System.out.println("erro ao buscar" + cod);

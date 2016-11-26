@@ -143,7 +143,7 @@
 
 %>
           Transação realizada com sucesso!
-          <form action="/PDS/Geral/temppage.jsp" method="post">
+          <form action="/PDS/Paciente/Home.jsp" method="post">
              <input type="submit" name="voltar" value="Voltar" />
           </form>
 <%     } else {
