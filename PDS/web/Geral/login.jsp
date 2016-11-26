@@ -32,29 +32,29 @@
         boolean v = false;
         if ((user.length() <= 150) && (passwd.length() <= 20) && (u != null)) {
             v = u.getUsu_senha().equals(passwd);
-            session.setAttribute("cod", u.getUsu_cod());
+            session.setAttribute("cod", String.valueOf(u.getUsu_cod()));
             if (v) {
                 if (tn.buscarMedico(u.getUsu_cod()) != null) {
-                    session.setAttribute("tipo", 'm');
+                    session.setAttribute("tipo", "m");
                     pageContext.forward("../Medico/Home.jsp");
                 }
                 else if (tn.buscarTecnico(u.getUsu_cod()) != null) {
-                    session.setAttribute("tipo", 't');
+                    session.setAttribute("tipo", "t");
                     pageContext.forward("../Tecnico/Home.jsp");
                 }
                 else if (tn.buscarPaciente(u.getUsu_cod()) != null) {
-                    session.setAttribute("tipo", 'p');
+                    session.setAttribute("tipo", "p");
                     pageContext.forward("../Paciente/Home.jsp");
                 }
                 else {
-                    session.setAttribute("tipo", 'x');
+                    session.setAttribute("tipo", "x");
                     pageContext.forward("temppage.jsp");
                 }
             }
         } else {
 %>
                 <font color="red">
-                    <br>Usuário ou Senha inválidos!
+                    <br>Usuário ou Senha inválidos!<br>
                 </font>
    <%
         }
