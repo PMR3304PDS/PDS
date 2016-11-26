@@ -18,7 +18,7 @@ public class Paciente {
   public boolean incluir(PacienteDO paciente) throws Exception {
 
     // validacao das regras de negocio
-    if ((isEmpty(paciente.getPac_alergias())) || (isEmpty(paciente.getPac_medicamentos())) || (isEmpty(paciente.getPac_doencas_tratamento())) || (isEmpty(paciente.getPac_historico_doencas()))) {
+    if (isEmpty(paciente.getUsu_login())) {
       return false;
     }
 

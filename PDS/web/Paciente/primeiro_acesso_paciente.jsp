@@ -24,9 +24,6 @@
             </tr>
             <tr>
                 <td>
-                    <%@ include file="/Geral/menu.jsp" %>
-                </td>
-                <td>
                     <br>
                     <h1>Cadastro Paciente</h1>
                     <br>
@@ -157,6 +154,33 @@
                                 </select>
                             </td>
                         </tr>
+                        <tr><td><br></td></tr>
+                        <tr>
+                            <td>Nome</td>
+                            <td><input type="text" name="nome" maxlength="200" required/>
+                        </tr>
+                        <tr>
+                            <td>RG</td>
+                            <td><input type="text" name="rg" maxlength="9" onkeypress='return isNumberKey(event)' required/>
+                        </tr>
+                        <tr>
+                            <td>CPF</td>
+                            <td><input type="text" name="cpf" maxlength="11" onkeypress='return isNumberKey(evt)' required/>
+                        </tr>
+                        <tr><td><br></td></tr>
+                        <tr>
+                            <td>Endereço</td>
+                            <td><input type="text" name="endereco" maxlength="200" required/>
+                        </tr>
+                        <tr>
+                            <td>Número</td>
+                            <td><input type="text" name="numero" maxlength="10" onkeypress='return isNumberKey(event)' required/>
+                        </tr>
+                        <tr>
+                            <td>Bairro</td>
+                            <td><input type="text" name="bairro" maxlength="200" required/>
+                        </tr>
+                        <tr>
                         <tr>
                             <td>Telefone - 1</td>
                             <td><input type="text" name="telefone1" maxlength="15" onkeypress='return isNumberKey(event)' required/>

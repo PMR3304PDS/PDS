@@ -8,7 +8,7 @@ public class PacienteDATA {
 
   public void incluir(PacienteDO paciente, Transacao tr) throws Exception {
     Connection con = tr.obterConexao();
-    String sql = "insert into Paciente (Usu_cod, Pac_nascimento, Pac_peso, Pac_altura, "
+    String sql = "insert into Paciente (Usuario_Usu_cod, Pac_nascimento, Pac_peso, Pac_altura, "
             + "Pac_alergias,Pac_medicamentos,Pac_doencas_tratamento, Pac_historico_doencas) values (?, ?, ?, ?, ?, ?, ?, ?)";
     PreparedStatement ps = con.prepareStatement(sql);
     ps.setInt(1, paciente.getUsu_cod());
