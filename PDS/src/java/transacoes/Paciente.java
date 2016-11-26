@@ -114,6 +114,26 @@ public class Paciente {
     }
     return null;
   }
+  
+  public Vector pesquisarPacientePorLogin(String login) throws Exception {
+    if (isEmpty(login)) {
+      return null;
+    }
+
+    Transacao tr = new Transacao();
+    try {
+      tr.beginReadOnly();
+      PacienteDATA paciente = new PacienteDATA();
+      Vector v = paciente.pesquisarPacientePorCpf(login, tr);
+      tr.commit();
+      return v;
+    } catch (Exception e) {
+      tr.rollback();
+      System.out.println("Erro ao buscar paciente por Login");
+      e.printStackTrace();
+    }
+    return null;
+  }
 
   public boolean atualizar(PacienteDO paciente) throws Exception {
     Transacao tr = new Transacao();
