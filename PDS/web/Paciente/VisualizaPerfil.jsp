@@ -85,17 +85,48 @@
                     %>
                     
                     Telefone <%= k+1 %>: <%= tel.getTel_numero() %>
-                    
+                    <br>
                     <%
                             }
                             
+                        } else {
+                            transacoes.Tecnico tn8 = new transacoes.Tecnico();
+                            TecnicoDO tecnico = tn8.buscar(cod);
+                    %>
+                    <h1>Busca - <%= tecnico.getUsu_nome()%></h1>
+                    <br>
+                    <br> 
+                    Nome completo: <%= tecnico.getUsu_nome()%>
+                    <br>
+                    
+                    <%      transacoes.Endereco tn4 = new transacoes.Endereco();
+                            Vector enderecos = tn4.pesquisarPorCodDaPessoa(cod);
+                            for (int j = 0; j < enderecos.size(); j++) {
+                                EnderecoDO end = (EnderecoDO) enderecos.elementAt(j);
+                                
+                                transacoes.Municipio tn5 = new transacoes.Municipio();
+                                MunicipioDO mun = tn5.buscar(end.getMunicipio_Mun_cod());
+                                
+                                transacoes.Estado tn6 = new transacoes.Estado();
+                                EstadoDO est = tn6.buscar(mun.getEstado_Est_cod());
                     %>
                     
+                    Endereço <%= j + 1 %>: <%= end.getEnd_rua() %>, <%= end.getEnd_num()%> - <%= mun.getMun_nome() %>, <%= est.getEst_nome() %>
+                    <br>
                     
                     <%
-                        } else {
-                            
-                        }
+                            }
+                            transacoes.Telefone tn7 = new transacoes.Telefone();
+                            Vector telefones = tn7.pesquisar(cod);
+                            for (int k = 0; k < telefones.size(); k++) {
+                                TelefoneDO tel = (TelefoneDO) telefones.elementAt(k);
+                    %>
+                    
+                    Telefone <%= k+1 %>: <%= tel.getTel_numero() %>
+                    <br>
+                    <%
+                            }
+                        }   
                     %>
                     
                 </td>
