@@ -233,6 +233,11 @@
                     </table>
                     <input type="submit" name="incluir" value="incluir" />
                 </form>
+                <form action='/PDS/index.jsp'>
+               <p>
+                <input type='submit' name="Voltar" value="Voltar"> 
+              </p>    
+              </form> 
 
 <%      } else { 
 %>
@@ -320,9 +325,11 @@
        if (a && b && c && e) {
 %>
           Transação realizada com sucesso!
-          <form action="index.jsp" method="post">
-             <input type="submit" name="voltar" value="Voltar" />
-          </form>
+            <form action='/PDS/index.jsp'>
+               <p>
+                <input type='submit' name="Voltar" value="Voltar"> 
+              </p>    
+              </form> 
 <%     } else {
 %>
           Erro ao incluir usuário            

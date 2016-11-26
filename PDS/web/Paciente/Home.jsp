@@ -22,9 +22,15 @@
                     <%@ include file="/Geral/menu.jsp" %>
                 </td>
                 <td>
-                    ****Aqui vai o jsp da sua página******
-                    Olá Bem-vindo <%--=nome--%>!
+                    <%    
+  
+          int Usu_cod =  ((Integer)session.getAttribute("cod")).intValue();
+	  transacoes.Paciente tn = new transacoes.Paciente();
+          data.PacienteDO paciente = tn.buscar(Usu_cod);
+          
+%>
                     <br>
+                    Ola <%= paciente.getUsu_nome();%>
                     Você tem uma nova receita e exame 
                     Add botão de logout
                 </td>

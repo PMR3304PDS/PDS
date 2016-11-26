@@ -67,7 +67,7 @@
 <p>CRM:<input type="text" id="iCRM" Name="nCRM" size="40" maxlength="10"  placeholder="obrigatório"> </p>
 
 <p>Especialidade :
-<select id="iEsp" Name="nEsp">
+    <select id="iEsp" Name="nEsp" multiple="multiple">
    <%
     Vector esp = (new Especialidade()).pesquisar();
     for(int i = 0; i < esp.size(); i++)
@@ -175,7 +175,7 @@
 <p><input type="submit" name="cadastrar"value="Cadastrar">&nbsp &nbsp &nbsp &nbsp <input type="submit" name="cancelar" value="Cancelar"></p>
 </fieldset>
 </form>
- <form action='/PDS/Geral/temppage.jsp'>
+ <form action='/PDS/index.jsp'>
  <p>
     <input type='submit' name="Voltar" value="Voltar"> 
  </p>    
@@ -197,7 +197,6 @@
        data.MunicipioDO cidade= new data.MunicipioDO();
        data.EstadoDO estado=new data.EstadoDO();
        data.EstadoDO estadoCon=new data.EstadoDO();
-       data.EspecialidadeDO especialidade=new data.EspecialidadeDO();
        data.ConselhosDO conselho=new data.ConselhosDO();
        data.TelefoneDO tel1=new TelefoneDO();
        data.TelefoneDO tel2=new TelefoneDO();
@@ -205,22 +204,31 @@
        Medico medIncluir=new Medico();
         Usuario TransicaoUsuario= new Usuario();
        data.MedicoDATA Md =new data.MedicoDATA();
-       data.Medico_has_EspecialidadeDO MhE= new data.Medico_has_EspecialidadeDO ();
-       String nome = request.getParameter("nName");//obrigatorio
+        String nome = request.getParameter("nName");//obrigatorio
        String RG = request.getParameter("nRG");//obrigatorio
        String CPF = request.getParameter("nCPF");//obrigatorio
        String login = request.getParameter("nlogin");//obrigatorio
        String senha = request.getParameter("nsenha");//obrigatorio
        String CRM = request.getParameter("nCRM");//obrigatorio
-       String Especialidade=request.getParameter("nEsp");//obrigatorio
-       %>
-   <% 
+       String[] Especialidade=request.getParameterValues("nEsp");//obrigatorio
+       Vector especialidade=new Vector();
+       
+       
+ %>
+       
+   <% if (Especialidade != null){
+       
            Vector esp = (new Especialidade()).pesquisar();
+    for(int j = 0 ; j<Especialidade.length ;j++){       
     for(int i = 0; i < esp.size(); i++)
     {
-         if(Integer.parseInt(Especialidade)== ((EspecialidadeDO)esp.elementAt(i)).getEsp_cod() )
-         {especialidade=((EspecialidadeDO)esp.elementAt(i));break;} 
+         if(Integer.parseInt(Especialidade[j])== ((EspecialidadeDO)esp.elementAt(i)).getEsp_cod() ){
+             especialidade.add(((EspecialidadeDO)esp.elementAt(i)));
+             break;
+         } 
     }
+    }
+   }
     %>
       <%
        String Conselho = request.getParameter("nCon");//obrigatorio
@@ -304,7 +312,7 @@
        }
        
        
-  if((nome.isEmpty())||(RG.isEmpty())||(CPF.isEmpty())||(login.isEmpty())||(senha.isEmpty())||(CRM.isEmpty())||(Especialidade.isEmpty())
+  if((nome.isEmpty())||(RG.isEmpty())||(CPF.isEmpty())||(login.isEmpty())||(senha.isEmpty())||(CRM.isEmpty())||( Especialidade==null)
                 ||(Conselho.isEmpty())||(Cidade.isEmpty())||(Estado.isEmpty())||(Endereco1numero.isEmpty())
                 ||(Endereco1bairro.isEmpty())||(Endereco1rua.isEmpty())
                 || TipoEnd1.isEmpty()) {
@@ -330,7 +338,14 @@
           <form action="./CadastroMedico.jsp" method="post">
              <input type="submit" name="retry" value="Cadastrar Novamente" />
              </form>
+          <%     } else if(TransicaoUsuario.verificaPorLogin(usuario.getUsu_login()) )  
+                                {
+%>
 
+               Erro ao cadastrar,Login já cadastrado            
+          <form action="./CadastroMedico.jsp" method="post">
+             <input type="submit" name="retry" value="Cadastrar Novamente" />
+             </form>
                <%     } else if( TransicaoUsuario.incluir(usuario)/*Verifica se conseguiu incluir usuario*/  )  { 
                /*Procurar chave primaria do medico e colocar nas outras tabelas*/
                  /*PROBLEMA COM O TIPO DE ENDERECO , VAI DAR MERDA ISSO*/
@@ -348,9 +363,12 @@
                 medico.setConselhos_Con_cod(conselho.getCon_cod());
                 medico.setEstado_Est_cod_conselho_emissor(estadoCon.getEst_cod());
                 medIncluir.incluir(medico);
-                MhE.setEspecialidade_Esp_cod(especialidade.getEsp_cod());
-                MhE.setMedico_Usuario_Usu_cod(medico.getUsu_cod());
-                MHE.incluir(MhE);
+                for( int i= 0; i<especialidade.size(); i++) {
+                  data.Medico_has_EspecialidadeDO MhE= new data.Medico_has_EspecialidadeDO ();
+                  MhE.setEspecialidade_Esp_cod(((EspecialidadeDO)(especialidade.elementAt(i))).getEsp_cod());
+                  MhE.setMedico_Usuario_Usu_cod(medico.getUsu_cod());
+                  MHE.incluir(MhE);
+                } 
                 endereco1.setMunicipio_Mun_cod(cidade.getMun_cod());
                 endereco1.setUsuario_Usu_cod(medico.getUsu_cod());
                 endereco1.setTipo_Endereco_TipEnd_cod(chave_tipoEnd.buscarPorNome(TipoEnd1));
@@ -385,7 +403,7 @@
                %>
               
           Transação realizada com sucesso!
-          <form action=="./CadastroMedico.jsp" method="post">
+          <form action="/PDS/index.jsp" method="post">
              <input type="submit" name="voltar" value="Voltar" />
           </form>
        

@@ -62,7 +62,7 @@
 
 <p>Nome:<input type="text" id="iNome" Name="nName" size="40" maxlength="200"  placeholder="obrigatório"></p>
 <p>RG:<input type="text" id="iRG" Name="nRG" size="40" maxlength="12"  placeholder="obrigatório"></p>
-<p>CPF:<input type="text" id="iCPF" Name="nCPF" size="40" maxlength="11"  placeholder="obrigatório">
+<p>CPF:<input type="text" id="iCPF" Name="nCPF" size="40" maxlength="11"  placeholder="obrigatório"placeholder="obrigatório" onkeypress='return isNumberKey(event)'>
 <p>
     Conselho ao qual é subordinado:
     <select id="iCon" Name="nCon">
@@ -158,11 +158,11 @@
 <p><input type="submit" name="cadastrar"value="Cadastrar">&nbsp &nbsp &nbsp &nbsp <input type="submit" name="cancelar" value="Cancelar"></p>
 </fieldset>
 </form>
-    <form action='/PDS/Geral/temppage.jsp'>
- <p>
-    <input type='submit' name="Voltar" value="Voltar"> 
- </p>    
- </form>
+   <form action='/PDS/index.jsp'>
+               <p>
+                <input type='submit' name="Voltar" value="Voltar"> 
+              </p>    
+              </form> 
 <%}else { 
 %>
 
@@ -291,7 +291,15 @@
           <form action="./CadastroTecnico.jsp" method="post">
              <input type="submit" name="retry" value="Cadastrar Novamente" />
              </form>
+          <%     } else if(TransicaoUsuario.verificaPorLogin(usuario.getUsu_login()) )  
+                                {
+%>
 
+               Erro ao cadastrar,Login já cadastrado            
+           <form action="./CadastroTecnico.jsp" method="post">
+             <input type="submit" name="retry" value="Cadastrar Novamente" />
+          </form> 
+              
                <%     } else if( TransicaoUsuario.incluir(usuario)/*Verifica se conseguiu incluir usuario*/  )  { 
                /*Procurar chave primaria do medico e colocar nas outras tabelas*/
                  /*PROBLEMA COM O TIPO DE ENDERECO , VAI DAR MERDA ISSO*/
@@ -342,9 +350,11 @@
                %>
               
           Transação realizada com sucesso!
-          <form action="./CadastroTecnico.jsp" method="post">
-             <input type="submit" name="voltar" value="Voltar" />
-          </form>
+           <form action='/PDS/index.jsp'>
+               <p>
+                <input type='submit' name="Voltar" value="Voltar"> 
+              </p>    
+              </form> 
        
 <%     }else{
 

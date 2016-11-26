@@ -227,7 +227,25 @@ public class Usuario {
     }
     return false;
   }
+public boolean verificaPorLogin(String login) throws Exception {
 
+    Transacao tr = new Transacao();
+    try {
+      tr.beginReadOnly();
+      UsuarioData cdata = new UsuarioData();
+      UsuarioDO v = cdata.pesquisarPorLogin(login, tr);
+      tr.commit();
+      if (v != null ) {
+        return true;
+      }
+    } catch (Exception e) {
+      tr.rollback();
+      System.out.println("Error!");
+      e.printStackTrace();
+    }
+    return false;
+  }
+  
   private boolean isEmpty(String s) {
     if (null == s) {
       return true;

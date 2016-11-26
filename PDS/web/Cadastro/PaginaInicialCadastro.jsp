@@ -26,9 +26,11 @@
           <form action="/PDS/Medico/CadastroMedico.jsp" method="post">
              <input type="submit" name="retry" value="Cadastro Medico" />
               </form> </br>  
-            <form action='/PDS/Geral/temppage.jsp'>
-               <input type='submit' name="Voltar" value="Voltar"></br> 
-             </form>  
+              <form action='/PDS/index.jsp'>
+               <p>
+                <input type='submit' name="Voltar" value="Voltar"> 
+              </p>    
+              </form> 
                 </td>
             </tr>
             <tr>
