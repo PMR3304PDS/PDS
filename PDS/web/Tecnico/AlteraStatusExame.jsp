@@ -30,8 +30,7 @@
                     <% 
                     
                     if (null == request.getParameter("excluir") && null == request.getParameter("editar")){
-                    //int Exa_cod = Integer.parseInt(request.getParameter("exame_cod"));
-                    int Exa_cod = 4;
+                    int Exa_cod = Integer.parseInt(request.getParameter("exame_cod"));
                     transacoes.Exame tn = new transacoes.Exame();
                     data.ExameDO exame = new data.ExameDO();
                     try{
@@ -83,8 +82,7 @@
        }
        
        if (null != request.getParameter("excluir")) {
-           int Exa_cod = 4; 
-           //int Exa_cod = Integer.parseInt(request.getParameter("exame_cod"));
+           int Exa_cod = Integer.parseInt(request.getParameter("exame_cod"));
            transacoes.Exame tn = new transacoes.Exame(); 
            try {       
                 
