@@ -37,6 +37,13 @@
                             return true;
                         }
                         
+                        function isDate(evt){
+                            var charCode = (evt.which) ? evt.which : event.keyCode;
+                            if (charCode > 31 && (charCode !== 47 &&(charCode < 48 || charCode > 57)))
+                                return false;
+                            return true;
+                        }
+                        
                     </script>
                     
 <%     String action = request.getParameter("atualizar");
@@ -44,51 +51,65 @@
           action = "showEditForm";
           int Usu_cod =  ((Integer)session.getAttribute("cod")).intValue();
 	  transacoes.Paciente tn = new transacoes.Paciente();
-          data.PacienteDO paciente = tn.buscar(Usu_cod);
+          data.PacienteDO paciente = tn.buscar(Usu_cod);   
+          DateFormat df = new SimpleDateFormat("dd/MM/yyyy"); 
+          String data_formatada = df.format(paciente.getPac_nascimento());
 %>        
           <form action="/PDS/Paciente/EditarFichaMedica.jsp" method="post">   
               <table>
                <tr>
+                  <td>Data de nascimento (dd/mm/yyyy)</td>
+                  <td><input type="text" name="data" maxlength="10" onkeypress="return isDate(event)" required value=<%= data_formatada %>/>
+               </tr>
+               <tr>
                   <td>Peso</td>
-                  <td><input type="text" name="peso" maxlength="9" onkeypress='return isNumberKey(event)' value=<%= paciente.getPac_peso() %> />
+                  <td><input type="text" name="peso" maxlength="9" onkeypress='return isNumberKey(event)' required value=<%= paciente.getPac_peso() %> />
                </tr>
                <tr>
                   <td>Altura</td>
                   <td><input type="text" name="altura" maxlength="9" onkeypress='return isNumberKey(event)' value=<%= paciente.getPac_altura() %> />
                </tr>
-               <tr>
+                <tr>
                   <td>Alergias</td>
-                  <td><input type="text" name="alergias" maxlength="300" rows="4" cols="50" value=<%= paciente.getPac_alergias() %>/>
+                  <td><textarea name="alergias" maxlength="300" rows="4" cols="50"><%=paciente.getPac_alergias()%></textarea>
                </tr>
                <tr>
                   <td>Medicamentos</td>
-                  <td><input type="text" name="medicamentos" maxlength="300" rows="4" cols="50" value=<%= paciente.getPac_medicamentos() %>/>
+                  <td><textarea name="medicamentos" maxlength="300" rows="4" cols="50"><%=paciente.getPac_medicamentos()%></textarea>
                </tr>
                <tr>
-                   <td>Doenças em tratamento</td>
-                   <td><input type="text" name="doencas" maxlength="300" rows="4" cols="50" value=<%= paciente.getPac_doencas_tratamento() %>/>
+                  <td>Doenças em tratamento</td>
+                  <td><textarea name="doencas" maxlength="300" rows="4" cols="50"><%=paciente.getPac_doencas_tratamento()%></textarea>
                </tr>
                <tr>
-                   <td>Histórico de doenças</td>
-                   <td><input type="text" name="historico" maxlength="300" rows="4" cols="50" value=<%= paciente.getPac_historico_doencas() %>/>
+                  <td>Histórico de doenças</td>
+                  <td><textarea name="historico" maxlength="300" rows="4" cols="50"><%=paciente.getPac_historico_doencas()%></textarea>
                </tr>
                <tr><td><br></td></tr>
                           
              </table>
              <input type="submit" name="atualizar" value="atualizar" />
-             <a href="index.jsp">Voltar</a>
-	     <input type="hidden" name="Usu_cod" value=<%= Usu_cod %> />
-	     <input type="hidden" name="action" value="updateValues" />
-
+             <input type="submit" name="voltar" value="voltar" />
+             
+	     
            </form>
 <%         
        } // showEditForm
+       
+       if (null != request.getParameter("voltar")) {
+            response.sendRedirect("/PDS/Geral/temppage.jsp"); 
+       }
+                      
 %>
 
 <! ------------------------------------------------------------------->
 
-<%
-     if (action.equals("updateValues")) {
+<%    
+     if (null != request.getParameter("atualizar")) {
+         
+       String data_s = request.getParameter("data");
+       DateFormat df = new SimpleDateFormat("dd/MM/yyyy"); 
+       java.sql.Date sqldate = new java.sql.Date(df.parse(data_s).getTime());  
        String peso_s = request.getParameter("peso");
        float peso = Float.parseFloat(peso_s);
        String altura_s = request.getParameter("altura");
@@ -101,7 +122,7 @@
        transacoes.Paciente tn = new transacoes.Paciente();
        data.PacienteDO paciente = new data.PacienteDO();
        
-       paciente.setPac_nascimento(new Date(2000, 10, 10));
+       paciente.setPac_nascimento(sqldate);
        paciente.setPac_peso(peso);
        paciente.setPac_altura(altura);
        paciente.setPac_alergias(alergias);
@@ -120,13 +141,13 @@
 
 %>
           Transação realizada com sucesso!
-          <form action="index.jsp" method="post">
+          <form action="/PDS/Geral/temppage.jsp" method="post">
              <input type="submit" name="voltar" value="Voltar" />
           </form>
 <%     } else {
 %>
           Erro ao editar ficha médica          
-          <form action="EditarFichaMedica.jsp" method="post">
+          <form action="/PDS/Paciente/EditarFichaMedica.jsp" method="post">
              <input type="submit" name="retry" value="Repetir" />
           </form>
 <%     }

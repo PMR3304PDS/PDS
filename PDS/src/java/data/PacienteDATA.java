@@ -27,8 +27,9 @@ public class PacienteDATA {
 
   public void atualizar(PacienteDO paciente, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
-     String sql = "update Paciente set Pac_nascimento=? Pac_peso=? Pac_altura=? "
-             + "Pac_alergias=? Pac_medicamentos=? Pac_doencas_tratamento=? where Usuario_Usu_cod=?";
+     String sql = "update Paciente set Pac_nascimento=?, Pac_peso=?, Pac_altura=?, "
+             + "Pac_alergias=?, Pac_medicamentos=?, Pac_doencas_tratamento=?, Pac_historico_doencas=?"
+             + " where Usuario_Usu_cod=?";
      PreparedStatement ps = con.prepareStatement(sql);
      ps.setDate(1, paciente.getPac_nascimento());
      ps.setFloat(2, paciente.getPac_peso());
