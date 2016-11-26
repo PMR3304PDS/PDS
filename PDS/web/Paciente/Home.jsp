@@ -23,7 +23,7 @@
                 </td>
                 <td>
                     <%
-                    int cod = ((Integer)(session.getAttribute("cod"))).intValue();
+                    int cod = Integer.parseInt(String.valueOf(session.getAttribute("cod")));
                     transacoes.Paciente tn = new transacoes.Paciente();
                     data.PacienteDO paciente = tn.buscar(cod);
                     %>
