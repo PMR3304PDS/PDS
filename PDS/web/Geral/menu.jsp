@@ -1,4 +1,5 @@
 <%
+    
     char type = session.getAttribute("tipo").toString().charAt(0);
     if (type=='m') {
         %>
