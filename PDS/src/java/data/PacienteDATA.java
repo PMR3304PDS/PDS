@@ -77,9 +77,9 @@ public class PacienteDATA {
         String sql = "select * "
                 + "from Usuario inner join Paciente "
                 + "on Usuario.Usu_cod = Paciente.Usuario_Usu_Cod "
-                + "where Usu_nome like %?% ";
+                + "where Usu_nome like ?";
         PreparedStatement ps = con.prepareStatement(sql);
-        ps.setString(1, nome);
+        ps.setString(1, "%" + nome + "%");
         ResultSet rs = ps.executeQuery();
         Vector pacientes = new Vector();
         while (rs.next()) {

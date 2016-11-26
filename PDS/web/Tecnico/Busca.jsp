@@ -105,19 +105,26 @@
                                     PacienteDO paciente = (PacienteDO) pacientes.elementAt(i);
                         %>
                         <tr>
+                            
                             <td>
-                                <a href= "/PDS/Tecnico/VisualizaListaExamesPaciente.jsp?Usu_buscado=<%=paciente.getUsu_nome()%>?&Paciente_Usuario_Usu_cod=<%=paciente.getUsu_cod()%>">  </a> <%=paciente.getUsu_nome()%>
+                                <a href= "/PDS/Tecnico/VisualizaListaExamesPaciente.jsp?Usu_buscado=<%=paciente.getUsu_nome()%>&Paciente_Usuario_Usu_cod=<%=paciente.getUsu_cod()%>">
+                                 <%=paciente.getUsu_nome()%> 
+                                </a>
                             </td>
-                            <td><%= paciente.getUsu_cpf()%></td>
+                            <td>
+                                <%= paciente.getUsu_cpf()%>
+                            </td>
                         </tr>
 
-                    </table>
+                    
                         <%
                                     }
                                 }
                             }
                         }
                         %>
+                        
+                        </table>
 
 
                 </td>
