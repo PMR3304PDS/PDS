@@ -1,4 +1,5 @@
 
+
 <%-- 
     *******Visualiza Lista de Exames Paciente*********
 --%>
@@ -46,14 +47,14 @@
                     <br />
                     <table  border="1">
                         <tr>
-                            <th>|--CÛdigo do Exame--|</th>                           
+                            <th>|--C√≥digo do Exame--|</th>                           
                             <th>|----Data----|</th>
-                            <th>|Respons·vel por Adicionar Documento |</th>
+                            <th>|Respons√°vel por Adicionar Documento |</th>
                         </tr>
                     
                         <tr>
                             <%
-                                //passar para c· o Paciente_Usuario_Usu_cod
+                                //passar para c√° o Paciente_Usuario_Usu_cod
                                 int cod = Integer.parseInt(request.getParameter("Paciente_Usuario_Usu_cod"));
 
                                 transacoes.Exame tn = new transacoes.Exame();
@@ -63,7 +64,7 @@
                                 if ((exames.size() == 0)) {
                             %>
 
-                            Lista de Exames n„o encontrada!
+                            Lista de Exames n√£o encontrada!
                         <form action="/Tecnico/Busca.jsp" method="post">
                             <input type="submit" name="voltar" value="Voltar" />
 
@@ -108,6 +109,9 @@
                         <br />
                         <form action="/Geral/upload_exame_receita.jsp?cod_paciente=<%=cod%>" method="post">
                             <input type="submit" name="Adicionar" value="Adicionar Exame" />
+                        </form>
+                        <form action="/PDS/Tecnico/Busca.jsp" method="post">
+                            <input type="submit" name="Voltar" value="Voltar" />
                         </form>
             </tr>        
             <tr>
