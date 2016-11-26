@@ -59,7 +59,7 @@ public class TecnicoDATA {
      String sql = "select * "
              + "from Usuario inner join Tecnico "
              + "on Usuario.Usu_cod = Tecnico.Usuario_Usu_Cod "
-             + "where Usu_nom like ?";
+             + "where Usu_nome like ?";
      PreparedStatement ps = con.prepareStatement(sql);
      ps.setString(1,"%" + nome + "%");
      ResultSet rs = ps.executeQuery();
@@ -114,34 +114,34 @@ public class TecnicoDATA {
      return tecnicos;
   }
   
-//  public Vector pesquisarTecnicoPorCpf(String cpf, Transacao tr) throws Exception {
-//     Connection con = tr.obterConexao();
-//     String sql = "select * "
-//             + "from Usuario inner join Tecnico "
-//             + "on Usuario.Usu_cod = Tecnico.Usuario_Usu_Cod "
-//             + "where Usu_cpf like ?";
-//     PreparedStatement ps = con.prepareStatement(sql);
-//     ps.setString(1, cpf);
-//     ResultSet rs = ps.executeQuery();
-//     Vector tecnicos = new Vector();
-//     while (rs.next()) {
-//        TecnicoDO c = new TecnicoDO();
-//        if (rs.getBoolean("Usu_ativo")) {
-//            c.setUsu_cod(rs.getInt("Usu_cod"));
-//            c.setUsu_nome(rs.getString("Usu_nome"));
-//            System.out.println(" got " + c.getUsu_nome());
-//            c.setUsu_login(rs.getString("Usu_login"));
-//            c.setUsu_senha(rs.getString("Usu_senha"));
-//            c.setUsu_rg(rs.getString("Usu_rg"));
-//            c.setUsu_cpf(rs.getString("Usu_cpf"));
-//            c.setUsu_foto(rs.getBinaryStream("Usu_foto"));
-//            c.setUsu_ativo(rs.getBoolean("Usu_ativo"));
-//            c.setConselhos_Con_cod(rs.getInt("Conselhos_Con_cod"));
-//            c.setEstado_Est_cod_conselho_emissor(rs.getInt("Estado_Est_cod_conselho_emissor"));
-//            tecnicos.add(c);
-//        }
-//     }
-//     return tecnicos;
-//  }
+  public Vector pesquisarTecnicoPorCpf(String cpf, Transacao tr) throws Exception {
+     Connection con = tr.obterConexao();
+     String sql = "select * "
+             + "from Usuario inner join Tecnico "
+             + "on Usuario.Usu_cod = Tecnico.Usuario_Usu_Cod "
+             + "where Usu_cpf like ?";
+     PreparedStatement ps = con.prepareStatement(sql);
+     ps.setString(1, cpf);
+     ResultSet rs = ps.executeQuery();
+     Vector tecnicos = new Vector();
+     while (rs.next()) {
+        TecnicoDO c = new TecnicoDO();
+        if (rs.getBoolean("Usu_ativo")) {
+            c.setUsu_cod(rs.getInt("Usu_cod"));
+            c.setUsu_nome(rs.getString("Usu_nome"));
+            System.out.println(" got " + c.getUsu_nome());
+            c.setUsu_login(rs.getString("Usu_login"));
+            c.setUsu_senha(rs.getString("Usu_senha"));
+            c.setUsu_rg(rs.getString("Usu_rg"));
+            c.setUsu_cpf(rs.getString("Usu_cpf"));
+            c.setUsu_foto(rs.getBinaryStream("Usu_foto"));
+            c.setUsu_ativo(rs.getBoolean("Usu_ativo"));
+            c.setConselhos_Con_cod(rs.getInt("Conselhos_Con_cod"));
+            c.setEstado_Est_cod_conselho_emissor(rs.getInt("Estado_Est_cod_conselho_emissor"));
+            tecnicos.add(c);
+        }
+     }
+     return tecnicos;
+  }
 
 }
