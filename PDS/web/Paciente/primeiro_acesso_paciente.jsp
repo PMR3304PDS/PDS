@@ -301,7 +301,7 @@
          
        if (a && b && c && e) {
 %>
-          Cadastro concluido com sucesso! Bem vindo ao PoliDATASus!
+          Cadastro concluido com sucesso! Bem vindo ao POLIDATASUS!
           <form action="/PDS/" method="post">
              <input type="submit" name="voltar" value="Voltar" />
           </form>
