@@ -28,8 +28,10 @@
                 </td>
                 <td>
                     <%
-                        int med_cod = Integer.parseInt((String)session.getAttribute("cod"));
-                        int pac_cod = Integer.parseInt((String)session.getAttribute("pac_name"));
+//                        int med_cod = ((Integer)session.getAttribute("cod")).intValue();
+//                        int pac_cod = Integer.parseInt(request.getParameter("pac_cod"));
+                        int med_cod = 6;
+                        int pac_cod = 2;
                         transacoes.Paciente tn_p = new transacoes.Paciente();
                         data.PacienteDO paciente = new data.PacienteDO();
                         paciente = tn_p.buscar(pac_cod);
@@ -37,7 +39,7 @@
                         if(null != request.getParameter("voltar")){
                             pageContext.forward("./modelo.jsp");
                         }
-                        if(null != request.getParameter("adicionar")){
+                        if(null == request.getParameter("adicionar")){
                     %>
                     <form action="./adicionar_consulta.jsp" method="post">
                         <b>Nova Consulta</b>
@@ -83,7 +85,7 @@
                             }else{
                             %>
                                 Erro ao adicionar consulta          
-                                <form action="./insert.jsp" method="post">
+                                <form action="./adicionar_consulta.jsp" method="post">
                                    <input type="submit" name="retry" value="Tentar novamente" />
                                 </form>
                             <%
