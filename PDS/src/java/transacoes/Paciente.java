@@ -27,7 +27,7 @@ public class Paciente {
     try {
 
       tr.begin();
-      
+
       UsuarioData usudata = new UsuarioData();
       UsuarioDO usudo = new UsuarioDO();
       usudo.setUsu_cpf(paciente.getUsu_cpf());
@@ -38,9 +38,9 @@ public class Paciente {
       usudo.setUsu_senha(paciente.getUsu_senha());
       usudo.setUsu_ativo(true);
       usudata.incluir(usudo, tr);
-      
+
       UsuarioDO newusudo = usudata.pesquisarPorLogin(usudo.getUsu_login(), tr);
-      
+
       PacienteDATA pacdata = new PacienteDATA();
       paciente.setUsu_cod(newusudo.getUsu_cod());
       pacdata.incluir(paciente, tr);
@@ -54,69 +54,67 @@ public class Paciente {
     }
     return false;
   } // incluir
-  
-    public Vector pesquisarPacientePorNome(String nome) throws Exception {
-        if (isEmpty(nome)) {
-            return null;
-        }
-        
-        Transacao tr = new Transacao();
-        try {
-            tr.beginReadOnly();
-              PacienteDATA paciente = new PacienteDATA();
-              Vector v = paciente.pesquisarPacientePorNome(nome, tr);
-            tr.commit();
-            return v;
-        } catch (Exception e) {
-            tr.rollback();
-            System.out.println("Erro ao buscar paciente por nome");
-            e.printStackTrace();
-        }
-        return null;
+
+  public Vector pesquisarPacientePorNome(String nome) throws Exception {
+    if (isEmpty(nome)) {
+      return null;
     }
-    
-    public Vector pesquisarPacientePorRg(String rg) throws Exception {
-        if (isEmpty(rg)) {
-            return null;
-        }
-        
-        Transacao tr = new Transacao();
-        try {
-            tr.beginReadOnly();
-              PacienteDATA paciente = new PacienteDATA();
-              Vector v = paciente.pesquisarPacientePorRg(rg, tr);
-            tr.commit();
-            return v;
-        } catch (Exception e) {
-            tr.rollback();
-            System.out.println("Erro ao buscar paciente por RG");
-            e.printStackTrace();
-        }
-        return null;
+
+    Transacao tr = new Transacao();
+    try {
+      tr.beginReadOnly();
+      PacienteDATA paciente = new PacienteDATA();
+      Vector v = paciente.pesquisarPacientePorNome(nome, tr);
+      tr.commit();
+      return v;
+    } catch (Exception e) {
+      tr.rollback();
+      System.out.println("Erro ao buscar paciente por nome");
+      e.printStackTrace();
     }
-    
-    public Vector pesquisarPacientePorCpf(String cpf) throws Exception {
-        if (isEmpty(cpf)) {
-            return null;
-        }
-        
-        Transacao tr = new Transacao();
-        try {
-            tr.beginReadOnly();
-              PacienteDATA paciente = new PacienteDATA();
-              Vector v = paciente.pesquisarPacientePorCpf(cpf, tr);
-            tr.commit();
-            return v;
-        } catch (Exception e) {
-            tr.rollback();
-            System.out.println("Erro ao buscar paciente por CPF");
-            e.printStackTrace();
-        }
-        return null;
+    return null;
+  }
+
+  public Vector pesquisarPacientePorRg(String rg) throws Exception {
+    if (isEmpty(rg)) {
+      return null;
     }
-  
-  
-  
+
+    Transacao tr = new Transacao();
+    try {
+      tr.beginReadOnly();
+      PacienteDATA paciente = new PacienteDATA();
+      Vector v = paciente.pesquisarPacientePorRg(rg, tr);
+      tr.commit();
+      return v;
+    } catch (Exception e) {
+      tr.rollback();
+      System.out.println("Erro ao buscar paciente por RG");
+      e.printStackTrace();
+    }
+    return null;
+  }
+
+  public Vector pesquisarPacientePorCpf(String cpf) throws Exception {
+    if (isEmpty(cpf)) {
+      return null;
+    }
+
+    Transacao tr = new Transacao();
+    try {
+      tr.beginReadOnly();
+      PacienteDATA paciente = new PacienteDATA();
+      Vector v = paciente.pesquisarPacientePorCpf(cpf, tr);
+      tr.commit();
+      return v;
+    } catch (Exception e) {
+      tr.rollback();
+      System.out.println("Erro ao buscar paciente por CPF");
+      e.printStackTrace();
+    }
+    return null;
+  }
+
   public boolean atualizar(PacienteDO paciente) throws Exception {
     Transacao tr = new Transacao();
     try {
@@ -159,16 +157,15 @@ public class Paciente {
     }
     return false;
   }
-  
-  public static void main(String[] args) {
-    Paciente p = new Paciente();
-    PacienteDO paciente = new PacienteDO();
-    try {
-      paciente = p.buscar(1);
-      System.out.println(paciente.getPac_nascimento());
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  } // main
-} // Paciente
 
+//  public static void main(String[] args) {
+//    Paciente p = new Paciente();
+//    PacienteDO paciente = new PacienteDO();
+//    try {
+//      paciente = p.buscar(1);
+//      System.out.println(paciente.getPac_nascimento());
+//    } catch (Exception e) {
+//      e.printStackTrace();
+//    }
+//  } // main
+}

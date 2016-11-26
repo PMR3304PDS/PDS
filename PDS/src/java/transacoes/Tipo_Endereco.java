@@ -20,8 +20,8 @@ public class Tipo_Endereco {
     }
     return null;
   }
-  
-   public int buscarPorNome(String nome) throws Exception {
+
+  public int buscarPorNome(String nome) throws Exception {
     Transacao tr = new Transacao();
     try {
       tr.beginReadOnly();
@@ -34,5 +34,5 @@ public class Tipo_Endereco {
     }
     return 0;
   }
-  
+
 }
