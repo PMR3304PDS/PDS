@@ -34,7 +34,7 @@
                     %>
                 </td>
             </tr>
-            
+            <table>
             <td>
                     Código do Exame - <%= Exa_cod %>
                     <br />
@@ -49,6 +49,12 @@
                     
             <br /><br />
             </td>
+            </table>
+                    
+            <input type="submit" name="editar" value="editar datas" />
+            <input type="submit" name="excluir" value="excluir" />
+            <input type="submit" name="voltar" value="voltar" />
+            
             <tr>
                 <td colspan="2">
                     <%@ include file="/Geral/footer.jsp" %>

@@ -89,7 +89,6 @@
                           
              </table>
              <input type="submit" name="atualizar" value="atualizar" />
-             <input type="hidden" name="action" value="updateValues" />
              <input type="submit" name="voltar" value="voltar" />
              
 	     
@@ -106,7 +105,7 @@
 <! ------------------------------------------------------------------->
 
 <%    
-     if (action.equals("updateValues")) {
+     if (null != request.getParameter("atualizar")) {
          
        String data_s = request.getParameter("data");
        DateFormat df = new SimpleDateFormat("dd/MM/yyyy"); 
