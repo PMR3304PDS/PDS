@@ -39,6 +39,23 @@ public class Especialidade {
     }
     return null;
   } // pesquisar
+  
+    public Vector pesquisarEspecialidadesdoMedico(int id) throws Exception {
+ 
+    Transacao tr = new Transacao();
+    try {
+      tr.beginReadOnly();
+      EspecialidadeDATA e = new EspecialidadeDATA();
+      Vector v = e.pesquisarEspecialidadesdoMedico(id, tr);
+      tr.commit();
+      return v;
+    } catch (Exception e) {
+      tr.rollback();
+      System.out.println("Erro ao pesquisar as especialidades do médico!");
+      e.printStackTrace();
+    }
+    return null;
+  }
 
 //  private boolean isEmpty(String s) {
 //    if (null == s) {

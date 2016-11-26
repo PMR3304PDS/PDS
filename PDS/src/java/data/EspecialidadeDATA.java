@@ -51,5 +51,23 @@ public class EspecialidadeDATA {
     }
     return Vec_con;
   }
+  
+   public Vector pesquisarEspecialidadesdoMedico(int idobj, Transacao tr) throws Exception {
+     Connection con = tr.obterConexao();
+     String sql = "select * from Especialidade inner join Medico_has_especialidade"
+             + "on Especialidade.Esp_cod = Medico_has_especialidade.Especialidade_Esp_cod"
+             + "where Medico_Usuario_Usu_cod like ?";
+     PreparedStatement ps = con.prepareStatement(sql);
+     ps.setInt(1, idobj);
+     ResultSet rs = ps.executeQuery();
+     Vector resultados = new Vector();
+     while (rs.next()) {
+        EspecialidadeDO e = new EspecialidadeDO();
+        e.setEsp_cod (rs.getInt("Esp_cod"));
+        e.setEsp_nome (rs.getString("Esp_nome"));
+        resultados.add(e);
+     }
+     return resultados;
+  }
 
 }

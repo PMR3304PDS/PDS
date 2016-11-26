@@ -1,4 +1,3 @@
-
 <%-- 
     ******* PDSPX - Busca do Paciente *********
 --%>
@@ -64,11 +63,18 @@
                     <input type="submit" name="pesquisar" value="pesquisar" />
                     
                     <input type="submit" name="voltar1" value="voltar" />
-                    </form>
 
                     <%
                         if (request.getParameter("pesquisar") != null) {
-                            System.out.print("Entrei");
+                            
+                            if (request.getParameter("input").equals("")) {
+                    %>
+                    Campo de busca vazio!
+                    </form>
+                    
+                    <%
+                            } else {
+                            
                             String tipo = request.getParameter("tipo");
                             String modo = request.getParameter("modo");
                             Vector usuarios = new Vector();
@@ -127,10 +133,8 @@
 
                             if ((usuarios == null) || (usuarios.size() == 0)) {
                     %>
-                    Falha na busca!
-                    <form action="/PDS/Paciente/busca.jsp" method="post">
-                    <input type="submit" name="voltar" value="Tentar novamente" />
-                    </form>
+                    Nenhum resultado encontrado!
+                    
 
                     <%
                     } else {
@@ -147,7 +151,7 @@
                         %>
                         <tr>
                             <td>
-                                <a href="/PDS/Medico/visualiza_perfil.jsp?cod=<%= medico.getUsu_cod()%>"> 
+                                <a href="/PDS/Paciente/VisualizaPerfil.jsp?cod=<%= medico.getUsu_cod()%>&tipo=medico"> 
                                  <%=medico.getUsu_nome()%>
                                 </a>
                             </td>
@@ -163,7 +167,7 @@
                         %>
                         <tr>
                             <td>
-                                <a href="/PDS/Medico/visualiza_perfil.jsp?cod=<%= tecnico.getUsu_cod()%>"> 
+                                <a href="/PDS/Paciente/VisualizaPerfil.jsp?cod=<%= tecnico.getUsu_cod()%>&tipo=tecnico"> 
                                 <%=tecnico.getUsu_nome()%>
                                 </a> 
                             </td>
@@ -176,6 +180,7 @@
                     
                         <%
                             }
+                        }
                         }
                         %>
                         </table>
