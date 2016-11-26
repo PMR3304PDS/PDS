@@ -89,6 +89,7 @@
                           
              </table>
              <input type="submit" name="atualizar" value="atualizar" />
+             <input type="hidden" name="action" value="updateValues" />
              <input type="submit" name="voltar" value="voltar" />
              
 	     
@@ -105,7 +106,7 @@
 <! ------------------------------------------------------------------->
 
 <%    
-     if (null != request.getParameter("atualizar")) {
+     if (action.equals("updateValues")) {
          
        String data_s = request.getParameter("data");
        DateFormat df = new SimpleDateFormat("dd/MM/yyyy"); 
@@ -121,8 +122,9 @@
 
        int Usu_cod = ((Integer)session.getAttribute("cod")).intValue();
        transacoes.Paciente tn = new transacoes.Paciente();
-       data.PacienteDO paciente = tn.buscar(Usu_cod); 
+       data.PacienteDO paciente = new data.PacienteDO();
        
+       paciente.setUsu_cod(Usu_cod);
        paciente.setPac_nascimento(sqldate);
        paciente.setPac_peso(peso);
        paciente.setPac_altura(altura);

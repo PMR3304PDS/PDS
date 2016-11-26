@@ -27,15 +27,28 @@
                     <h1>Altera Status Exame</h1>
                     <br>
                     <% 
-                    int Exa_cod = 1;
-                    transacoes.Paciente tn = new transacoes.Paciente();
-                    data.PacienteDO paciente = tn.buscar(Exa_cod); 
-                    
-                    
-                    
+                    //int Exa_cod = Integer.parseInt(request.getParameter("exame_cod"));
+                    int Exa_cod = 2;                    
+                    transacoes.Exame tn = new transacoes.Exame();
+                    data.ExameDO exame = tn.buscar(Exa_cod);                                   
                     %>
                 </td>
             </tr>
+            
+            <td>
+                    Código do Exame - <%= Exa_cod %>
+                    <br />
+                    <br />
+                    Resumo do Exame - <%= exame.getExa_resumo() %>
+                    <br />
+                    <br />
+                    Data Upload - <%= exame.getExa_data_upload() %>
+                    <br />
+                    <br />
+                    Data Previsão - <%= exame.getExa_previsao()%>
+                    
+            <br /><br />
+            </td>
             <tr>
                 <td colspan="2">
                     <%@ include file="/Geral/footer.jsp" %>
