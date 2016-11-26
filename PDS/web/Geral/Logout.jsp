@@ -2,74 +2,55 @@
     *******Logout*********
 --%>
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
     <head>
-        <title>POLIdataSUS</title>
+        <title>Login POLIdataSUS</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <%// Coloque aqui os imports%>
-    <%
-        if(null==request.getParameterValues("Logout"))
-        {
-    %>
-        <%@ include file="/Geral/verifylogin.jsp" %>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-                <td colspan="2">
-                    <%@ include file="/Geral/header.jsp" %>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <%@ include file="/Geral/menu.jsp" %>
-                </td>
-                <td>
-
-                Tem certeza que deseja fazer Logout?
-                <form action="/PDS/Tecnico/Busca.jsp" method="post">
-                <input type="submit" name="Voltar" value="Voltar" />
-                </form>
-                <form action="/PDS/Geral/Logout.jsp" method="post">
-                <input type="submit" name="Logout" value="Logout" />
-                </form>
-                
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <%@ include file="/Geral/footer.jsp" %>
-                </td>
-            </tr>
-        </table>
-    <%
-        }else{
-          session.removeAttribute("cod");
-    %>  
-        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-                <td>
-                    <%@ include file="/Geral/header.jsp" %>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Logout Realizado!
-                    <br>
-                    <form action="login.jsp" method="post">
-                        <input type="submit" name="ok" value="Voltar" />
+            <%@ include file="/Geral/verifylogin.jsp" %>
+            <%
+                String yes = request.getParameter("yes");
+                String no = request.getParameter("no");
+                String type;
+                if (yes != null) {
+                    session.invalidate();
+                    response.sendRedirect(request.getContextPath() + "/index.jsp");
+                }
+                else if (no != null) {
+                    type = (String) session.getAttribute("tipo");
+                    if (type.equals("m"))
+                        pageContext.forward("../Medico/Home.jsp");
+                    else if (type.equals("t"))
+                        pageContext.forward("../Tecnico/Home.jsp");
+                    else if (type.equals("p"))
+                        pageContext.forward("../Paciente/Home.jsp");
+                    else
+                        pageContext.forward("/temppage.jsp");
+                }
+                else {
+            %>
+                    <tr>
+                        <%@ include file="/Geral/header.jsp" %>
+                    </tr>
+                    <center> Deseja Sair? </center>
+                    <form method="post" action="logout.jsp">
+                        <center>
+                            <input type="submit" name="yes" value="Sim">
+                            &nbsp;<input type="submit" name="no" value="Não">
+                        </center>
                     </form>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <%@ include file="/Geral/footer.jsp" %>
-                </td>
-            </tr>
+                    <tr>
+                        <%@ include file="/Geral/footer.jsp" %>
+                    </tr>
+            <%
+                }
+            %>
         </table>
-    <%
-        }
-    %>
     </body>
 </html>
+
