@@ -30,24 +30,27 @@
                     <% 
                     
                     if (null == request.getParameter("excluir") && null == request.getParameter("editar")){
-                    int Exa_cod = Integer.parseInt(request.getParameter("exame_cod"));
-                    transacoes.Exame tn = new transacoes.Exame();
-                    data.ExameDO exame = new data.ExameDO();
-                    try{
-                    exame = tn.buscar(Exa_cod);
-                    } catch(Exception e){
+                        int Exa_cod = Integer.parseInt(request.getParameter("exame_cod"));
+                        transacoes.Exame tn = new transacoes.Exame();
+                        data.ExameDO exame = new data.ExameDO();
+                        try{
+                        exame = tn.buscar(Exa_cod);
+                        } catch(Exception e){
 %>           <%= e.toString() %>
 <%
-                    }
-                    if (exame == null){
+                        }
+                        if (exame == null){
 %>
                     Exame inexistente!
+            <form>
+                 <input type="submit" name="voltar" value="voltar" />
+            </form>
 <%                  
-                    }else{
+                        }else{
  %>
                 
             
-            <form action="/PDS/Tecnico/AlteraStatusExame.jsp" method="post">
+            <form action="/PDS/Tecnico/AlteraStatusExame.jsp?exame_cod=<%=Exa_cod%>" method="post">
             <table>
             <td>
                     Código do Exame - <%= Exa_cod %>
@@ -84,8 +87,7 @@
        if (null != request.getParameter("excluir")) {
            int Exa_cod = Integer.parseInt(request.getParameter("exame_cod"));
            transacoes.Exame tn = new transacoes.Exame(); 
-           try {       
-                
+           try {                       
                 tn.excluir(Exa_cod);
        } catch (Exception e) {
 %>           <%= e.toString() %>

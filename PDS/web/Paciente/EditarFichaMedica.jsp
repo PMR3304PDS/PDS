@@ -55,7 +55,7 @@
           DateFormat df = new SimpleDateFormat("dd/MM/yyyy"); 
           String data_formatada = df.format(paciente.getPac_nascimento());
 %>        
-          <form action="/PDS/Paciente/EditarFichaMedica.jsp" method="post">   
+          <form action="/PDS/Paciente/EditarFichaMedica.jsp?cod=<%=Usu_cod%>" method="post">   
               <table>
                <tr>
                   <td>Data de nascimento (dd/mm/yyyy)</td>
@@ -119,7 +119,7 @@
        String doencas = request.getParameter("doencas");
        String historico = request.getParameter("historico");
 
-       int Usu_cod = ((Integer)session.getAttribute("cod")).intValue();
+       int Usu_cod = Integer.parseInt(request.getParameter("cod"));
        transacoes.Paciente tn = new transacoes.Paciente();
        data.PacienteDO paciente = new data.PacienteDO();
        
