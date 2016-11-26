@@ -9,6 +9,25 @@ import java.util.*;
  * @author Caio
  */
 public class Medico extends Usuario {
+    
+    public boolean incluirMed(MedicoDO medico) throws Exception {
+
+    // efetuando a transacao
+    Transacao tr = new Transacao();
+    try {
+
+      tr.begin();
+      MedicoDATA cdata = new MedicoDATA();
+      cdata.incluir(medico, tr);
+      tr.commit();
+      return true;
+
+    } catch (Exception e) {
+      tr.rollback();
+      e.printStackTrace();
+    }
+    return false;
+  } // incluir
 
   public Vector pesquisarPorCrm(String crm) throws Exception {
     if (isEmpty(crm)) {
@@ -68,23 +87,24 @@ public class Medico extends Usuario {
     return false;
   }
 
-//    public Vector pesquisarPorCrm3(String crm) throws Exception {
-//     
-//        
-//        Transacao tr = new Transacao();
-//        try {
-//            tr.beginReadOnly();
-//              MedicoDATA cdata = new MedicoDATA();
-//              Vector v = cdata.pesquisarPorCrm3(crm, tr);
-//            tr.commit();
-//            return v;
-//        } catch (Exception e) {
-//            tr.rollback();
-//            System.out.println("Error!");
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
+    public Vector pesquisarPorCrm3(String crm) throws Exception {
+     
+        
+        Transacao tr = new Transacao();
+        try {
+            tr.beginReadOnly();
+              MedicoDATA cdata = new MedicoDATA();
+              Vector v = cdata.pesquisarPorCrm3(crm, tr);
+            tr.commit();
+            return v;
+        } catch (Exception e) {
+            tr.rollback();
+            System.out.println("Error!");
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
   public Vector pesquisarMedicoPorNome(String nome) throws Exception {
     if (isEmpty(nome)) {
       return null;

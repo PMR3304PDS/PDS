@@ -315,7 +315,7 @@
                 tecnico.setUsu_cod(usuChave.getUsu_cod());
                 tecnico.setConselhos_Con_cod(conselho.getCon_cod());
                 tecnico.setEstado_Est_cod_conselho_emissor(estado.getEst_cod());
-                tecIncluir.incluir(tecnico);
+                tecIncluir.incluirTec(tecnico);
                 endereco1.setMunicipio_Mun_cod(cidade.getMun_cod());
                 endereco1.setUsuario_Usu_cod(tecnico.getUsu_cod());
                 endereco1.setTipo_Endereco_TipEnd_cod(chave_tipoEnd.buscarPorNome(TipoEnd1));

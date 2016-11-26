@@ -8,10 +8,11 @@ public class TecnicoDATA {
 
   public void incluir(TecnicoDO tecnico, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
-     String sql = "insert into Tecnico (Conselhos_Con_cod, Estado_Est_cod_conselho_emissor) values (?, ?)";
+     String sql = "insert into Tecnico (Conselhos_Con_cod, Estado_Est_cod_conselho_emissor,Usuario_Usu_cod) values (?, ?,?)";
      PreparedStatement ps = con.prepareStatement(sql);
      ps.setInt(1, tecnico.getConselhos_Con_cod());
      ps.setInt(2, tecnico.getEstado_Est_cod_conselho_emissor());
+     ps.setInt(3,tecnico.getUsu_cod());
      int result = ps.executeUpdate();
   }
 

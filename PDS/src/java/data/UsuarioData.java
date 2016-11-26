@@ -18,7 +18,7 @@ public class UsuarioData {
     ps.setString(4, usuario.getUsu_rg());
     ps.setString(5, usuario.getUsu_cpf());
     ps.setBinaryStream(6, usuario.getUsu_foto());
-    ps.setBoolean(7, usuario.isUsu_ativo());
+    ps.setBoolean(7,true);
     int result = ps.executeUpdate();
   }
 //

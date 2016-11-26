@@ -6,7 +6,7 @@ import java.util.*;
 
 public class Tecnico {
 
-  public boolean incluir(TecnicoDO tecnico) throws Exception {
+  public boolean incluirTec(TecnicoDO tecnico) throws Exception {
 
     // efetuando a transacao
     Transacao tr = new Transacao();

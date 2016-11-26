@@ -22,19 +22,19 @@
                     <%@ include file="/Geral/menu.jsp" %>
                 </td>
                 <td>
-                    <%    
-  
-          int Usu_cod =  ((Integer)session.getAttribute("cod")).intValue();
-	  transacoes.Paciente tn = new transacoes.Paciente();
-          data.PacienteDO paciente = tn.buscar(Usu_cod);
-          
-%>
+                    <%
+                    int cod = ((Integer)(session.getAttribute("cod"))).intValue();
+                    transacoes.Paciente tn = new transacoes.Paciente();
+                    data.PacienteDO paciente = tn.buscar(cod);
+                    %>
+                    
+                    Olá, bem-vindo(a) <%= paciente.getUsu_nome()%>!
+                    
                     <br>
-                    Ola <%= paciente.getUsu_nome();%>
-                    Você tem uma nova receita e exame 
-                    Add botão de logout
+                    
                 </td>
             </tr>
+
             <tr>
                 <td colspan="2">
                     <%@ include file="/Geral/footer.jsp" %>

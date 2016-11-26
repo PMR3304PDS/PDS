@@ -40,11 +40,11 @@
                 }
                 else if (tn.buscarTecnico(u.getUsu_cod()) != null) {
                     session.setAttribute("tipo", 't');
-                    pageContext.forward("../Tecnico/modelo.jsp");
+                    pageContext.forward("../Tecnico/Home.jsp");
                 }
                 else if (tn.buscarPaciente(u.getUsu_cod()) != null) {
                     session.setAttribute("tipo", 'p');
-                    pageContext.forward("../Paciente/modelo.jsp");
+                    pageContext.forward("../Paciente/Home.jsp");
                 }
                 else {
                     session.setAttribute("tipo", 'x');

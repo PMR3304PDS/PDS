@@ -362,7 +362,7 @@
                 medico.setMed_NumRegistro(CRM);
                 medico.setConselhos_Con_cod(conselho.getCon_cod());
                 medico.setEstado_Est_cod_conselho_emissor(estadoCon.getEst_cod());
-                medIncluir.incluir(medico);
+                medIncluir.incluirMed(medico);
                 for( int i= 0; i<especialidade.size(); i++) {
                   data.Medico_has_EspecialidadeDO MhE= new data.Medico_has_EspecialidadeDO ();
                   MhE.setEspecialidade_Esp_cod(((EspecialidadeDO)(especialidade.elementAt(i))).getEsp_cod());

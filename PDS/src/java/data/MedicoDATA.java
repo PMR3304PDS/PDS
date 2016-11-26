@@ -6,16 +6,16 @@ import utils.Transacao;
 
 public class MedicoDATA {
 
-//    public void incluir(MedicoDO medico, Transacao tr) throws Exception {
-//     Connection con = tr.obterConexao();
-//     String sql = "insert into Medico (Conselhos_Con_cod, Estado_Est_cod_conselho_emissor, Med_NumRegistro,Usuario_Usu_cod) values (?, ?, ?,?)";
-//     PreparedStatement ps = con.prepareStatement(sql);
-//     ps.setInt(1, medico.getConselhos_Con_cod());
-//     ps.setInt(2, medico.getEstado_Est_cod_conselho_emissor());
-//     ps.setString(3, medico.getMed_NumRegistro());
-//     ps.setInt(4, medico.getUsu_cod());
-//     int result = ps.executeUpdate();
-//  }
+    public void incluir(MedicoDO medico, Transacao tr) throws Exception {
+     Connection con = tr.obterConexao();
+     String sql = "insert into Medico (Conselhos_Con_cod, Estado_Est_cod_conselho_emissor, Med_NumRegistro,Usuario_Usu_cod) values (?, ?, ?,?)";
+     PreparedStatement ps = con.prepareStatement(sql);
+     ps.setInt(1, medico.getConselhos_Con_cod());
+     ps.setInt(2, medico.getEstado_Est_cod_conselho_emissor());
+     ps.setString(3, medico.getMed_NumRegistro());
+     ps.setInt(4, medico.getUsu_cod());
+     int result = ps.executeUpdate();
+  }
 //    public void atualizar(MedicoDO medico, Transacao tr) throws Exception {
 //        Connection con = tr.obterConexao();
 //        String sql = "update Medico set Estado_Est_cod_conselho_emissor=?, Med_NumRegistro=? where Conselhos_Con_cod=?";

@@ -22,7 +22,7 @@ else if (type=='p'){
                 <a href="/PDS/Geral/temppage.jsp">Consulta</a><br>
                 <a href="/PDS/Geral/temppage.jsp">Exame</a><br>
                 <a href="/PDS/Geral/temppage.jsp">Receitas</a><br>
-                <a href="/PDS/Paciente/busca.jsp">Busca</a><br>
+                <a href="/PDS/Paciente/Busca.jsp">Busca</a><br>
         <%
     }
 %>
