@@ -71,6 +71,107 @@ public class PacienteDATA {
     }
     return null;
   } // buscar
-
+  
+  public Vector pesquisarPacientePorNome(String nome, Transacao tr) throws Exception {
+        Connection con = tr.obterConexao();
+        String sql = "select * "
+                + "from Usuario inner join Paciente "
+                + "on Usuario.Usu_cod = Paciente.Usuario_Usu_Cod "
+                + "where Usu_nome like %?% ";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, nome);
+        ResultSet rs = ps.executeQuery();
+        Vector pacientes = new Vector();
+        while (rs.next()) {
+            PacienteDO p = new PacienteDO();
+            if (rs.getBoolean("Usu_ativo")) {
+                p.setUsu_cod(rs.getInt("Usu_cod"));
+                p.setUsu_login(rs.getString("Usu_login"));
+                p.setUsu_rg(rs.getString("Usu_rg"));
+                p.setUsu_cpf(rs.getString("Usu_cpf"));
+                p.setUsu_nome(rs.getString("Usu_nome"));
+                p.setUsu_ativo(rs.getBoolean("Usu_ativo"));
+                p.setUsu_foto(rs.getBinaryStream("Usu_foto"));
+                p.setPac_nascimento(rs.getDate("Pac_nascimento"));
+                p.setPac_peso(rs.getFloat("Pac_peso"));
+                p.setPac_altura(rs.getFloat("Pac_altura"));
+                p.setPac_alergias(rs.getString("Pac_alergias"));
+                p.setPac_medicamentos(rs.getString("Pac_medicamentos"));
+                p.setPac_doencas_tratamento(rs.getString("Pac_doencas_tratamento"));
+                p.setPac_historico_doencas(rs.getString("Pac_historico_doencas"));
+                pacientes.add(p);
+            }  
+        }
+        return pacientes;
+    }
+  
+  public Vector pesquisarPacientePorRg(String rg, Transacao tr) throws Exception {
+        Connection con = tr.obterConexao();
+        String sql = "select * "
+                + "from Usuario inner join Paciente "
+                + "on Usuario.Usu_cod = Paciente.Usuario_Usu_Cod "
+                + "where Usu_rg like ? ";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, rg);
+        ResultSet rs = ps.executeQuery();
+        Vector pacientes = new Vector();
+        while (rs.next()) {
+            PacienteDO p = new PacienteDO();
+            if (rs.getBoolean("Usu_ativo")) {
+                p.setUsu_cod(rs.getInt("Usu_cod"));
+                p.setUsu_login(rs.getString("Usu_login"));
+                p.setUsu_rg(rs.getString("Usu_rg"));
+                p.setUsu_cpf(rs.getString("Usu_cpf"));
+                p.setUsu_nome(rs.getString("Usu_nome"));
+                p.setUsu_ativo(rs.getBoolean("Usu_ativo"));
+                p.setUsu_foto(rs.getBinaryStream("Usu_foto"));
+                p.setPac_nascimento(rs.getDate("Pac_nascimento"));
+                p.setPac_peso(rs.getFloat("Pac_peso"));
+                p.setPac_altura(rs.getFloat("Pac_altura"));
+                p.setPac_alergias(rs.getString("Pac_alergias"));
+                p.setPac_medicamentos(rs.getString("Pac_medicamentos"));
+                p.setPac_doencas_tratamento(rs.getString("Pac_doencas_tratamento"));
+                p.setPac_historico_doencas(rs.getString("Pac_historico_doencas"));
+                pacientes.add(p);
+            }  
+        }
+        return pacientes;
+    }
+  
+  public Vector pesquisarPacientePorCpf(String cpf, Transacao tr) throws Exception {
+        Connection con = tr.obterConexao();
+        String sql = "select * "
+                + "from Usuario inner join Paciente "
+                + "on Usuario.Usu_cod = Paciente.Usuario_Usu_Cod "
+                + "where Usu_cpf like ? ";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, cpf);
+        ResultSet rs = ps.executeQuery();
+        Vector pacientes = new Vector();
+        while (rs.next()) {
+            PacienteDO p = new PacienteDO();
+            if (rs.getBoolean("Usu_ativo")) {
+                p.setUsu_cod(rs.getInt("Usu_cod"));
+                p.setUsu_login(rs.getString("Usu_login"));
+                p.setUsu_rg(rs.getString("Usu_rg"));
+                p.setUsu_cpf(rs.getString("Usu_cpf"));
+                p.setUsu_nome(rs.getString("Usu_nome"));
+                p.setUsu_ativo(rs.getBoolean("Usu_ativo"));
+                p.setUsu_foto(rs.getBinaryStream("Usu_foto"));
+                p.setPac_nascimento(rs.getDate("Pac_nascimento"));
+                p.setPac_peso(rs.getFloat("Pac_peso"));
+                p.setPac_altura(rs.getFloat("Pac_altura"));
+                p.setPac_alergias(rs.getString("Pac_alergias"));
+                p.setPac_medicamentos(rs.getString("Pac_medicamentos"));
+                p.setPac_doencas_tratamento(rs.getString("Pac_doencas_tratamento"));
+                p.setPac_historico_doencas(rs.getString("Pac_historico_doencas"));
+                pacientes.add(p);
+            }  
+        }
+        return pacientes;
+    }
+  
+  
+  
 }
 
