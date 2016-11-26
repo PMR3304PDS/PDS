@@ -157,11 +157,11 @@
                         <tr>
                         <tr>
                             <td>Telefone - 1</td>
-                            <td><input type="text" name="telefone1" maxlength="15" onkeypress='return isNumberKey(event)' required/>
+                            <td><input type="text" name="telefone1" maxlength="8" onkeypress='return isNumberKey(event)' required/>
                         </tr>
                         <tr>
                             <td>Telefone - 2</td>
-                            <td><input type="text" name="telefone2" maxlength="15" onkeypress='return isNumberKey(event)' />
+                            <td><input type="text" name="telefone2" maxlength="8" onkeypress='return isNumberKey(event)' />
                         </tr>
                         <tr><td><br></td></tr>
                         <tr>

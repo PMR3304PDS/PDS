@@ -200,12 +200,18 @@
                         <tr>
                         <tr>
                             <td>Telefone - 1</td>
-                            <td><input type="text" name="telefone1" maxlength="15" onkeypress='return isNumberKey(event)' required value=<%= tel1 %>/>
+                            <td><input type="text" name="telefone1" maxlength="8" onkeypress='return isNumberKey(event)' required value=<%= tel1 %>/>
                         </tr>
+<%
+                        if(telefones.size()>1){
+%>
                         <tr>
                             <td>Telefone - 2</td>
-                            <td><input type="text" name="telefone2" maxlength="15" onkeypress='return isNumberKey(event)' value=<%= tel2s %>/>
+                            <td><input type="text" name="telefone2" maxlength="8" onkeypress='return isNumberKey(event)' value=<%= tel2s %>/>
                         </tr>
+<%
+                        }
+%>
                         <tr><td><br></td></tr>
                         <tr>
                             <td>Login (email)</td>
