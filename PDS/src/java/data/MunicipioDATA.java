@@ -85,5 +85,22 @@ public class MunicipioDATA {
      return municipios;
       
   }
+  public Vector buscarTudo(Transacao tr) throws Exception {
+        Connection con = tr.obterConexao();
+        String sql = "select * from Municipio ";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        Vector Vec_con = new Vector();
+
+        while (rs.next()) {
+              MunicipioDO municipio = new MunicipioDO();
+             municipio.setMun_cod(rs.getInt("Mun_cod"));
+             municipio.setMun_nome(rs.getString("Mun_nome"));
+             municipio.setEstado_Est_cod(rs.getInt("Estado_Est_cod"));
+            Vec_con.add(municipio);
+        }
+        return Vec_con;
+    } // buscar tudo
+    
     
 }

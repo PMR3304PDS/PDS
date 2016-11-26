@@ -9,7 +9,25 @@ import java.util.*;
  * @author Renan
  */
 public class Usuario{
-    
+    public boolean incluir (UsuarioDO usuario) throws Exception{
+
+     // efetuando a transacao
+     Transacao tr = new Transacao();
+     try {
+
+       tr.begin();
+         UsuarioData cdata = new UsuarioData();
+         cdata.incluir(usuario, tr);
+       tr.commit();
+       return true;
+       
+     } catch(Exception e) {
+         tr.rollback();
+         System.out.println("erro ao incluir " + usuario.getUsu_nome());
+         e.printStackTrace();
+     }
+     return false;
+  } // incluir
     public UsuarioDO buscar(String user_name) throws Exception {
         Transacao tr = new Transacao();
         try {
@@ -194,6 +212,23 @@ public class Usuario{
             e.printStackTrace();
         }
         return null;
+    }
+    public boolean verificaPorCpf(String cpf) throws Exception{
+         
+        Transacao tr = new Transacao();
+        try {
+            tr.beginReadOnly();
+              UsuarioData cdata = new UsuarioData();
+              Vector v = cdata.pesquisarPorCpf(cpf, tr);
+            tr.commit();
+            if(v!=null&&v.size()>0)
+            return true;
+        } catch (Exception e) {
+            tr.rollback();
+            System.out.println("Error!");
+            e.printStackTrace();
+        }
+        return false;
     }
     
     private boolean isEmpty(String s) {

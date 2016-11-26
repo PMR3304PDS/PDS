@@ -7,15 +7,15 @@ import utils.Transacao;
 public class MedicoDATA {
 
     public void incluir(MedicoDO medico, Transacao tr) throws Exception {
-        Connection con = tr.obterConexao();
-        String sql = "insert into Medico (Conselhos_Con_cod, Estado_Est_cod_conselho_emissor, Med_NumRegistro) values (?, ?, ?)";
-        PreparedStatement ps = con.prepareStatement(sql);
-        ps.setInt(1, medico.getConselhos_Con_cod());
-        ps.setInt(2, medico.getEstado_Est_cod_conselho_emissor());
-        ps.setString(3, medico.getMed_NumRegistro());
-        int result = ps.executeUpdate();
-    }
-
+     Connection con = tr.obterConexao();
+     String sql = "insert into Medico (Conselhos_Con_cod, Estado_Est_cod_conselho_emissor, Med_NumRegistro,Usuario_Usu_cod) values (?, ?, ?,?)";
+     PreparedStatement ps = con.prepareStatement(sql);
+     ps.setInt(1, medico.getConselhos_Con_cod());
+     ps.setInt(2, medico.getEstado_Est_cod_conselho_emissor());
+     ps.setString(3, medico.getMed_NumRegistro());
+     ps.setInt(4, medico.getUsu_cod());
+     int result = ps.executeUpdate();
+  }
     public void atualizar(MedicoDO medico, Transacao tr) throws Exception {
         Connection con = tr.obterConexao();
         String sql = "update Medico set Estado_Est_cod_conselho_emissor=?, Med_NumRegistro=? where Conselhos_Con_cod=?";
@@ -112,6 +112,22 @@ public class MedicoDATA {
 
     }
 
+     public Vector pesquisarPorCrm3(String crm, Transacao tr) throws Exception {
+     Connection con = tr.obterConexao();
+     String sql = "select * from Medico where Med_NumRegistro like ?";
+     PreparedStatement ps = con.prepareStatement(sql);
+     ps.setString(1, crm);
+     ResultSet rs = ps.executeQuery();
+     Vector medicos= new Vector();
+     while (rs.next()) {
+     MedicoDO c = new MedicoDO();
+     c.setConselhos_Con_cod(rs.getInt("Conselhos_Con_cod"));
+     c.setEstado_Est_cod_conselho_emissor(rs.getInt("Estado_Est_cod_conselho_emissor"));
+     c.setMed_NumRegistro(rs.getString("Med_NumRegistro"));
+     medicos.add(c);
+     }
+     return medicos;
+  }
     public Vector pesquisarMedicoPorNome(String nome, Transacao tr) throws Exception {
         Connection con = tr.obterConexao();
         String sql = "select * "

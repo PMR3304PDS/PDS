@@ -8,6 +8,7 @@ package data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Vector;
 import utils.Transacao;
 
 /**
@@ -45,6 +46,23 @@ public class EstadoDATA {
      estado.setEst_nome(rs.getString("Est_nome"));
      return estado;
   } // buscar
+  public Vector buscarTudo(Transacao tr) throws Exception {
+        Connection con = tr.obterConexao();
+        String sql = "select * from Estado ";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        Vector Vec_con = new Vector();
+
+        while (rs.next()) {
+            ConselhosDO conselho = new ConselhosDO();
+         EstadoDO estado = new EstadoDO();
+         estado.setEst_cod(rs.getInt("Est_cod"));
+         estado.setEst_nome(rs.getString("Est_nome"));
+            Vec_con.add(estado);
+        }
+        return Vec_con;
+    } // buscar tudo    
+    
     
     
     

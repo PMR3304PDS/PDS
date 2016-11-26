@@ -51,6 +51,40 @@ public class Medico extends Usuario {
         return null;
     }
     
+    public boolean verificaPorCrm(String crm) throws Exception{
+        Transacao tr = new Transacao();
+        try {
+            tr.beginReadOnly();
+              MedicoDATA cdata = new MedicoDATA();
+              Vector v = cdata.pesquisarPorCrm3(crm,tr);
+            tr.commit();
+            if(v!=null&&v.size()>0)
+            return true;
+        } catch (Exception e) {
+            tr.rollback();
+            System.out.println("Error!");
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
+    public Vector pesquisarPorCrm3(String crm) throws Exception {
+     
+        
+        Transacao tr = new Transacao();
+        try {
+            tr.beginReadOnly();
+              MedicoDATA cdata = new MedicoDATA();
+              Vector v = cdata.pesquisarPorCrm3(crm, tr);
+            tr.commit();
+            return v;
+        } catch (Exception e) {
+            tr.rollback();
+            System.out.println("Error!");
+            e.printStackTrace();
+        }
+        return null;
+    }
     public Vector pesquisarMedicoPorNome(String nome) throws Exception {
         if (isEmpty(nome)) {
             return null;
@@ -110,7 +144,23 @@ public class Medico extends Usuario {
         }
         return null;
     }
-    
+      public boolean verificaPorCpf(String cpf) throws Exception{
+         
+        Transacao tr = new Transacao();
+        try {
+            tr.beginReadOnly();
+              MedicoDATA cdata = new MedicoDATA();
+              Vector v = cdata.pesquisarMedicoPorCpf(cpf, tr);
+            tr.commit();
+            if(v!=null&&v.size()>0)
+            return true;
+        } catch (Exception e) {
+            tr.rollback();
+            System.out.println("Error!");
+            e.printStackTrace();
+        }
+        return false;
+    }
     private boolean isEmpty(String s) {
         if (null == s)
             return true;

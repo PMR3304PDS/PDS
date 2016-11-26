@@ -36,6 +36,21 @@ public class EspecialidadeDATA {
      contato.setEsp_nome (rs.getString("Esp_nome"));
      return contato;
   } // buscar
+   public Vector buscarTudo(Transacao tr) throws Exception {
+        Connection con = tr.obterConexao();
+        String sql = "select * from Especialidade ";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        Vector Vec_con = new Vector();
+
+        while (rs.next()) {
+           EspecialidadeDO contato = new EspecialidadeDO();
+           contato.setEsp_cod (rs.getInt("Esp_cod"));
+           contato.setEsp_nome (rs.getString("Esp_nome"));
+            Vec_con.add(contato);
+        }
+        return Vec_con;
+    }
 
 
 } 

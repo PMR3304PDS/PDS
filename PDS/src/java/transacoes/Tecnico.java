@@ -5,7 +5,24 @@ import data.*;
 import java.util.*;
 
 public class Tecnico {
+public boolean incluir (TecnicoDO tecnico) throws Exception{
 
+     // efetuando a transacao
+     Transacao tr = new Transacao();
+     try {
+
+       tr.begin();
+         TecnicoDATA cdata = new TecnicoDATA();
+         cdata.incluir(tecnico, tr);
+       tr.commit();
+       return true;
+       
+     } catch(Exception e) {
+         tr.rollback();
+         e.printStackTrace();
+     }
+     return false;
+  } // incluir
     public TecnicoDO buscar(int idobj) throws Exception {
         Transacao tr = new Transacao();
         try {

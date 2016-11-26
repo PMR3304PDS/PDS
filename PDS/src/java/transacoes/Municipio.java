@@ -105,6 +105,20 @@ public class Municipio {
     return null;
   }
 
+   public Vector pesquisar() {
+        Transacao tr = new Transacao();
+        try {
+            tr.beginReadOnly();
+            MunicipioDATA cdata = new MunicipioDATA();
+            Vector v = cdata.buscarTudo(tr);
+            tr.commit();
+            return v;
+        } catch (Exception e) {
+            System.out.println("erro ao pesquisar ");
+            e.printStackTrace();
+        }
+        return null;
+    } // pesquisar
   private boolean isEmpty(String s) {
     if (null == s) {
       return true;

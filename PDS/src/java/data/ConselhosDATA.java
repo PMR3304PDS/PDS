@@ -37,5 +37,23 @@ public class ConselhosDATA {
      conselho.setCon_sigla(rs.getString("Con_sigla"));
      return conselho;
   } // buscar
+   public Vector buscarTudo(Transacao tr) throws Exception {
+        Connection con = tr.obterConexao();
+        String sql = "select * from Conselhos ";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        Vector Vec_con = new Vector();
+
+        while (rs.next()) {
+            ConselhosDO conselho = new ConselhosDO();
+            conselho.setCon_cod(rs.getInt("Con_cod"));
+            conselho.setCon_nome(rs.getString("Con_nome"));
+            conselho.setCon_sigla(rs.getString("Con_sigla"));
+            Vec_con.add(conselho);
+        }
+        return Vec_con;
+    } // buscar tudo
+
+
 
 } // ConselhoData

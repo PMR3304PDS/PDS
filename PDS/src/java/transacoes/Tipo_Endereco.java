@@ -21,4 +21,18 @@ public class Tipo_Endereco {
     return null;
   }
   
+   public int buscarPorNome(String nome) throws Exception {
+    Transacao tr = new Transacao();
+    try {
+      tr.beginReadOnly();
+      Tipo_EnderecoDO t = (new Tipo_EnderecoData()).buscarPorNome(nome, tr);
+      tr.commit();
+      return t.getTipEnd_cod();
+    } catch (Exception e) {
+      tr.rollback();
+      e.printStackTrace();
+    }
+    return 0;
+  }
+  
 }
