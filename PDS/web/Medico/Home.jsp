@@ -22,12 +22,19 @@
                     <%@ include file="/Geral/menu.jsp" %>
                 </td>
                 <td>
-                    Olá Bem-vindo <%--=nome--%>!
+                    <%
+                    int cod = ((Integer)(session.getAttribute("cod"))).intValue();
+                    transacoes.Medico tn = new transacoes.Medico();
+                    data.MedicoDO medico = tn.buscar(cod);
+                    %>
+                    
+                    Olá, bem-vindo(a) <%= medico.getUsu_nome()%>!
+                    
                     <br>
-                    Você tem uma nova indicação blabla
-                    Add botão de logout
+                    
                 </td>
             </tr>
+
             <tr>
                 <td colspan="2">
                     <%@ include file="/Geral/footer.jsp" %>
