@@ -54,7 +54,69 @@ public class Paciente {
     }
     return false;
   } // incluir
-
+  
+    public Vector pesquisarPacientePorNome(String nome) throws Exception {
+        if (isEmpty(nome)) {
+            return null;
+        }
+        
+        Transacao tr = new Transacao();
+        try {
+            tr.beginReadOnly();
+              PacienteDATA paciente = new PacienteDATA();
+              Vector v = paciente.pesquisarPacientePorNome(nome, tr);
+            tr.commit();
+            return v;
+        } catch (Exception e) {
+            tr.rollback();
+            System.out.println("Erro ao buscar paciente por nome");
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    public Vector pesquisarPacientePorRg(String rg) throws Exception {
+        if (isEmpty(rg)) {
+            return null;
+        }
+        
+        Transacao tr = new Transacao();
+        try {
+            tr.beginReadOnly();
+              PacienteDATA paciente = new PacienteDATA();
+              Vector v = paciente.pesquisarPacientePorRg(rg, tr);
+            tr.commit();
+            return v;
+        } catch (Exception e) {
+            tr.rollback();
+            System.out.println("Erro ao buscar paciente por RG");
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    public Vector pesquisarPacientePorCpf(String cpf) throws Exception {
+        if (isEmpty(cpf)) {
+            return null;
+        }
+        
+        Transacao tr = new Transacao();
+        try {
+            tr.beginReadOnly();
+              PacienteDATA paciente = new PacienteDATA();
+              Vector v = paciente.pesquisarPacientePorCpf(cpf, tr);
+            tr.commit();
+            return v;
+        } catch (Exception e) {
+            tr.rollback();
+            System.out.println("Erro ao buscar paciente por CPF");
+            e.printStackTrace();
+        }
+        return null;
+    }
+  
+  
+  
   public boolean atualizar(PacienteDO paciente) throws Exception {
     Transacao tr = new Transacao();
     try {

@@ -53,7 +53,10 @@ public class MedicoDATA {
 
     public Vector pesquisarPorCrm(String crm, Transacao tr) throws Exception {
         Connection con = tr.obterConexao();
-        String sql = "select * from Medico where Med_NumRegistro like ?";
+        String sql = "select * "
+                + "from Usuario inner join Medico "
+                + "on Usuario.Usu_cod = Medico.Usuario_Usu_Cod "
+                + "where Medico.Med_NumRegistro = ? ";;
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, crm);
         ResultSet rs = ps.executeQuery();
@@ -113,7 +116,7 @@ public class MedicoDATA {
         String sql = "select * "
                 + "from Usuario inner join Medico "
                 + "on Usuario.Usu_cod = Medico.Usuario_Usu_Cod "
-                + "where Usu_nome like ?";
+                + "where Usu_nome like %?% ";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, nome);
         ResultSet rs = ps.executeQuery();
