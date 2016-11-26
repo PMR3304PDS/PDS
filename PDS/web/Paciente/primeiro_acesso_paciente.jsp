@@ -54,33 +54,6 @@
                     </script>
             
                     <table>
-         
-                        <tr>
-                            <td>Nome</td>
-                            <td><input type="text" name="nome" maxlength="200" required/>
-                        </tr>
-                        <tr>
-                            <td>RG</td>
-                            <td><input type="text" name="rg" maxlength="9" onkeypress='return isNumberKey(event)' required/>
-                        </tr>
-                        <tr>
-                            <td>CPF</td>
-                            <td><input type="text" name="cpf" maxlength="11" onkeypress='return isNumberKey(evt)' required/>
-                        </tr>
-                        <tr><td><br></td></tr>
-                        <tr>
-                            <td>Endereço</td>
-                            <td><input type="text" name="endereco" maxlength="200" required/>
-                        </tr>
-                        <tr>
-                            <td>Número</td>
-                            <td><input type="text" name="numero" maxlength="10" onkeypress='return isNumberKey(event)' required/>
-                        </tr>
-                        <tr>
-                            <td>Bairro</td>
-                            <td><input type="text" name="bairro" maxlength="200" required/>
-                        </tr>
-                        <tr>
                             <td>Estado</td>
                             <td>
                         <%
@@ -97,7 +70,8 @@
                              <select name="estado_id" id="estado_id" onchange="this.form.submit()" required>
                         <%
                         }
-                        %>                            
+                        %>            
+                                    <option value="0" <% if (cod1 == 0) { %> selected <% } %> > Selecione o estado</option>
                                     <option value="1" <% if (cod1 == 1) { %> selected <% } %> > Acre</option>
                                     <option value="2" <% if (cod1 == 2) { %> selected <% } %> > Alagoas</option>
                                     <option value="3" <% if (cod1 == 3) { %> selected <% } %> > Amapá</option>
@@ -233,11 +207,6 @@
                     </table>
                     <input type="submit" name="incluir" value="incluir" />
                 </form>
-                <form action='/PDS/index.jsp'>
-               <p>
-                <input type='submit' name="Voltar" value="Voltar"> 
-              </p>    
-              </form> 
 
 <%      } else { 
 %>
@@ -260,7 +229,6 @@
        String tel1s = request.getParameter("telefone1");
        int tel1 = Integer.parseInt(tel1s);
        String tel2s = request.getParameter("telefone2");
-       int tel2 = Integer.parseInt(tel2s);
        String login = request.getParameter("login");
        String senha = request.getParameter("senha");
        String data_s = request.getParameter("data");
@@ -293,7 +261,14 @@
        paciente.setPac_doencas_tratamento(doencas);
        paciente.setPac_historico_doencas(historico);
        
-       boolean a = tp.incluir(paciente);
+       Vector logpac = tp.pesquisarPacientePorLogin(login);
+       Vector rgpac = tp.pesquisarPacientePorRg(rg);
+       Vector cpfpac = tp.pesquisarPacientePorCpf(cpf);
+       boolean a = false;
+       
+       if((logpac.size() == 0) && (rgpac.size() == 0) && (cpfpac.size() == 0)) {
+           a = tp.incluir(paciente);
+       }
        
        int cod = paciente.getUsu_cod();
        transacoes.Telefone t1 = new transacoes.Telefone();
@@ -302,14 +277,17 @@
        telefone1.setUsuario_Usu_Cod(cod);
        
        boolean b = t1.incluir(telefone1);
-         
-       transacoes.Telefone t2 = new transacoes.Telefone();
-       data.TelefoneDO telefone2 = new data.TelefoneDO();
-       telefone2.setTel_numero(tel2);
-       telefone2.setUsuario_Usu_Cod(cod);
        
-       boolean c = t2.incluir(telefone2);
-         
+       boolean c = true;
+       if (tel2s.equals("") == false){
+            int tel2 = Integer.parseInt(tel2s);
+            transacoes.Telefone t2 = new transacoes.Telefone();
+            data.TelefoneDO telefone2 = new data.TelefoneDO();
+            telefone2.setTel_numero(tel2);
+            telefone2.setUsuario_Usu_Cod(cod);
+            c = t2.incluir(telefone2);
+       }
+       
        transacoes.Endereco te = new transacoes.Endereco();
        data.EnderecoDO end = new data.EnderecoDO();
        end.setEnd_bairro(bairro);
@@ -321,22 +299,54 @@
           
        boolean e = te.incluir(end);
          
-       
        if (a && b && c && e) {
 %>
-          Transação realizada com sucesso!
-            <form action='/PDS/index.jsp'>
-               <p>
-                <input type='submit' name="Voltar" value="Voltar"> 
-              </p>    
-              </form> 
-<%     } else {
+          Cadastro concluido com sucesso! Bem vindo ao PoliDATASus!
+          <form action="/PDS/" method="post">
+             <input type="submit" name="voltar" value="Voltar" />
+          </form>
+<%     } else if(logpac.size() > 0){
 %>
-          Erro ao incluir usuário            
+          Erro ao incluir usuário
+          Login já cadastrado!<br>
           <form action="primeiro_acesso_paciente.jsp" method="post">
              <input type="submit" name="retry" value="Repetir" />
           </form>
-<%     }
+          <form action="/PDS/" method="post">
+             <input type="submit" name="voltar" value="Voltar" />
+          </form>
+<%      } else if(rgpac.size() > 0){
+%>
+        Erro ao incluir usuário <br>
+        RG já cadastrado!
+        <form action="primeiro_acesso_paciente.jsp" method="post">
+            <input type="submit" name="retry" value="Repetir" />
+        </form>
+        <form action="/PDS/" method="post">
+             <input type="submit" name="voltar" value="Voltar" />
+        </form>
+<%      } else if(cpfpac.size() > 0){
+%>
+        Erro ao incluir usuário<br>
+        CPF já cadastrado!
+        <form action="primeiro_acesso_paciente.jsp" method="post">
+            <input type="submit" name="retry" value="Repetir" />
+        </form>
+        <form action="/PDS/" method="post">
+             <input type="submit" name="voltar" value="Voltar" />
+        </form>
+<%      } else{
+%>
+        Erro ao incluir usuário<br>
+        Telefones já cadastrado!
+        <form action="primeiro_acesso_paciente.jsp" method="post">
+            <input type="submit" name="retry" value="Repetir" />
+        </form>
+        <form action="/PDS/" method="post">
+             <input type="submit" name="voltar" value="Voltar" />
+        </form>
+<%      }
+
        }
 %>
                 </td>
@@ -349,4 +359,3 @@
         </table>
     </body>
 </html>
-
