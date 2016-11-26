@@ -97,7 +97,7 @@
        } // showEditForm
        
        if (null != request.getParameter("voltar")) {
-            response.sendRedirect("/PDS/Geral/temppage.jsp"); 
+            response.sendRedirect("/PDS/Paciente/Home.jsp"); 
        }
                       
 %>
@@ -119,8 +119,9 @@
        String doencas = request.getParameter("doencas");
        String historico = request.getParameter("historico");
 
+       int Usu_cod = ((Integer)session.getAttribute("cod")).intValue();
        transacoes.Paciente tn = new transacoes.Paciente();
-       data.PacienteDO paciente = new data.PacienteDO();
+       data.PacienteDO paciente = tn.buscar(Usu_cod); 
        
        paciente.setPac_nascimento(sqldate);
        paciente.setPac_peso(peso);
