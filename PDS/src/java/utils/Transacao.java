@@ -10,14 +10,14 @@ public class Transacao {
 
   public void begin() throws Exception{
       Class.forName("com.mysql.jdbc.Driver"); 
-      _conexao =DriverManager.getConnection("jdbc:mysql://localhost/pds?" +"user=aluno&password=pmr2490");
+      _conexao =DriverManager.getConnection("jdbc:mysql://localhost/pds?" +"user=root&password=pdspoli");
       _conexao.setAutoCommit(false);
       _readOnly = false;
   } // begin
 
   public void beginReadOnly() throws Exception{
       Class.forName("com.mysql.jdbc.Driver"); 
-      _conexao =DriverManager.getConnection("jdbc:mysql://localhost/pds?" +"user=aluno&password=pmr2490");
+      _conexao =DriverManager.getConnection("jdbc:mysql://localhost/pds?" +"user=root&password=pdspoli");
       _readOnly = true;
   } // begin
 

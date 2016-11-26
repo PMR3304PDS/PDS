@@ -202,7 +202,7 @@
                         </tr>
                         <tr>
                             <td>Histórico de doenças</td>
-                            <td><textarea name="historico" maxlength="300" rows="4" cols="50"/></textarea>
+                            <td><textarea name="historico" maxlength="300" rows="4" cols="50" /></textarea>
                         </tr>
                         <tr><td><br></td></tr>
             
