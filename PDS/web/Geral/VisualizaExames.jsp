@@ -44,7 +44,7 @@
 
                     transacoes.Exame tn = new transacoes.Exame();
                     data.ExameDO exame = tn.buscar(exame_cod);                                   
-
+                    if (exame != null){
                 %>
                 
                 <tr>
@@ -64,8 +64,8 @@
                     <br />
                     Data Previsão - <%= exame.getExa_previsao()%>
 <br /><br />
-                    
-                    <br>
+
+<br>
                     <form action="/PDS/Tecnico/Busca.jsp" method="post">
                         <input type="submit" name="voltar" value="Voltar" />
                     </form>
@@ -74,6 +74,13 @@
                         <input type="submit" name="Editar Status" value="Editar Status" />
                     </form>
                     
+                    <%
+                    }else{
+                    
+                    %>
+                    
+                    Exame foi excluido
+                    <%}%>
                 </td>
             </tr>
 
