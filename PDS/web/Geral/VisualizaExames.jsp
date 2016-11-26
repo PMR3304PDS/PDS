@@ -26,71 +26,42 @@
                 <td>
                     <%@ include file="/Geral/menu.jsp" %>
                 </td>
-                <td>
-                    <% int exame_cod;
-                        try {
-                            exame_cod = Integer.parseInt(request.getParameter("exame_cod"));
-                            } catch (NumberFormatException e) {
-                            exame_cod = 0;
-                       
+            <td>
+                    <%                    int exame_cod = Integer.parseInt(request.getParameter("exame_cod"));
+                        transacoes.Exame tn = new transacoes.Exame();
+                        data.ExameDO exame = tn.buscar(exame_cod);
                     %>
-                Erro ao tentar ver Exame!
-                <form action="/PDS/Tecnico/Busca.jsp" method="post">
-                <input type="submit" name="Voltar" value="Voltar" />
-                </form>
-                
-                <%
-                    }
+            <br>
+            <br>
+            C√≥digo do Exame - <%= exame.getExa_cod()%>
+            <br>
+            <br>
+            Resumo do Exame - <%= exame.getExa_resumo()%>
+            <br>
+            <br>
+            Data Upload - <%= exame.getExa_data_upload()%>
+            <br>
+            <br>
+            Data Previs√£o - <%= exame.getExa_previsao()%>
 
-                    transacoes.Exame tn = new transacoes.Exame();
-                    data.ExameDO exame = tn.buscar(exame_cod);                                   
-                    if (exame != null){
-                %>
-                
-                <tr>
-                <td>
-  
-                </td>
-                
-                <td>
-                    CÛdigo do Exame - <%= exame.getExa_cod() %>
-                    <br />
-                    <br />
-                    Resumo do Exame - <%= exame.getExa_resumo() %>
-                    <br />
-                    <br />
-                    Data Upload - <%= exame.getExa_data_upload() %>
-                    <br />
-                    <br />
-                    Data Previs„o - <%= exame.getExa_previsao()%>
-<br /><br />
+            <br><br>
 
-<br>
-                    <form action="/PDS/Tecnico/Busca.jsp" method="post">
-                        <input type="submit" name="voltar" value="Voltar" />
-                    </form>
-                    
-                    <form action="/PDS/Tecnico/AlteraStatusExame.jsp?exame_cod=<%=exame_cod%>" method="post">
-                        <input type="submit" name="Editar Status" value="Editar Status" />
-                    </form>
-                    
-                    <%
-                    }else{
-                    
-                    %>
-                    
-                    Exame foi excluido
-                    <%}%>
-                </td>
-            </tr>
+            <br>
+            <form action="/PDS/Tecnico/Busca.jsp" method="post">
+                <input type="submit" name="voltar" value="Voltar" />
+            </form>
 
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <%@ include file="/Geral/footer.jsp" %>
-                </td>
-            </tr>
-        </table>
-    </body>
+            <form action="/PDS/Tecnico/AlteraStatusExame.jsp?exame_cod=<%=exame_cod%>" method="post">
+                <input type="submit" name="Editar Status" value="Editar Status" />
+            </form>
+        </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <%@ include file="/Geral/footer.jsp" %>
+            </td>
+        </tr>
+    </table>
+</body>
 </html>
+
