@@ -47,9 +47,9 @@
                     <br />
                     <table  border="1">
                         <tr>
-                            <th>|--Código do Exame--|</th>                           
+                            <th>|--Codigo do Exame--|</th>                           
                             <th>|----Data----|</th>
-                            <th>|Responsável por Adicionar Documento |</th>
+                            <th>|Responsavel por Adicionar Documento |</th>
                         </tr>
                     
                         <tr>
@@ -60,16 +60,6 @@
                                 transacoes.Exame tn = new transacoes.Exame();
 
                                 Vector exames = tn.pesquisarPorCod(cod);
-
-                                if ((exames.size() == 0)) {
-                            %>
-
-                            Lista de Exames não encontrada!
-                        <form action="/Tecnico/Busca.jsp" method="post">
-                            <input type="submit" name="voltar" value="Voltar" />
-
-                        </form>
-                        <%     } else {
 
                                 for (int i = 0; i < exames.size(); i++) {
 
@@ -101,13 +91,13 @@
                                 }  
                             }   
 
-                        }
-                        %>  
+                        %>
+                        
                         </table>
                         <br />
                         <br />
                         <br />
-                        <form action="/Geral/upload_exame_receita.jsp?cod_paciente=<%=cod%>" method="post">
+                        <form action="/Geral/upload_exame_receita.jsp?cod_paciente=<%= cod %>" method="post">
                             <input type="submit" name="Adicionar" value="Adicionar Exame" />
                         </form>
                         <form action="/PDS/Tecnico/Busca.jsp" method="post">
