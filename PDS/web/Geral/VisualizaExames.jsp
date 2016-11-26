@@ -75,7 +75,7 @@
                         <input type="submit" name="voltar" value="Voltar" />
                     </form>
                     
-                    <form action="/PDS/Tecnico/AlterarStatusExame.jsp?exame_cod=<%=exame_cod%>" method="post">
+                    <form action="/PDS/Tecnico/AlteraStatusExame.jsp?exame_cod=<%=exame_cod%>" method="post">
                         <input type="submit" name="Editar Status" value="Editar Status" />
                     </form>
                     
