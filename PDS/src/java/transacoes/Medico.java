@@ -198,9 +198,12 @@ public class Medico extends Usuario {
     Transacao tr = new Transacao();
     try {
       tr.beginReadOnly();
-      MedicoDO t = (new MedicoDATA()).buscar(idobj, tr);
+      MedicoDO m = (new MedicoDATA()).buscar(idobj, tr);
       tr.commit();
-      return t;
+      if(m.isUsu_ativo())
+        return m;
+      else
+        return null;
     } catch (Exception e) {
       tr.rollback();
       System.out.println("erro ao buscar " + idobj);

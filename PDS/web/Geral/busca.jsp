@@ -21,7 +21,7 @@
                     <%@ include file="/Geral/menu.jsp" %>
                 </td>
                 <td>
-                    <a href="/PDS/Medico/visualiza_perfil.jsp?cod=6&tipo=m">Maria do Carmo Coelho</a>
+                    <a href="/PDS/Medico/visualiza_perfil.jsp?cod=12">Pedro Godoy</a>
                 </td>
             </tr>
             <tr>

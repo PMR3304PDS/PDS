@@ -31,7 +31,10 @@ public class Tecnico {
       tr.beginReadOnly();
       TecnicoDO t = (new TecnicoDATA()).buscar(idobj, tr);
       tr.commit();
-      return t;
+      if(t.isUsu_ativo())
+        return t;
+      else
+        return null;
     } catch (Exception e) {
       tr.rollback();
       System.out.println("erro ao buscar " + idobj);

@@ -10,9 +10,12 @@ public class Farmaceutico extends Usuario {
     Transacao tr = new Transacao();
     try {
       tr.beginReadOnly();
-      FarmaceuticoDO c = (new FarmaceuticoDATA()).buscar(cod, tr);
+      FarmaceuticoDO f = (new FarmaceuticoDATA()).buscar(cod, tr);
       tr.commit();
-      return c;
+      if(f.isUsu_ativo())
+        return f;
+      else
+        return null;
     } catch (Exception e) {
       tr.rollback();
       System.out.println("erro ao buscar" + cod);

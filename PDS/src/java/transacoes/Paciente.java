@@ -159,7 +159,10 @@ public class Paciente {
       PacienteDATA pacdata = new PacienteDATA();
       PacienteDO p = pacdata.buscar(idobj, tr);
       tr.commit();
-      return p;
+      if(p.isUsu_ativo())
+        return p;
+      else
+        return null;
     } catch (Exception e) {
       tr.rollback();
       System.out.println("erro ao buscar " + idobj);

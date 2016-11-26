@@ -24,19 +24,20 @@ public class ConselhosDATA {
 //     int result = ps.executeUpdate();
 //  } // atualizar
 //
-//  public ConselhosDO buscar(int idobj, Transacao tr) throws Exception {
-//     Connection con = tr.obterConexao();
-//     String sql = "select * from Conselhos where  Con_cod=?";
-//     PreparedStatement ps = con.prepareStatement(sql);
-//     ps.setInt(1, idobj);
-//     ResultSet rs = ps.executeQuery();
-//     rs.next();
-//     ConselhosDO conselho = new ConselhosDO();
-//     conselho.setCon_cod (rs.getInt("Con_id"));
-//     conselho.setCon_nome (rs.getString("Con_nome"));
-//     conselho.setCon_sigla(rs.getString("Con_sigla"));
-//     return conselho;
-//  } // buscar
+  public ConselhosDO buscar(int idobj, Transacao tr) throws Exception {
+    Connection con = tr.obterConexao();
+    String sql = "select * from Conselhos where Con_cod=?";
+    PreparedStatement ps = con.prepareStatement(sql);
+    ps.setInt(1, idobj);
+    ResultSet rs = ps.executeQuery();
+    rs.next();
+    ConselhosDO conselho = new ConselhosDO();
+    conselho.setCon_cod(rs.getInt("Con_cod"));
+    conselho.setCon_nome(rs.getString("Con_nome"));
+    conselho.setCon_sigla(rs.getString("Con_sigla"));
+    return conselho;
+  }
+
   public Vector buscarTudo(Transacao tr) throws Exception {
     Connection con = tr.obterConexao();
     String sql = "select * from Conselhos ";

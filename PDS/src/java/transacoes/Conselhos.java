@@ -24,6 +24,20 @@ public class Conselhos {
     }
     return null;
   } // pesquisar
+  
+  public ConselhosDO buscar(int idobj) {
+    Transacao tr = new Transacao();
+    try {
+      tr.beginReadOnly();
+      ConselhosDO c = (new ConselhosDATA()).buscar(idobj, tr);
+      tr.commit();
+      return c;
+    } catch (Exception e) {
+      System.out.println("erro ao pesquisar ");
+      e.printStackTrace();
+    }
+    return null;
+  }
 
 //    private boolean isEmpty(String s) {
 //        if (null == s) {

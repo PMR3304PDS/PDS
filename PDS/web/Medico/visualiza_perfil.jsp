@@ -31,7 +31,6 @@
                     <%
                     int cod = -1;
                     boolean valido = true;
-                    String tipo = request.getParameter("tipo");
                     
                     try
                     {
@@ -45,19 +44,12 @@
                     PacienteDO p = null;
                     TecnicoDO t = null;
                     FarmaceuticoDO f = null;
-                    UsuarioDO u = new UsuarioDO();
                     if (valido)
                     {
-                      if(tipo.equalsIgnoreCase("p")){
-                        p = (new Paciente()).buscar(cod);}
-                      else if(tipo.equalsIgnoreCase("m"))
-                        m = (new Medico()).buscar(cod);
-                      else if(tipo.equalsIgnoreCase("f"))
-                        f = (new Farmaceutico()).buscar(cod);
-                      else if(tipo.equalsIgnoreCase("t"))
-                        t = (new Tecnico()).buscar(cod);
-                      else
-                        valido = false;
+                      p = (new Paciente()).buscar(cod);
+                      m = (new Medico()).buscar(cod);
+                      f = (new Farmaceutico()).buscar(cod);
+                      t = (new Tecnico()).buscar(cod);
                       
                       if(p == null && m == null && f == null && t == null)
                         valido = false;
@@ -74,7 +66,7 @@
                         <%
                         for(int i = 0; i < tel.size(); i++) {
                         %>
-                        Telefone: <%= ((TelefoneDO)(tel.elementAt(i))).getTel_numero() %> </br>
+                        Telefone <%= i+1%>: <%= ((TelefoneDO)(tel.elementAt(i))).getTel_numero() %> </br>
                         <%
                         }
                         %>
@@ -88,7 +80,10 @@
                         Doenças em tratamento: <%= p.getFormattedPac_doencas_tratamento() %> </br>
                         Histórico de doenças: <%= p.getFormattedPac_historico_doencas() %> </br>
                         Medicamentos: <%= p.getFormattedPac_medicamentos() %> </br>
-                        <%//TODO: Botao%>
+                        <form action='/PDS/Medico/Consulta.jsp'>
+                          <input type='hidden' name='cod' value='<%=p.getUsu_cod()>'
+                          <input type='submit' name="Consulta">  
+                        </form>
                       <%
                       }
                       else if(m != null) {
@@ -101,7 +96,30 @@
                           MunicipioDO mun = (new Municipio()).buscar(((EnderecoDO)(end.elementAt(i))).getMunicipio_Mun_cod());
                           EstadoDO est = (new Estado()).buscar(mun.getEstado_Est_cod());
                         %>
-                        Endereço: <%//tipo_end.getTipEnd_tipo()%> <%= ((EnderecoDO)(end.elementAt(i))).getEnd_rua()%>, <%= ((EnderecoDO)(end.elementAt(i))).getEnd_num()%> - <%= mun.getMun_nome()%>, <%= est.getEst_nome()%> </br>
+                          Endereço <%= i+1%>: <%= ((EnderecoDO)(end.elementAt(i))).getEnd_rua()%>, <%= ((EnderecoDO)(end.elementAt(i))).getEnd_num()%> - <%= mun.getMun_nome()%>, <%= est.getEst_nome()%>  - Tipo: <%=tipo_end.getTipEnd_tipo()%> </br>
+                        <%
+                        }
+                        for(int i = 0; i < tel.size(); i++) {
+                        %>
+                          Telefone <%= i+1%>: <%= ((TelefoneDO)(tel.elementAt(i))).getTel_numero() %> </br>
+                        <%
+                        }
+                          ConselhosDO con = (new Conselhos()).buscar(m.getConselhos_Con_cod());
+                        %>
+                          <%= con.getCon_sigla()%>: <%= m.getMed_NumRegistro()%> </br>
+                      <%
+                      }
+                      else if(f != null) {
+                      %>
+                        <h1>Busca - <%= f.getUsu_nome() %></h1> </br>
+                        Nome completo do farmaceutico: <%= f.getUsu_nome() %> </br>
+                        <%
+                        for(int i = 0; i < end.size(); i++) {
+                          Tipo_EnderecoDO tipo_end = (new Tipo_Endereco()).buscar(((EnderecoDO)(end.elementAt(i))).getTipo_Endereco_TipEnd_cod());
+                          MunicipioDO mun = (new Municipio()).buscar(((EnderecoDO)(end.elementAt(i))).getMunicipio_Mun_cod());
+                          EstadoDO est = (new Estado()).buscar(mun.getEstado_Est_cod());
+                        %>
+                          Endereço <%= i+1%>: <%= ((EnderecoDO)(end.elementAt(i))).getEnd_rua()%>, <%= ((EnderecoDO)(end.elementAt(i))).getEnd_num()%> - <%= mun.getMun_nome()%>, <%= est.getEst_nome()%>  - Tipo: <%=tipo_end.getTipEnd_tipo()%> </br>
                         <%
                         }
                         %>
@@ -111,13 +129,47 @@
                         Telefone: <%= ((TelefoneDO)(tel.elementAt(i))).getTel_numero() %> </br>
                         <%
                         }
+                        ConselhosDO con = (new Conselhos()).buscar(t.getConselhos_Con_cod());
                         %>
-                        CRM: <%= m.getMed_NumRegistro()%> </br>
-                        <%//TODO: Botao%>
+                        Conselho: <%= con.getCon_sigla()%>
+                      <%
+                      }
+                      else if(t != null) {
+                      %>
+                        <h1>Busca - <%= t.getUsu_nome() %></h1> </br>
+                        Nome completo do técnico: <%= t.getUsu_nome() %> </br>
+                        <%
+                        for(int i = 0; i < end.size(); i++) {
+                          Tipo_EnderecoDO tipo_end = (new Tipo_Endereco()).buscar(((EnderecoDO)(end.elementAt(i))).getTipo_Endereco_TipEnd_cod());
+                          MunicipioDO mun = (new Municipio()).buscar(((EnderecoDO)(end.elementAt(i))).getMunicipio_Mun_cod());
+                          EstadoDO est = (new Estado()).buscar(mun.getEstado_Est_cod());
+                        %>
+                          Endereço <%= i+1%>: <%= ((EnderecoDO)(end.elementAt(i))).getEnd_rua()%>, <%= ((EnderecoDO)(end.elementAt(i))).getEnd_num()%> - <%= mun.getMun_nome()%>, <%= est.getEst_nome()%>  - Tipo: <%=tipo_end.getTipEnd_tipo()%> </br>
+                        <%
+                        }
+                        %>
+                        <%
+                        for(int i = 0; i < tel.size(); i++) {
+                        %>
+                        Telefone: <%= ((TelefoneDO)(tel.elementAt(i))).getTel_numero() %> </br>
+                        <%
+                        }
+                        ConselhosDO con = (new Conselhos()).buscar(t.getConselhos_Con_cod());
+                        %>
+                        Conselho: <%= con.getCon_sigla()%>
                       <%
                       }
                     }
+                    else
+                    {
                     %>
+                      <h2>Usuário inválido</h2>
+                    <%
+                    }
+                    %>
+                    <form action='/PDS/Medico/Busca.jsp'>
+                      <input type='submit' name="Voltar" value="Voltar">  
+                    </form>
                 </td>
             </tr>
             <tr>
