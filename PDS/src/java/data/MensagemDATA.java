@@ -64,7 +64,7 @@ public class MensagemDATA {
 
   public void marcarLido(int cod, Transacao tr) throws Exception {
     Connection con = tr.obterConexao();
-    String sql = "update Mensagem set where Msg_visualizado = true where Msg_cod = ?";
+    String sql = "update Mensagem set Msg_visualizado = true where Msg_cod = ?";
     PreparedStatement ps = con.prepareStatement(sql);
     ps.setInt(1, cod);
     int result = ps.executeUpdate();

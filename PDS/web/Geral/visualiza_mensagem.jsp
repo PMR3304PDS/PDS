@@ -42,7 +42,7 @@
                     
                     if(valido)
                     {
-                        UsuarioDO emi = (new Usuario()).pesquisarPorId(cod_emi);
+                        UsuarioDO emi = (new Usuario()).pesquisarPorIdComInativo(cod_emi);
                     %> 
                         <h1>Conversa com <%=emi.getUsu_nome()%></h1>
                         <%
@@ -59,6 +59,11 @@
                                 <%
                                 for(int i = 0; i < v.size(); i++)
                                 {
+                                    if(!((MensagemDO)v.elementAt(i)).isMsg_visualizado())
+                                    {
+                                        (new Mensagem()).marcarLido(((MensagemDO)v.elementAt(i)).getMsg_cod());
+                                        ((MensagemDO)v.elementAt(i)).setMsg_visualizado(true);
+                                    }
                                 %>
                                     <div align='right' style="width: 100%; padding-top:20px; float:right">
                                 <%

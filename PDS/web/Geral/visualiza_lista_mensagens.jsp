@@ -35,7 +35,6 @@
                     for(int i = 0; i < v.size(); i++)
                     {
                         MensagemDO m = (MensagemDO)v.elementAt(i);
-                        UsuarioDO emi = (new Usuario()).pesquisarPorId(m.getUsuario_emissor());
                         if(!m.isMsg_visualizado())
                           novas.add(m);
                         else
@@ -52,10 +51,14 @@
                     %>
                         <h3>Conversas com Novas Mensagens</h3>
                         <table>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Última mensagem</th>
+                            </tr>
                         <%
                         for(int i = 0; i < novas.size(); i++)
                         {
-                            UsuarioDO u = (new Usuario()).pesquisarPorId(((MensagemDO)novas.elementAt(i)).getUsuario_emissor());
+                            UsuarioDO u = (new Usuario()).pesquisarPorIdComInativo(((MensagemDO)novas.elementAt(i)).getUsuario_emissor());
                         %>
                             <tr>
                                 <td>
@@ -79,6 +82,9 @@
                         </table>
                     <%
                     }
+                    %>
+                    </br></br></br>    
+                    <%
                     if(velhas.size() == 0)
                     {
                     %>
@@ -90,10 +96,14 @@
                     %>
                         <h3>Conversas antigas</h3>
                         <table>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Última mensagem</th>
+                            </tr>
                         <%
                         for(int i = 0; i < velhas.size(); i++)
                         {
-                            UsuarioDO u = (new Usuario()).pesquisarPorId(((MensagemDO)velhas.elementAt(i)).getUsuario_emissor());
+                            UsuarioDO u = (new Usuario()).pesquisarPorIdComInativo(((MensagemDO)velhas.elementAt(i)).getUsuario_emissor());
                         %>
                             <tr>
                                 <td>
@@ -106,7 +116,7 @@
                                       <% if(((MensagemDO)velhas.elementAt(i)).getMsg_msg().length() < 50) {%>
                                           <%= ((MensagemDO)velhas.elementAt(i)).getMsg_msg() %>
                                       <% } else { %>
-                                          <%= ((MensagemDO)velhas.elementAt(i)).getMsg_msg().substring(0, ((MensagemDO)novas.elementAt(i)).getMsg_msg().length()) %>...
+                                          <%= ((MensagemDO)velhas.elementAt(i)).getMsg_msg().substring(0, ((MensagemDO)velhas.elementAt(i)).getMsg_msg().length()) %>...
                                       <% } %>
                                     </a>
                                 </td>

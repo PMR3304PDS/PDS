@@ -128,6 +128,22 @@ public class Usuario {
     }
     return null;
   }
+  
+  public UsuarioDO pesquisarPorIdComInativo(int id) throws Exception {
+    Transacao tr = new Transacao();
+    try {
+      tr.beginReadOnly();
+      UsuarioData cdata = new UsuarioData();
+      UsuarioDO c = cdata.pesquisarPorId(id, tr);
+      tr.commit();
+      return c;
+    } catch (Exception e) {
+      tr.rollback();
+      System.out.println("Error!");
+      e.printStackTrace();
+    }
+    return null;
+  }
 
 //    public Vector pesquisarPorNome(String nome) throws Exception {
 //        if (isEmpty(nome)) {

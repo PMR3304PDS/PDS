@@ -44,7 +44,7 @@
             <input type='submit' value='Receita'>
             </form>
             <form action='/PDS/Medico/visualiza_perfil.jsp'>
-            <input type='hidden' name='pac_cod' value='<%=Usu_cod%>'>
+            <input type='hidden' name='cod' value='<%=Usu_cod%>'>
             <input type='submit' value='Voltar'>
             </form>
                 </td>
