@@ -21,7 +21,7 @@ public class Tipo_Exame {
             
         } catch (Exception e) {
             tr.rollback();
-            System.out.println("erro ao incluir ");
+            System.out.println("erro ao buscar ");
             e.printStackTrace();
         }
         

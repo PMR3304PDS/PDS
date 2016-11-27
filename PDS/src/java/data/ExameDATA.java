@@ -26,9 +26,17 @@ public class ExameDATA {
         ps.setBinaryStream(2, exame.getExa_exame());
         ps.setBinaryStream(3, exame.getExa_Solicitar());
         ps.setInt(4, exame.getTipo_Exame_TipExa_cod());
-        ps.setInt(5, exame.getTecnico_Usuario_Usu_cod_uploader());
+        if (exame.getTecnico_Usuario_Usu_cod_uploader() == -1) {
+            ps.setNull(5, java.sql.Types.INTEGER);
+        }else{
+            ps.setInt(5, exame.getTecnico_Usuario_Usu_cod_uploader());
+        }
         ps.setInt(6, exame.getPaciente_Usuario_Usu_cod());
-        ps.setInt(7, exame.getMedico_Usuario_Usu_cod_uploader());
+        if (exame.getMedico_Usuario_Usu_cod_uploader() == -1) {
+            ps.setNull(7, java.sql.Types.INTEGER);
+        }else{
+            ps.setInt(7, exame.getMedico_Usuario_Usu_cod_uploader());
+        }
         ps.setBoolean(8, exame.isExa_excluido());
         ps.setDate(9, exame.getExa_data_upload());
         ps.setDate(10, exame.getExa_previsao());
