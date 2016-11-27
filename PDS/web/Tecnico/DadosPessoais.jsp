@@ -87,7 +87,7 @@
                             Tipo_EnderecoDO tipo = new Tipo_EnderecoDO();
                             tipo = ttend.buscar(end.getTipo_Endereco_TipEnd_cod());
                     %>
-                    Endereco <%= i+1%>: <%= end.getEnd_rua() %> - <%= end.getEnd_bairro() %> - <%= tipo.getTipEnd_tipo() %> - <%= mu.getMun_nome() %> <br>
+                    Endereco <%= i+1%>: <%= tipo.getTipEnd_tipo() %> -- <%= end.getEnd_rua() %>, <%= end.getEnd_num() %> - <%= end.getEnd_bairro() %> - <%= mu.getMun_nome() %> <br>
                     <%
                         }
                     %>
