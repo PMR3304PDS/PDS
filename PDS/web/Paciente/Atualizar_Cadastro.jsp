@@ -272,6 +272,7 @@
                         transacoes.Usuario tu = new transacoes.Usuario();
                         data.UsuarioDO new_usu = new data.UsuarioDO();
                         
+                        new_usu.setUsu_foto(null);
                         new_usu.setUsu_ativo(true);
                         new_usu.setUsu_cod(cod_usu);
                         new_usu.setUsu_cpf(new_cpf);

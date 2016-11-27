@@ -27,18 +27,5 @@ public class Medico_has_EspecialidadeDATA {
 //     int result = ps.executeUpdate();
 //  } // atualizar
 //
-//  public Medico_has_EspecialidadeDO buscar(int idobj, Transacao tr) throws Exception {
-//     Connection con = tr.obterConexao();
-//     String sql = "select * from Medico_has_Especialidade where  Medico_Usuario_Usu_cod=?";
-//     PreparedStatement ps = con.prepareStatement(sql);
-//     ps.setInt(1, idobj);
-//     ResultSet rs = ps.executeQuery();
-//     rs.next();
-//     Medico_has_EspecialidadeDO medico_has_especialidade = new Medico_has_EspecialidadeDO();
-//     medico_has_especialidade.setMedico_Usuario_Usu_cod(rs.getInt("Medico_Usuario_Usu_cod"));
-//     medico_has_especialidade.setEspecialidade_Esp_cod(rs.getInt("Especialidade_Esp_cod"));
-//     
-//     return medico_has_especialidade;
-//  } // buscar
 }
 
