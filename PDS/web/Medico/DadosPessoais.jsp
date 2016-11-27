@@ -66,14 +66,14 @@
                     CPF: <%= m.getUsu_cpf()%><br>
                     Número de Registro (CRM): <%= m.getMed_NumRegistro()%><br>
                     Estado: <%= e.getEst_nome()%><br>
-                    Conselho: <%= c.getCon_nome()%> <br>
+                    Conselho: <%= c.getCon_nome()%> - <%= c.getCon_sigla()%> <br>
                     <%
                         for (int i = 0; i < es.size(); i++){
                             EspecialidadeDO especialidade = new EspecialidadeDO();
                             especialidade = (EspecialidadeDO)es.elementAt(i);
                         
                     %>
-                    Especialidade <%= i%>: <%= especialidade.getEsp_nome()%><br>
+                    Especialidade <%= i+1%>: <%= especialidade.getEsp_nome()%><br>
                     <%
                         }
                     %>
