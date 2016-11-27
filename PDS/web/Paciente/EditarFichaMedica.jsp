@@ -47,11 +47,12 @@
                     </script>
                     
 <%     String action = request.getParameter("atualizar");
-       if ( null == action ) {
-          action = "showEditForm";
-          int Usu_cod =  ((Integer)session.getAttribute("cod")).intValue();
-	  transacoes.Paciente tn = new transacoes.Paciente();
-          data.PacienteDO paciente = tn.buscar(Usu_cod);   
+       if (null == action){
+           action = "showEditForm";
+           int Usu_cod = Integer.parseInt(String.valueOf(session.getAttribute("cod")));
+           transacoes.Paciente tn = new transacoes.Paciente();
+           data.PacienteDO paciente = tn.buscar(Usu_cod);
+          
           DateFormat df = new SimpleDateFormat("dd/MM/yyyy"); 
           String data_formatada = df.format(paciente.getPac_nascimento());
 %>        
@@ -93,9 +94,9 @@
              
 	     
            </form>
-<%         
-       } // showEditForm
+<%     }
        
+        // showEditForm       
        if (null != request.getParameter("voltar")) {
             response.sendRedirect("/PDS/Paciente/Home.jsp"); 
        }

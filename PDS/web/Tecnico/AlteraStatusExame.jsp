@@ -24,7 +24,7 @@
                 </td>
                 <td>                    
                     <br>
-                    <h1>Altera Status Exame</h1>
+                    <h1>Alterar Status Exame</h1>
                     <br>
                     
                     <% 
@@ -38,7 +38,7 @@
                         } catch(Exception e){
 %>           <%= e.toString() %>
 <%
-                        }
+                        }                        
                         if (exame == null){
 %>
                     Exame inexistente!

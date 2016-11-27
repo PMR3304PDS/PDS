@@ -47,10 +47,9 @@ public class PacienteDATA {
     PreparedStatement ps = con.prepareStatement(sql);
     ps.setInt(1, idobj);
     ResultSet rs = ps.executeQuery();
-
-    if (rs.next()) {
-      PacienteDO p = new PacienteDO();
-      if (rs.getBoolean("Usu_ativo")) {
+    rs.next();
+    PacienteDO p = new PacienteDO();
+    if (rs.getBoolean("Usu_ativo")) {
         p.setUsu_cod(rs.getInt("Usu_cod"));
         p.setUsu_login(rs.getString("Usu_login"));
         p.setUsu_rg(rs.getString("Usu_rg"));
@@ -65,10 +64,13 @@ public class PacienteDATA {
         p.setPac_medicamentos(rs.getString("Pac_medicamentos"));
         p.setPac_doencas_tratamento(rs.getString("Pac_doencas_tratamento"));
         p.setPac_historico_doencas(rs.getString("Pac_historico_doencas"));
-      }
-      return p;
-    }
-    return null;
+        
+        return p;
+     }
+    else{
+        return null;
+    } 
+    
   } // buscar
 
   public Vector pesquisarPacientePorNome(String nome, Transacao tr) throws Exception {

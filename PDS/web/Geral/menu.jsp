@@ -22,7 +22,7 @@
             %>
                     <a href="/PDS/Paciente/Home.jsp">Home</a><br>
                     <a href="/PDS/Paciente/DadosPessoais.jsp">Dados pessoais</a><br>
-                    <a href="/PDS/Paciente/EditaFichaMedica.jsp">Ficha médica</a><br>
+                    <a href="/PDS/Paciente/EditarFichaMedica.jsp">Ficha médica</a><br>
                     <a href="/PDS/Geral/temppage.jsp">Consulta</a><br>
                     <a href="/PDS/Geral/temppage.jsp">Exame</a><br>
                     <a href="/PDS/Geral/ListaReceitas.jsp">Receitas</a><br>

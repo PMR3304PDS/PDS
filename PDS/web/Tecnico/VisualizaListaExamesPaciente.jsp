@@ -72,7 +72,7 @@
                                     usuario = tr.pesquisarPorId(uper_cod);
                                     String nome_uper = usuario.getUsu_nome();
                                     
-                                    if (exame.isExa_excluido() == true){
+                                    if (exame.isExa_excluido() == false){
                             %>
                             <tr>
                                 
