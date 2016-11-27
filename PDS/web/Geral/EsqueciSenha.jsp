@@ -85,8 +85,8 @@
                             else
                             {
                     %>
-                                Erro ao mudar senha!
-                                <form action="mudar_senha.jsp" method="post">
+                                Erro ao alterar senha!
+                                <form action="EsquciSenha.jsp" method="post">
                                     <input type="submit" name="voltar" value="Voltar" />
                                 </form>
                     <%
