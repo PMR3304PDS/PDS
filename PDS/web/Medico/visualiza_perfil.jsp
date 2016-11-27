@@ -78,7 +78,7 @@
                         Doenças em tratamento: <%= p.getFormattedPac_doencas_tratamento() %> </br>
                         Histórico de doenças: <%= p.getFormattedPac_historico_doencas() %> </br>
                         Medicamentos: <%= p.getFormattedPac_medicamentos() %> </br>
-                        <form action='/PDS/Medico/VisualizarListaDeConsultas.jsp'>
+                        <form action='/PDS/Medico/VisualizarListaDeConsultas.jsp' method="post">
                           <input type='submit'>  
                         </form>
                       <%

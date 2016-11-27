@@ -128,7 +128,9 @@
                             }
                         }   
                     %>
-                    
+                    <form action='/PDS/Paciente/Busca.jsp' method="post">
+                      <input type='submit' name="Voltar" value="Voltar"> 
+                    </form> 
                 </td>
             </tr>
             <tr>
