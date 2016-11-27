@@ -69,16 +69,16 @@
             </td>
             </table>
             <br>           
-                <input type="submit" name="voltar" value="voltar" />
                 <input type="submit" name="editar" value="editar" />  
                 <input type="submit" name="excluir" value="excluir" />
+            </form>
+               
+            <form action="/PDS/Geral/VisualizaExames.jsp?exame_cod=<%=Exa_cod%>" method="post">
+                <input type="submit" name="voltar" value="voltar" />
             </form>
  
         <%    
              }    
-       if (null != request.getParameter("voltar")) {
-            response.sendRedirect("/PDS/Tecnico/Home.jsp"); 
-       }
        
        if (null != request.getParameter("excluir")) {
            int Exa_cod = Integer.parseInt(request.getParameter("exame_cod"));
