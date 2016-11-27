@@ -32,13 +32,10 @@
                         transacoes.Consulta tn_cns = new transacoes.Consulta(); 
                         java.util.Vector todasconsultas = tn_cns.busca_paciente(pac_cod);
                         
-                        if((todasconsultas==null)||(paciente==null))
+                        if((todasconsultas==null)||(todasconsultas.size()<=0)||(paciente==null))
                         {
                             %>
                                 Paciente não tem consultas ou foi excluido!
-                                <form action="Home.jsp" method="post">
-                                    <input type="submit" name="voltar" value="Voltar" />
-                                </form>
                             <%
                         }
                         else
@@ -53,14 +50,18 @@
 
                                 java.sql.Date data = consulta.getCns_data();
                                 String resumo = consulta.getCns_resumo();
-                                
-                                if(medico!=null)
-                                {
                                 %>
                                     Consulta - <%= paciente.getUsu_nome() %>
                                     <br>
+                                <% 
+                                    if(medico!=null)
+                                    {
+                                %>
                                     Medico - <%= medico.getUsu_nome() %>
                                     <br>
+                                <%
+                                    }
+                                %>
                                     Data - <%= data %>
                                     <br>
                                     Resumo - <%= resumo %>
@@ -68,20 +69,20 @@
                                     int medicoatual = ((Integer)session.getAttribute("cod")).intValue();
                                     if(medicoatual==med_cod)
                                     {
+                                        int cns_cod = consulta.getCns_cod();
                                 %>
-                                        <form action="edita_resumo_consulta.jsp?cns_cod=<%=pac_cod%>" method="post">
+                                        <form action="edita_resumo_consulta.jsp?cns_cod=<%=cns_cod%>" method="post">
                                             <input type="submit" name="Editar Resumo" value="Editar resumo" />
                                         </form>
                                 <%
                                     }
-                                }
                                 %>
                                 <br><br><br>
                             <%
                             }
                         }
                     %>
-                        <form action="Home.jsp" method="post">
+                        <form action="VisualizaDocumentos.jsp?pac_cod=<%=pac_cod%>" method="post">
                             <input type="submit" name="voltar" value="Voltar" />
                         </form>
                     <%-- Fim JSP --%>
