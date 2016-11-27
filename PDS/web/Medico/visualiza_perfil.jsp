@@ -16,7 +16,7 @@
         <%@ page import="java.util.*"%>
         <%@ page import="java.time.*"%>
         <%@ page import="java.sql.*"%>
-        <%@ include file="/Geral/verifylogin.jsp" %>
+        <%@ include file="/Geral/verifylogin_medico.jsp" %>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td colspan="2">
@@ -79,7 +79,15 @@
                         Histórico de doenças: <%= p.getFormattedPac_historico_doencas() %> </br>
                         Medicamentos: <%= p.getFormattedPac_medicamentos() %> </br>
                         <form action='/PDS/Medico/VisualizarListaDeConsultas.jsp' method="post">
-                          <input type='submit'>  
+                          <input type='submit' value='Consulta'>  
+                        </form>
+                        <form action='/PDS/Geral/adicionar_exame.jsp'>
+                          <input type='hidden' name='pac_cod' value='<%=p.getUsu_cod()%>'>
+                          <input type='submit' value='Adicionar Exame'>
+                        </form>
+                        <form action='/PDS/Geral/adicionar_receita.jsp'>
+                          <input type='hidden' name='pac_cod' value='<%=p.getUsu_cod()%>'>
+                          <input type='submit' value='Adicionar Receita'>
                         </form>
                       <%
                       }
