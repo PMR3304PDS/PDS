@@ -15,7 +15,7 @@
         <%@page import="java.text.ParseException"%>
         <%@page import="java.util.*"%>
         <%@page import="data.MunicipioDO"%>
-        <%@ include file="/Geral/verifylogin.jsp" %>
+        
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td colspan="2">

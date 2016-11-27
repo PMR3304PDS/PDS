@@ -386,12 +386,12 @@
                    endIncluir.incluir(endereco3);
                 }
                 if(!Telefone1.equals("")){
-                  tel1.setTel_numero(Integer.parseInt(Telefone1));
+                  tel1.setTel_numero(Telefone1);
                   tel1.setUsuario_Usu_Cod(medico.getUsu_cod());
                   telIncluir.incluir(tel1);                   
                 } 
                 if(!Telefone1.equals("")){
-                  tel2.setTel_numero(Integer.parseInt(Telefone2)); 
+                  tel2.setTel_numero(Telefone2); 
                   tel2.setUsuario_Usu_Cod(medico.getUsu_cod());
                   telIncluir.incluir(tel2);
                 }
