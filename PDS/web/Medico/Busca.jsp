@@ -1,5 +1,5 @@
 <%-- 
-    ******* PDSPX - Busca do Medico *********
+    ******* PDSMX - Busca do Medico *********
 --%>
 
 <html>
@@ -113,57 +113,66 @@
                                 }
                             }
 
-                            if (tipo.equals("tecnico")) {
+                            else {
                                 
-                                if (modo.equals("nome")) {
-                                    transacoes.Tecnico tn = new transacoes.Tecnico();
-                                    String nome = request.getParameter("input");
-                                    usuarios = tn.pesquisarTecnicoPorNome(nome);
-                                }
+                                if (tipo.equals("tecnico")) {
+                                
+                                    flag = 3;
 
-                                if (modo.equals("rg")) {
-                                    transacoes.Tecnico tn = new transacoes.Tecnico();
-                                    String rg = request.getParameter("input");
-                                    usuarios = tn.pesquisarTecnicoPorRg(rg);
-                                }
+                                    if (modo.equals("nome")) {
+                                        transacoes.Tecnico tn = new transacoes.Tecnico();
+                                        String nome = request.getParameter("input");
+                                        usuarios = tn.pesquisarTecnicoPorNome(nome);
+                                    }
 
-                                if (modo.equals("cpf")) {
-                                    transacoes.Tecnico tn = new transacoes.Tecnico();
-                                    String cpf = request.getParameter("input");
-                                    usuarios = tn.pesquisarTecnicoPorCpf(cpf);
+                                    if (modo.equals("rg")) {
+                                        transacoes.Tecnico tn = new transacoes.Tecnico();
+                                        String rg = request.getParameter("input");
+                                        usuarios = tn.pesquisarTecnicoPorRg(rg);
+                                    }
+
+                                    if (modo.equals("cpf")) {
+                                        transacoes.Tecnico tn = new transacoes.Tecnico();
+                                        String cpf = request.getParameter("input");
+                                        usuarios = tn.pesquisarTecnicoPorCpf(cpf);
+                                    }
+
+                                    if (modo.equals("crm")) {
+                                        usuarios = null;
+                                    }
                                 }
                                 
-                                if (modo.equals("crm")) {
-                                    usuarios = null;
+                                else {
+                                
+                                    flag = 2;
+
+                                    if (modo.equals("nome")) {
+                                        transacoes.Paciente tn = new transacoes.Paciente();
+                                        String nome = request.getParameter("input");
+                                        usuarios = tn.pesquisarPacientePorNome(nome);
+                                    }
+
+                                    if (modo.equals("rg")) {
+                                        transacoes.Paciente tn = new transacoes.Paciente();
+                                        String rg = request.getParameter("input");
+                                        usuarios = tn.pesquisarPacientePorRg(rg);
+                                    }
+
+                                    if (modo.equals("cpf")) {
+                                        transacoes.Paciente tn = new transacoes.Paciente();
+                                        String cpf = request.getParameter("input");
+                                        usuarios = tn.pesquisarPacientePorCpf(cpf);
+                                    }
+
+                                    if (modo.equals("crm")) {
+                                        usuarios = null;
+                                    }
                                 }
+                                
                             }
+                                
                             
-                            if (tipo.equals("paciente")) {
-                                
-                                flag = 2;
-                                
-                                if (modo.equals("nome")) {
-                                    transacoes.Paciente tn = new transacoes.Paciente();
-                                    String nome = request.getParameter("input");
-                                    usuarios = tn.pesquisarPacientePorNome(nome);
-                                }
 
-                                if (modo.equals("rg")) {
-                                    transacoes.Paciente tn = new transacoes.Paciente();
-                                    String rg = request.getParameter("input");
-                                    usuarios = tn.pesquisarPacientePorRg(rg);
-                                }
-
-                                if (modo.equals("cpf")) {
-                                    transacoes.Paciente tn = new transacoes.Paciente();
-                                    String cpf = request.getParameter("input");
-                                    usuarios = tn.pesquisarPacientePorCpf(cpf);
-                                }
-                                
-                                if (modo.equals("crm")) {
-                                    usuarios = null;
-                                }
-                            }
 
                             if ((usuarios == null) || (usuarios.size() == 0)) {
                     %>
@@ -179,7 +188,7 @@
                             <td>CPF</td>
                         </tr> 
 
-                        <% if (flag == 1) {
+                        <% if (tipo.equals("medico")) {
                                 for (int i = 0; i < usuarios.size(); i++) {
                                     MedicoDO medico = (MedicoDO) usuarios.elementAt(i);
                         %>
@@ -195,7 +204,7 @@
                                 }
                             } 
                             
-                            if (flag == 2) {
+                            if (tipo.equals("paciente")) {
                                 for (int i = 0; i < usuarios.size(); i++) {
                                     PacienteDO paciente = (PacienteDO) usuarios.elementAt(i);
                         %>
@@ -212,7 +221,7 @@
                                 }
                             } 
                             
-                            else {
+                            if (tipo.equals("tecnico")) {
                                 for (int i = 0; i < usuarios.size(); i++) {
                                     TecnicoDO tecnico = (TecnicoDO) usuarios.elementAt(i);
                         %>
