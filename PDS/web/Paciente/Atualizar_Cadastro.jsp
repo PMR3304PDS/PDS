@@ -183,7 +183,7 @@
                         <tr><td><br></td></tr>
                         <tr>
                             <td>Nome</td>
-                            <td><input type="text" name="nome" maxlength="200" required value=<%= nome %>/>
+                            <td><input type="text" name="nome" maxlength="200" required value="<%= nome %>" />
                         </tr>
                         <tr>
                             <td>RG</td>
@@ -196,7 +196,7 @@
                         <tr><td><br></td></tr>
                         <tr>
                             <td>Endereço</td>
-                            <td><input type="text" name="endereco" maxlength="200" required value=<%= rua %> />
+                            <td><input type="text" name="endereco" maxlength="200" required value="<%= rua %>" />
                         </tr>
                         <tr>
                             <td>Número</td>
@@ -289,9 +289,7 @@
                         
                         transacoes.Paciente tp = new transacoes.Paciente();
                         data.PacienteDO paciente = new data.PacienteDO();
-                        Vector log = tp.pesquisarPacientePorLogin(new_login);
-                        Vector r = tp.pesquisarPacientePorRg(new_rg);
-                        Vector c = tp.pesquisarPacientePorCpf(new_cpf);
+                        
                         boolean a = tu.atualizar(new_usu);
                         
                         
@@ -316,7 +314,7 @@
                         data.EnderecoDO e1 = new data.EnderecoDO();
                         Vector ep = te.pesquisarPorCodDaPessoa(cod_usu);
                         data.EnderecoDO ep1 = new data.EnderecoDO();
-                        ep1 = (data.EnderecoDO)ep.elementAt(1);
+                        ep1 = (data.EnderecoDO)ep.elementAt(0);
                         int codigo_do_end = ep1.getEnd_cod();
                         
                         

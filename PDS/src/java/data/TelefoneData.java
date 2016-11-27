@@ -18,8 +18,7 @@ public class TelefoneData {
   
   public void atualizar(TelefoneDO telefone, Transacao tr) throws Exception {
     Connection con = tr.obterConexao();
-    String sql = "update Telefone set Tel_num=?, Usuario_Usu_cod=?"
-            + " Tel_cod=?";
+    String sql = "update Telefone set Tel_numero=?, Usuario_Usu_cod=? where Tel_cod=?";
     PreparedStatement ps = con.prepareStatement(sql);
     ps.setInt(1, telefone.getTel_numero());
     ps.setInt(2, telefone.getUsuario_Usu_Cod());
