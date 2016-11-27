@@ -14,32 +14,39 @@ import utils.Transacao;
  * @author aluno
  */
 public class ReceitaDATA {
-//    public void incluir (ReceitaDO receita, Transacao tr) throws SQLException{
-//        Connection con = tr.obterConexao();
-//        String sql = "insert into Receita ("
-//                + "Rec_excluido, "
-//                + "Rec_data_upload, "
-//                + "Paciente_Usuario_Usu_cod, "
-//                + "Farmaceutico_Usuario_Usu_cod, "
-//                + "Tecnico_Usuario_Usu_cod, "
-//                + "Medico_Usuario_Usu_cod, "
-//                + "Rec_check, "
-//                + "Rec_Receita, "
-//                + "Rec_Resumo"
-//                + ") values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-//        PreparedStatement ps = con.prepareStatement(sql);
-//        
-//        ps.setBoolean(1, receita.isRec_excluido());
-//        ps.setDate(2, receita.getRec_data_upload());
-//        ps.setInt(3, receita.getPaciente_Usuario_Usu_cod());
-//        ps.setInt(4, receita.getFarmaceutico_Usuario_Usu_cod());
-//        ps.setInt(6, receita.getMedico_Usuario_Usu_cod());
-//        ps.setBoolean(7, receita.isRec_check());
-//        ps.setBinaryStream(8, receita.getRec_receita());
-//        ps.setString(9, receita.getRec_resumo());
-//        
-//        int result = ps.executeUpdate();
-//    }//incluir
+    public void incluir (ReceitaDO receita, Transacao tr) throws SQLException{
+        Connection con = tr.obterConexao();
+        String sql = "insert into Receita ("
+                + "Rec_excluido, "
+                + "Rec_data_upload, "
+                + "Paciente_Usuario_Usu_cod, "
+                + "Tecnico_Usuario_Usu_cod, "
+                + "Medico_Usuario_Usu_cod, "
+                + "Rec_check, "
+                + "Rec_Receita, "
+                + "Rec_Resumo"
+                + ") values (?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement ps = con.prepareStatement(sql);
+        
+        ps.setBoolean(1, receita.isRec_excluido());
+        ps.setDate(2, receita.getRec_data_upload());
+        ps.setInt(3, receita.getPaciente_Usuario_Usu_cod());
+        if (receita.getTecnico_Usuario_Usu_cod() == -1) {
+            ps.setNull(4, java.sql.Types.INTEGER);
+        }else{
+            ps.setInt(4, receita.getTecnico_Usuario_Usu_cod());
+        }
+        if (receita.getMedico_Usuario_Usu_cod() == -1) {
+            ps.setNull(5, java.sql.Types.INTEGER);
+        }else{
+            ps.setInt(5, receita.getMedico_Usuario_Usu_cod());
+        }
+        ps.setBoolean(6, receita.isRec_check());
+        ps.setBinaryStream(7, receita.getRec_receita());
+        ps.setString(8, receita.getRec_resumo());
+        
+        int result = ps.executeUpdate();
+    }//incluir
 //    
 //    public void atualizar(ReceitaDO receita, Transacao tr) throws SQLException{
 //        Connection con = tr.obterConexao();
