@@ -46,6 +46,12 @@
                         
                         transacoes.Especialidade tme2 = new transacoes.Especialidade();
                         Vector es = tme2.pesquisarEspecialidadesdoMedico(m.getUsu_cod());
+                        
+                        transacoes.Endereco tend = new transacoes.Endereco();
+                        Vector enderecos = tend.pesquisarPorCodDaPessoa(m.getUsu_cod());
+                        
+                        transacoes.Telefone tt = new transacoes.Telefone();
+                        Vector telefones = tt.pesquisar(m.getUsu_cod());
                        
                         if (m.getUsu_foto()!= null) {
                             byte[] imageBytes = u.getBytes(m.getUsu_foto());
@@ -64,6 +70,31 @@
                     Nome Completo: <%= m.getUsu_nome()%><br>
                     RG: <%= m.getUsu_rg()%><br>
                     CPF: <%= m.getUsu_cpf()%><br>
+                    <%
+                        for (int i = 0; i < telefones.size(); i++){
+                            TelefoneDO tel = new TelefoneDO();
+                            tel = (TelefoneDO)telefones.elementAt(i);
+                        
+                    %>
+                    Telefone <%= i+1%>: <%= tel.getTel_numero() %> <br>
+                    <%
+                        }
+                    %>
+                    <%
+                        for (int i = 0; i < enderecos.size(); i++){
+                            EnderecoDO end = new EnderecoDO();
+                            end = (EnderecoDO)enderecos.elementAt(i);
+                            transacoes.Municipio tmue = new transacoes.Municipio();
+                            MunicipioDO mu = new MunicipioDO();
+                            mu = tmue.buscar(end.getMunicipio_Mun_cod());
+                            transacoes.Tipo_Endereco ttend = new transacoes.Tipo_Endereco();
+                            Tipo_EnderecoDO tipo = new Tipo_EnderecoDO();
+                            tipo = ttend.buscar(end.getTipo_Endereco_TipEnd_cod());
+                    %>
+                    Endereco <%= i+1%>: <%= end.getEnd_rua() %> - <%= end.getEnd_bairro() %> - <%= tipo.getTipEnd_tipo() %> - <%= mu.getMun_nome() %> <br>
+                    <%
+                        }
+                    %>
                     Número de Registro (CRM): <%= m.getMed_NumRegistro()%><br>
                     Estado: <%= e.getEst_nome()%><br>
                     Conselho: <%= c.getCon_nome()%> - <%= c.getCon_sigla()%> <br>
