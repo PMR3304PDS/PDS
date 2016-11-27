@@ -52,6 +52,7 @@
                                     for (int i = 0; i < receitas.size(); i++) {
                                         ReceitaDO receita = (ReceitaDO) receitas.elementAt(i);
                                         int rec_cod = receita.getRec_cod();
+                                        session.setAttribute("rec_cod", rec_cod);
                                         Date data = receita.getRec_data_upload();
                                         int resp_cod = receita.getMedico_Usuario_Usu_cod();
                                         UsuarioDO resp = new UsuarioDO();
@@ -81,6 +82,7 @@
         </table>
          <%
                 String t = (String) session.getAttribute("tipo");
+                session.setAttribute("tipo", "t");
                 if (t.equals("m")) {
                     transacoes.Medico tnq = new transacoes.Medico();
                     data.MedicoDO medico = tnq.buscar(cod);

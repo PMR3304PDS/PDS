@@ -29,34 +29,26 @@
                 <td>
                     <%//****Aqui vai o jsp da sua página******%>
                     <%
-                        int cod_paciente_buscado=1;
-                        String paciente_buscado = request.getParameter("Usu_buscado");
-                        if(paciente_buscado==null){
-                            cod_paciente_buscado=1;
-                            paciente_buscado="Gabriel Xavier";
-                            int rec_cod=1;
-                        }
+                    int cod_receita = Integer.parseInt(String.valueOf(session.getAttribute("rec_cod")));
+                    transacoes.Paciente tn = new transacoes.Paciente();
+                    data.PacienteDO paciente = tn.buscar(cod_receita);
                     %>
                     <table align="center">
                         <tr>
                             <br>
-                            <td><b>Receita do paciente: </b><%=paciente_buscado%></td>
+                            <td><b>Receita do paciente: </b><%=paciente.getUsu_nome()%></td>
                             <br>
                         </tr>
                         <%
-                            int rec_cod=0;
-                            //rec_cod = Integer.parseInt(request.getParameter("rec_cod"));
-                            if(rec_cod ==0){
-                                System.out.println("Erro, receita não encontrada");
-                                rec_cod=1;
+                            if(paciente.getUsu_nome() ==null){
+                                cod_receita=1;
                             %>
-                                <%//Erro, receita não encontrada%>
+                                Erro, receita não encontrada!
                             <%
                             }//Fim do if se não há receita
                             else{
-                                rec_cod=1;
                                 transacoes.Receita tn_rec = new transacoes.Receita();
-                                data.ReceitaDO receita = tn_rec.buscar(rec_cod);
+                                data.ReceitaDO receita = tn_rec.buscar(cod_receita);
                                 int resp_cod = receita.getMedico_Usuario_Usu_cod();
                                 boolean check = receita.isRec_check();
                                 UsuarioDO resp = new UsuarioDO();
@@ -65,13 +57,11 @@
                                 String nome_resp = resp.getUsu_nome();
                                 %>
                                     <br>
-                                    <tr>Cód. Receita: <%=rec_cod%></tr>
+                                    <tr>Cód. Receita: <%=cod_receita%></tr>
                                     <br>
                                     <tr>Data do upload: <%=receita.getRec_data_upload()%></tr>
                                     <br>
                                     <tr>Responsável pelo upload: <%=nome_resp%></tr>
-                                    <br>
-                                    <tr>Data do upload: <%=receita.getRec_data_upload()%></tr>
                                     <br>
                                     <tr>Status da receita:
                                         <%

@@ -55,20 +55,20 @@ public class Receita {
 //     return false;
 //        
 //  }
-//  public ReceitaDO buscar(int cod) throws Exception {
-//    Transacao tr = new Transacao();
-//    try {
-//      tr.beginReadOnly();
-//      ReceitaDO c = (new ReceitaDATA()).buscar(cod, tr);
-//      tr.commit();
-//      return c;
-//    } catch (Exception e) {
-//      tr.rollback();
-//      System.out.println("erro ao buscar" + cod);
-//      e.printStackTrace();
-//    }
-//    return null;
-//  }
+  public ReceitaDO buscar(int cod) throws Exception {
+    Transacao tr = new Transacao();
+    try {
+      tr.beginReadOnly();
+      ReceitaDO c = (new ReceitaDATA()).buscar(cod, tr);
+      tr.commit();
+      return c;
+    } catch (Exception e) {
+      tr.rollback();
+      System.out.println("erro ao buscar" + cod);
+      e.printStackTrace();
+    }
+    return null;
+  }
   //Adquirir dados para a lista de receitas para pag ListaReceitas.jsp
   public Vector getListaReceitas(int cod) throws Exception {
 
