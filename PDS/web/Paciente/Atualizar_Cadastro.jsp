@@ -82,15 +82,13 @@
                         transacoes.Telefone tt = new transacoes.Telefone();
                         Vector telefones = tt.pesquisar(Usu_cod);
                         data.TelefoneDO t1 = (data.TelefoneDO)telefones.elementAt(0);
-                        int tel1 = t1.getTel_numero();
-                        String tel1s = Integer.toString(tel1);
+                        String tel1 = t1.getTel_numero();
                         int tel1cod = t1.getTel_cod();
-                        String tel2s = "";
+                        String tel2 = "";
                         String tel2cods = "";
                         if (telefones.size() > 1){
                             data.TelefoneDO t2 = (data.TelefoneDO)telefones.elementAt(1);
-                            int tel2 = t2.getTel_numero();
-                            tel2s = Integer.toString(tel2);
+                            tel2 = t2.getTel_numero();
                             int tel2cod = t2.getTel_cod();
                             tel2cods = Integer.toString(tel2cod);
                         }
@@ -209,7 +207,7 @@
                         <tr>
                         <tr>
                             <td>Telefone - 1</td>
-                            <td><input type="text" name="telefone1" maxlength="8" onkeypress='return isNumberKey(event)' required value=<%= tel1 %> />
+                            <td><input type="text" name="telefone1" maxlength="11" onkeypress='return isNumberKey(event)' required value=<%= tel1 %> />
                         </tr>
 <%
                         if(telefones.size()>1){
@@ -217,7 +215,7 @@
                         <tr>
                             <input type="hidden" name="codtelefone2" value=<%= tel2cods%> />
                             <td>Telefone - 2</td>
-                            <td><input type="text" name="telefone2" maxlength="8" onkeypress='return isNumberKey(event)' value=<%= tel2s %> />
+                            <td><input type="text" name="telefone2" maxlength="8" onkeypress='return isNumberKey(event)' value=<%= tel2 %> />
                         </tr>
 <%
                         }
@@ -257,10 +255,10 @@
                         int cod_tel1 = Integer.parseInt(cod_tel1s);
                         int n = Integer.parseInt(request.getParameter("numerodetelefones"));
                         int cod_tel2 = 0;
-                        int new_tel2 = 0;
+                        String new_tel2 = "";
                         if (n>1){
                             cod_tel2 = Integer.parseInt(request.getParameter("codtelefone2"));
-                            new_tel2 = Integer.parseInt(request.getParameter("telefone2"));
+                            new_tel2 = request.getParameter("telefone2");
                         }
                         
                         
@@ -270,7 +268,7 @@
                         String new_end = request.getParameter("endereco");
                         int new_num = Integer.parseInt(request.getParameter("numero"));
                         String new_bairro = request.getParameter("bairro");
-                        int new_tel1 = Integer.parseInt(request.getParameter("telefone1"));
+                        String new_tel1 = request.getParameter("telefone1");
                         String new_login = request.getParameter("login");
                         int new_estado = Integer.parseInt(request.getParameter("estado_id"));
                         int new_municipio = Integer.parseInt(request.getParameter("municipio"));
