@@ -30,6 +30,23 @@ public class Telefone {
     }
     return false;
   } // incluir
+  
+  public boolean atualizar(TelefoneDO telefone) throws Exception {
+    Transacao tr = new Transacao();
+    try {
+      // inserir validacoes de regras de negocio
+      tr.begin();
+      TelefoneData teldata = new TelefoneData();
+      teldata.atualizar(telefone, tr);
+      tr.commit();
+      return true;
+    } catch (Exception e) {
+      tr.rollback();
+      System.out.println("erro ao atualizar" + telefone.getTel_numero());
+      e.printStackTrace();
+    }
+    return false;
+  } // atualizar
 
 //  public boolean atualizar(TelefoneDO telefone) throws Exception {
 //     Transacao tr = new Transacao();

@@ -15,6 +15,17 @@ public class TelefoneData {
 
     int result = ps.executeUpdate();
   }
+  
+  public void atualizar(TelefoneDO telefone, Transacao tr) throws Exception {
+    Connection con = tr.obterConexao();
+    String sql = "update Telefone set Tel_num=?, Usuario_Usu_cod=?"
+            + " Tel_cod=?";
+    PreparedStatement ps = con.prepareStatement(sql);
+    ps.setInt(1, telefone.getTel_numero());
+    ps.setInt(2, telefone.getUsuario_Usu_Cod());
+    ps.setInt(3, telefone.getTel_cod());
+    int result = ps.executeUpdate();
+  } // atualizar
 
 //  public void excluir(TelefoneDO telefone, Transacao tr) throws Exception {
 //  } // excluir

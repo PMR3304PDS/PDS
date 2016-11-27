@@ -31,22 +31,22 @@ public class Endereco {
     return false;
   } // incluir
 
-//  public boolean atualizar(EnderecoDO endereco) throws Exception {
-//    Transacao tr = new Transacao();
-//    try {
-//      // inserir validacoes de regras de negocio
-//      tr.begin();
-//      EnderecoDATA edata = new EnderecoDATA();
-//      edata.atualizar(endereco, tr);
-//      tr.commit();
-//      return true;
-//    } catch (Exception e) {
-//      tr.rollback();
-//      System.out.println("erro ao atualizar" + endereco.getEnd_rua());
-//      e.printStackTrace();
-//    }
-//    return false;
-//  } // atualizar
+  public boolean atualizar(EnderecoDO endereco) throws Exception {
+    Transacao tr = new Transacao();
+    try {
+      // inserir validacoes de regras de negocio
+      tr.begin();
+      EnderecoDATA edata = new EnderecoDATA();
+      edata.atualizar(endereco, tr);
+      tr.commit();
+      return true;
+    } catch (Exception e) {
+      tr.rollback();
+      System.out.println("erro ao atualizar" + endereco.getEnd_rua());
+      e.printStackTrace();
+    }
+    return false;
+  } // atualizar
   public Vector pesquisarPorCodDaPessoa(int cod) throws Exception {
     Transacao tr = new Transacao();
     try {

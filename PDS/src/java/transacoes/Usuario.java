@@ -29,6 +29,26 @@ public class Usuario {
     }
     return false;
   } // incluir
+  
+  public boolean atualizar(UsuarioDO usuario) throws Exception {
+
+    // efetuando a transacao
+    Transacao tr = new Transacao();
+    try {
+
+      tr.begin();
+      UsuarioData cdata = new UsuarioData();
+      cdata.atualizar(usuario, tr);
+      tr.commit();
+      return true;
+
+    } catch (Exception e) {
+      tr.rollback();
+      System.out.println("erro ao atualizar " + usuario.getUsu_nome());
+      e.printStackTrace();
+    }
+    return false;
+  } // incluir
 
   public UsuarioDO buscar(String user_name) throws Exception {
     Transacao tr = new Transacao();

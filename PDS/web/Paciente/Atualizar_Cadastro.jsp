@@ -59,6 +59,7 @@
                         String cpf = usuario.getUsu_cpf();
                         String rg = usuario.getUsu_rg();
                         String login = usuario.getUsu_login();
+                        String senha = usuario.getUsu_senha();
                         
                         transacoes.Endereco te = new transacoes.Endereco();
                         Vector end = te.pesquisarPorCodDaPessoa(Usu_cod);
@@ -82,11 +83,13 @@
                         String tel1s = Integer.toString(tel1);
                         int tel1cod = t1.getTel_cod();
                         String tel2s = "";
+                        String tel2cods = "";
                         if (telefones.size() > 1){
                             data.TelefoneDO t2 = (data.TelefoneDO)telefones.elementAt(1);
                             int tel2 = t2.getTel_numero();
                             tel2s = Integer.toString(tel2);
                             int tel2cod = t2.getTel_cod();
+                            tel2cods = Integer.toString(tel2cod);
                         }
                         
                         
@@ -206,6 +209,7 @@
                         if(telefones.size()>1){
 %>
                         <tr>
+                            <input type="hidden" name="codtelefone2" value=<%= tel2cods%> />
                             <td>Telefone - 2</td>
                             <td><input type="text" name="telefone2" maxlength="8" onkeypress='return isNumberKey(event)' value=<%= tel2s %>/>
                         </tr>
@@ -217,8 +221,126 @@
                             <td>Login (email)</td>
                             <td><input type="text" name="login" maxlength="150" required value=<%= login %>/>
                         </tr>
+                        </table>
+                        <input type="submit" name="atualizar" value="atualizar" />
+                        <input type="submit" name="voltar" value="voltar" />
+                        <input type="hidden" name="ce" value=<%= estcod%> />
+                        <input type="hidden" name="cm" value=<%= mun%> />
+                        <input type="hidden" name="codtelefone1" value=<%= tel1cod%> />
+                        <input type="hidden" name="senha" value=<%= senha%> />
+                        <input type="hidden" name="numerodetelefones" value=<%= telefones.size()%> />
                     </form>
-<%                        
+<%                                
+                    }
+                    if (null != request.getParameter("voltar")) {
+                        response.sendRedirect("/PDS/Paciente/Home.jsp"); 
+                    }
+%>
+
+<! ------------------------------------------------------------------->
+
+<%
+                    if(null != request.getParameter("atualizar")){
+                        String cod_usus = request.getParameter("cod");
+                        int cod_usu = Integer.parseInt(cod_usus);
+                        String cod_ests = request.getParameter("ce");
+                        int cod_est = Integer.parseInt(cod_ests);
+                        String cod_muns = request.getParameter("cm");
+                        int cod_mun = Integer.parseInt(cod_muns);
+                        String cod_tel1s = request.getParameter("codtelefone1");
+                        int cod_tel1 = Integer.parseInt(cod_tel1s);
+                        int n = Integer.parseInt(request.getParameter("numerodetelefones"));
+                        int cod_tel2 = 0;
+                        int new_tel2 = 0;
+                        if (n>1){
+                            cod_tel2 = Integer.parseInt(request.getParameter("codtelefone2"));
+                            new_tel2 = Integer.parseInt(request.getParameter("telefone2"));
+                        }
+                        
+                        
+                        String new_nome = request.getParameter("nome");
+                        String new_rg = request.getParameter("rg");
+                        String new_cpf = request.getParameter("cpf");
+                        String new_end = request.getParameter("endereco");
+                        int new_num = Integer.parseInt(request.getParameter("numero"));
+                        String new_bairro = request.getParameter("bairro");
+                        int new_tel1 = Integer.parseInt(request.getParameter("telefone1"));
+                        String new_login = request.getParameter("login");
+                        int new_estado = Integer.parseInt(request.getParameter("estado_id"));
+                        int new_municipio = Integer.parseInt(request.getParameter("municipio"));
+                        
+                        transacoes.Usuario tu = new transacoes.Usuario();
+                        data.UsuarioDO new_usu = new data.UsuarioDO();
+                        
+                        new_usu.setUsu_ativo(true);
+                        new_usu.setUsu_cod(cod_usu);
+                        new_usu.setUsu_cpf(new_cpf);
+                        new_usu.setUsu_login(new_login);
+                        new_usu.setUsu_nome(new_nome);
+                        new_usu.setUsu_rg(new_rg);
+                        new_usu.setUsu_senha(request.getParameter("senha"));
+                        
+                        transacoes.Paciente tp = new transacoes.Paciente();
+                        data.PacienteDO paciente = new data.PacienteDO();
+                        Vector log = tp.pesquisarPacientePorLogin(new_login);
+                        Vector r = tp.pesquisarPacientePorRg(new_rg);
+                        Vector c = tp.pesquisarPacientePorCpf(new_cpf);
+                        boolean a = true;
+                        if ((log.size() == 0) && (r.size() == 0) && (c.size() == 0)){
+                            a = tu.atualizar(new_usu);
+                        }
+                        
+                        transacoes.Telefone ttf = new transacoes.Telefone();
+                        data.TelefoneDO te1 = new data.TelefoneDO();
+                        
+                        te1.setTel_cod(cod_tel1);
+                        te1.setTel_numero(new_tel1);
+                        te1.setUsuario_Usu_Cod(cod_usu);
+                        
+                        boolean b = ttf.atualizar(te1);
+                        boolean d = true;
+                        if(n>1){
+                            data.TelefoneDO te2 = new data.TelefoneDO();
+                            te2.setTel_cod(cod_tel2);
+                            te2.setTel_numero(new_tel2);
+                            te2.setUsuario_Usu_Cod(cod_usu);
+                            d = ttf.atualizar(te2);
+                        }
+                        
+                        transacoes.Endereco te = new transacoes.Endereco();
+                        data.EnderecoDO e1 = new data.EnderecoDO();
+                        Vector ep = te.pesquisarPorCodDaPessoa(cod_usu);
+                        data.EnderecoDO ep1 = new data.EnderecoDO();
+                        ep1 = (data.EnderecoDO)ep.elementAt(1);
+                        int codigo_do_end = ep1.getEnd_cod();
+                        
+                        
+                        
+                        e1.setEnd_bairro(new_bairro);
+                        e1.setEnd_cod(codigo_do_end);
+                        e1.setEnd_num(new_num);
+                        e1.setEnd_rua(new_end);
+                        e1.setMunicipio_Mun_cod(cod_mun);
+                        e1.setTipo_Endereco_TipEnd_cod(1);
+                        e1.setUsuario_Usu_cod(cod_usu);
+                        
+                        boolean e = te.atualizar(e1);
+                        
+                        if(a && b && d && e){
+%>
+          Transação realizada com sucesso!
+          <form action="/PDS/Paciente/Home.jsp" method="post">
+             <input type="submit" name="voltar" value="Voltar" />
+          </form>
+<%
+                        } else {
+%>                         
+          Erro ao editar ficha médica          
+          <form action="/PDS/Paciente/Atualizar_Cadastro.jsp" method="post">
+             <input type="submit" name="retry" value="Repetir" />
+          </form>
+<%
+                        }
                         
                     }
 %>
