@@ -64,23 +64,23 @@
                </tr>
                <tr>
                   <td>Peso</td>
-                  <td><input type="text" name="peso" maxlength="9" onkeypress='return isNumberKey(event)' required value=<%= paciente.getPac_peso() %> />
+                  <td><input type="text" name="peso" maxlength="9" onkeypress='return isNumberKey(event)' required value=<%= paciente.getFormattedPac_peso() %> />
                </tr>
                <tr>
                   <td>Altura</td>
-                  <td><input type="text" name="altura" maxlength="9" onkeypress='return isNumberKey(event)' value=<%= paciente.getPac_altura() %> />
+                  <td><input type="text" name="altura" maxlength="9" onkeypress='return isNumberKey(event)' value=<%= paciente.getFormattedPac_altura() %> />
                </tr>
                 <tr>
                   <td>Alergias</td>
-                  <td><textarea name="alergias" maxlength="300" rows="4" cols="50"><%=paciente.getPac_alergias()%></textarea>
+                  <td><textarea name="alergias" maxlength="300" rows="4" cols="50"><%=paciente.getFormattedPac_alergias()%></textarea>
                </tr>
                <tr>
                   <td>Medicamentos</td>
-                  <td><textarea name="medicamentos" maxlength="300" rows="4" cols="50"><%=paciente.getPac_medicamentos()%></textarea>
+                  <td><textarea name="medicamentos" maxlength="300" rows="4" cols="50"><%=paciente.getFormattedPac_medicamentos()%></textarea>
                </tr>
                <tr>
                   <td>Doenças em tratamento</td>
-                  <td><textarea name="doencas" maxlength="300" rows="4" cols="50"><%=paciente.getPac_doencas_tratamento()%></textarea>
+                  <td><textarea name="doencas" maxlength="300" rows="4" cols="50"><%=paciente.getFormattedPac_doencas_tratamento()%></textarea>
                </tr>
                <tr>
                   <td>Histórico de doenças</td>
