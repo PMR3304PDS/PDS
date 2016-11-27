@@ -82,7 +82,6 @@
         </table>
          <%
                 String t = (String) session.getAttribute("tipo");
-                session.setAttribute("tipo", "t");
                 if (t.equals("m")) {
                     transacoes.Medico tnq = new transacoes.Medico();
                     data.MedicoDO medico = tnq.buscar(cod);
