@@ -10,7 +10,7 @@ public class TelefoneData {
     Connection con = tr.obterConexao();
     String sql = "insert into Telefone (Tel_numero, Usuario_Usu_Cod) values (?, ?)";
     PreparedStatement ps = con.prepareStatement(sql);
-    ps.setInt(1, telefone.getTel_numero());
+    ps.setString(1, telefone.getTel_numero());
     ps.setInt(2, telefone.getUsuario_Usu_Cod());
 
     int result = ps.executeUpdate();
@@ -20,7 +20,7 @@ public class TelefoneData {
     Connection con = tr.obterConexao();
     String sql = "update Telefone set Tel_numero=?, Usuario_Usu_cod=? where Tel_cod=?";
     PreparedStatement ps = con.prepareStatement(sql);
-    ps.setInt(1, telefone.getTel_numero());
+    ps.setString(1, telefone.getTel_numero());
     ps.setInt(2, telefone.getUsuario_Usu_Cod());
     ps.setInt(3, telefone.getTel_cod());
     int result = ps.executeUpdate();
@@ -62,7 +62,7 @@ public class TelefoneData {
     while (rs.next()) {
       TelefoneDO t = new TelefoneDO();
       t.setTel_cod(rs.getInt("Tel_cod"));
-      t.setTel_numero(rs.getInt("Tel_numero"));
+      t.setTel_numero(rs.getString("Tel_numero"));
       t.setUsuario_Usu_Cod(cod);
       tel.add(t);
     }

@@ -98,6 +98,9 @@ public class Usuario {
       UsuarioData cdata = new UsuarioData();
       UsuarioDO c = cdata.pesquisarPorCpf2(cpf, tr);
       tr.commit();
+      if (!c.isUsu_ativo()) {
+        return null;
+      }
       return c;
     } catch (Exception e) {
       tr.rollback();
@@ -114,6 +117,9 @@ public class Usuario {
       UsuarioData cdata = new UsuarioData();
       UsuarioDO c = cdata.pesquisarPorId(id, tr);
       tr.commit();
+      if (!c.isUsu_ativo()) {
+        return null;
+      }
       return c;
     } catch (Exception e) {
       tr.rollback();
@@ -188,6 +194,9 @@ public class Usuario {
       MedicoDATA cdata = new MedicoDATA();
       MedicoDO c = cdata.buscar(idobj, tr);
       tr.commit();
+      if (!c.isUsu_ativo()) {
+        return null;
+      }
       return c;
     } catch (Exception e) {
       tr.rollback();
@@ -204,6 +213,9 @@ public class Usuario {
       PacienteDATA cdata = new PacienteDATA();
       PacienteDO c = cdata.buscar(idobj, tr);
       tr.commit();
+      if (!c.isUsu_ativo()) {
+        return null;
+      }
       return c;
     } catch (Exception e) {
       tr.rollback();
@@ -220,6 +232,9 @@ public class Usuario {
       TecnicoDATA cdata = new TecnicoDATA();
       TecnicoDO c = cdata.buscar(idobj, tr);
       tr.commit();
+      if (!c.isUsu_ativo()) {
+        return null;
+      }
       return c;
     } catch (Exception e) {
       tr.rollback();

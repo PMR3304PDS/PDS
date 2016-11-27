@@ -9,7 +9,7 @@ public class Telefone {
   public boolean incluir(TelefoneDO telefone) throws Exception {
 
     // validacao das regras de negocio
-    if ((isEmpty(Integer.toString(telefone.getTel_numero())))) {
+    if ((isEmpty(telefone.getTel_numero()))) {
       return false;
     }
 

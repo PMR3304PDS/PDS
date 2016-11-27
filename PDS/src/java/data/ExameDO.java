@@ -10,9 +10,9 @@ public class ExameDO {
     private InputStream Exa_exame;
     private InputStream Exa_Solicitar; 
     private int Tipo_Exame_TipExa_cod;
-    private int Tecnico_Usuario_Usu_cod_uploader;
+    private Integer Tecnico_Usuario_Usu_cod_uploader;
     private int Paciente_Usuario_Usu_cod;
-    private int Medico_Usuario_Usu_cod_uploader;
+    private Integer Medico_Usuario_Usu_cod_uploader;
     private boolean Exa_excluido;
     private Date Exa_data_upload;
     private Date Exa_previsao;
@@ -57,11 +57,11 @@ public class ExameDO {
         this.Tipo_Exame_TipExa_cod = Tipo_Exame_TipExa_cod;
     }
 
-    public int getTecnico_Usuario_Usu_cod_uploader() {
+    public Integer getTecnico_Usuario_Usu_cod_uploader() {
         return Tecnico_Usuario_Usu_cod_uploader;
     }
 
-    public void setTecnico_Usuario_Usu_cod_uploader(int Tecnico_Usuario_Usu_cod_uploader) {
+    public void setTecnico_Usuario_Usu_cod_uploader(Integer Tecnico_Usuario_Usu_cod_uploader) {
         this.Tecnico_Usuario_Usu_cod_uploader = Tecnico_Usuario_Usu_cod_uploader;
     }
 
@@ -73,11 +73,11 @@ public class ExameDO {
         this.Paciente_Usuario_Usu_cod = Paciente_Usuario_Usu_cod;
     }
 
-    public int getMedico_Usuario_Usu_cod_uploader() {
+    public Integer getMedico_Usuario_Usu_cod_uploader() {
         return Medico_Usuario_Usu_cod_uploader;
     }
 
-    public void setMedico_Usuario_Usu_cod_uploader(int Medico_Usuario_Usu_cod_uploader) {
+    public void setMedico_Usuario_Usu_cod_uploader(Integer Medico_Usuario_Usu_cod_uploader) {
         this.Medico_Usuario_Usu_cod_uploader = Medico_Usuario_Usu_cod_uploader;
     }
 

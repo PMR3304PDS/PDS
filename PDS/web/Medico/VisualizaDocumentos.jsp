@@ -2,6 +2,7 @@
     *******Visualiza Documentos do Paciente*********
 --%>
 
+
 <html>
     <head>
         <title>POLIdataSUS</title>
@@ -10,6 +11,7 @@
     </head>
     <body>
         <%// Coloque aqui os imports%>
+        <%@page import="java.util.Vector"%>
         <%@ include file="/Geral/verifylogin.jsp" %>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -22,7 +24,29 @@
                     <%@ include file="/Geral/menu.jsp" %>
                 </td>
                 <td>
-                    ****Aqui vai o jsp da sua página******
+ <%             
+        int Usu_cod = Integer.parseInt(request.getParameter("pac_cod"));
+        transacoes.Paciente tp = new transacoes.Paciente();
+        data.PacienteDO paciente = tp.buscar(Usu_cod);
+%> 
+            <h1>Documentos - <%= paciente.getUsu_nome() %></h1><br>
+            
+            <form action='/PDS/Medico/visualiza_informacoes_gerais_consulta.jsp'>
+            <input type='hidden' name='pac_cod' value='<%=Usu_cod%>'>
+            <input type='submit' value='Consulta'>
+            </form>
+            <form action='/PDS/Medico/visualiza_informacoes_gerais_exame.jsp'>
+            <input type='hidden' name='pac_cod' value='<%=Usu_cod%>'>
+            <input type='submit' value='Exame'>
+            </form>
+            <form action='/PDS/Medico/visualiza_informacoes_gerais_receita.jsp'>
+            <input type='hidden' name='pac_cod' value='<%=Usu_cod%>'>
+            <input type='submit' value='Receita'>
+            </form>
+            <form action='/PDS/Medico/visualiza_perfil.jsp'>
+            <input type='hidden' name='pac_cod' value='<%=Usu_cod%>'>
+            <input type='submit' value='Voltar'>
+            </form>
                 </td>
             </tr>
             <tr>

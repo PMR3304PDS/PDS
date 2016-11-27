@@ -157,11 +157,11 @@
                         <tr>
                         <tr>
                             <td>Telefone - 1</td>
-                            <td><input type="text" name="telefone1" maxlength="8" onkeypress='return isNumberKey(event)' required/>
+                            <td><input type="text" name="telefone1" maxlength="11" onkeypress='return isNumberKey(event)' required/>
                         </tr>
                         <tr>
                             <td>Telefone - 2</td>
-                            <td><input type="text" name="telefone2" maxlength="8" onkeypress='return isNumberKey(event)' />
+                            <td><input type="text" name="telefone2" maxlength="11" onkeypress='return isNumberKey(event)' />
                         </tr>
                         <tr><td><br></td></tr>
                         <tr>
@@ -226,9 +226,8 @@
        int numero = Integer.parseInt(numero_s);
        String bairro = request.getParameter("bairro");
        String municipio = request.getParameter("municipio");
-       String tel1s = request.getParameter("telefone1");
-       int tel1 = Integer.parseInt(tel1s);
-       String tel2s = request.getParameter("telefone2");
+       String tel1 = request.getParameter("telefone1");
+       String tel2 = request.getParameter("telefone2");
        String login = request.getParameter("login");
        String senha = request.getParameter("senha");
        String data_s = request.getParameter("data");
@@ -279,8 +278,7 @@
        boolean b = t1.incluir(telefone1);
        
        boolean c = true;
-       if (tel2s.equals("") == false){
-            int tel2 = Integer.parseInt(tel2s);
+       if (tel2.equals("") == false){
             transacoes.Telefone t2 = new transacoes.Telefone();
             data.TelefoneDO telefone2 = new data.TelefoneDO();
             telefone2.setTel_numero(tel2);

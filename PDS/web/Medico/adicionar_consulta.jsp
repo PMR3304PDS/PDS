@@ -28,10 +28,8 @@
                 </td>
                 <td>
                     <%
-//                        int med_cod = ((Integer)session.getAttribute("cod")).intValue();
-//                        int pac_cod = Integer.parseInt(request.getParameter("pac_cod"));
-                        int med_cod = 6;
-                        int pac_cod = 2;
+                        int med_cod = ((Integer)session.getAttribute("cod")).intValue();
+                        int pac_cod = Integer.parseInt(request.getParameter("pac_cod"));
                         transacoes.Paciente tn_p = new transacoes.Paciente();
                         data.PacienteDO paciente = new data.PacienteDO();
                         paciente = tn_p.buscar(pac_cod);
