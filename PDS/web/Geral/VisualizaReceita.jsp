@@ -29,14 +29,16 @@
                 <td>
                     <%//****Aqui vai o jsp da sua página******%>
                     <%
+                    String t = (String) session.getAttribute("tipo");
                     int cod_receita = Integer.parseInt(String.valueOf(session.getAttribute("rec_cod")));
+                    int cod = Integer.parseInt(String.valueOf(session.getAttribute("cod")));//código do usuario logado
                     transacoes.Paciente tn = new transacoes.Paciente();
                     data.PacienteDO paciente = tn.buscar(cod_receita);
                     %>
                     <table align="center">
                         <tr>
                             <br>
-                            <td><b>Receita do paciente: </b><%=paciente.getUsu_nome()%></td>
+                            <b>Receita do paciente: </b><%=paciente.getUsu_nome()%>
                             <br>
                         </tr>
                         <%
@@ -51,10 +53,13 @@
                                 data.ReceitaDO receita = tn_rec.buscar(cod_receita);
                                 int resp_cod = receita.getMedico_Usuario_Usu_cod();
                                 boolean check = receita.isRec_check();
+                                //check=false;
                                 UsuarioDO resp = new UsuarioDO();
                                 transacoes.Usuario tn_usu = new transacoes.Usuario();
                                 resp = tn_usu.pesquisarPorId(resp_cod);
                                 String nome_resp = resp.getUsu_nome();
+                                resp = tn_usu.pesquisarPorId(cod);
+                                String nome_paciente_logado = resp.getUsu_nome();
                                 %>
                                     <br>
                                     <tr>Cód. Receita: <%=cod_receita%></tr>
@@ -69,24 +74,29 @@
                                                 %>
                                                     Receita entregue ao paciente
                                                 <%
-                                            } else
+                                            } else{
                                                 %>
-                                                    Receita ainda não foi entregue ao paciente.
+                                                Receita ainda não foi entregue ao paciente.
                                                 <%
-                                                    String ti = (String) session.getAttribute("tipo");
-                                                    if (ti.equals("t")) {
-                                                        %>
-                                                            <form action="VisualizaReceita.jsp"><input type="submit" value="Receita Check" id="RecEntregue"></form>
-                                                        <%
-                                                    }
+                                                    //String t = (String) session.getAttribute("tipo");
+                                                    //if(t.equals("t")){
+
+                                            }//fim do else=>Receita não foi entregue
                                         %>
                                     </tr>
                                     <br>
-                                    <tr>Resumo: <%=receita.getRec_resumo()%></tr>
-                                   
+                                    <tr>Resumo: </tr>
+                                    <br>
+                                    <tr><%=receita.getRec_resumo()%></tr>          
                                 <%
+                                    if(check==false){
+                                    %>
+                                    <td><form action="../Tecnico/ReceitaCheck.jsp"><input type="submit" value="Entregar medicamentos" id="RecCheck"></form></td>
+                                    <%
+                                    }
                             }//Fim de apresentar a receita
-                        %>
+                            %>
+                                <td><form action="../Geral/ListaReceitas.jsp"><input type="submit" value="Voltar" ></form></td>
                     </table>
                     <%//Fim da jsp%>
                 </td>
@@ -98,8 +108,6 @@
             </tr>
         </table>
         <%
-                String t = (String) session.getAttribute("tipo");
-                int cod = Integer.parseInt(String.valueOf(session.getAttribute("cod")));
                 if (t.equals("m")) {
                     transacoes.Medico tnq = new transacoes.Medico();
                     data.MedicoDO medico = tnq.buscar(cod);
