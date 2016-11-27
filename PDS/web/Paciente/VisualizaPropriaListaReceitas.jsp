@@ -50,20 +50,24 @@
                                     <%
                                 }//fecha if ((receitas.size() == 0)) 
                                 else {
+                                    SimpleDateFormat form = new SimpleDateFormat("dd/MM/yyyy");
+                                    String datef;
                                     for (int i = 0; i < receitas.size(); i++) {
                                         ReceitaDO receita = (ReceitaDO) receitas.elementAt(i);
                                         int rec_cod = receita.getRec_cod();
                                         session.setAttribute("rec_cod", rec_cod);
-                                        Date data = receita.getRec_data_upload();
+                                        datef = form.format(receita.getRec_data_upload());
                                         int resp_cod = receita.getMedico_Usuario_Usu_cod();
                                         UsuarioDO resp = new UsuarioDO();
                                         transacoes.Usuario tr = new transacoes.Usuario();
                                         resp = tr.pesquisarPorId(resp_cod);
-                                        String nome_resp = resp.getUsu_nome();
+                                        String nome_resp = "Inativo";
+                                        if (resp != null)
+                                            nome_resp = resp.getUsu_nome();
                                         %>
                                             <tr>
                                                 <td><form action="../Geral/VisualizaReceita.jsp"><input type="submit" value="<%=rec_cod%>" id="RecSelecionada"></form></td>
-                                                <td><%=data%> - <%=nome_resp%></td>
+                                                <td><%=datef%> - <%=nome_resp%></td>
                                             </tr>
                                         <%
                                         }//fecha for todas as receitas foram listadas 

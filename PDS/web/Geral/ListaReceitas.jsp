@@ -14,6 +14,7 @@
         <%@ page import="java.util.Vector" %>
         <%@ page import="data.PacienteDO" %>
         <%@ page import="data.UsuarioDO" %>
+        <%@ page import="java.text.SimpleDateFormat"%>
         <%// Coloque aqui os imports%>
         <%@ include file="/Geral/verifylogin.jsp" %>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -53,19 +54,23 @@
                         Lista de Receitas não encontrada!
                         <%      }//fecha if ((receitas.size() == 0)) 
                                 else {
+                                    SimpleDateFormat form = new SimpleDateFormat("dd/MM/yyyy");
+                                    String datef;
                                     for (int i = 0; i < receitas.size(); i++) {
                                         ReceitaDO receita = (ReceitaDO) receitas.elementAt(i);
                                         int rec_cod = receita.getRec_cod();
-                                        Date data = receita.getRec_data_upload();
                                         int resp_cod = receita.getMedico_Usuario_Usu_cod();
                                         UsuarioDO resp = new UsuarioDO();
                                         transacoes.Usuario tr = new transacoes.Usuario();
                                         resp = tr.pesquisarPorId(resp_cod);
-                                        String nome_resp = resp.getUsu_nome();
+                                        String nome_resp = "Inválido";
+                                        if (resp != null)
+                                            nome_resp = resp.getUsu_nome();
+                                        datef = form.format(receita.getRec_data_upload());
                                         %>
                                             <tr>
                                                 <td><form action="VisualizaReceita.jsp"><input type="submit" value="<%=rec_cod%>" id="RecSelecionada"></form></td>
-                                                <td><%=data%> - <%=nome_resp%></td>
+                                                <td><%=datef%> - <%=nome_resp%></td>
                                             </tr>
                                         <%
                                         }//fecha for todas as receitas foram listadas 

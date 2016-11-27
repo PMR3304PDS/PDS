@@ -4,6 +4,7 @@
 
 <%@page import="java.sql.Date"%>
 <%@page import="data.ReceitaDO"%>
+<%@ page import="java.text.SimpleDateFormat"%>
 <html>
     <head>
         <title>POLIdataSUS</title>
@@ -58,14 +59,18 @@
                                 UsuarioDO resp = new UsuarioDO();
                                 transacoes.Usuario tn_usu = new transacoes.Usuario();
                                 resp = tn_usu.pesquisarPorId(resp_cod);
-                                String nome_resp = resp.getUsu_nome();
+                                String nome_resp = "Invalido";
+                                if (resp != null)
+                                    nome_resp = resp.getUsu_nome();
                                 resp = tn_usu.pesquisarPorId(cod);
                                 String nome_paciente_logado = resp.getUsu_nome();
+                                SimpleDateFormat form = new SimpleDateFormat("dd/MM/yyyy");
+                                String datef = form.format(receita.getRec_data_upload());
                                 %>
                                     <br>
                                     <tr>Cód. Receita: <%=cod_receita%></tr>
                                     <br>
-                                    <tr>Data do upload: <%=receita.getRec_data_upload()%></tr>
+                                    <tr>Data do upload: <%=datef%></tr>
                                     <br>
                                     <tr>Responsável pelo upload: <%=nome_resp%></tr>
                                     <br>
