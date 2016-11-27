@@ -6,6 +6,7 @@
 <%@page import="java.sql.Date"%>
 <%@page import="data.ExameDO"%>
 <%@page import="java.util.Vector"%>
+<%@ page import="java.text.SimpleDateFormat"%>
 <html>
     <head>
         <title>POLIdataSUS</title>
@@ -43,7 +44,7 @@
                             <td>Técnico &nbsp;</td>
                         </tr>
                         <%
-                           transacoes.Exame te = new transacoes.Exame();
+                                transacoes.Exame te = new transacoes.Exame();
                                 Vector exames = te.pesquisarPorCod(cod);
                                 if ((exames.size() == 0)) {
                             %>
@@ -51,10 +52,15 @@
                             <%
                                 } 
                                 else {
+                                    SimpleDateFormat form = new SimpleDateFormat("dd/MM/yyyy");
+                                    String dateUpf;
+                                    String datePrevf = null;
                                     for (int i = 0; i < exames.size(); i++) {
 
                                         ExameDO e = (ExameDO) exames.elementAt(i);
-                                        int exa_cod = e.getExa_cod();
+                                        dateUpf = form.format(e.getExa_data_upload());
+                                        if (e.getExa_previsao() != null)
+                                            datePrevf = form.format(e.getExa_previsao());
 
                                         transacoes.Tipo_Exame tt = new transacoes.Tipo_Exame();
                                         data.Tipo_ExameDO tip = tt.buscar(e.getTipo_Exame_TipExa_cod());
@@ -71,8 +77,8 @@
                                                     <%= tip.getTipExa_descricao()%>
                                                 </a> &nbsp;
                                             </td>
-                                            <td><%= e.getExa_data_upload()%> &nbsp;</td>
-                                            <td><%= e.getExa_previsao()%> &nbsp;</td>
+                                            <td><%= dateUpf%> &nbsp;</td>
+                                            <td><%= datePrevf%> &nbsp;</td>
                                             <td>
                                             <%
                                                 if (med != null) {    

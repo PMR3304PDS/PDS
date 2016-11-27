@@ -6,6 +6,7 @@
 <%@page import="java.sql.Date"%>
 <%@page import="data.ReceitaDO"%>
 <%@page import="java.util.Vector"%>
+<%@ page import="java.text.SimpleDateFormat"%>
 <html>
     <head>
         <title>POLIdataSUS</title>

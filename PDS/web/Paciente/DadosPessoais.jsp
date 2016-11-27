@@ -11,6 +11,7 @@
     <body>
         <%// Coloque aqui os imports%>
         <%@ page import="java.util.*"%>
+        <%@ page import="java.text.SimpleDateFormat"%>
         <%@ page import="utils.*" %>
         <%@ page import="transacoes.*" %>
         <%@ page import="data.*" %>
@@ -31,12 +32,16 @@
                     <h1>Dados Pessoais</h1><br>
                     <%
                         utils.Utils u = new Utils();
+                        SimpleDateFormat form = new SimpleDateFormat("dd/MM/yyyy");
+                        String datef = null;
                         
                         int usu_cod = Integer.parseInt(String.valueOf(session.getAttribute("cod")));
                         
                         transacoes.Paciente tp = new transacoes.Paciente();
                         data.PacienteDO p = new data.PacienteDO();
                         p = tp.buscar(usu_cod);
+                        
+                        datef = form.format(p.getPac_nascimento());
                         
                         transacoes.Endereco te = new transacoes.Endereco();
                         Vector end = te.pesquisarPorCodDaPessoa(usu_cod);
@@ -79,7 +84,7 @@
                     Nome Completo: <%= p.getUsu_nome()%><br>
                     RG: <%= p.getUsu_rg()%><br>
                     CPF: <%= p.getUsu_cpf()%><br>
-                    Data de Nascimento: <%= p.getPac_nascimento()%><br>
+                    Data de Nascimento: <%= datef%><br>
                     E-mail: <%= p.getUsu_login()%><br>
                     Estado: <%= est.getEst_nome()%><br>
                     Município: <%= mu.getMun_nome()%><br>

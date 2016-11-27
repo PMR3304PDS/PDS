@@ -14,6 +14,7 @@
         <%@ page import="transacoes.*" %>
         <%@ page import="data.*" %>
         <%@ include file="/Geral/verifylogin_paciente.jsp" %>
+        <%@ page import="java.text.SimpleDateFormat"%>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td colspan="2">
@@ -30,9 +31,12 @@
                     <h1>Ficha Médica</h1><br>
                     <%
                         utils.Utils u = new Utils();
+                        SimpleDateFormat form = new SimpleDateFormat("dd/MM/yyyy");
+                        String datef = null;
                         transacoes.Paciente tp = new transacoes.Paciente();
                         data.PacienteDO p = new data.PacienteDO();
                         p = tp.buscar(Integer.parseInt(String.valueOf(session.getAttribute("cod"))));
+                        datef = form.format(p.getPac_nascimento());
                         if (p.getUsu_foto()!= null) {
                             byte[] imageBytes = u.getBytes(p.getUsu_foto());
                             response.setContentType("image/jpeg");
@@ -49,7 +53,7 @@
                         }
                     %>
                     Nome Completo: <%= p.getUsu_nome()%><br>
-                    Data de Nascimento: <%= p.getPac_nascimento()%><br>
+                    Data de Nascimento: <%= datef%><br>
                     Peso: <%= p.getFormattedPac_peso()%><br>
                     Altura: <%= p.getFormattedPac_altura()%><br>
                     Alergias: <%= p.getFormattedPac_alergias()%><br>

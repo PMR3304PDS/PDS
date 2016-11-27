@@ -14,6 +14,7 @@
         <%@ page import="transacoes.*" %>
         <%@ page import="data.*" %>
         <%@ page import="java.util.*" %>
+        <%@ page import="java.text.SimpleDateFormat"%>
         <%@ include file="/Geral/verifylogin_paciente.jsp" %>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -40,6 +41,8 @@
                     <%
                         }
                         else {
+                            SimpleDateFormat form = new SimpleDateFormat("dd/MM/yyyy");
+                            String datef = null;
                     %>
                         <table>
                             <tr>
@@ -56,9 +59,10 @@
                                 data.MedicoDO m = new data.MedicoDO();
                                 transacoes.Medico tm = new transacoes.Medico();
                                 m = tm.buscar(c.getMedico_Usuario_Usu_cod());
+                                datef = form.format(c.getCns_data());
                         %>
                             <tr>
-                                <td><%= c.getCns_data()%> &nbsp;</td>
+                                <td><%= datef%> &nbsp;</td>
                                 <td>
                                 <%
                                     if (m == null) {
