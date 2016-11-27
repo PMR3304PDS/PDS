@@ -307,28 +307,28 @@ public boolean verificaPorLogin(String login) throws Exception {
     return false;
   }
 
-  public boolean mudar_senha(UsuarioDO usuario, String senha_antiga, String senha_nova) throws Exception {
-    if ((senha_antiga == null) || (senha_nova == null)) {
-      return false;
-    }
-
-    Transacao tr = new Transacao();
-
-    try {
-      tr.begin();
-      UsuarioData udata = new UsuarioData();
-      if (senha_antiga.equals(usuario.getUsu_senha())) {
-        usuario.setUsu_senha(senha_nova);
-        udata.atualizar(usuario, tr);
-        tr.commit();
-        return true;
-      }
-    } catch (Exception e) {
-      tr.rollback();
-      System.out.println("erro ao mudar a senha");
-      e.printStackTrace();
-    }
-    return false;
-  }
+//  public boolean mudar_senha(UsuarioDO usuario, String senha_antiga, String senha_nova) throws Exception {
+//    if ((senha_antiga == null) || (senha_nova == null)) {
+//      return false;
+//    }
+//
+//    Transacao tr = new Transacao();
+//
+//    try {
+//      tr.begin();
+//      UsuarioData udata = new UsuarioData();
+//      if (senha_antiga.equals(usuario.getUsu_senha())) {
+//        usuario.setUsu_senha(senha_nova);
+//        udata.atualizar(usuario, tr);
+//        tr.commit();
+//        return true;
+//      }
+//    } catch (Exception e) {
+//      tr.rollback();
+//      System.out.println("erro ao mudar a senha");
+//      e.printStackTrace();
+//    }
+//    return false;
+//  }
 
 }

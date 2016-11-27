@@ -90,23 +90,27 @@
                                 </form>
                     <%
                             }
-                            else if(tn.mudar_senha(usuario,usuario.getUsu_senha(),senha_nova))
+                            else 
                             {
-                    %>
-                                Senha alterada com sucesso!
-                                <form action="login.jsp" method="post">
-                                    <input type="submit" name="voltar" value="Voltar" />
-                                </form>
-                    <%
-                            }
-                            else
-                            {
-                    %>
-                                Erro ao alterar senha!
-                                <form action="EsqueciSenha.jsp" method="post">
-                                    <input type="submit" name="voltar" value="Voltar" />
-                                </form>
-                    <%
+                                usuario.setUsu_senha(senha_nova);
+                                if(tn.atualizar(usuario))
+                                {
+                        %>
+                                    Senha alterada com sucesso!
+                                    <form action="login.jsp" method="post">
+                                        <input type="submit" name="voltar" value="Voltar" />
+                                    </form>
+                        <%
+                                }
+                                else
+                                {
+                        %>
+                                    Erro ao alterar senha!
+                                    <form action="EsqueciSenha.jsp" method="post">
+                                        <input type="submit" name="voltar" value="Voltar" />
+                                    </form>
+                        <%
+                                }
                             }
                         }
                     %>

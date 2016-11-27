@@ -73,23 +73,28 @@
                                 </form>
                     <%
                             }
-                            else if(tn.mudar_senha(usuario,senha_antiga,senha_nova))
-                            {
-                    %>
-                                Senha alterada com sucesso!
-                                <form action="login.jsp" method="post">
-                                    <input type="submit" name="voltar" value="Voltar" />
-                                </form>
-                    <%
-                            }
                             else
                             {
+                                usuario.setUsu_senha(senha_nova);
+                                if(tn.atualizar(usuario))
+                                {
+                                    session.invalidate();
                     %>
-                                Erro ao mudar senha!
-                                <form action="mudar_senha.jsp" method="post">
-                                    <input type="submit" name="voltar" value="Voltar" />
-                                </form>
+                                    Senha alterada com sucesso!
+                                    <form action="login.jsp" method="post">
+                                        <input type="submit" name="voltar" value="Voltar" />
+                                    </form>
                     <%
+                                }
+                                else
+                                {
+                    %>
+                                    Erro ao mudar senha!
+                                    <form action="mudar_senha.jsp" method="post">
+                                        <input type="submit" name="voltar" value="Voltar" />
+                                    </form>
+                    <%
+                                }
                             }
                         }
                     %>
