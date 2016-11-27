@@ -30,7 +30,19 @@
         data.PacienteDO paciente = tp.buscar(Usu_cod);
 %> 
             <h1>Documentos - <%= paciente.getUsu_nome() %></h1><br>
-           
+            
+            <form action='/PDS/Medico/visualiza_informacoes_gerais_consulta.jsp'>
+            <input type='hidden' name='pac_cod' value='<%=Usu_cod%>'>
+            <input type='submit' value='Consulta'>
+            </form>
+            <form action='/PDS/Medico/visualiza_informacoes_gerais_exame.jsp'>
+            <input type='hidden' name='pac_cod' value='<%=Usu_cod%>'>
+            <input type='submit' value='Exame'>
+            </form>
+            <form action='/PDS/Geral/adicionar_receita.jsp'>
+            <input type='hidden' name='pac_cod' value='<%=Usu_cod%>'>
+            <input type='submit' value='Receita'>
+            </form>
             
                 </td>
             </tr>
