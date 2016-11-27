@@ -30,10 +30,8 @@
         boolean v = false;
         if ((user.length() <= 150) && (passwd.length() <= 20) && (u != null)) {
             v = u.getUsu_senha().equals(passwd);
-            
             if (v) {
-                
-                session.setAttribute("cod", String.valueOf(u.getUsu_cod()));
+                session.setAttribute("cod", u.getUsu_cod());
                 if (tn.buscarMedico(u.getUsu_cod()) != null) {
                     session.setAttribute("tipo", "m");
                     pageContext.forward("../Medico/Home.jsp");
