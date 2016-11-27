@@ -46,8 +46,6 @@
                                 <td>Data &nbsp;</td>
                                 <td>Médico &nbsp;</td>
                                 <td>Resumo &nbsp;</td>
-                                <td>Exame &nbsp;</td>
-                                <td>Receita &nbsp;</td>
                             </tr>
                             <tr>
                                 <td>&nbsp;</td>
@@ -70,45 +68,13 @@
                                     }
                                     else {
                                 %>
-                                    <a href="/PDS/Paciente/VisualizaPerfil.jsp?cod=<%= m.getUsu_cod()%>&tipo=m">
+                                    <a href="/PDS/Paciente/VisualizaPerfil.jsp?cod=<%= m.getUsu_cod()%>&tipo=medico">
                                         <%= m.getUsu_nome()%></a> &nbsp;
                                 <%
                                     }
                                 %>
                                 </td>
                                 <td><%= c.getCns_resumo()%> &nbsp;</td>
-                                <td>
-                                <%
-                                    if (c.getExame_Exa_cod() != 0) {
-                                %>
-                                        <a href="/PDS/Geral/temppage.jsp">
-                                            Exame
-                                        </a>
-                                <%
-                                    }
-                                    else {
-                                %>
-                                    Nenhum exame
-                                <%
-                                    }
-                                %>  
-                                </td>
-                                <td>
-                                <%
-                                    if (c.getReceita_Rec_cod()!= 0) {
-                                %>
-                                        <a href="/PDS/Geral/temppage.jsp">
-                                            Receita
-                                        </a>
-                                <%
-                                    }
-                                    else {
-                                %>
-                                    Nenhuma receita
-                                <%
-                                    }
-                                %> 
-                                </td>
                             </tr>
                             
                     <%

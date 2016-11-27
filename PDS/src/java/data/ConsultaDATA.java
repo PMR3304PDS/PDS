@@ -69,8 +69,6 @@ public class ConsultaDATA {
         c.setPaciente_Usuario_Usu_cod(rs.getInt("Paciente_Usuario_Usu_cod"));
         c.setCns_data(rs.getDate("Cns_data"));
         c.setCns_resumo(rs.getString("Cns_resumo"));
-        c.setExa_Exa_cod(rs.getInt("Exame_Exa_cod"));
-        c.setReceita_Rec_cod(rs.getInt("Receita_Rec_cod"));
         consultas.add(c);
     }
     return consultas;
