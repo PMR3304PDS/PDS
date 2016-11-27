@@ -53,6 +53,15 @@
                             String login = request.getParameter("login");
                             String senha_nova = request.getParameter("senha_nova");
 
+                            boolean tem_espaco = false;
+                            for (char c : senha_nova.toCharArray()) 
+                            {
+                                if ((c==' ')||(c=='\t')||(c=='\n'))
+                                {
+                                   tem_espaco=true;
+                                }
+                            }
+
                             transacoes.Usuario tn = new transacoes.Usuario();
                             data.UsuarioDO usuario = tn.buscar(login);
                             if(usuario==null)
@@ -68,6 +77,16 @@
                             {
                     %>
                                 Informações não estão coerentes!
+                                <form action="EsqueciSenha.jsp" method="post">
+                                    <input type="submit" name="voltar" value="Voltar" />
+                                </form>
+                    <%
+                            }
+                            else if ((senha_nova==null)||(senha_nova.equals(""))||tem_espaco||(senha_nova.length()>20))
+                            {
+                    %>
+                                Senha nova não é válida!<br>
+                                Por favor use ao menos um caracter, não use espaços e use menos de 20 caracteres!
                                 <form action="EsqueciSenha.jsp" method="post">
                                     <input type="submit" name="voltar" value="Voltar" />
                                 </form>
