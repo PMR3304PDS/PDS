@@ -81,7 +81,7 @@
                         Histórico de doenças: <%= p.getFormattedPac_historico_doencas() %> </br>
                         Medicamentos: <%= p.getFormattedPac_medicamentos() %> </br>
                         <form action='/PDS/Medico/Consulta.jsp'>
-                          <input type='hidden' name='cod' value='<%=p.getUsu_cod()>'
+                          <input type='hidden' name='cod' value='<%=p.getUsu_cod()%>'
                           <input type='submit' name="Consulta">  
                         </form>
                       <%
@@ -167,8 +167,8 @@
                     <%
                     }
                     %>
-                    <form action='/PDS/Medico/Busca.jsp'>
-                      <input type='submit' name="Voltar" value="Voltar">  
+                    <form action="/PDS/Medico/Busca.jsp">
+                      <input type="submit" name="Voltar" value="Voltar">  
                     </form>
                 </td>
             </tr>
