@@ -64,19 +64,7 @@
                                         String nome_resp = resp.getUsu_nome();
                                         %>
                                             <tr>
-                                                <%
-                                                    String t = (String) session.getAttribute("tipo");
-                                                    if(t.equals("t")){
-                                                        %>
-                                                        <td><form action="ReceitaCheck.jsp"><input type="submit" value="<%=rec_cod%>" id="RecSelecionada"></form></td>
-                                                        <%
-                                                    }//fim do if é tecnico
-                                                    else{
-                                                        %>
-                                                        <td><%=rec_cod%></td>
-                                                        <%
-                                                    }//fim do NOTtecnico
-                                                %>
+                                                <td><form action="VisualizaReceita.jsp"><input type="submit" value="<%=rec_cod%>" id="RecSelecionada"></form></td>
                                                 <td><%=data%> - <%=nome_resp%></td>
                                             </tr>
                                         <%
