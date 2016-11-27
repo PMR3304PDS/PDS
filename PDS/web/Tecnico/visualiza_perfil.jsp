@@ -13,6 +13,7 @@
     <body>
         <%@ page import="transacoes.*"%>
         <%@ page import="data.*"%>
+        <%@page import="java.util.*"%>
         <%@ include file="/Geral/verifylogin.jsp" %>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -25,61 +26,112 @@
                     <%@ include file="/Geral/menu.jsp" %>
                 </td>
                 <td>
-                    <form action="./visualiza_perfil.jsp" method="post">
                     <%
-                    String cadastro_nome = "teste";
-                    String usu_tipo = "tecnico";
-                    String cadastro_tipo = "medico";
-                    if (cadastro_tipo == "paciente"){
+                    int cod = -1;
+                    boolean valido = true;
+                    
+                    try
+                    {
+                      cod = Integer.parseInt(request.getParameter("cod"));
+                    }
+                    catch(NumberFormatException e)
+                    {
+                      valido = false;
+                    }
+                    MedicoDO m = null;
+                    PacienteDO p = null;
+                    TecnicoDO t = null;
+                    if (valido)
+                    {
+                      p = (new Paciente()).buscar(cod);
+                      m = (new Medico()).buscar(cod);
+                      t = (new Tecnico()).buscar(cod);
+                      
+                      if(p == null && m == null && t == null)
+                        valido = false;
+                    }
+                    
+                    if(valido)
+                    {
+                      Vector tel = (new Telefone()).pesquisar(cod);
+                      Vector end = (new Endereco()).pesquisarPorCodDaPessoa(cod);
+                      if(p != null) {
                     %>
-                        <h1>Busca - <%= cadastro_nome %></h1>
+                        <h1>Busca - <%= p.getUsu_nome() %></h1>
                         <br>
-                        Nome completo do paciente: <%= cadastro_nome %>
+                        Nome completo do paciente: <%= p.getUsu_nome() %>
                         <br>
-                        E-mail:
-                        <br>
-                        Telefone:
+                        E-mail: <%= p.getUsu_login()%> 
                         <br>
                         <%
-                        if (usu_tipo == "tecnico"){
+                        for(int i = 0; i < tel.size(); i++) {
                         %>
-                        <input type="submit" name="exames" value="exames">
-                        <input type="submit" name="receita" value="receita">
+                        Telefone <%= i+1%>: <%= ((TelefoneDO)(tel.elementAt(i))).getTel_numero() %> </br>
                         <%
                         }
                         %>
-                    <%
-                    }
-                    if(cadastro_tipo == "medico"){
-                    %>
-                        <h1>Busca - <%= cadastro_nome %></h1>
                         <br>
-                        Nome completo do médico: <%= cadastro_nome %>
+                        <input type="submit" name="exame" value="exame">
+                        <%
+                        }else if(m != null){
+                        %>
+                        <h1>Busca - <%= m.getUsu_nome() %></h1>
                         <br>
-                        Local de atendimento:
+                        Nome completo do médico: <%= m.getUsu_nome() %>
                         <br>
-                        Telefone de atendimento:
-                        <br>
-                        CRM:
-                        <br>
-                    <%    
-                    }
-                    if(cadastro_tipo == "tecnico"){
-                    %>
+                        <%
+                        for(int i = 0; i < end.size(); i++) {
+                          Tipo_EnderecoDO tipo_end = (new Tipo_Endereco()).buscar(((EnderecoDO)(end.elementAt(i))).getTipo_Endereco_TipEnd_cod());
+                          MunicipioDO mun = (new Municipio()).buscar(((EnderecoDO)(end.elementAt(i))).getMunicipio_Mun_cod());
+                          EstadoDO est = (new Estado()).buscar(mun.getEstado_Est_cod());
+                        %>
+                          Endereço <%= i+1%>: <%= ((EnderecoDO)(end.elementAt(i))).getEnd_rua()%>, <%= ((EnderecoDO)(end.elementAt(i))).getEnd_num()%> - <%= mun.getMun_nome()%>, <%= est.getEst_nome()%>  - Tipo: <%=tipo_end.getTipEnd_tipo()%> </br>
+                        <%
+                        }
+                        for(int i = 0; i < tel.size(); i++) {
+                        %>
+                          Telefone <%= i+1%>: <%= ((TelefoneDO)(tel.elementAt(i))).getTel_numero() %> </br>
+                        <%
+                        }
+                          ConselhosDO con = (new Conselhos()).buscar(m.getConselhos_Con_cod());
+                        %>
+                          <%= con.getCon_sigla()%>: <%= m.getMed_NumRegistro()%> </br>
+                        <%    
+                        }else if(t != null){
+                        %>
                     
-                        <h1>Busca - <%= cadastro_nome %></h1>
+                        <h1>Busca - <%= t.getUsu_nome() %></h1>
                         <br>
-                        Nome completo do técnico: <%= cadastro_nome %>
+                        Nome completo do técnico: <%= t.getUsu_nome() %>
                         <br>
-                        Local de atendimento:
-                        <br>
-                        Telefone de atendimento:
-                        <br>
+                        <%
+                        for(int i = 0; i < end.size(); i++) {
+                          Tipo_EnderecoDO tipo_end = (new Tipo_Endereco()).buscar(((EnderecoDO)(end.elementAt(i))).getTipo_Endereco_TipEnd_cod());
+                          MunicipioDO mun = (new Municipio()).buscar(((EnderecoDO)(end.elementAt(i))).getMunicipio_Mun_cod());
+                          EstadoDO est = (new Estado()).buscar(mun.getEstado_Est_cod());
+                        %>
+                          Endereço <%= i+1%>: <%= ((EnderecoDO)(end.elementAt(i))).getEnd_rua()%>, <%= ((EnderecoDO)(end.elementAt(i))).getEnd_num()%> - <%= mun.getMun_nome()%>, <%= est.getEst_nome()%>  - Tipo: <%=tipo_end.getTipEnd_tipo()%> </br>
+                        <%
+                        }
+                        %>
+                        <%
+                        for(int i = 0; i < tel.size(); i++) {
+                        %>
+                        Telefone: <%= ((TelefoneDO)(tel.elementAt(i))).getTel_numero() %> </br>
+                        <%
+                        }
+                        ConselhosDO con = (new Conselhos()).buscar(t.getConselhos_Con_cod());
+                        %>
+                        Conselho: <%= con.getCon_sigla()%>
                     <% 
+                        }
+                    }else{
+                    %>
+                    <h2>Usuário invalido</h2>
+                    <%
                     }
                     %>
                     <input type="submit" name="voltar" value="voltar" />
-                    </form>
                     <%
                     if(null != request.getParameter("voltar")){
                         pageContext.forward("./modelo.jsp");
