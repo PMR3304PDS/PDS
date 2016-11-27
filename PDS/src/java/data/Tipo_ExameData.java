@@ -28,17 +28,17 @@ public class Tipo_ExameData {
 //     int result = ps.executeUpdate();
 //  } // atualizar
 //
-//  public Tipo_ExameDO buscar(int idobj, Transacao tr) throws Exception {
-//     Connection con = tr.obterConexao();
-//     String sql = "select * from Tipo_Exame where  TipExa_cod=?";
-//     PreparedStatement ps = con.prepareStatement(sql);
-//     ps.setInt(1, idobj);
-//     ResultSet rs = ps.executeQuery();
-//     rs.next();
-//     Tipo_ExameDO tipo_exame = new Tipo_ExameDO();
-//     tipo_exame.setTipExa_cod(rs.getInt("TipExa_cod"));
-//     tipo_exame.setTipExa_descricao(rs.getString("TipExa_descricao"));
-//     
-//     return tipo_exame;
-//  } // buscar
+    public Tipo_ExameDO buscar(int idobj, Transacao tr) throws Exception {
+        Connection con = tr.obterConexao();
+        String sql = "select * from Tipo_Exame where  TipExa_cod=?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, idobj);
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        Tipo_ExameDO tipo_exame = new Tipo_ExameDO();
+        tipo_exame.setTipExa_cod(rs.getInt("TipExa_cod"));
+        tipo_exame.setTipExa_descricao(rs.getString("TipExa_descricao"));
+
+        return tipo_exame;
+    } // buscar
 }

@@ -98,19 +98,21 @@ public class ExameDATA {
     ResultSet rs = ps.executeQuery();
     Vector exames = new Vector();
     while (rs.next()) {
-      ExameDO c = new ExameDO();
-      c.setExa_cod(rs.getInt("Exa_cod"));
-      c.setExa_resumo(rs.getString("Exa_resumo"));
-      c.setExa_exame(rs.getBinaryStream("Exa_exame"));
-      c.setExa_Solicitar(rs.getBinaryStream("Exa_Solicitar"));
-      c.setTipo_Exame_TipExa_cod(rs.getInt("Tipo_Exame_TipExa_cod"));
-      c.setTecnico_Usuario_Usu_cod_uploader(rs.getInt("Tecnico_Usuario_Usu_cod_uploader"));
-      c.setPaciente_Usuario_Usu_cod(rs.getInt("Paciente_Usuario_Usu_cod"));
-      c.setMedico_Usuario_Usu_cod_uploader(rs.getInt("Medico_Usuario_Usu_cod_uploader"));
-      c.setExa_excluido(rs.getBoolean("Exa_excluido"));
-      c.setExa_data_upload(rs.getDate("Exa_data_upload"));
-      c.setExa_previsao(rs.getDate("Exa_previsao"));
-      exames.add(c);
+        if (!rs.getBoolean("Exa_Excluido")) {
+            ExameDO c = new ExameDO();
+            c.setExa_cod(rs.getInt("Exa_cod"));
+            c.setExa_resumo(rs.getString("Exa_resumo"));
+            c.setExa_exame(rs.getBinaryStream("Exa_exame"));
+            c.setExa_Solicitar(rs.getBinaryStream("Exa_Solicitar"));
+            c.setTipo_Exame_TipExa_cod(rs.getInt("Tipo_Exame_TipExa_cod"));
+            c.setTecnico_Usuario_Usu_cod_uploader(rs.getInt("Tecnico_Usuario_Usu_cod_uploader"));
+            c.setPaciente_Usuario_Usu_cod(rs.getInt("Paciente_Usuario_Usu_cod"));
+            c.setMedico_Usuario_Usu_cod_uploader(rs.getInt("Medico_Usuario_Usu_cod_uploader"));
+            c.setExa_excluido(rs.getBoolean("Exa_excluido"));
+            c.setExa_data_upload(rs.getDate("Exa_data_upload"));
+            c.setExa_previsao(rs.getDate("Exa_previsao"));
+            exames.add(c);
+        }
     }
     return exames;
   }// buscar
