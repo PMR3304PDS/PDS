@@ -13,7 +13,7 @@
         } else if (type.equals("t")) {
             %>
                     <a href="/PDS/Tecnico/Home.jsp">Home</a><br>
-                    <a href="/PDS/Geral/temppage.jsp">Dados pessoais</a><br>
+                    <a href="/PDS/Tecnico/DadosPessoais.jsp">Dados pessoais</a><br>
                     <a href="/PDS/Tecnico/Busca.jsp">Busca</a><br>
                     <a href="/PDS/Geral/mudar_senha.jsp">Mudar Senha</a><br><br><br>
                     <a href="/PDS/Geral/Logout.jsp">Logout</a><br>

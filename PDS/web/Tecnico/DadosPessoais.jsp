@@ -1,7 +1,6 @@
 <%-- 
-    *******Dados Pessoais Médico*********
+    *******Visualização de dados pessoais do Técnico*********
 --%>
-
 
 <html>
     <head>
@@ -32,29 +31,26 @@
                     <h1>Dados Pessoais</h1><br>
                     <%
                         utils.Utils u = new Utils();
-                        transacoes.Medico tm = new transacoes.Medico();
-                        data.MedicoDO m = new data.MedicoDO();
-                        m = tm.buscar(Integer.parseInt(String.valueOf(session.getAttribute("cod"))));
+                        transacoes.Tecnico ttec = new transacoes.Tecnico();
+                        data.TecnicoDO t = new data.TecnicoDO();
+                        t = ttec.buscar(Integer.parseInt(String.valueOf(session.getAttribute("cod"))));
                         
                         transacoes.Conselhos tc = new transacoes.Conselhos();
                         data.ConselhosDO c = new data.ConselhosDO();
-                        c = tc.buscar(m.getConselhos_Con_cod());
+                        c = tc.buscar(t.getConselhos_Con_cod());
                         
                         transacoes.Estado te = new transacoes.Estado();
                         data.EstadoDO e = new data.EstadoDO();
-                        e = te.buscar(m.getEstado_Est_cod_conselho_emissor());
-                        
-                        transacoes.Especialidade tme2 = new transacoes.Especialidade();
-                        Vector es = tme2.pesquisarEspecialidadesdoMedico(m.getUsu_cod());
+                        e = te.buscar(t.getEstado_Est_cod_conselho_emissor());
                         
                         transacoes.Endereco tend = new transacoes.Endereco();
-                        Vector enderecos = tend.pesquisarPorCodDaPessoa(m.getUsu_cod());
+                        Vector enderecos = tend.pesquisarPorCodDaPessoa(t.getUsu_cod());
                         
                         transacoes.Telefone tt = new transacoes.Telefone();
-                        Vector telefones = tt.pesquisar(m.getUsu_cod());
+                        Vector telefones = tt.pesquisar(t.getUsu_cod());
                        
-                        if (m.getUsu_foto()!= null) {
-                            byte[] imageBytes = u.getBytes(m.getUsu_foto());
+                        if (t.getUsu_foto()!= null) {
+                            byte[] imageBytes = u.getBytes(t.getUsu_foto());
                             response.setContentType("image/jpeg");
                             response.setContentLength(imageBytes.length);
                             response.getOutputStream().write(imageBytes);
@@ -67,9 +63,9 @@
                     <%
                         }
                     %>
-                    Nome Completo: <%= m.getUsu_nome()%><br>
-                    RG: <%= m.getUsu_rg()%><br>
-                    CPF: <%= m.getUsu_cpf()%><br>
+                    Nome Completo: <%= t.getUsu_nome()%><br>
+                    RG: <%= t.getUsu_rg()%><br>
+                    CPF: <%= t.getUsu_cpf()%><br>
                     <%
                         for (int i = 0; i < telefones.size(); i++){
                             TelefoneDO tel = new TelefoneDO();
@@ -95,20 +91,8 @@
                     <%
                         }
                     %>
-                    Número de Registro (CRM): <%= m.getMed_NumRegistro()%><br>
                     Estado: <%= e.getEst_nome()%><br>
-                    Conselho: <%= c.getCon_nome()%> - <%= c.getCon_sigla()%> <br>
-                    <%
-                        for (int i = 0; i < es.size(); i++){
-                            EspecialidadeDO especialidade = new EspecialidadeDO();
-                            especialidade = (EspecialidadeDO)es.elementAt(i);
-                        
-                    %>
-                    Especialidade <%= i+1%>: <%= especialidade.getEsp_nome()%><br>
-                    <%
-                        }
-                    %>
-                    
+                    Conselho: <%= c.getCon_nome()%> - <%= c.getCon_sigla()%> <br> 
                     
                 </td>
             </tr>
@@ -120,4 +104,3 @@
         </table>
     </body>
 </html>
-
