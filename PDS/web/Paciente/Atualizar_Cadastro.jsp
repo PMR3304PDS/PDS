@@ -51,7 +51,7 @@
                     String action = request.getParameter("atualizar");
                     if (null == action){
                         action = "showEditForm";
-                        int codi = Integer.parseInt(String.valueOf(session.getAttribute("cod")));
+                        int codi = ((Integer)session.getAttribute("cod")).intValue();
                         transacoes.Paciente tn = new transacoes.Paciente();
                         data.PacienteDO paci = tn.buscar(codi);
                         int Usu_cod = paci.getUsu_cod();
@@ -104,13 +104,13 @@
                         <%
                         int cod1;
                         if(request.getParameter("estado_id") != null){
-                            cod1 = estcod;
+                            cod1 = Integer.parseInt(request.getParameter("estado_id"));
                         %>
                             <select name="estado_id" id="estado_id" value = cod1 onchange="this.form.submit()" required>
                         <%
                         }
                         else {
-                            cod1 = 0;
+                            cod1 = estcod;
                         %>
                              <select name="estado_id" id="estado_id" onchange="this.form.submit()" required>
                         <%
@@ -148,9 +148,12 @@
                             </td>
                         </tr>
                         <%
+                        int cod = 0;
                         if(request.getParameter("estado_id") != null){
-                            
-                            int cod = Integer.parseInt(request.getParameter("estado_id"));
+                            cod = Integer.parseInt(request.getParameter("estado_id"));
+                        } else {
+                            cod = estcod;
+                        }
                             
                             transacoes.Municipio tm = new transacoes.Municipio();
                             Vector municipios = tm.pesquisarporEstado2(cod);
@@ -172,7 +175,7 @@
                                     <%        }
                                         
                                         }
-                        }
+                        //}
 %>
                                 </select>
                             </td>
@@ -201,7 +204,7 @@
                         </tr>
                         <tr>
                             <td>Bairro</td>
-                            <td><input type="text" name="bairro" maxlength="200" required value=<%= bairro %>/>
+                            <td><input type="text" name="bairro" maxlength="200" required value=<%= bairro %> />
                         </tr>
                         <tr>
                         <tr>

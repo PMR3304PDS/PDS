@@ -33,7 +33,7 @@
                         utils.Utils u = new Utils();
                         transacoes.Tecnico ttec = new transacoes.Tecnico();
                         data.TecnicoDO t = new data.TecnicoDO();
-                        t = ttec.buscar(Integer.parseInt(String.valueOf(session.getAttribute("cod"))));
+                        t = ttec.buscar(((Integer)session.getAttribute("cod")).intValue());
                         
                         transacoes.Conselhos tc = new transacoes.Conselhos();
                         data.ConselhosDO c = new data.ConselhosDO();

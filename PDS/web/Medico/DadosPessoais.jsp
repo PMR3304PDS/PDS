@@ -34,7 +34,7 @@
                         utils.Utils u = new Utils();
                         transacoes.Medico tm = new transacoes.Medico();
                         data.MedicoDO m = new data.MedicoDO();
-                        m = tm.buscar(Integer.parseInt(String.valueOf(session.getAttribute("cod"))));
+                        m = tm.buscar(((Integer)session.getAttribute("cod")).intValue());
                         
                         transacoes.Conselhos tc = new transacoes.Conselhos();
                         data.ConselhosDO c = new data.ConselhosDO();
