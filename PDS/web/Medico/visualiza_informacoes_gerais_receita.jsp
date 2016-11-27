@@ -28,13 +28,13 @@
                         transacoes.Usuario tu = new transacoes.Usuario();
                         data.UsuarioDO paciente = tu.pesquisarPorId(pac_cod);                        
                         
-                        transacoes.Exame te = new transacoes.Exame(); 
-                        java.util.Vector exames = te.pesquisarPorCod(pac_cod);
+                        transacoes.Receita tr = new transacoes.Receita(); 
+                        java.util.Vector receitas = tr.getListaReceitas(pac_cod);
                         
-                        if(exames ==null)
+                        if(receitas == null)
                         {
                             %>
-                                Paciente não tem exames!
+                                Paciente não tem receitas!
                                 <form action="Home.jsp" method="post">
                                     <input type="submit" name="voltar" value="Voltar" />
                                 </form>
@@ -44,35 +44,32 @@
                         {
 %>
                                 <br>  
-                                <h2>Exames - <%= paciente.getUsu_nome() %></h2> 
+                                <h2>Receitas - <%= paciente.getUsu_nome() %></h2> 
 <%
-                            for(int i=0;i<exames.size();i++)
+                            for(int i=0;i<receitas.size();i++)
                             {
-                                data.ExameDO exame = (data.ExameDO) exames.elementAt(i);                                                                                           
+                                data.ReceitaDO receita = (data.ReceitaDO) receitas.elementAt(i);                                                                                           
 
                                 %>
                                     <br>
-                                    <h3>Exame <%= i+1 %></h3>
+                                    <h3>Receita <%= i+1 %></h3>
                                     <br>                                    
-                                    Codigo exame - <%= exame.getExa_cod() %>
+                                    Codigo receita - <%= receita.getRec_cod() %>
                                     <br>
                                     <br>
-                                    Resumo - <%= exame.getExa_resumo() %>
+                                    Resumo - <%= receita.getRec_resumo() %>
                                     <br>
                                     <br>
-                                    Data upload - <%= exame.getExa_data_upload() %>
-                                    <br>
-                                    <br>
-                                    Data previsão - <%= exame.getExa_previsao() %>
+                                    Data upload - <%= receita.getRec_data_upload() %>
                                     <br><br><br>
                                     <form action="VisualizaDocumentos.jsp" method="post">
-                                        <input type='hidden' name='pac_cod' value='<%=pac_cod%>'>
-                                        <input type="submit" name="voltar" value="Voltar" />
+                                         <input type='hidden' name='pac_cod' value='<%=pac_cod%>'>
+                                         <input type="submit" name="voltar" value="Voltar" />
                                     </form>
-                                 <%
+                                <%
                                     }
                                 }
-                                %>                              
+                                %>                       
                 </td>
             </tr>
             <tr>
@@ -83,4 +80,5 @@
         </table>
     </body>
 </html>
+
 

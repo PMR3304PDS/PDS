@@ -39,11 +39,14 @@
             <input type='hidden' name='pac_cod' value='<%=Usu_cod%>'>
             <input type='submit' value='Exame'>
             </form>
-            <form action='/PDS/Geral/adicionar_receita.jsp'>
+            <form action='/PDS/Medico/visualiza_informacoes_gerais_receita.jsp'>
             <input type='hidden' name='pac_cod' value='<%=Usu_cod%>'>
             <input type='submit' value='Receita'>
             </form>
-            
+            <form action='/PDS/Medico/visualiza_perfil.jsp'>
+            <input type='hidden' name='pac_cod' value='<%=Usu_cod%>'>
+            <input type='submit' value='Voltar'>
+            </form>
                 </td>
             </tr>
             <tr>
