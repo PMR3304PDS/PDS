@@ -2,6 +2,7 @@
     Visualiza informações gerais do exame
 --%>
 
+
 <html>
     <head>
         <title>POLIdataSUS</title>
@@ -9,6 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <%@page import="java.util.Vector"%>
         <%@ include file="/Geral/verifylogin_medico.jsp" %>
         
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -31,7 +33,7 @@
                                 <h2>Exames - <%= paciente.getUsu_nome() %></h2> 
 <%   
                         transacoes.Exame te = new transacoes.Exame(); 
-                        java.util.Vector exames = te.pesquisarPorCod(pac_cod);
+                        Vector exames = te.pesquisarPorCod(pac_cod);
                         
                         if(exames ==null)
                         {
@@ -49,19 +51,17 @@
                             for(int i=0;i<exames.size();i++)
                             {
                                 data.ExameDO exame = (data.ExameDO) exames.elementAt(i);                                                                                                                                                                                                                          
-                                
-                                transacoes.Usuario tm = new transacoes.Usuario();
-                                data.UsuarioDO medico = tm.pesquisarPorId(exame.getMedico_Usuario_Usu_cod_uploader());
-                                
-                                transacoes.Usuario tt = new transacoes.Usuario();
-                                data.UsuarioDO tecnico = tt.pesquisarPorId(exame.getTecnico_Usuario_Usu_cod_uploader());
-                                
-                                
+                               
+                                transacoes.Tipo_Exame tt = new transacoes.Tipo_Exame();
+                                data.Tipo_ExameDO tip = tt.buscar(exame.getTipo_Exame_TipExa_cod());
                                 %>
                                     <br>
                                     <h3>Exame <%= i+1 %></h3>
                                     <br>                                    
                                     Codigo exame - <%= exame.getExa_cod() %>
+                                    <br>
+                                    <br>
+                                    Tipo exame - <%= tip.getTipExa_descricao() %>
                                     <br>
                                     <br>
                                     Resumo - <%= exame.getExa_resumo() %>
@@ -70,13 +70,9 @@
                                     Data upload - <%= exame.getExa_data_upload() %>
                                     <br>
                                     <br>
-                                    Data previsão - <%= exame.getExa_previsao() %>
-                                    <br>
-                                    <br>
-                                    Medico - <%= medico.getUsu_nome() %>
-                                    <br>
-                                    <br>
-                                    Tecnico responsavel - <%= tecnico.getUsu_nome() %>
+                                    Data previsao - <%= exame.getExa_previsao() %>
+                                    
+                                    
                                     <br><br><br>
                                     <form action="VisualizaDocumentos.jsp" method="post">
                                         <input type='hidden' name='pac_cod' value='<%=pac_cod%>'>

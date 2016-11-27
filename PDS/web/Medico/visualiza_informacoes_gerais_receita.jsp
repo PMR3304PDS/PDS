@@ -2,6 +2,7 @@
     Visualiza informações gerais do exame
 --%>
 
+
 <html>
     <head>
         <title>POLIdataSUS</title>
@@ -9,6 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <%@page import="java.util.Vector"%>
         <%@ include file="/Geral/verifylogin_medico.jsp" %>
         
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -32,12 +34,13 @@
                                 <h2>Receitas - <%= paciente.getUsu_nome() %></h2> 
 <%
                         transacoes.Receita tr = new transacoes.Receita(); 
-                        java.util.Vector receitas = tr.getListaReceitas(pac_cod);
+                        Vector receitas = tr.getListaReceitas(pac_cod);
                         
                         if(receitas == null)
                         {
                             %>
                                 Paciente não tem receitas!
+                              
                                 <form action="Home.jsp" method="post">
                                     <input type="submit" name="voltar" value="Voltar" />
                                 </form>
@@ -48,13 +51,7 @@
 
                             for(int i=0;i<receitas.size();i++)
                             {
-                                data.ReceitaDO receita = (data.ReceitaDO) receitas.elementAt(i);                                                                                           
-                                
-                                transacoes.Usuario tm = new transacoes.Usuario();
-                                data.UsuarioDO medico = tm.pesquisarPorId(receita.getMedico_Usuario_Usu_cod());
-                                
-                                transacoes.Usuario tt = new transacoes.Usuario();
-                                data.UsuarioDO tecnico = tt.pesquisarPorId(receita.getTecnico_Usuario_Usu_cod());
+                                data.ReceitaDO receita = (data.ReceitaDO) receitas.elementAt(i);                                                                                                                           
                                 
                                 %>
                                     <br>
@@ -67,12 +64,7 @@
                                     <br>
                                     <br>
                                     Data upload - <%= receita.getRec_data_upload() %>
-                                    <br>
-                                    <br>
-                                    Medico responsavel - <%= medico.getUsu_nome() %>
-                                    <br>
-                                    <br>
-                                    Tecnico responsavel - <%= tecnico.getUsu_nome() %>
+                                    
                                     <br><br><br>
                                     <form action="VisualizaDocumentos.jsp" method="post">
                                          <input type='hidden' name='pac_cod' value='<%=pac_cod%>'>
