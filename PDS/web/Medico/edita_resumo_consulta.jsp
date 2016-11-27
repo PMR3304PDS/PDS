@@ -48,7 +48,7 @@
                             {
                     %>
                                 Consulta atualizada com sucesso!
-                                <form action="../Medico/modelo.jsp" method="post">
+                                <form action="../Medico/visualiza_informacoes_gerais_consulta.jsp?cns_cod=<%=cns_cod%>" method="post">
                                     <input type="submit" name="voltar" value="Voltar" />
                                 </form>
                     <%
