@@ -41,14 +41,16 @@
                         }
                         else
                         {
+                            int pac_cod = consulta.getPaciente_Usuario_Usu_cod();
+
                             String novo_resumo = request.getParameter("novo_resumo");
                             transacoes.Consulta tn = new transacoes.Consulta();
                             consulta.setCns_resumo(novo_resumo);
                             if(tn.atualizar(consulta))
                             {
-                    %>
+                    %>  
                                 Consulta atualizada com sucesso!
-                                <form action="../Medico/visualiza_informacoes_gerais_consulta.jsp?cns_cod=<%=cns_cod%>" method="post">
+                                <form action="../Medico/visualiza_informacoes_gerais_consulta.jsp?pac_cod=<%=pac_cod%>" method="post">
                                     <input type="submit" name="voltar" value="Voltar" />
                                 </form>
                     <%
@@ -57,7 +59,7 @@
                             {
                     %>
                                 Erro ao atualizar consulta!
-                                <form action="edita_resumo_consulta.jsp?cns_cod=<%=cns_cod%>" method="post">
+                                <form action="edita_resumo_consulta.jsp?pac_cod=<%=pac_cod%>" method="post">
                                     <input type="submit" name="voltar" value="Voltar" />
                                 </form>
                     <%
