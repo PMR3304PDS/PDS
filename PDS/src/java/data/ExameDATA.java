@@ -8,24 +8,33 @@ import utils.Transacao;
 
 public class ExameDATA {
 
-//    public void incluir(ExameDO exame, Transacao tr) throws Exception {
-//        Connection con = tr.obterConexao();
-//        String sql = "insert into Exame (Exa_resumo, Exa_exame, "
-//                + "Exa_Solicitar,Tipo_Exame_TipExa_cod,Tecnico_Usuario_Usu_cod_uploader, "
-//                + "Paciente_Usuario_Usu_cod, Medico_Usuario_Usu_cod_uploader, Exa_excluido, Exa_data_upload, Exa_previsao ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-//        PreparedStatement ps = con.prepareStatement(sql);
-//        ps.setString(1, exame.getExa_resumo());
-//        ps.setBinaryStream(2, exame.getExa_exame());
-//        ps.setBinaryStream(3, exame.getExa_Solicitar());
-//        ps.setInt(4, exame.getTipo_Exame_TipExa_cod());
-//        ps.setInt(5, exame.getTecnico_Usuario_Usu_cod_uploader());
-//        ps.setInt(6, exame.getPaciente_Usuario_Usu_cod());
-//        ps.setInt(7, exame.getMedico_Usuario_Usu_cod_uploader());
-//        ps.setBoolean(8, exame.isExa_excluido());
-//        ps.setDate(9, exame.getExa_data_upload());
-//        ps.setDate(10, exame.getExa_previsao());
-//        int result = ps.executeUpdate();
-//    }
+    public void incluir(ExameDO exame, Transacao tr) throws Exception {
+        Connection con = tr.obterConexao();
+        String sql = "insert into Exame ("
+                + "Exa_resumo, "
+                + "Exa_exame, "
+                + "Exa_Solicitar, "
+                + "Tipo_Exame_TipExa_cod, "
+                + "Tecnico_Usuario_Usu_cod_uploader, "
+                + "Paciente_Usuario_Usu_cod, "
+                + "Medico_Usuario_Usu_cod_uploader, "
+                + "Exa_excluido, "
+                + "Exa_data_upload, "
+                + "Exa_previsao ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, exame.getExa_resumo());
+        ps.setBinaryStream(2, exame.getExa_exame());
+        ps.setBinaryStream(3, exame.getExa_Solicitar());
+        ps.setInt(4, exame.getTipo_Exame_TipExa_cod());
+        ps.setInt(5, exame.getTecnico_Usuario_Usu_cod_uploader());
+        ps.setInt(6, exame.getPaciente_Usuario_Usu_cod());
+        ps.setInt(7, exame.getMedico_Usuario_Usu_cod_uploader());
+        ps.setBoolean(8, exame.isExa_excluido());
+        ps.setDate(9, exame.getExa_data_upload());
+        ps.setDate(10, exame.getExa_previsao());
+        int result = ps.executeUpdate();
+    }
+    
 //
   public void excluir(ExameDO exame, Transacao tr) throws Exception {
     Connection con = tr.obterConexao();
