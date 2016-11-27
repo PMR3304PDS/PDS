@@ -338,7 +338,7 @@
 <%      } else{
 %>
         Erro ao incluir usuário<br>
-        Telefones já cadastrado!
+        Telefone já cadastrado!
         <form action="primeiro_acesso_paciente.jsp" method="post">
             <input type="submit" name="retry" value="Repetir" />
         </form>
