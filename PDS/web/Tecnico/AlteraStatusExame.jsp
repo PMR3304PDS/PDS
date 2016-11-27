@@ -64,13 +64,11 @@
                <tr>
                   <td>Data Previsao (dd/mm/yyyy)</td>
                   <td><input type="text" name="data_previsao" maxlength="10" onkeypress="return isDate(event)" required value=<%= data_previsao %>/>
-               </tr>                  
-                    
+               </tr>                                      
             <br /><br />
             </td>
             </table>
-            <br>
-            
+            <br>           
                 <input type="submit" name="voltar" value="voltar" />
                 <input type="submit" name="editar" value="editar" />  
                 <input type="submit" name="excluir" value="excluir" />
@@ -103,8 +101,42 @@
       }
        
        if (null != request.getParameter("editar")) {
-        // fazer
-       }
+       
+       String resumo = request.getParameter("resumo");    
+           
+       DateFormat df = new SimpleDateFormat("dd/MM/yyyy");    
+       String data_up = request.getParameter("data_upload"); 
+       java.sql.Date sqldate_up = new java.sql.Date(df.parse(data_up).getTime());
+       
+       String data_prev = request.getParameter("data_previsao"); 
+       java.sql.Date sqldate_prev = new java.sql.Date(df.parse(data_prev).getTime());
+       
+       int Exa_cod = Integer.parseInt(request.getParameter("exame_cod"));
+       
+       transacoes.Exame tn = new transacoes.Exame();
+       data.ExameDO exame = new data.ExameDO();
+       
+       exame.setExa_cod(Exa_cod);
+       exame.setExa_resumo(resumo);
+       exame.setExa_data_upload(sqldate_up);
+       exame.setExa_previsao(sqldate_prev);
+       
+       tn.atualizar_status(exame);
+       if (tn.atualizar_status(exame)) {
+
+%>
+          Transação realizada com sucesso!
+          <form action="/PDS/Tecnico/Home.jsp" method="post">
+             <input type="submit" name="voltar" value="Voltar" />
+          </form>
+<%     } else {
+%>
+          Erro ao editar status do exame         
+          <form action="/PDS/Tecnico/AlteraStatusExame.jsp?exame_cod=<%=Exa_cod%>" method="post">
+             <input type="submit" name="retry" value="Repetir" />
+          </form>
+<%     }
+     }
        
         %>
                 </td>

@@ -90,9 +90,7 @@
                           
              </table>
              <input type="submit" name="atualizar" value="atualizar" />
-             <input type="submit" name="voltar" value="voltar" />
-             
-	     
+             <input type="submit" name="voltar" value="voltar" />	     
            </form>
 <%     }
        
