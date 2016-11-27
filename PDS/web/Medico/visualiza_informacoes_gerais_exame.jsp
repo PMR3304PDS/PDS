@@ -29,7 +29,7 @@
                         
                         transacoes.Usuario tu = new transacoes.Usuario();
                         data.UsuarioDO paciente = tu.pesquisarPorId(pac_cod);                        
-%><br>  
+%>                              <br>  
                                 <h2>Exames - <%= paciente.getUsu_nome() %></h2> 
 <%   
                         transacoes.Exame te = new transacoes.Exame(); 

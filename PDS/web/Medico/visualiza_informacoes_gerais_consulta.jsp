@@ -28,7 +28,9 @@
                         pac_cod = Integer.parseInt(request.getParameter("pac_cod"));
                         transacoes.Usuario tn_usu = new transacoes.Usuario();
                         data.UsuarioDO paciente = tn_usu.pesquisarPorId(pac_cod);
-                        
+%>                              <br>  
+                                <h2>Consultas - <%= paciente.getUsu_nome() %></h2> 
+<%                         
                         transacoes.Consulta tn_cns = new transacoes.Consulta(); 
                         java.util.Vector todasconsultas = tn_cns.busca_paciente(pac_cod);
                         
@@ -36,6 +38,10 @@
                         {
                             %>
                                 Paciente não tem consultas ou foi excluido!
+                                <br><br><br>
+                                <form action="Home.jsp" method="post">
+                                    <input type="submit" name="voltar" value="Voltar" />
+                                </form>
                             <%
                         }
                         else
@@ -49,23 +55,31 @@
                                 data.MedicoDO medico = tn_med.buscar(med_cod);
 
                                 java.sql.Date data = consulta.getCns_data();
-                                String resumo = consulta.getCns_resumo();
+                                String resumo = consulta.getCns_resumo();                                
+                                int codigo = consulta.getCns_cod();
                                 %>
-                                    Consulta - <%= paciente.getUsu_nome() %>
                                     <br>
-                                <% 
+                                    <h3>Consulta <%= i+1 %></h3>
+                                    <br>                                    
+                                    Codigo consulta - <%= codigo %>
+                                    <br>
+                                    <br>
+                                    Data - <%= data %>
+                                    <br>
+                                    <br>
+                                    Resumo - <%= resumo %>
+                                    <br>
+                                    <br>
+                                    <% 
                                     if(medico!=null)
                                     {
                                 %>
                                     Medico - <%= medico.getUsu_nome() %>
                                     <br>
+                                    <br>
                                 <%
                                     }
-                                %>
-                                    Data - <%= data %>
-                                    <br>
-                                    Resumo - <%= resumo %>
-                                <%
+                                
                                     int medicoatual = ((Integer)session.getAttribute("cod")).intValue();
                                     if(medicoatual==med_cod)
                                     {
