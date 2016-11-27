@@ -15,6 +15,7 @@
         <%@ page import="java.util.*"%>
         <%@ page import="java.time.*"%>
         <%@ page import="java.sql.*"%>
+        <%@ page import="java.text.SimpleDateFormat"%>
         <%@ include file="/Geral/verifylogin.jsp" %>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -35,6 +36,11 @@
                     <%  int exame_cod = Integer.parseInt(request.getParameter("exame_cod"));
                         transacoes.Exame tn = new transacoes.Exame();
                         data.ExameDO exame = tn.buscar(exame_cod);
+                        SimpleDateFormat form = new SimpleDateFormat("dd/MM/yyyy");
+                        String dateUpf = form.format(exame.getExa_data_upload());
+                        String datePrevf = null;
+                        if(exame.getExa_previsao() != null)
+                            datePrevf = form.format(exame.getExa_previsao());
                     %>
             <form action="/PDS/Geral/VisualizaExames.jsp?exame_cod=<%=exame_cod%>" method="post">   
               <table>             
@@ -45,10 +51,10 @@
               Resumo do Exame - <%= exame.getExa_resumo()%>
               <br>
               <br>
-              Data Upload - <%= exame.getExa_data_upload()%>
+              Data Upload - <%= dateUpf%>
               <br>
               <br>
-              Data Previsao - <%= exame.getExa_previsao()%>
+              Data Previsao - <%= datePrevf%>
 
               <br><br>
               <br>

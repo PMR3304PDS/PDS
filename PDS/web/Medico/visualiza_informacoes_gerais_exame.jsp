@@ -11,6 +11,7 @@
     </head>
     <body>
         <%@page import="java.util.Vector"%>
+        <%@ page import="java.text.SimpleDateFormat"%>
         <%@ include file="/Geral/verifylogin_medico.jsp" %>
         
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -47,13 +48,18 @@
                         }
                         else
                         {
-                                
+                            SimpleDateFormat form = new SimpleDateFormat("dd/MM/yyyy");
+                            String dateUpf;
+                            String datePrevf = null;
                             for(int i=0;i<exames.size();i++)
                             {
                                 data.ExameDO exame = (data.ExameDO) exames.elementAt(i);                                                                                                                                                                                                                          
                                
                                 transacoes.Tipo_Exame tt = new transacoes.Tipo_Exame();
                                 data.Tipo_ExameDO tip = tt.buscar(exame.getTipo_Exame_TipExa_cod());
+                                dateUpf = form.format(exame.getExa_data_upload());
+                                if (exame.getExa_previsao() != null)
+                                    datePrevf = form.format(exame.getExa_previsao());
                                 %>
                                     <br>
                                     <h3>Exame <%= i+1 %></h3>
@@ -67,10 +73,10 @@
                                     Resumo - <%= exame.getExa_resumo() %>
                                     <br>
                                     <br>
-                                    Data upload - <%= exame.getExa_data_upload() %>
+                                    Data upload - <%= dateUpf %>
                                     <br>
                                     <br>
-                                    Data previsao - <%= exame.getExa_previsao() %>
+                                    Data previsao - <%= datePrevf %>
                                     
                                     
                                     <br><br><br>

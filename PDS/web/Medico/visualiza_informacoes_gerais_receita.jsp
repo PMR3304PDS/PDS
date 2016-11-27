@@ -11,6 +11,7 @@
     </head>
     <body>
         <%@page import="java.util.Vector"%>
+        <%@ page import="java.text.SimpleDateFormat"%>
         <%@ include file="/Geral/verifylogin_medico.jsp" %>
         
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -48,11 +49,12 @@
                         }
                         else
                         {
-
+                            SimpleDateFormat form = new SimpleDateFormat("dd/MM/yyyy");
+                            String datef;
                             for(int i=0;i<receitas.size();i++)
                             {
                                 data.ReceitaDO receita = (data.ReceitaDO) receitas.elementAt(i);                                                                                                                           
-                                
+                                datef = form.format(receita.getRec_data_upload());
                                 %>
                                     <br>
                                     <h3>Receita <%= i+1 %></h3>
@@ -63,7 +65,7 @@
                                     Resumo - <%= receita.getRec_resumo() %>
                                     <br>
                                     <br>
-                                    Data upload - <%= receita.getRec_data_upload() %>
+                                    Data upload - <%= datef %>
                                     
                                     <br><br><br>
                                     <form action="VisualizaDocumentos.jsp" method="post">
