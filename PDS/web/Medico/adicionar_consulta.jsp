@@ -30,9 +30,9 @@
                     <%
                         int med_cod = ((Integer)session.getAttribute("cod")).intValue();
                         int pac_cod = Integer.parseInt(request.getParameter("pac_cod"));
-                        transacoes.Paciente tn_p = new transacoes.Paciente();
+                        transacoes.Paciente tp = new transacoes.Paciente();
                         data.PacienteDO paciente = new data.PacienteDO();
-                        paciente = tn_p.buscar(pac_cod);
+                        paciente = tp.buscar(pac_cod);
                         String paciente_nome = paciente.getUsu_nome();
                         if(null != request.getParameter("voltar")){
                             pageContext.forward("./modelo.jsp");
@@ -60,17 +60,18 @@
                             String resumo = request.getParameter("resumo");
                             Date data = new Date();
                             java.sql.Date dataSQL = new java.sql.Date(data.getYear(), data.getMonth(), data.getDay());
-                            transacoes.Consulta tn = new transacoes.Consulta();
+                            transacoes.Consulta tc = new transacoes.Consulta();
                             data.ConsultaDO consulta = new data.ConsultaDO();
                             consulta.setMedico_Usuario_Usu_cod(med_cod);
                             consulta.setPaciente_Usuario_Usu_cod(pac_cod);
                             consulta.setCns_data(dataSQL);
                             consulta.setCns_resumo(resumo);
-                            if(tn.incluir(consulta)){
+                            if(tc.incluir(consulta)){
                                 int cns_cod = consulta.getCns_cod();
                             %>
                                 Consulta adicionada
-                                <form action="./edita_resumo_consulta.jsp?cns_cod=<%=cns_cod%>" method="post">
+                                <form action="./edita_resumo_consulta.jsp" method="post">
+                                    <input type='hidden' name='cns_cod' value='<%=cns_cod%>'>
                                     <input type="submit" name="editar" value="Editar">
                                 </form>
                                 <form action="./modelo.jsp" method="post">
@@ -84,6 +85,7 @@
                             %>
                                 Erro ao adicionar consulta          
                                 <form action="./adicionar_consulta.jsp" method="post">
+                                    <input type='hidden' name='pac_cod' value='<%=pac_cod%>'>
                                    <input type="submit" name="retry" value="Tentar novamente" />
                                 </form>
                             <%
