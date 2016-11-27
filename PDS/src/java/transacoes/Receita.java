@@ -31,6 +31,7 @@ public class Receita {
 //     }
 //     return false;
 //  } // incluir
+    
 //  public boolean atualizar(ReceitaDO receita) throws Exception {
 //     Transacao tr = new Transacao();
 //	 try{
@@ -46,15 +47,8 @@ public class Receita {
 //	   e.printStackTrace();
 //	 }
 //	 return false;
-//  } // atualizar
-//    private boolean isEmpty(String s) {
-//     if (null == s)
-//       return true;
-//     if (s.length() == 0)
-//       return true;
-//     return false;
-//        
-//  }
+  //} // atualizar
+    
   public ReceitaDO buscar(int cod) throws Exception {
     Transacao tr = new Transacao();
     try {

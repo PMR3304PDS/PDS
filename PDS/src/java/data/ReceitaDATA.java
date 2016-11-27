@@ -121,4 +121,11 @@ public class ReceitaDATA {
     return receitas;
   }// buscar
 
+    public void atualizar(int cod, Transacao tr) {
+        Connection con = tr.obterConexao();
+        String sql = "update Receita set Rec_check = 0 where cod=?";
+        //PreparedStatement ps = con.prepareStatement(sql);
+        //int result = ps.executeUpdate();
+    }
+
 }

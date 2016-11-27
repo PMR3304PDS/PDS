@@ -31,6 +31,7 @@
                     <%
                     String t = (String) session.getAttribute("tipo");
                     int cod_receita = Integer.parseInt(String.valueOf(session.getAttribute("rec_cod")));
+                    session.setAttribute("rec_cod", cod_receita);
                     int cod = Integer.parseInt(String.valueOf(session.getAttribute("cod")));//código do usuario logado
                     transacoes.Paciente tn = new transacoes.Paciente();
                     data.PacienteDO paciente = tn.buscar(cod_receita);
@@ -53,7 +54,7 @@
                                 data.ReceitaDO receita = tn_rec.buscar(cod_receita);
                                 int resp_cod = receita.getMedico_Usuario_Usu_cod();
                                 boolean check = receita.isRec_check();
-                                //check=false;
+                                check=false;
                                 UsuarioDO resp = new UsuarioDO();
                                 transacoes.Usuario tn_usu = new transacoes.Usuario();
                                 resp = tn_usu.pesquisarPorId(resp_cod);
@@ -89,7 +90,7 @@
                                     <br>
                                     <tr><%=receita.getRec_resumo()%></tr>          
                                 <%
-                                    if(check==false){
+                                    if(check==false || t.equals("t")){
                                     %>
                                     <td><form action="../Tecnico/ReceitaCheck.jsp"><input type="submit" value="Entregar medicamentos" id="RecCheck"></form></td>
                                     <%
