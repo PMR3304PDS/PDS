@@ -1,7 +1,11 @@
 <%-- 
-    *******Nome do UC*********
+    *******VisualizaPropriaListaReceitas*********
 --%>
 
+<%@page import="data.UsuarioDO"%>
+<%@page import="java.sql.Date"%>
+<%@page import="data.ReceitaDO"%>
+<%@page import="java.util.Vector"%>
 <html>
     <head>
         <title>POLIdataSUS</title>
@@ -22,14 +26,80 @@
                     <%@ include file="/Geral/menu.jsp" %>
                 </td>
                 <td>
-                    ****Aqui vai o jsp da sua página******
+                    <%
+                    int cod = Integer.parseInt(String.valueOf(session.getAttribute("cod")));
+                    transacoes.Paciente tn = new transacoes.Paciente();
+                    data.PacienteDO paciente = tn.buscar(cod);
+                    %>
+                    <table align="center">
+                        <tr>
+                            <br>
+                            <td><b>Receitas do paciente: </b><%=paciente.getUsu_nome()%></td>
+                            <br>
+                        </tr>
+                        <tr>
+                            <td>Código da Receita:</td><td>Data e nome do responsável pelo Upload:</td>
+                        </tr>
+                        <%
+                           transacoes.Receita tn_rec = new transacoes.Receita();
+                                Vector receitas = tn_rec.getListaReceitas(cod);
+                                if ((receitas.size() == 0)) {
+                                    %>
+                                    Lista de Receitas não encontrada!
+                                    <%
+                                }//fecha if ((receitas.size() == 0)) 
+                                else {
+                                    for (int i = 0; i < receitas.size(); i++) {
+                                        ReceitaDO receita = (ReceitaDO) receitas.elementAt(i);
+                                        int rec_cod = receita.getRec_cod();
+                                        Date data = receita.getRec_data_upload();
+                                        int resp_cod = receita.getMedico_Usuario_Usu_cod();
+                                        UsuarioDO resp = new UsuarioDO();
+                                        transacoes.Usuario tr = new transacoes.Usuario();
+                                        resp = tr.pesquisarPorId(resp_cod);
+                                        String nome_resp = resp.getUsu_nome();
+                                        %>
+                                            <tr>
+                                                <td><form action="../Geral/VisualizaReceita.jsp"><input type="submit" value="<%=rec_cod%>" id="RecSelecionada"></form></td>
+                                                <td><%=data%> - <%=nome_resp%></td>
+                                            </tr>
+                                        <%
+                                        }//fecha for todas as receitas foram listadas 
+                                    
+                                }//fecha else ((receitas.size() != 0)) 
+                        %>  
+                    </table>
+                    <%//Fim da jsp%>
                 </td>
             </tr>
+
             <tr>
                 <td colspan="2">
                     <%@ include file="/Geral/footer.jsp" %>
                 </td>
             </tr>
         </table>
+         <%
+                String t = (String) session.getAttribute("tipo");
+                if (t.equals("m")) {
+                    transacoes.Medico tnq = new transacoes.Medico();
+                    data.MedicoDO medico = tnq.buscar(cod);
+                    %>
+                    <p align="Right">Médico(a): <%= medico.getUsu_nome()%> <font color="green">Online</font></p>
+                    <%
+                }else if(t.equals("t")){
+                    transacoes.Tecnico tnq = new transacoes.Tecnico();
+                    data.TecnicoDO tecnico = tnq.buscar(cod);
+                    %>
+                    <p align="Right">Técnico(a): <%= tecnico.getUsu_nome()%> <font color="green">Online</font></p>
+                    <%
+                }else{
+                    transacoes.Paciente tnq = new transacoes.Paciente();
+                    data.PacienteDO pacient = tnq.buscar(cod);
+                    %>
+                    <p align="Right">Paciente: <%= pacient.getUsu_nome()%> <font color="green">Online</font></p>
+                    <%
+                }
+        %>
     </body>
 </html>
