@@ -89,7 +89,7 @@ public class ReceitaDATA {
     receita.setRec_excluido(rs.getBoolean("Rec_excluido"));
     receita.setRec_data_upload(rs.getDate("Rec_data_upload"));
     receita.setPaciente_Usuario_Usu_cod(rs.getInt("Paciente_Usuario_Usu_cod"));
-    receita.setFarmaceutico_Usuario_Usu_cod(rs.getInt("Farmaceutico_Usuario_Usu_cod"));
+    receita.setTecnico_Usuario_Usu_cod(rs.getInt("Tecnico_Usuario_Usu_cod"));
     receita.setMedico_Usuario_Usu_cod(rs.getInt("Medico_Usuario_Usu_cod"));
     receita.setRec_check(rs.getBoolean("Rec_check"));
     receita.setRec_receita(rs.getBinaryStream("Rec_receita"));
@@ -111,7 +111,7 @@ public class ReceitaDATA {
       c.setRec_excluido(rs.getBoolean("Rec_excluido"));
       c.setRec_data_upload(rs.getDate("Rec_data_upload"));
       c.setPaciente_Usuario_Usu_cod(rs.getInt("Paciente_Usuario_Usu_cod"));
-      c.setFarmaceutico_Usuario_Usu_cod(rs.getInt("Farmaceutico_Usuario_Usu_cod"));
+      c.setTecnico_Usuario_Usu_cod(rs.getInt("Tecnico_Usuario_Usu_cod"));
       c.setMedico_Usuario_Usu_cod(rs.getInt("Medico_Usuario_Usu_cod"));
       c.setRec_check(rs.getBoolean("Rec_check"));
       c.setRec_receita(rs.getBinaryStream("Rec_receita"));

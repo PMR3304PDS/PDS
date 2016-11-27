@@ -44,10 +44,6 @@
                         if (usu_tipo == "tecnico"){
                         %>
                         <input type="submit" name="exames" value="exames">
-                        <%
-                        }
-                        if (usu_tipo == "farmaceutico"){
-                        %>
                         <input type="submit" name="receita" value="receita">
                         <%
                         }
@@ -79,20 +75,7 @@
                         <br>
                         Telefone de atendimento:
                         <br>
-                    <%    
-                    }
-                    if(cadastro_tipo == "farmaceutico"){
-                    %>
-                    
-                        <h1>Busca - <%= cadastro_nome %></h1>
-                        <br>
-                        Nome completo do farmaceutico: <%= cadastro_nome %>
-                        <br>
-                        Local de atendimento:
-                        <br>
-                        Telefone de atendimento:
-                        <br>
-                    <%    
+                    <% 
                     }
                     %>
                     <input type="submit" name="voltar" value="voltar" />

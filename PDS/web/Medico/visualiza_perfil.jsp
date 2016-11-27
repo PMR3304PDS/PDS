@@ -43,15 +43,13 @@
                     MedicoDO m = null;
                     PacienteDO p = null;
                     TecnicoDO t = null;
-                    FarmaceuticoDO f = null;
                     if (valido)
                     {
                       p = (new Paciente()).buscar(cod);
                       m = (new Medico()).buscar(cod);
-                      f = (new Farmaceutico()).buscar(cod);
                       t = (new Tecnico()).buscar(cod);
                       
-                      if(p == null && m == null && f == null && t == null)
+                      if(p == null && m == null && t == null)
                         valido = false;
                     }
                     
@@ -107,31 +105,6 @@
                           ConselhosDO con = (new Conselhos()).buscar(m.getConselhos_Con_cod());
                         %>
                           <%= con.getCon_sigla()%>: <%= m.getMed_NumRegistro()%> </br>
-                      <%
-                      }
-                      else if(f != null) {
-                      %>
-                        <h1>Busca - <%= f.getUsu_nome() %></h1> </br>
-                        Nome completo do farmaceutico: <%= f.getUsu_nome() %> </br>
-                        <%
-                        for(int i = 0; i < end.size(); i++) {
-                          Tipo_EnderecoDO tipo_end = (new Tipo_Endereco()).buscar(((EnderecoDO)(end.elementAt(i))).getTipo_Endereco_TipEnd_cod());
-                          MunicipioDO mun = (new Municipio()).buscar(((EnderecoDO)(end.elementAt(i))).getMunicipio_Mun_cod());
-                          EstadoDO est = (new Estado()).buscar(mun.getEstado_Est_cod());
-                        %>
-                          Endereço <%= i+1%>: <%= ((EnderecoDO)(end.elementAt(i))).getEnd_rua()%>, <%= ((EnderecoDO)(end.elementAt(i))).getEnd_num()%> - <%= mun.getMun_nome()%>, <%= est.getEst_nome()%>  - Tipo: <%=tipo_end.getTipEnd_tipo()%> </br>
-                        <%
-                        }
-                        %>
-                        <%
-                        for(int i = 0; i < tel.size(); i++) {
-                        %>
-                        Telefone: <%= ((TelefoneDO)(tel.elementAt(i))).getTel_numero() %> </br>
-                        <%
-                        }
-                        ConselhosDO con = (new Conselhos()).buscar(t.getConselhos_Con_cod());
-                        %>
-                        Conselho: <%= con.getCon_sigla()%>
                       <%
                       }
                       else if(t != null) {

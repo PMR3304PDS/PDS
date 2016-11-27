@@ -6,7 +6,7 @@ public class Comentarios_ReceitaDO {
   private int ComRec_cod;
   private Date ComRec_data;
   private String ComRec_comentario;
-  private int Farmaceutico_Usuario_Usu_cod;
+  private int Tecnico_Usuario_Usu_cod;
   private int Medico_Usuario_Usu_cod;
   private int Receita_Rec_cod;
   private boolean Com_Rec_excluido;
@@ -35,12 +35,12 @@ public class Comentarios_ReceitaDO {
         this.ComRec_comentario = ComRec_comentario;
     }
 
-    public int getFarmaceutico_Usuario_Usu_cod() {
-        return Farmaceutico_Usuario_Usu_cod;
+    public int getTecnico_Usuario_Usu_cod() {
+        return Tecnico_Usuario_Usu_cod;
     }
 
-    public void setFarmaceutico_Usuario_Usu_cod(int Farmaceutico_Usuario_Usu_cod) {
-        this.Farmaceutico_Usuario_Usu_cod = Farmaceutico_Usuario_Usu_cod;
+    public void setTecnico_Usuario_Usu_cod(int Tecnico_Usuario_Usu_cod) {
+        this.Tecnico_Usuario_Usu_cod = Tecnico_Usuario_Usu_cod;
     }
 
     public int getMedico_Usuario_Usu_cod() {

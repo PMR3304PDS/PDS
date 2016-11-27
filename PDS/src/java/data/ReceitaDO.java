@@ -17,7 +17,7 @@ public class ReceitaDO {
     private boolean Rec_excluido;
     private Date Rec_data_upload;
     private int Paciente_Usuario_Usu_cod;
-    private int Farmaceutico_Usuario_Usu_cod;
+    private int Tecnico_Usuario_Usu_cod;
     private int Medico_Usuario_Usu_cod;
     private boolean Rec_check;
     private InputStream Rec_receita;
@@ -55,12 +55,12 @@ public class ReceitaDO {
         this.Paciente_Usuario_Usu_cod = Paciente_Usuario_Usu_cod;
     }
 
-    public int getFarmaceutico_Usuario_Usu_cod() {
-        return Farmaceutico_Usuario_Usu_cod;
+    public int getTecnico_Usuario_Usu_cod() {
+        return Tecnico_Usuario_Usu_cod;
     }
 
-    public void setFarmaceutico_Usuario_Usu_cod(int Farmaceutico_Usuario_Usu_cod) {
-        this.Farmaceutico_Usuario_Usu_cod = Farmaceutico_Usuario_Usu_cod;
+    public void setTecnico_Usuario_Usu_cod(int Tecnico_Usuario_Usu_cod) {
+        this.Tecnico_Usuario_Usu_cod = Tecnico_Usuario_Usu_cod;
     }
 
     public int getMedico_Usuario_Usu_cod() {
