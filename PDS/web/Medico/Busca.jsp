@@ -40,7 +40,7 @@
                     <br>
                     <br>
                     
-                    <form action="/PDS/Paciente/Busca.jsp" method="post">
+                    <form action="/PDS/Medico/Busca.jsp" method="post">
                     Selecione por quem deseja buscar:
                         <select name = "tipo">
                             <option value="paciente">Paciente</option>
@@ -185,7 +185,7 @@
                         %>
                         <tr>
                             <td>
-                                <a href="/PDS/Medico/visualiza_perfil.jsp?cod=<%= medico.getUsu_cod()%>&tipo=medico"> 
+                                <a href="/PDS/Medico/visualiza_perfil.jsp?cod=<%= medico.getUsu_cod()%>"> 
                                  <%=medico.getUsu_nome()%>
                                 </a>
                             </td>
