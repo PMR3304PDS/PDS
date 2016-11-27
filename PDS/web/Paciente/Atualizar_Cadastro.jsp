@@ -51,7 +51,10 @@
                     String action = request.getParameter("atualizar");
                     if (null == action){
                         action = "showEditForm";
-                        int Usu_cod = ((Integer)session.getAttribute("cod")).intValue();
+                        int codi = Integer.parseInt(String.valueOf(session.getAttribute("cod")));
+                        transacoes.Paciente tn = new transacoes.Paciente();
+                        data.PacienteDO paci = tn.buscar(codi);
+                        int Usu_cod = paci.getUsu_cod();
                         transacoes.Usuario tu = new transacoes.Usuario();
                         data.UsuarioDO usuario = tu.pesquisarPorId(Usu_cod);
                         
@@ -181,20 +184,20 @@
                         </tr>
                         <tr>
                             <td>RG</td>
-                            <td><input type="text" name="rg" maxlength="9" onkeypress='return isNumberKey(event)' required value=<%= rg %>/>
+                            <td><input type="text" name="rg" maxlength="9" onkeypress='return isNumberKey(event)' required value=<%= rg %> />
                         </tr>
                         <tr>
                             <td>CPF</td>
-                            <td><input type="text" name="cpf" maxlength="11" onkeypress='return isNumberKey(evt)' required value=<%= cpf %>/>
+                            <td><input type="text" name="cpf" maxlength="11" onkeypress='return isNumberKey(evt)' required value=<%= cpf %> />
                         </tr>
                         <tr><td><br></td></tr>
                         <tr>
                             <td>Endereço</td>
-                            <td><input type="text" name="endereco" maxlength="200" required value=<%= rua %>/>
+                            <td><input type="text" name="endereco" maxlength="200" required value=<%= rua %> />
                         </tr>
                         <tr>
                             <td>Número</td>
-                            <td><input type="text" name="numero" maxlength="10" onkeypress='return isNumberKey(event)' required value=<%= num %>/>
+                            <td><input type="text" name="numero" maxlength="10" onkeypress='return isNumberKey(event)' required value=<%= num %> />
                         </tr>
                         <tr>
                             <td>Bairro</td>
@@ -203,7 +206,7 @@
                         <tr>
                         <tr>
                             <td>Telefone - 1</td>
-                            <td><input type="text" name="telefone1" maxlength="8" onkeypress='return isNumberKey(event)' required value=<%= tel1 %>/>
+                            <td><input type="text" name="telefone1" maxlength="8" onkeypress='return isNumberKey(event)' required value=<%= tel1 %> />
                         </tr>
 <%
                         if(telefones.size()>1){
@@ -211,7 +214,7 @@
                         <tr>
                             <input type="hidden" name="codtelefone2" value=<%= tel2cods%> />
                             <td>Telefone - 2</td>
-                            <td><input type="text" name="telefone2" maxlength="8" onkeypress='return isNumberKey(event)' value=<%= tel2s %>/>
+                            <td><input type="text" name="telefone2" maxlength="8" onkeypress='return isNumberKey(event)' value=<%= tel2s %> />
                         </tr>
 <%
                         }
@@ -219,7 +222,7 @@
                         <tr><td><br></td></tr>
                         <tr>
                             <td>Login (email)</td>
-                            <td><input type="text" name="login" maxlength="150" required value=<%= login %>/>
+                            <td><input type="text" name="login" maxlength="150" required value=<%= login %> />
                         </tr>
                         </table>
                         <input type="submit" name="atualizar" value="atualizar" />
@@ -286,10 +289,8 @@
                         Vector log = tp.pesquisarPacientePorLogin(new_login);
                         Vector r = tp.pesquisarPacientePorRg(new_rg);
                         Vector c = tp.pesquisarPacientePorCpf(new_cpf);
-                        boolean a = true;
-                        if ((log.size() == 0) && (r.size() == 0) && (c.size() == 0)){
-                            a = tu.atualizar(new_usu);
-                        }
+                        boolean a = tu.atualizar(new_usu);
+                        
                         
                         transacoes.Telefone ttf = new transacoes.Telefone();
                         data.TelefoneDO te1 = new data.TelefoneDO();
