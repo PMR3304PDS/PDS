@@ -1,5 +1,5 @@
 <%-- 
-    ******* PDSPX - Busca do Paciente *********
+    ******* PDSPX - Busca do Medico *********
 --%>
 
 <html>
@@ -14,8 +14,10 @@
         <%@ page import="data.TecnicoDO" %>
         <%@ page import="transacoes.Medico" %>
         <%@ page import="data.MedicoDO" %>
+        <%@ page import="transacoes.Paciente" %>
+        <%@ page import="data.PacienteDO" %>
 
-        <%@ include file="/Geral/verifylogin_paciente.jsp" %>
+        <%@ include file="/Geral/verifylogin_medico.jsp" %>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td colspan="2">
@@ -28,19 +30,20 @@
                 </td>
                 <td>
                     <% if (null != request.getParameter("voltar1")) {
-                        response.sendRedirect("/PDS/Paciente/Home.jsp"); 
+                        response.sendRedirect("/PDS/Medico/Home.jsp"); 
                         }
                     %>     
 
                     <b>BUSCAR</b>
                     <br>
-                    Encontre médicos ou técnicos
+                    Encontre pacientes, técnicos ou outros médicos.
                     <br>
                     <br>
                     
                     <form action="/PDS/Paciente/Busca.jsp" method="post">
                     Selecione por quem deseja buscar:
                         <select name = "tipo">
+                            <option value="paciente">Paciente</option>
                             <option value="medico">Médico</option>
                             <option value="tecnico">Técnico</option>
                         </select>
@@ -111,7 +114,7 @@
                             }
 
                             if (tipo.equals("tecnico")) {
-
+                                
                                 if (modo.equals("nome")) {
                                     transacoes.Tecnico tn = new transacoes.Tecnico();
                                     String nome = request.getParameter("input");
@@ -128,6 +131,37 @@
                                     transacoes.Tecnico tn = new transacoes.Tecnico();
                                     String cpf = request.getParameter("input");
                                     usuarios = tn.pesquisarTecnicoPorCpf(cpf);
+                                }
+                                
+                                if (modo.equals("crm")) {
+                                    usuarios = null;
+                                }
+                            }
+                            
+                            if (tipo.equals("paciente")) {
+                                
+                                flag = 2;
+                                
+                                if (modo.equals("nome")) {
+                                    transacoes.Paciente tn = new transacoes.Paciente();
+                                    String nome = request.getParameter("input");
+                                    usuarios = tn.pesquisarPacientePorNome(nome);
+                                }
+
+                                if (modo.equals("rg")) {
+                                    transacoes.Paciente tn = new transacoes.Paciente();
+                                    String rg = request.getParameter("input");
+                                    usuarios = tn.pesquisarPacientePorRg(rg);
+                                }
+
+                                if (modo.equals("cpf")) {
+                                    transacoes.Paciente tn = new transacoes.Paciente();
+                                    String cpf = request.getParameter("input");
+                                    usuarios = tn.pesquisarPacientePorCpf(cpf);
+                                }
+                                
+                                if (modo.equals("crm")) {
+                                    usuarios = null;
                                 }
                             }
 
@@ -151,23 +185,40 @@
                         %>
                         <tr>
                             <td>
-                                <a href="/PDS/Paciente/VisualizaPerfil.jsp?cod=<%= medico.getUsu_cod()%>&tipo=medico"> 
+                                <a href="/PDS/Medico/visualiza_perfil.jsp?cod=<%= medico.getUsu_cod()%>&tipo=medico"> 
                                  <%=medico.getUsu_nome()%>
                                 </a>
                             </td>
                             <td><%= medico.getUsu_cpf()%></td>
                         </tr>
-
-
-                        <%
-                            }
-                        } else {
-                            for (int i = 0; i < usuarios.size(); i++) {
-                                TecnicoDO tecnico = (TecnicoDO) usuarios.elementAt(i);
+                        <% 
+                                }
+                            } 
+                            
+                            if (flag == 2) {
+                                for (int i = 0; i < usuarios.size(); i++) {
+                                    PacienteDO paciente = (PacienteDO) usuarios.elementAt(i);
                         %>
                         <tr>
                             <td>
-                                <a href="/PDS/Paciente/VisualizaPerfil.jsp?cod=<%= tecnico.getUsu_cod()%>&tipo=tecnico"> 
+                                <a href="/PDS/Medico/visualiza_perfil.jsp?cod=<%= paciente.getUsu_cod()%>"> 
+                                 <%=paciente.getUsu_nome()%>
+                                </a>
+                            </td>
+                            <td><%= paciente.getUsu_cpf()%></td>
+                        </tr>
+
+                        <%
+                                }
+                            } 
+                            
+                            else {
+                                for (int i = 0; i < usuarios.size(); i++) {
+                                    TecnicoDO tecnico = (TecnicoDO) usuarios.elementAt(i);
+                        %>
+                        <tr>
+                            <td>
+                                <a href="/PDS/Medico/visualiza_perfil.jsp?cod=<%= tecnico.getUsu_cod()%>"> 
                                 <%=tecnico.getUsu_nome()%>
                                 </a> 
                             </td>

@@ -14,7 +14,7 @@
         <%@ page import="transacoes.Paciente" %>
         <%@ page import="data.PacienteDO" %>
 
-        <%@ include file="/Geral/verifylogin.jsp" %>
+        <%@ include file="/Geral/verifylogin_tecnico.jsp" %>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td colspan="2">
