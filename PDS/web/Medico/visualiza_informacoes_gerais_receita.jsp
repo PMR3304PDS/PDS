@@ -27,7 +27,10 @@
                         
                         transacoes.Usuario tu = new transacoes.Usuario();
                         data.UsuarioDO paciente = tu.pesquisarPorId(pac_cod);                        
-                        
+%>
+                                <br>  
+                                <h2>Receitas - <%= paciente.getUsu_nome() %></h2> 
+<%
                         transacoes.Receita tr = new transacoes.Receita(); 
                         java.util.Vector receitas = tr.getListaReceitas(pac_cod);
                         
@@ -42,14 +45,17 @@
                         }
                         else
                         {
-%>
-                                <br>  
-                                <h2>Receitas - <%= paciente.getUsu_nome() %></h2> 
-<%
+
                             for(int i=0;i<receitas.size();i++)
                             {
                                 data.ReceitaDO receita = (data.ReceitaDO) receitas.elementAt(i);                                                                                           
-
+                                
+                                transacoes.Usuario tm = new transacoes.Usuario();
+                                data.UsuarioDO medico = tm.pesquisarPorId(receita.getMedico_Usuario_Usu_cod());
+                                
+                                transacoes.Usuario tt = new transacoes.Usuario();
+                                data.UsuarioDO tecnico = tt.pesquisarPorId(receita.getTecnico_Usuario_Usu_cod());
+                                
                                 %>
                                     <br>
                                     <h3>Receita <%= i+1 %></h3>
@@ -61,6 +67,12 @@
                                     <br>
                                     <br>
                                     Data upload - <%= receita.getRec_data_upload() %>
+                                    <br>
+                                    <br>
+                                    Medico responsavel - <%= medico.getUsu_nome() %>
+                                    <br>
+                                    <br>
+                                    Tecnico responsavel - <%= tecnico.getUsu_nome() %>
                                     <br><br><br>
                                     <form action="VisualizaDocumentos.jsp" method="post">
                                          <input type='hidden' name='pac_cod' value='<%=pac_cod%>'>

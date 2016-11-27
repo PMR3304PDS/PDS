@@ -27,7 +27,9 @@
                         
                         transacoes.Usuario tu = new transacoes.Usuario();
                         data.UsuarioDO paciente = tu.pesquisarPorId(pac_cod);                        
-                        
+%><br>  
+                                <h2>Exames - <%= paciente.getUsu_nome() %></h2> 
+<%   
                         transacoes.Exame te = new transacoes.Exame(); 
                         java.util.Vector exames = te.pesquisarPorCod(pac_cod);
                         
@@ -35,6 +37,7 @@
                         {
                             %>
                                 Paciente não tem exames!
+                                <br><br><br>
                                 <form action="Home.jsp" method="post">
                                     <input type="submit" name="voltar" value="Voltar" />
                                 </form>
@@ -42,14 +45,18 @@
                         }
                         else
                         {
-%>
-                                <br>  
-                                <h2>Exames - <%= paciente.getUsu_nome() %></h2> 
-<%
+                                
                             for(int i=0;i<exames.size();i++)
                             {
-                                data.ExameDO exame = (data.ExameDO) exames.elementAt(i);                                                                                           
-
+                                data.ExameDO exame = (data.ExameDO) exames.elementAt(i);                                                                                                                                                                                                                          
+                                
+                                transacoes.Usuario tm = new transacoes.Usuario();
+                                data.UsuarioDO medico = tm.pesquisarPorId(exame.getMedico_Usuario_Usu_cod_uploader());
+                                
+                                transacoes.Usuario tt = new transacoes.Usuario();
+                                data.UsuarioDO tecnico = tt.pesquisarPorId(exame.getTecnico_Usuario_Usu_cod_uploader());
+                                
+                                
                                 %>
                                     <br>
                                     <h3>Exame <%= i+1 %></h3>
@@ -64,6 +71,12 @@
                                     <br>
                                     <br>
                                     Data previsão - <%= exame.getExa_previsao() %>
+                                    <br>
+                                    <br>
+                                    Medico - <%= medico.getUsu_nome() %>
+                                    <br>
+                                    <br>
+                                    Tecnico responsavel - <%= tecnico.getUsu_nome() %>
                                     <br><br><br>
                                     <form action="VisualizaDocumentos.jsp" method="post">
                                         <input type='hidden' name='pac_cod' value='<%=pac_cod%>'>
