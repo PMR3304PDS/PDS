@@ -14,8 +14,7 @@
         <%@ page import="java.util.*"%>
         <%@ page import="java.time.*"%>
         <%@ page import="java.sql.*"%>
-        <%//@ include file="/Geral/verifylogin_medico.jsp" %>
-        <%//@ include file="/Geral/verifylogin.jsp" %>
+        <%@ include file="/Geral/verifylogin.jsp" %>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td colspan="2">
@@ -29,7 +28,7 @@
                 <td>
                     <h1> Mensagens </h1></br>
                     <%
-                    int codRec = 2;//((Integer)session.getAttribute("cod")).intValue();
+                    int codRec = ((Integer)session.getAttribute("cod")).intValue();
                     Vector v = (new Mensagem()).pesquisarPorCodDoReceptorMaisRecente(codRec);
                     Vector novas = new Vector();
                     Vector velhas = new Vector();
