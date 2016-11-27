@@ -1,5 +1,5 @@
-<%-- 
-    *******Nome do UC*********
+<%--  
+    Esqueci Senha
 --%>
 
 <html>
@@ -9,17 +9,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <%@page import="transacoes.Usuario"%>
-        <%@page import="data.UsuarioDO"%>
-        <%@page import="transacoes.Paciente"%>
-        <%@page import="data.PacienteDO"%>
-        <%@page import="transacoes.Tecnico"%>
-        <%@page import="data.TecnicoDO"%>
-        <%@page import="transacoes.Medico"%>
-        <%@page import="data.MedicoDO"%>
-        <%@page import="java.util.List"%>
-
-        <%@ include file="/Geral/verifylogin.jsp" %>
+        <%@ include file="verifylogin.jsp" %>
+        
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td colspan="2">
@@ -31,11 +22,78 @@
                     <%@ include file="/Geral/menu.jsp" %>
                 </td>
                 <td>
-                    <p> Insira o seu email, iremos verificar se você está cadastrado e logo você receberá um e-mail com uma senha provisória </p>
-                        <form method="post" action=login.jsp>
-                        Email <input type="text" name="usuario" />
-                        <br><input type="submit" name="enviar" value="Enviar" />
-                        </form>
+                    <%-- Começo JSP --%>
+                    <%
+                        if(null==request.getParameterValues("enviar"))
+                        {
+                    %>
+                            Esqueci a senha <br>
+                            Por favor, digite as informacoes abaixo para verificarmos sua autenticidade!
+                            <form method="post" action=EsqueciSenha.jsp>
+                                Nome : <input type="text" name="nome" />
+                                <br>
+                                RG : <input type="text" name="RG" />
+                                <br>
+                                CPF : <input type="text" name="CPF" />
+                                <br>
+                                Login : <input type="text" name="login" />
+                                <br>
+                                <br>
+                                Senha nova : <input type="password" name="senha_nova" />
+                                <br>
+                                <input type="submit" name="enviar" value="Enviar" />
+                            </form>
+                    <%
+                        }
+                        else
+                        {
+                            String nome = request.getParameter("nome");
+                            String RG = request.getParameter("RG");
+                            String CPF = request.getParameter("CPF");
+                            String login = request.getParameter("login");
+                            String senha_nova = request.getParameter("senha_nova");
+
+                            transacoes.Usuario tn = new transacoes.Usuario();
+                            data.UsuarioDO usuario = tn.buscar(login);
+                            if(usuario==null)
+                            {
+                    %>
+                                Usuario não existe ou foi deletado!
+                                <form action="EsqueciSenha.jsp" method="post">
+                                    <input type="submit" name="voltar" value="Voltar" />
+                                </form>
+                    <%
+                            }
+                            else if(!((nome.equals(usuario.getUsu_nome()))&&(RG.equals(usuario.getUsu_rg()))&&(CPF.equals(usuario.getUsu_cpf()))&&(login.equals(usuario.getUsu_login()))))
+                            {
+                    %>
+                                Informações não estão coerentes!
+                                <form action="EsqueciSenha.jsp" method="post">
+                                    <input type="submit" name="voltar" value="Voltar" />
+                                </form>
+                    <%
+                            }
+                            else if(tn.mudar_senha(usuario,usuario.getUsu_senha(),senha_nova))
+                            {
+                    %>
+                                Senha alterada com sucesso!
+                                <form action="login.jsp" method="post">
+                                    <input type="submit" name="voltar" value="Voltar" />
+                                </form>
+                    <%
+                            }
+                            else
+                            {
+                    %>
+                                Erro ao mudar senha!
+                                <form action="mudar_senha.jsp" method="post">
+                                    <input type="submit" name="voltar" value="Voltar" />
+                                </form>
+                    <%
+                            }
+                        }
+                    %>
+                     <%-- Fim JSP --%>
                 </td>
             </tr>
             <tr>

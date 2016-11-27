@@ -41,6 +41,15 @@
                         {
                             String senha_antiga = request.getParameter("senha_antiga");
                             String senha_nova = request.getParameter("senha_nova");
+                            
+                            boolean tem_espaco = false;
+                            for (char c : senha_nova.toCharArray()) 
+                            {
+                                if ((c==' ')||(c=='\t')||(c=='\n'))
+                                {
+                                   tem_espaco=true;
+                                }
+                            }
 
                             transacoes.Usuario tn = new transacoes.Usuario();
                             int cod = ((Integer)session.getAttribute("cod")).intValue();
@@ -49,6 +58,16 @@
                             {
                     %>
                                 Senha não é igual a anterior!
+                                <form action="mudar_senha.jsp" method="post">
+                                    <input type="submit" name="voltar" value="Voltar" />
+                                </form>
+                    <%
+                            }
+                            else if ((senha_nova==null)||(senha_nova.equals(""))||tem_espaco||(senha_nova.length()>20))
+                            {
+                    %>
+                                Senha nova não é válida!<br>
+                                Por favor use ao menos um caracter, não use espaços e use menos de 20 caracteres!
                                 <form action="mudar_senha.jsp" method="post">
                                     <input type="submit" name="voltar" value="Voltar" />
                                 </form>
