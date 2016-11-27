@@ -29,7 +29,7 @@
                         <a href="/PDS/Geral/Logout.jsp">Logout</a>
                     </div><br>
                     <a href="/PDS/Geral/mudar_senha.jsp">Mudar Senha</a><br>
-                    <a href="/PDS/Geral/temppage.jsp">Dados pessoais</a><br>
+                    <a href="/PDS/Paciente/DadosPessoais.jsp">Dados pessoais</a><br>
                     <a href="/PDS/Geral/temppage.jsp">Ficha médica</a><br>
                     <a href="/PDS/Geral/temppage.jsp">Consulta</a><br>
                     <a href="/PDS/Geral/temppage.jsp">Exame</a><br>
