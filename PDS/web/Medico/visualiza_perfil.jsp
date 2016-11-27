@@ -89,6 +89,10 @@
                           <input type='hidden' name='pac_cod' value='<%=p.getUsu_cod()%>'>
                           <input type='submit' value='Adicionar Receita'>
                         </form>
+                        <form action='/PDS/Medico/VisualizaDocumentos.jsp'>
+                          <input type='hidden' name='pac_cod' value='<%=p.getUsu_cod()%>'>
+                          <input type='submit' value='Visualizar Documentos'>
+                        </form>
                       <%
                       }
                       else if(m != null) {
