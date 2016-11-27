@@ -27,32 +27,41 @@
                     <%@ include file="/Geral/menu.jsp" %>
                 </td>
             <td>
-                    <%                    int exame_cod = Integer.parseInt(request.getParameter("exame_cod"));
+                
+                <br>
+                <h1>Dados do Exame</h1>
+                <br>
+                    
+                    <%  int exame_cod = Integer.parseInt(request.getParameter("exame_cod"));
                         transacoes.Exame tn = new transacoes.Exame();
                         data.ExameDO exame = tn.buscar(exame_cod);
                     %>
-            <br>
-            <br>
-            Código do Exame - <%= exame.getExa_cod()%>
-            <br>
-            <br>
-            Resumo do Exame - <%= exame.getExa_resumo()%>
-            <br>
-            <br>
-            Data Upload - <%= exame.getExa_data_upload()%>
-            <br>
-            <br>
-            Data Previsão - <%= exame.getExa_previsao()%>
+            <form action="/PDS/Geral/VisualizaExames.jsp?exame_cod=<%=exame_cod%>" method="post">   
+              <table>             
+              <br>
+              Codigo do Exame - <%= exame.getExa_cod()%>
+              <br>
+              <br>
+              Resumo do Exame - <%= exame.getExa_resumo()%>
+              <br>
+              <br>
+              Data Upload - <%= exame.getExa_data_upload()%>
+              <br>
+              <br>
+              Data Previsao - <%= exame.getExa_previsao()%>
 
-            <br><br>
-
-            <br>
-            <form action="/PDS/Tecnico/Busca.jsp" method="post">
-                <input type="submit" name="voltar" value="Voltar" />
+              <br><br>
+              <br>
+            
+              </table>
             </form>
-
+              
             <form action="/PDS/Tecnico/AlteraStatusExame.jsp?exame_cod=<%=exame_cod%>" method="post">
                 <input type="submit" name="Editar Status" value="Editar Status" />
+            </form>
+                
+            <form action="/PDS/Tecnico/Busca.jsp" method="post">
+                <input type="submit" name="voltar" value="Voltar" />
             </form>
         </td>
         </tr>

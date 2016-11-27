@@ -40,7 +40,7 @@
                         String nome_paciente = request.getParameter("Usu_buscado");
                     %>
 
-                    Exames - <%= nome_paciente%> 
+                    <h1>Exames - <%= nome_paciente%> </h1>
 
                     <br />
                     <br />

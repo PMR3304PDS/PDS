@@ -55,6 +55,18 @@ public class ExameDATA {
 //        int result = ps.executeUpdate();
 //    } // atualizar
 
+
+  public void atualizar_status(ExameDO exame, Transacao tr) throws Exception {
+        Connection con = tr.obterConexao();
+        String sql = "update Exame set Exa_resumo=?, Exa_data_upload=?, Exa_previsao=? where Exa_cod=?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(4, exame.getExa_cod());
+        ps.setString(1, exame.getExa_resumo());
+        ps.setDate(2, exame.getExa_data_upload());
+        ps.setDate(3, exame.getExa_previsao());
+        int result = ps.executeUpdate();
+  } // atualizar
+  
   public ExameDO buscar(int idobj, Transacao tr) throws Exception {
     Connection con = tr.obterConexao();
     String sql = "select * from Exame where Exa_cod like ?";

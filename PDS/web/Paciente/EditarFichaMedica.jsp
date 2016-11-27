@@ -26,7 +26,7 @@
                 </td>
                 <td>
                     <br>
-                    <h1>Editar Ficha Médica</h1>
+                    <h1>Ficha Médica</h1>
                     <br>
                     
                     <script>
@@ -132,13 +132,8 @@
        paciente.setPac_medicamentos(medicamentos);
        paciente.setPac_doencas_tratamento(doencas);
        paciente.setPac_historico_doencas(historico);
-       
-       try {
-           tn.atualizar(paciente);
-       } catch (Exception e) {
-%>           <%= e.toString() %>
-<%
-       }
+
+       tn.atualizar(paciente);
        
        if (tn.atualizar(paciente)) {
 

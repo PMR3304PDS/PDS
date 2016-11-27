@@ -30,8 +30,9 @@
                         response.sendRedirect("/PDS/Tecnico/Home.jsp"); 
                         }
                     %>     
-
-                    <b>BUSCAR</b>
+                    <br>
+                    <h1>BUSCAR</h1>
+                    <br>
                     <br>
                     Encontre pacientes
                     <br>
