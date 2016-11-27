@@ -1,28 +1,20 @@
-<%-- 
-    Document   : ReceitaCheck
-    Created on : 24/11/2016, 08:51:13
-    Author     : Bronneberg
+<%--
+    *******VisualizaReceita*********
 --%>
 
+<%@page import="java.sql.Date"%>
+<%@page import="data.ReceitaDO"%>
 <html>
     <head>
         <title>POLIdataSUS</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <style>
-        h2{font-size:200%;}
-    </style>
     <body>
         <%@ page import="java.util.Vector" %>
-        <%@ page import="java.util.Date"%>
-        <%@ page import="java.sql.*"%>
-        <%@ page import="transacoes.Receita" %>
-        <%@ page import="transacoes.Usuario"%>
-        <%@ page import="data.ReceitaDO" %>
         <%@ page import="data.PacienteDO" %>
         <%@ page import="data.UsuarioDO" %>
-        <%@ page import="data.UsuarioData" %>
+        <%// Coloque aqui os imports%>
         <%@ include file="/Geral/verifylogin.jsp" %>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -35,98 +27,108 @@
                     <%@ include file="/Geral/menu.jsp" %>
                 </td>
                 <td>
-                    <% String NomeDoPacienteBuscado = "Gabriel Xavier";
-                    //trocar depois para pegar o cod do paciente feito na busca e ver o nome
-                    if(null != request.getParameter("cancelar")){
-                        pageContext.forward("./temppage.jsp");
-                    }
+                    <%//****Aqui vai o jsp da sua página******%>
+                    <%
+                        int cod_paciente_buscado=1;
+                        String paciente_buscado = request.getParameter("Usu_buscado");
+                        if(paciente_buscado==null){
+                            cod_paciente_buscado=1;
+                            paciente_buscado="Gabriel Xavier";
+                            int rec_cod=1;
+                        }
                     %>
-                    <br>
-                    </br>
-                    <table align="left">
+                    <table align="center">
                         <tr>
-                        <h2>Receita - <%= NomeDoPacienteBuscado%></h2>
-                        </tr>
-                        <tr>
-                            <%
-                                ////trocar depois para pegar o cod do paciente feito na busca
-                                int cod = 1;
-                                transacoes.Receita lista = new transacoes.Receita();
-                                Vector receitas = lista.getListaReceitas(cod);
-                                if ((receitas.size() == 0)) {
-                            %>
-
-                            Lista de Receitas não encontrada!
-                        <form action="/Tecnico/Busca.jsp" method="post">
-                            <input type="submit" name="voltar" value="Voltar" />
-
-                        </form>
-                        <%     } else {
-                                for (int i = 0; i < receitas.size(); i++) {
-                                    ReceitaDO receita = (ReceitaDO) receitas.elementAt(i);
-                                    int rec_cod = receita.getRec_cod();
-                                    Date data = receita.getRec_data_upload();
-                                    int resp_cod = receita.getMedico_Usuario_Usu_cod();
-                                    String resumo = receita.getRec_resumo();
-                                    boolean check = receita.isRec_check();
-                                    check=false;
-                                    UsuarioDO resp = new UsuarioDO();
-                                    transacoes.Usuario tr = new transacoes.Usuario();
-                                    resp = tr.pesquisarPorId(resp_cod);
-                                    String nome_resp = resp.getUsu_nome();
-                            %>
-                            <tr>
-                                <tr style="text-align:center">Cód. Receita: <%=rec_cod%></tr> 
-                                <br>
-                                <tr style="text-align:center">Data do upload: <%=data%></tr>
-                                <br>
-                                <tr style="text-align:center">Responsável pelo upload: <%=nome_resp%></tr>                           
-                                <br>
-                                <tr style="text-align:center">
-                                    <tr>Receita:  
-                                <% 
-                                    if(check==true){
-                                    %>
-                                        (Receita entregue ao Paciente)
-                                        <br>
-                                        <tr><%=resumo%></tr>
-                                    <%
-                                    }
-                                    else{
-                                    %>
-                                    (Receita ainda não foi entregue ao Paciente)
-                                    <br>
-                                    <tr><%=resumo%></tr>
-                                    <%
-                                    }
-                                %>
-                                </tr>
-                                </tr>
-                            </tr> 
                             <br>
-                            <tr>
-                            <form action="ListaReceitas.jsp">
-                                <input type="submit" value="Voltar para a Lista de Receitas">
-                            </form>
-                            </tr>
-                        </table>
-                        <%}
-                            }%>  
-                        <br />
-                        <br />
-                        <br />
-            </tr>        
+                            <td><b>Receita do paciente: </b><%=paciente_buscado%></td>
+                            <br>
+                        </tr>
+                        <%
+                            int rec_cod=0;
+                            //rec_cod = Integer.parseInt(request.getParameter("rec_cod"));
+                            if(rec_cod ==0){
+                                System.out.println("Erro, receita não encontrada");
+                                rec_cod=1;
+                            %>
+                                <%//Erro, receita não encontrada%>
+                            <%
+                            }//Fim do if se não há receita
+                            else{
+                                rec_cod=1;
+                                transacoes.Receita tn_rec = new transacoes.Receita();
+                                data.ReceitaDO receita = tn_rec.buscar(rec_cod);
+                                int resp_cod = receita.getMedico_Usuario_Usu_cod();
+                                boolean check = receita.isRec_check();
+                                UsuarioDO resp = new UsuarioDO();
+                                transacoes.Usuario tn_usu = new transacoes.Usuario();
+                                resp = tn_usu.pesquisarPorId(resp_cod);
+                                String nome_resp = resp.getUsu_nome();
+                                %>
+                                    <br>
+                                    <tr>Cód. Receita: <%=rec_cod%></tr>
+                                    <br>
+                                    <tr>Data do upload: <%=receita.getRec_data_upload()%></tr>
+                                    <br>
+                                    <tr>Responsável pelo upload: <%=nome_resp%></tr>
+                                    <br>
+                                    <tr>Data do upload: <%=receita.getRec_data_upload()%></tr>
+                                    <br>
+                                    <tr>Status da receita:
+                                        <%
+                                            if (check==true){
+                                                %>
+                                                    Receita entregue ao paciente
+                                                <%
+                                            } else
+                                                %>
+                                                    Receita ainda não foi entregue ao paciente.
+                                                <%
+                                                    String ti = (String) session.getAttribute("tipo");
+                                                    if (ti.equals("t")) {
+                                                        %>
+                                                            <form action="VisualizaReceita.jsp"><input type="submit" value="Receita Check" id="RecEntregue"></form>
+                                                        <%
+                                                    }
+                                        %>
+                                    </tr>
+                                    <br>
+                                    <tr>Resumo: <%=receita.getRec_resumo()%></tr>
+                                   
+                                <%
+                            }//Fim de apresentar a receita
+                        %>
+                    </table>
+                    <%//Fim da jsp%>
+                </td>
+            </tr>
             <tr>
                 <td colspan="2">
                     <%@ include file="/Geral/footer.jsp" %>
                 </td>
             </tr>
         </table>
+        <%
+                String t = (String) session.getAttribute("tipo");
+                int cod = Integer.parseInt(String.valueOf(session.getAttribute("cod")));
+                if (t.equals("m")) {
+                    transacoes.Medico tnq = new transacoes.Medico();
+                    data.MedicoDO medico = tnq.buscar(cod);
+                    %>
+                    <p align="Right">Médico(a): <%= medico.getUsu_nome()%> <font color="green">Online</font></p>
+                    <%
+                }else if(t.equals("t")){
+                    transacoes.Tecnico tnq = new transacoes.Tecnico();
+                    data.TecnicoDO tecnico = tnq.buscar(cod);
+                    %>
+                    <p align="Right">Técnico(a): <%= tecnico.getUsu_nome()%> <font color="green">Online</font></p>
+                    <%
+                }else{
+                    transacoes.Paciente tnq = new transacoes.Paciente();
+                    data.PacienteDO pacient = tnq.buscar(cod);
+                    %>
+                    <p align="Right">Paciente: <%= pacient.getUsu_nome()%> <font color="green">Online</font></p>
+                    <%
+                }
+        %>
     </body>
-    <script>
-        function CheckReceita(check){
-            receita.setRec_check(check);
-        }
-    </script>
-        
 </html>
