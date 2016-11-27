@@ -27,6 +27,7 @@
                     <a href="/PDS/Geral/temppage.jsp">Exame</a><br>
                     <a href="/PDS/Paciente/VisualizaPropriaListaReceitas.jsp">Receitas</a><br>
                     <a href="/PDS/Paciente/Busca.jsp">Busca</a><br>
+                    <a href="/PDS/Paciente/EditarFichaMedica.jsp">Editar ficha médica</a><br>
                     <a href="/PDS/Paciente/Atualizar_Cadastro.jsp">Editar dados de cadastro</a><br>
                     <a href="/PDS/Geral/mudar_senha.jsp">Mudar Senha</a><br><br><br>
                     <a href="/PDS/Geral/Logout.jsp">Logout</a><br>
