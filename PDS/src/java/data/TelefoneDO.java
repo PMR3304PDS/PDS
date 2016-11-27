@@ -4,7 +4,7 @@ package data;
 public class TelefoneDO {
 
 private int Tel_cod;
-private int Tel_numero;
+private String Tel_numero;
 private int Usuario_Usu_Cod;
 
     public int getTel_cod() {
@@ -15,11 +15,11 @@ private int Usuario_Usu_Cod;
         this.Tel_cod = Tel_cod;
     }
 
-    public int getTel_numero() {
+    public String getTel_numero() {
         return Tel_numero;
     }
 
-    public void setTel_numero(int Tel_numero) {
+    public void setTel_numero(String Tel_numero) {
         this.Tel_numero = Tel_numero;
     }
 
