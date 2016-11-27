@@ -38,10 +38,25 @@
                     {
                         valido = false;
                     }
-                    Vector v = (new Mensagem()).pesquisarPorCodDoEmissor(cod_emi, cod_rec);
                     
                     if(valido)
                     {
+                        if(request.getParameter("mensagem") != null)
+                        {
+                            MensagemDO m = new MensagemDO();
+                            m.setMsg_data(java.sql.Date.valueOf(LocalDate.now()));
+                            m.setMsg_msg(request.getParameter("mensagem"));
+                            m.setMsg_visualizado(false);
+                            m.setUsuario_emissor(cod_emi);
+                            m.setUsuario_receptor(cod_rec);
+                            if(!(new Mensagem()).incluir(m))
+                            {
+                            %>
+                            <font color="red">Falha ao enviar mensagem</font>
+                            <%
+                            }
+                        }
+                        Vector v = (new Mensagem()).pesquisarPorCodDoEmissor(cod_emi, cod_rec);
                         UsuarioDO emi = (new Usuario()).pesquisarPorIdComInativo(cod_emi);
                     %> 
                         <h1>Conversa com <%=emi.getUsu_nome()%></h1>
