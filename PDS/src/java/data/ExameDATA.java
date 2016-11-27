@@ -101,7 +101,7 @@ public class ExameDATA {
 
   public Vector pesquisarPorCod(int cod, Transacao tr) throws Exception {
     Connection con = tr.obterConexao();
-    String sql = "select * from Exame where Paciente_Usuario_Usu_cod=?";
+    String sql = "select * from Exame where Paciente_Usuario_Usu_cod=? order by Exa_data_upload desc";
     PreparedStatement ps = con.prepareStatement(sql);
     ps.setInt(1, cod);
     ResultSet rs = ps.executeQuery();
