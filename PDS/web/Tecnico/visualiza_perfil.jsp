@@ -71,7 +71,11 @@
                         }
                         %>
                         <br>
-                        <input type="submit" name="exame" value="exame">
+                        <form action='VisualizaListaExamesPaciente.jsp' method="post">
+                            <input type='hidden' name='Usu_buscado' value='<%=p.getUsu_nome()%>'>
+                            <input type='hidden' name='Paciente_Usuario_Usu_cod' value='<%=p.getUsu_cod()%>'>
+                            <input type="submit" name="exame" value="Visualizar Exames">
+                        </form>
                         <%
                         }else if(m != null){
                         %>
@@ -131,12 +135,9 @@
                     <%
                     }
                     %>
-                    <input type="submit" name="voltar" value="voltar" />
-                    <%
-                    if(null != request.getParameter("voltar")){
-                        pageContext.forward("./modelo.jsp");
-                    }
-                    %>
+                    <form action="/PDS/Tecnico/Busca.jsp">
+                      <input type="submit" name="Voltar" value="Voltar">  
+                    </form>
                 </td>
             </tr>
             <tr>

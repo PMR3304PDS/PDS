@@ -6,31 +6,40 @@ import java.util.*;
 
 public class Receita {
 
-//    public boolean incluir (ReceitaDO receita) throws Exception{
-//
-//     // validacao das regras de negocio
-//     if ( (isEmpty(receita.getRec_resumo()))) {
-//       return false;
-//     }
-//     
-//
-//     // efetuando a transacao
-//     Transacao tr = new Transacao();
-//     try {
-//
-//       tr.begin();
-//         ReceitaDATA receitadata = new ReceitaDATA();
-//         receitadata.incluir(receita, tr);
-//       tr.commit();
-//       return true;
-//       
-//     } catch(Exception e) {
-//         tr.rollback();
-//         System.out.println("erro ao incluir ");
-//         e.printStackTrace();
-//     }
-//     return false;
-//  } // incluir
+    public boolean incluir (ReceitaDO receita) throws Exception{
+
+     // validacao das regras de negocio
+     if ( (isEmpty(receita.getRec_resumo()))) {
+       return false;
+     }
+     
+
+     // efetuando a transacao
+     Transacao tr = new Transacao();
+     try {
+
+       tr.begin();
+         ReceitaDATA receitadata = new ReceitaDATA();
+         receitadata.incluir(receita, tr);
+       tr.commit();
+       return true;
+       
+     } catch(Exception e) {
+         tr.rollback();
+         System.out.println("erro ao incluir ");
+         e.printStackTrace();
+     }
+     return false;
+  } // incluir
+    
+    private boolean isEmpty(String s) {
+     if (null == s)
+       return true;
+     if (s.length() == 0)
+       return true;
+     return false;
+        
+    }
     
 //  public boolean atualizar(ReceitaDO receita) throws Exception {
 //     Transacao tr = new Transacao();

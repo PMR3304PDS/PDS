@@ -34,9 +34,6 @@
                         data.PacienteDO paciente = new data.PacienteDO();
                         paciente = tp.buscar(pac_cod);
                         String paciente_nome = paciente.getUsu_nome();
-                        if(null != request.getParameter("voltar")){
-                            pageContext.forward("./modelo.jsp");
-                        }
                         if(null == request.getParameter("adicionar")){
                     %>
                     <form action="./adicionar_consulta.jsp" method="post">
@@ -52,7 +49,10 @@
                         <br>
                         <br>
                         <input type="submit" name="adicionar" value="Adicionar" />
-                        <input type="submit" name="voltar" value="Voltar" />
+                    </form>
+                    <form action="/PDS/Medico/visualiza_perfil.jsp">
+                        <input type='hidden' name='cod' value='<%=pac_cod%>'>
+                        <input type="submit" name="Voltar" value="Voltar">  
                     </form>
                     <br>
                     <%
@@ -74,10 +74,8 @@
                                     <input type='hidden' name='cns_cod' value='<%=cns_cod%>'>
                                     <input type="submit" name="editar" value="Editar">
                                 </form>
-                                <form action="./modelo.jsp" method="post">
-                                    <input type="submit" name="solicitar_exame" value="Solicitar exame">
-                                </form>
-                                <form action="./modelo.jsp" method="post">
+                                <form action="Geral/adicionar_receita.jsp" method="post">
+                                    <input type='hidden' name='pac_cod' value='<%=pac_cod%>'>
                                     <input type="submit" name="adicionar_receita" value="Adicionar receita">
                                 </form>
                             <%    
