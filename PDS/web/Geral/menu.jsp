@@ -7,6 +7,7 @@
                     <a href="/PDS/Medico/Home.jsp">Home</a><br>
                     <a href="/PDS/Medico/DadosPessoais.jsp">Dados pessoais</a><br>
                     <a href="/PDS/Medico/Busca.jsp">Busca</a><br>
+                    <a href="/PDS/Geral/visualizar_lista_mensagens.jsp">Mensagens</a><br>
                     <a href="/PDS/Geral/mudar_senha.jsp">Mudar Senha</a><br><br><br>
                     <a href="/PDS/Geral/Logout.jsp">Logout</a><br>
             <%
@@ -15,6 +16,7 @@
                     <a href="/PDS/Tecnico/Home.jsp">Home</a><br>
                     <a href="/PDS/Tecnico/DadosPessoais.jsp">Dados pessoais</a><br>
                     <a href="/PDS/Tecnico/Busca.jsp">Busca</a><br>
+                    <a href="/PDS/Geral/visualizar_lista_mensagens.jsp">Mensagens</a><br>
                     <a href="/PDS/Geral/mudar_senha.jsp">Mudar Senha</a><br><br><br>
                     <a href="/PDS/Geral/Logout.jsp">Logout</a><br>
             <%
@@ -29,6 +31,7 @@
                     <a href="/PDS/Paciente/Busca.jsp">Busca</a><br>                    
                     <a href="/PDS/Paciente/Atualizar_Cadastro.jsp">Editar dados de cadastro</a><br>
                     <a href="/PDS/Paciente/EditarFichaMedica.jsp">Editar ficha médica</a><br>
+                    <a href="/PDS/Geral/visualizar_lista_mensagens.jsp">Mensagens</a><br>
                     <a href="/PDS/Geral/mudar_senha.jsp">Mudar Senha</a><br><br><br>
                     <a href="/PDS/Geral/Logout.jsp">Logout</a><br>
             <%

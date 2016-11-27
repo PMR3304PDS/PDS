@@ -18,7 +18,7 @@ public class UsuarioData {
     ps.setString(4, usuario.getUsu_rg());
     ps.setString(5, usuario.getUsu_cpf());
     ps.setBinaryStream(6, usuario.getUsu_foto());
-    ps.setBoolean(7,true);
+    ps.setBoolean(7, true);
     int result = ps.executeUpdate();
   }
 //
@@ -92,7 +92,6 @@ public class UsuarioData {
 //    }
 //    return usuarios;
 //  } // pesquisarPorNome
-
   public UsuarioDO pesquisarPorLogin(String login, Transacao tr) throws Exception {
     Connection con = tr.obterConexao();
     String sql = "select * from Usuario where  Usu_login=?";
@@ -120,18 +119,19 @@ public class UsuarioData {
     PreparedStatement ps = con.prepareStatement(sql);
     ps.setInt(1, id);
     ResultSet rs = ps.executeQuery();
-    rs.next();
     UsuarioDO usuario = new UsuarioDO();
-    usuario.setUsu_cod(rs.getInt("Usu_cod"));
-    usuario.setUsu_login(rs.getString("Usu_login"));
-    usuario.setUsu_senha(rs.getString("Usu_senha"));
-    usuario.setUsu_nome(rs.getString("Usu_nome"));
-    usuario.setUsu_rg(rs.getString("Usu_rg"));
-    usuario.setUsu_cpf(rs.getString("Usu_cpf"));
+    if (rs.next()) {
+      usuario.setUsu_cod(rs.getInt("Usu_cod"));
+      usuario.setUsu_login(rs.getString("Usu_login"));
+      usuario.setUsu_senha(rs.getString("Usu_senha"));
+      usuario.setUsu_nome(rs.getString("Usu_nome"));
+      usuario.setUsu_rg(rs.getString("Usu_rg"));
+      usuario.setUsu_cpf(rs.getString("Usu_cpf"));
 
-    usuario.setUsu_foto(rs.getBinaryStream("Usu_foto"));
+      usuario.setUsu_foto(rs.getBinaryStream("Usu_foto"));
 
-    usuario.setUsu_ativo(rs.getBoolean("Usu_ativo"));
+      usuario.setUsu_ativo(rs.getBoolean("Usu_ativo"));
+    }
     return usuario;
   } // buscar
 //
