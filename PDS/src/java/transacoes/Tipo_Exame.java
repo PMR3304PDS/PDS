@@ -27,4 +27,20 @@ public class Tipo_Exame {
         
         return null;
     }
+    
+    public Tipo_ExameDO buscar(int idobj) throws Exception {
+        Transacao tr = new Transacao();
+        try {
+          tr.beginReadOnly();
+            Tipo_ExameData tp = new Tipo_ExameData();
+            Tipo_ExameDO t = tp.buscar(idobj, tr);
+          tr.commit();
+          return t;
+        } catch (Exception e) {
+          tr.rollback();
+          e.printStackTrace();
+        }
+        return null;
+    }
+    
 }
