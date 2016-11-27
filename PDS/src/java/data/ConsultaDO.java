@@ -7,6 +7,8 @@ public class ConsultaDO {
   private int Paciente_Usuario_Usu_cod;
   private Date Cns_data;
   private String Cns_resumo;
+  private int Exame_Exa_cod;
+  private int Receita_Rec_cod;
   
     public int getCns_cod() {
         return Cns_cod;
@@ -48,6 +50,20 @@ public class ConsultaDO {
         this.Cns_resumo = Cns_resumo;
     }
 
-
-  
+    public int getExame_Exa_cod() {
+        return Exame_Exa_cod;
+    }
+    
+     public void setExa_Exa_cod(int Exame_Exa_cod) {
+        this.Exame_Exa_cod = Exame_Exa_cod;
+    }
+     
+    public int getReceita_Rec_cod() {
+        return Receita_Rec_cod;
+    }
+    
+    public void setReceita_Rec_cod(int Receita_Rec_cod) {
+        this.Receita_Rec_cod = Receita_Rec_cod;
+    }
+    
 }

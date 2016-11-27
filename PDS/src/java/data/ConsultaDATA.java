@@ -54,4 +54,26 @@ public class ConsultaDATA {
     return consulta;
   }
 
+  
+  public Vector buscarPorPaciente(int idobj, Transacao tr) throws Exception {
+    Connection con = tr.obterConexao();
+    String sql = "select * from Consulta where Paciente_Usuario_Usu_cod=? order by Cns_data desc";
+    PreparedStatement ps = con.prepareStatement(sql);
+    ps.setInt(1, idobj);
+    ResultSet rs = ps.executeQuery();
+    Vector consultas = new Vector();
+    while (rs.next()) {
+        ConsultaDO c = new ConsultaDO();
+        c.setCns_cod(rs.getInt("Cns_cod"));
+        c.setMedico_Usuario_Usu_cod(rs.getInt("Medico_Usuario_Usu_cod"));
+        c.setPaciente_Usuario_Usu_cod(rs.getInt("Paciente_Usuario_Usu_cod"));
+        c.setCns_data(rs.getDate("Cns_data"));
+        c.setCns_resumo(rs.getString("Cns_resumo"));
+        c.setExa_Exa_cod(rs.getInt("Exame_Exa_cod"));
+        c.setReceita_Rec_cod(rs.getInt("Receita_Rec_cod"));
+        consultas.add(c);
+    }
+    return consultas;
+  }
+  
 }

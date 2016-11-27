@@ -7,6 +7,7 @@ package transacoes;
 
 import utils.*;
 import data.*;
+import java.util.Vector;
 
 /**
  *
@@ -83,4 +84,24 @@ public class Consulta {
     }
     return true;
   }
+  
+    public Vector busca_paciente(int pac_cod) throws Exception {
+    if (isEmpty(String.valueOf(pac_cod)))
+          return null;
+      
+    Transacao tr = new Transacao();
+
+    try {
+      tr.beginReadOnly();
+      ConsultaDATA cdata = new ConsultaDATA();
+      Vector cdo = cdata.buscarPorPaciente(pac_cod, tr);
+      return cdo;
+    } catch (Exception e) {
+      tr.rollback();
+      System.out.println("erro ao buscar consulta");
+      e.printStackTrace();
+      return null;
+    }
+  }
+  
 }
