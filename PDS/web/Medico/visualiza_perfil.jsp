@@ -78,9 +78,8 @@
                         Doenças em tratamento: <%= p.getFormattedPac_doencas_tratamento() %> </br>
                         Histórico de doenças: <%= p.getFormattedPac_historico_doencas() %> </br>
                         Medicamentos: <%= p.getFormattedPac_medicamentos() %> </br>
-                        <form action='/PDS/Medico/adicionar_consulta.jsp'>
-                          <input type='hidden' name='pac_cod' value='<%=p.getUsu_cod()%>'>
-                          <input type='submit' name='cons' value='Consulta'>  
+                        <form action='/PDS/Medico/VisualizarListaDeConsultas.jsp'>
+                          <input type='submit'>  
                         </form>
                       <%
                       }
