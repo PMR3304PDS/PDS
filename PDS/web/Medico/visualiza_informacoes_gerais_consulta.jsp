@@ -9,6 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <%@ page import="java.text.SimpleDateFormat"%>
         <%@ include file="../Geral/verifylogin.jsp" %>
         
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -46,6 +47,8 @@
                         }
                         else
                         {
+                            SimpleDateFormat form = new SimpleDateFormat("dd/MM/yyyy");
+                            String datef;
                             for(int i=0;i<todasconsultas.size();i++)
                             {
                                 data.ConsultaDO consulta = (data.ConsultaDO) todasconsultas.elementAt(i);
@@ -54,7 +57,7 @@
                                 transacoes.Medico tn_med = new transacoes.Medico();
                                 data.MedicoDO medico = tn_med.buscar(med_cod);
 
-                                java.sql.Date data = consulta.getCns_data();
+                                datef = form.format(consulta.getCns_data());
                                 String resumo = consulta.getCns_resumo();                                
                                 int codigo = consulta.getCns_cod();
                                 %>
@@ -64,7 +67,7 @@
                                     Codigo consulta - <%= codigo %>
                                     <br>
                                     <br>
-                                    Data - <%= data %>
+                                    Data - <%= datef %>
                                     <br>
                                     <br>
                                     Resumo - <%= resumo %>
