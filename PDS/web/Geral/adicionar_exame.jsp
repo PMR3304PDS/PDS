@@ -16,12 +16,7 @@
         <%@page import = "java.util.*"%>
         <%@page import= "java.time.*"%>
         <%@ include file="/Geral/verifylogin.jsp" %>
-        <% 
-            if(null != request.getParameter("cancelar")){
-                pageContext.forward("./temppage.jsp");
-            }
-            
-        %>
+        
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td colspan="2">
@@ -54,10 +49,6 @@
 
                     transacoes.Tipo_Exame lista_tipo_exame = new transacoes.Tipo_Exame();
                     
-                    if(null != request.getParameter("cancelar")){
-                        pageContext.forward("./temppage.jsp");
-                    }
-
                     if(null == request.getParameter("concluir")){
                         %>
                         <form action="./adicionar_exame.jsp" method="post">
@@ -90,7 +81,10 @@
                         %>
                         <input type='hidden' name='pac_cod' value='<%=p.getUsu_cod()%>'>
                         <input type="submit" name="concluir" value="Concluir" />
-                        <input type="submit" name="cancelar" value="Cancelar" />
+                        
+                        </form>
+                        <form action="/temppage.jsp">
+                            <input type="submit" name="cancelar" value="Cancelar" />
                         </form>
                         <%
                         }else{
