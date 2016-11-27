@@ -105,7 +105,7 @@
                             {
                     %>
                                 Erro ao alterar senha!
-                                <form action="EsquciSenha.jsp" method="post">
+                                <form action="EsqueciSenha.jsp" method="post">
                                     <input type="submit" name="voltar" value="Voltar" />
                                 </form>
                     <%
