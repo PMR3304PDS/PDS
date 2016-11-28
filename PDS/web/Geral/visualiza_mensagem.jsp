@@ -47,8 +47,8 @@
                             m.setMsg_data(java.sql.Date.valueOf(LocalDate.now()));
                             m.setMsg_msg(request.getParameter("mensagem"));
                             m.setMsg_visualizado(false);
-                            m.setUsuario_emissor(cod_emi);
-                            m.setUsuario_receptor(cod_rec);
+                            m.setUsuario_emissor(cod_rec);
+                            m.setUsuario_receptor(cod_emi);
                             if(!(new Mensagem()).incluir(m))
                             {
                             %>
@@ -74,7 +74,7 @@
                                 <%
                                 for(int i = 0; i < v.size(); i++)
                                 {
-                                    if(!((MensagemDO)v.elementAt(i)).isMsg_visualizado())
+                                    if(!((MensagemDO)v.elementAt(i)).isMsg_visualizado() && ((MensagemDO)v.elementAt(i)).getUsuario_receptor() == cod_rec)
                                     {
                                         (new Mensagem()).marcarLido(((MensagemDO)v.elementAt(i)).getMsg_cod());
                                         ((MensagemDO)v.elementAt(i)).setMsg_visualizado(true);
@@ -82,7 +82,7 @@
                                 %>
                                     <div align='right' style="width: 100%; padding-top:20px; float:right">
                                 <%
-                                    if(((MensagemDO)v.elementAt(i)).getUsuario_emissor() == cod_emi)
+                                    if(((MensagemDO)v.elementAt(i)).getUsuario_emissor() == cod_rec)
                                     {
                                 %>
                                     

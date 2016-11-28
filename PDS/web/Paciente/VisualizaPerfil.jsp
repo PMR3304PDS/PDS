@@ -88,6 +88,12 @@
                     <br>
                     <%
                             }
+                    %>
+                    <form action='/PDS/Geral/visualiza_mensagem.jsp' method="post">
+                        <input type='hidden' name='cod_emi' value='<%=cod%>'>
+                        <input type="submit" name="exame" value="Enviar Mensagem">
+                    </form>
+                    <%
                             
                         } else {
                             transacoes.Tecnico tn8 = new transacoes.Tecnico();
@@ -128,6 +134,10 @@
                             }
                         }   
                     %>
+                    <form action='/PDS/Geral/visualiza_mensagem.jsp' method="post">
+                        <input type='hidden' name='cod_emi' value='<%=cod%>'>
+                        <input type="submit" name="exame" value="Enviar Mensagem">
+                    </form>
                     <form action='/PDS/Paciente/Busca.jsp' method="post">
                       <input type='submit' name="Voltar" value="Voltar"> 
                     </form> 

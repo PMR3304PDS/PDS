@@ -82,7 +82,7 @@
                             <input type='hidden' name='Paciente_Usuario_Usu_cod' value='<%=p.getUsu_cod()%>'>
                             <input type="submit" name="exame" value="Visualizar Receitas">
                         </form> 
-                        <form action='PDS/Geral/visualiza_mensagem.jsp' method="post">
+                        <form action='/PDS/Geral/visualiza_mensagem.jsp' method="post">
                             <input type='hidden' name='cod_emi' value='<%=p.getUsu_cod()%>'>
                             <input type="submit" name="exame" value="Enviar Mensagem">
                         </form>
@@ -111,7 +111,7 @@
                         %>
                           <%= con.getCon_sigla()%>: <%= m.getMed_NumRegistro()%> </br>
                           
-                          <form action='PDS/Geral/visualiza_mensagem.jsp' method="post">
+                          <form action='/PDS/Geral/visualiza_mensagem.jsp' method="post">
                             <input type='hidden' name='cod_emi' value='<%=m.getUsu_cod()%>'>
                             <input type="submit" name="exame" value="Enviar Mensagem">
                           </form>
@@ -143,7 +143,7 @@
                         %>
                         Conselho: <%= con.getCon_sigla()%> </br>
                         
-                        <form action='PDS/Geral/visualiza_mensagem.jsp' method="post">
+                        <form action='/PDS/Geral/visualiza_mensagem.jsp' method="post">
                             <input type='hidden' name='cod_emi' value='<%=t.getUsu_cod()%>'>
                             <input type="submit" name="exame" value="Enviar Mensagem">
                         </form>
