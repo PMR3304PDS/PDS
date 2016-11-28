@@ -71,13 +71,13 @@
                         }
                         %>
                         <br>
-                        <form action='VisualizaListaExamesPaciente.jsp' method="post">
+                        <form action='/PDS/Tecnico/VisualizaListaExamesPaciente.jsp' method="post">
                             <input type='hidden' name='Usu_buscado' value='<%=p.getUsu_nome()%>'>
                             <input type='hidden' name='Paciente_Usuario_Usu_cod' value='<%=p.getUsu_cod()%>'>
                             <input type="submit" name="exame" value="Visualizar Exames">
                         </form>
                         <br>
-                        <form action='PDS/Geral/ListaReceitas.jsp' method="post">
+                        <form action='/PDS/Geral/ListaReceitas.jsp' method="post">
                             <input type='hidden' name='Usu_buscado' value='<%=p.getUsu_nome()%>'>
                             <input type='hidden' name='Paciente_Usuario_Usu_cod' value='<%=p.getUsu_cod()%>'>
                             <input type="submit" name="exame" value="Visualizar Receitas">
