@@ -55,7 +55,7 @@
                                     for (int i = 0; i < receitas.size(); i++) {
                                         ReceitaDO receita = (ReceitaDO) receitas.elementAt(i);
                                         int rec_cod = receita.getRec_cod();
-                                        session.setAttribute("rec_cod", rec_cod);
+                                        //session.setAttribute("rec_cod", rec_cod);
                                         datef = form.format(receita.getRec_data_upload());
                                         int resp_cod = receita.getMedico_Usuario_Usu_cod();
                                         UsuarioDO resp = new UsuarioDO();
@@ -66,7 +66,10 @@
                                             nome_resp = resp.getUsu_nome();
                                         %>
                                             <tr>
-                                                <td><form action="../Geral/VisualizaReceita.jsp"><input type="submit" value="<%=rec_cod%>" id="RecSelecionada"></form></td>
+                                                <td><form action="/PDS/Geral/VisualizaReceita.jsp">
+                                                    <input type='hidden' name='rec_cod' value='<%=rec_cod%>'>
+                                                    <input type='hidden' name='pac_cod' value='<%=cod%>'>
+                                                    <input type="submit" value="<%=rec_cod%>"></form></td>
                                                 <td><%=datef%> - <%=nome_resp%></td>
                                             </tr>
                                         <%

@@ -41,22 +41,19 @@ public class Receita {
         
     }
     
-//  public boolean atualizar(ReceitaDO receita) throws Exception {
-//     Transacao tr = new Transacao();
-//	 try{
-//	   // inserir validacoes de regras de negocio
-//	   tr.begin();
-//  	     ReceitaDATA receitadata = new ReceitaDATA();
-//	     receitadata.atualizar(receita, tr);
-//	   tr.commit();
-//	   return true;
-//	 } catch (Exception e) {
-//	   tr.rollback();
-//	   System.out.println("erro ao atualizar");
-//	   e.printStackTrace();
-//	 }
-//	 return false;
-  //} // atualizar
+  public void atualizar(int cod) throws Exception {
+    Transacao tr = new Transacao();
+    try {
+      tr.beginReadOnly();
+        ReceitaDATA receitadata = new ReceitaDATA();
+        receitadata.atualizar(cod, tr);
+      tr.commit();
+    } catch (Exception e) {
+      tr.rollback();
+      System.out.println("Error!");
+      e.printStackTrace();
+    }
+  } // atualizar
     
   public ReceitaDO buscar(int cod) throws Exception {
     Transacao tr = new Transacao();

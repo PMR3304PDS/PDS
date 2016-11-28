@@ -2,6 +2,7 @@
     *******ListaReceitas*********
 --%>
 
+<%@page import="data.PacienteDATA"%>
 <%@page import="java.sql.Date"%>
 <%@page import="data.ReceitaDO"%>
 <html>
@@ -12,6 +13,7 @@
     </head>
     <body>
         <%@ page import="java.util.Vector" %>
+        <%@ page import="transacoes.Paciente" %>
         <%@ page import="data.PacienteDO" %>
         <%@ page import="data.UsuarioDO" %>
         <%@ page import="java.text.SimpleDateFormat"%>
@@ -30,17 +32,15 @@
                 <td>
                     <%//****Aqui vai o jsp da sua página******%>
                     <%
-                        int cod_paciente_buscado=1;
+                        int cod_paciente_buscado = Integer.parseInt(request.getParameter("Paciente_Usuario_Usu_cod"));
+                        Paciente tn = new Paciente();
+                        PacienteDO p = tn.buscar(cod_paciente_buscado);
                         String paciente_buscado = request.getParameter("Usu_buscado");
-                        if(paciente_buscado==null){
-                            cod_paciente_buscado=1;
-                            paciente_buscado="Gabriel Xavier";
-                        }
                     %>
                     <table align="center">
                         <tr>
                             <br>
-                            <td><b>Receitas do paciente: </b><%=paciente_buscado%></td>
+                            <td><b>Receitas do paciente: </b><%=p.getUsu_nome()%></td>
                             <br>
                         </tr>
                         <tr>
@@ -60,6 +60,7 @@
                                         ReceitaDO receita = (ReceitaDO) receitas.elementAt(i);
                                         int rec_cod = receita.getRec_cod();
                                         int resp_cod = receita.getMedico_Usuario_Usu_cod();
+                                        int pac_cod = receita.getPaciente_Usuario_Usu_cod();
                                         UsuarioDO resp = new UsuarioDO();
                                         transacoes.Usuario tr = new transacoes.Usuario();
                                         resp = tr.pesquisarPorId(resp_cod);
@@ -69,7 +70,11 @@
                                         datef = form.format(receita.getRec_data_upload());
                                         %>
                                             <tr>
-                                                <td><form action="VisualizaReceita.jsp"><input type="submit" value="<%=rec_cod%>" id="RecSelecionada"></form></td>
+                                                <td><form action="/PDS/Geral/VisualizaReceita.jsp" method="post">
+                                                    <input type="hidden" value="<%=pac_cod%>" name="pac_cod">
+                                                    <input type="hidden" value="<%=rec_cod%>" name="rec_cod">
+                                                    <input type="submit" value="<%=rec_cod%>">
+                                                    </form></td>
                                                 <td><%=datef%> - <%=nome_resp%></td>
                                             </tr>
                                         <%

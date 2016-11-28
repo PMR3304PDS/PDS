@@ -128,11 +128,12 @@ public class ReceitaDATA {
     return receitas;
   }// buscar
 
-    public void atualizar(int cod, Transacao tr) {
-        Connection con = tr.obterConexao();
-        String sql = "update Receita set Rec_check = 0 where cod=?";
-        //PreparedStatement ps = con.prepareStatement(sql);
-        //int result = ps.executeUpdate();
-    }
+  public void atualizar(int cod, Transacao tr) throws Exception {
+    Connection con = tr.obterConexao();
+    String sql = "update Receita set Rec_check = true where Rec_cod=?";
+    PreparedStatement ps = con.prepareStatement(sql);
+    ps.setInt(1, cod);
+    int result = ps.executeUpdate();
+  }
 
 }

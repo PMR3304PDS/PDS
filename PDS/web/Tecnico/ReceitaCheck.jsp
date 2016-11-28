@@ -29,10 +29,10 @@
                 <td>
                     <%//****Aqui vai o jsp da sua página******%>
                     <%
-                    int cod_receita = Integer.parseInt(String.valueOf(session.getAttribute("rec_cod")));
-                    int cod = Integer.parseInt(String.valueOf(session.getAttribute("cod")));//código do usuario logado
+                    int cod_receita = Integer.parseInt(String.valueOf(request.getParameter("rec_cod")));
+                    int cod_paciente = Integer.parseInt(String.valueOf(request.getParameter("pac_cod")));
                     transacoes.Paciente tn = new transacoes.Paciente();
-                    data.PacienteDO paciente = tn.buscar(cod_receita);//
+                    data.PacienteDO paciente = tn.buscar(cod_paciente);//
                     %>
                     <table>
                         <tr>
@@ -56,10 +56,17 @@
                         <tr>Você confirma que está receita foi entregue?</tr>
                         <br>
                         <tr>
-                            <td><form action="../Tecnico/ReceitaAlteradaComSucesso.jsp"><input type="submit" value="Sim" id="RecCheck"></form></td>
+                            <td>
+                              <form action="/PDS/Tecnico/ReceitaAlteradaComSucesso.jsp">
+                                <input type="hidden" value="<%=cod_receita%>" name="rec_cod">
+                                <input type="hidden" value="<%=cod_paciente%>" name="pac_cod" >
+                                <input type="submit" value="Sim"></form></td>
                             <%
                             %>
-                            <td><form action="../Geral/VisualizaReceita.jsp"><input type="submit" value="Não" ></form></td>
+                            <td><form action="/PDS/Geral/VisualizaReceita.jsp">
+                                <input type="hidden" value="<%=cod_receita%>" name="rec_cod" >
+                                <input type="hidden" value="<%=cod_paciente%>" name="pac_cod" >
+                                <input type="submit" value="Não" ></form></td>
                         </tr>
                     </table>
                     <%//Fim da jsp%>

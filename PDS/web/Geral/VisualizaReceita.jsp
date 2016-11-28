@@ -2,9 +2,7 @@
     *******VisualizaReceita*********
 --%>
 
-<%@page import="java.sql.Date"%>
-<%@page import="data.ReceitaDO"%>
-<%@ page import="java.text.SimpleDateFormat"%>
+
 <html>
     <head>
         <title>POLIdataSUS</title>
@@ -15,7 +13,9 @@
         <%@ page import="java.util.Vector" %>
         <%@ page import="data.PacienteDO" %>
         <%@ page import="data.UsuarioDO" %>
-        <%// Coloque aqui os imports%>
+        <%@ page import="java.sql.Date"%>
+        <%@ page import="data.ReceitaDO"%>
+        <%@ page import="java.text.SimpleDateFormat"%>
         <%@ include file="/Geral/verifylogin.jsp" %>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -28,20 +28,19 @@
                     <%@ include file="/Geral/menu.jsp" %>
                 </td>
                 <td>
-                    <%//****Aqui vai o jsp da sua página******%>
                     <%
                     String t = (String) session.getAttribute("tipo");
-                    int cod_receita = Integer.parseInt(String.valueOf(session.getAttribute("rec_cod")));
-                    session.setAttribute("rec_cod", cod_receita);
-                    int cod = Integer.parseInt(String.valueOf(session.getAttribute("cod")));//código do usuario logado
+                    int cod_receita = Integer.parseInt(request.getParameter("rec_cod"));
+                    int cod_paciente = Integer.parseInt(request.getParameter("pac_cod"));
+                    int cod = ((Integer) session.getAttribute("cod")).intValue(); //código do usuario logado
                     transacoes.Paciente tn = new transacoes.Paciente();
-                    data.PacienteDO paciente = tn.buscar(cod_receita);
+                    data.PacienteDO paciente = tn.buscar(cod_paciente);
                     %>
                     <table align="center">
                         <tr>
-                            <br>
-                            <b>Receita do paciente: </b><%=paciente.getUsu_nome()%>
-                            <br>
+                            </br>
+                            <b>Receita do paciente: </b><%= paciente.getUsu_nome() %>
+                            </br>
                         </tr>
                         <%
                             if(paciente.getUsu_nome() ==null){
@@ -95,14 +94,21 @@
                                     <br>
                                     <tr><%=receita.getRec_resumo()%></tr>          
                                 <%
-                                    if(check==false || t.equals("t")){
+                                    if(check==false && t.equals("t")){
                                     %>
-                                    <td><form action="../Tecnico/ReceitaCheck.jsp"><input type="submit" value="Entregar medicamentos" id="RecCheck"></form></td>
+                                    <td><form action="/PDS/Tecnico/ReceitaCheck.jsp">
+                                        <input type='hidden' name='rec_cod' value='<%=cod_receita%>'>
+                                        <input type='hidden' name='pac_cod' value='<%=paciente.getUsu_cod()%>'>
+                                        <input type="submit" value="Entregar medicamentos">
+                                      </form></td>
                                     <%
                                     }
                             }//Fim de apresentar a receita
                             %>
-                                <td><form action="../Geral/ListaReceitas.jsp"><input type="submit" value="Voltar" ></form></td>
+                                <td><form action="/PDS/Geral/ListaReceitas.jsp">
+                                    <input type='hidden' name='Usu_buscado' value='<%=paciente.getUsu_nome()%>'>
+                                    <input type='hidden' name='Paciente_Usuario_Usu_cod' value='<%=paciente.getUsu_cod()%>'>
+                                    <input type="submit" value="Voltar" ></form></td>
                     </table>
                     <%//Fim da jsp%>
                 </td>

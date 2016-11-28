@@ -23,16 +23,16 @@
                 </td>
                 <td>
                     <%  
-                        int cod_receita = Integer.parseInt(String.valueOf(session.getAttribute("rec_cod")));
-                        //transacoes.Receita tn_rec = new transacoes.Receita();
-                        //data.ReceitaDO receita = new data.ReceitaDO();
-                        //receita.setRec_check(false);
-                        //tn_rec.atualizar(receita);
-                        
-                        //data.ReceitaDO rec_check = tn_rec.atualizar(cod_receita);
+                        int cod_receita = Integer.parseInt(String.valueOf(request.getParameter("rec_cod")));
+                        int cod_paciente = Integer.parseInt(String.valueOf(request.getParameter("pac_cod")));
+                        transacoes.Receita tn_rec = new transacoes.Receita();
+                        tn_rec.atualizar(cod_receita);
                     %>
                     Receita <%=cod_receita%> alterada com sucesso!
-                    <form action="../Geral/VisualizaReceita.jsp"><input type="submit" value="Voltar para Receita" ></form>
+                    <form action="/PDS/Geral/VisualizaReceita.jsp">
+                      <input type="hidden" value="<%=cod_receita%>" name='rec_cod'>
+                      <input type="hidden" value="<%=cod_paciente%>" name='pac_cod'>
+                      <input type="submit" value="Voltar para Receita" ></form>
                 </td>
             </tr>
             <tr>
