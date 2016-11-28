@@ -39,7 +39,7 @@
                     data.UsuarioDO udo = new data.UsuarioDO();
                     udo = tusu.pesquisarPorId(cod);
                     if (request.getParameter("Salvar Dados") == null) {%>
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
 
                     Nome Completo (Obrigatório): <input type="text" name="nome" maxlength= "200" value="<%=udo.getUsu_nome()%>">
                     <br>
@@ -427,7 +427,7 @@
                                 || request.getParameterValues("especialidade").length == 0) {
                 %> 
                 Preencha todos os campos obrigatórios, por favor! 
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="retry" value="Repetir" />
                 </form>
                 <%
@@ -459,7 +459,7 @@
                     if (mundo_test.getEstado_Est_cod() != Integer.parseInt(request.getParameter("estado_1"))) {
                 %>
                 Cidade não pertence à estado selecionado!
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="voltar" value="Voltar" />
                 </form>
                 <%
@@ -602,13 +602,13 @@
                         // avisar usuario que transacao foi feita com sucesso
                 %>
                 Transação realizada com sucesso!
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="voltar" value="Voltar" />
                 </form>
                 <%     } else {
                 %>
                 Erro ao atualizar dados do contato
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="retry" value="Repetir" />
                 </form>
                 <%     }
@@ -638,7 +638,7 @@
                         if (mundo_test.getEstado_Est_cod() != Integer.parseInt(request.getParameter("estado_2"))) {
                 %>
                 Cidade não pertence à estado selecionado!
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="voltar" value="Voltar" />
                 </form>
                 <%
@@ -679,13 +679,13 @@
                         // avisar usuario que transacao foi feita com sucesso
                 %>
                 Transação realizada com sucesso!
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="voltar" value="Voltar" />
                 </form>
                 <%     } else {
                 %>
                 Erro ao atualizar dados do contato
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="retry" value="Repetir" />
                 </form>
                 <%     }
@@ -715,7 +715,7 @@
                         if (mundo_test.getEstado_Est_cod() != Integer.parseInt(request.getParameter("estado_3"))) {
                 %>
                 Cidade não pertence à estado selecionado!
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="voltar" value="Voltar" />
                 </form>
                 <%
@@ -756,13 +756,13 @@
                         // avisar usuario que transacao foi feita com sucesso
                 %>
                 Transação realizada com sucesso!
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="voltar" value="Voltar" />
                 </form>
                 <%     } else {
                 %>
                 Erro ao atualizar dados do contato
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="retry" value="Repetir" />
                 </form>
                 <%     }
@@ -796,7 +796,7 @@
                         if (mundo_test.getEstado_Est_cod() != Integer.parseInt(request.getParameter("estado_2"))) {
                 %>
                 Cidade não pertence à estado selecionado!
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="voltar" value="Voltar" />
                 </form>
                 <%
@@ -814,7 +814,7 @@
                         if (mundo_test.getEstado_Est_cod() != Integer.parseInt(request.getParameter("estado_3"))) {
                 %>
                 Cidade não pertence à estado selecionado!
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="voltar" value="Voltar" />
                 </form>
                 <%
@@ -856,13 +856,13 @@
                         // avisar usuario que transacao foi feita com sucesso
                 %>
                 Transação realizada com sucesso!
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="voltar" value="Voltar" />
                 </form>
                 <%     } else {
                 %>
                 Erro ao atualizar dados do contato
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="retry" value="Repetir" />
                 </form>
                 <%     }
@@ -911,13 +911,13 @@
                         // avisar usuario que transacao foi feita com sucesso
                 %>
                 Transação realizada com sucesso!
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="voltar" value="Voltar" />
                 </form>
                 <%     } else {
                 %>
                 Erro ao atualizar dados do contato
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="retry" value="Repetir" />
                 </form>
                 <%     }
@@ -948,7 +948,7 @@
                         if (mundo_test.getEstado_Est_cod() != Integer.parseInt(request.getParameter("estado_2"))) {
                 %>
                 Cidade não pertence à estado selecionado!
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="voltar" value="Voltar" />
                 </form>
                 <%
@@ -988,13 +988,13 @@
                         // avisar usuario que transacao foi feita com sucesso
                 %>
                 Transação realizada com sucesso!
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="voltar" value="Voltar" />
                 </form>
                 <%     } else {
                 %>
                 Erro ao atualizar dados do contato
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="retry" value="Repetir" />
                 </form>
                 <%     }
@@ -1025,7 +1025,7 @@
                         if (mundo_test.getEstado_Est_cod() != Integer.parseInt(request.getParameter("estado_3"))) {
                 %>
                 Cidade não pertence à estado selecionado!
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="voltar" value="Voltar" />
                 </form>
                 <%
@@ -1065,13 +1065,13 @@
                         // avisar usuario que transacao foi feita com sucesso
                 %>
                 Transação realizada com sucesso!
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="voltar" value="Voltar" />
                 </form>
                 <%     } else {
                 %>
                 Erro ao atualizar dados do contato
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="retry" value="Repetir" />
                 </form>
                 <%     }
@@ -1106,7 +1106,7 @@
                         if (mundo_test.getEstado_Est_cod() != Integer.parseInt(request.getParameter("estado_2"))) {
                 %>
                 Cidade não pertence à estado selecionado!
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="voltar" value="Voltar" />
                 </form>
                 <%
@@ -1123,7 +1123,7 @@
                         if (mundo_test.getEstado_Est_cod() != Integer.parseInt(request.getParameter("estado_3"))) {
                 %>
                 Cidade não pertence à estado selecionado!
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="voltar" value="Voltar" />
                 </form>
                 <%
@@ -1165,13 +1165,13 @@
                         // avisar usuario que transacao foi feita com sucesso
                 %>
                 Transação realizada com sucesso!
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="voltar" value="Voltar" />
                 </form>
                 <%     } else {
                 %>
                 Erro ao atualizar dados do contato
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="retry" value="Repetir" />
                 </form>
                 <%     }
@@ -1222,13 +1222,13 @@
                         // avisar usuario que transacao foi feita com sucesso
                 %>
                 Transação realizada com sucesso!
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="voltar" value="Voltar" />
                 </form>
                 <%     } else {
                 %>
                 Erro ao atualizar dados do contato
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="retry" value="Repetir" />
                 </form>
                 <%     }
@@ -1262,7 +1262,7 @@
                         if (mundo_test.getEstado_Est_cod() != Integer.parseInt(request.getParameter("estado_2"))) {
                 %>
                 Cidade não pertence à estado selecionado!
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="voltar" value="Voltar" />
                 </form>
                 <%
@@ -1302,13 +1302,13 @@
                         // avisar usuario que transacao foi feita com sucesso
                 %>
                 Transação realizada com sucesso!
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="voltar" value="Voltar" />
                 </form>
                 <%     } else {
                 %>
                 Erro ao atualizar dados do contato
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="retry" value="Repetir" />
                 </form>
                 <%     }
@@ -1342,7 +1342,7 @@
                         if (mundo_test.getEstado_Est_cod() != Integer.parseInt(request.getParameter("estado_3"))) {
                 %>
                 Cidade não pertence à estado selecionado!
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="voltar" value="Voltar" />
                 </form>
                 <%
@@ -1382,17 +1382,17 @@
                         // avisar usuario que transacao foi feita com sucesso
                 %>
                 Transação realizada com sucesso!
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="voltar" value="Voltar" />
                 </form>
                 <%     } else {
                 %>
                 Erro ao atualizar dados do contato
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="retry" value="Repetir" />
                 </form>
                 <%     }
-                    }if ((vend_up.size() == 2) && ((request.getParameter("end_2").isEmpty()==false
+                    }if ((vend_up.size() == 3) && ((request.getParameter("end_2").isEmpty()==false
                             && request.getParameter("num_2").isEmpty()==false
                             && request.getParameter("bairro_2").isEmpty()==false)
                             && (request.getParameter("end_3").isEmpty()==false
@@ -1424,7 +1424,7 @@
                         if (mundo_test.getEstado_Est_cod() != Integer.parseInt(request.getParameter("estado_2"))) {
                 %>
                 Cidade não pertence à estado selecionado!
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="voltar" value="Voltar" />
                 </form>
                 <%
@@ -1441,7 +1441,7 @@
                         if (mundo_test.getEstado_Est_cod() != Integer.parseInt(request.getParameter("estado_3"))) {
                 %>
                 Cidade não pertence à estado selecionado!
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="voltar" value="Voltar" />
                 </form>
                 <%
@@ -1482,13 +1482,13 @@
                         // avisar usuario que transacao foi feita com sucesso
                 %>
                 Transação realizada com sucesso!
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="voltar" value="Voltar" />
                 </form>
                 <%     } else {
                 %>
                 Erro ao atualizar dados do contato
-                <form action="EditarDadosMedicoTecnico.jsp" method="post">
+                <form action="EditarDadosMedico.jsp" method="post">
                     <input type="submit" name="retry" value="Repetir" />
                 </form>
                 <%     }
