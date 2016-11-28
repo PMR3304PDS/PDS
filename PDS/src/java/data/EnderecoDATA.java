@@ -33,6 +33,31 @@ public void atualizar(EnderecoDO endereco, Transacao tr) throws Exception {
     ps.setInt(7, endereco.getEnd_cod());
     int result = ps.executeUpdate();
 } // atualizar
+
+public void atualizarDados(EnderecoDO endereco, Transacao tr) throws Exception {
+    Connection con = tr.obterConexao();
+    String sql = "update Endereco set End_rua=?, End_num=?, End_bairro=?, Municipio_Mun_cod=?, Tipo_Endereco_TipEnd_cod=?  where End_cod=?";
+    PreparedStatement ps = con.prepareStatement(sql);
+    ps.setString(1, endereco.getEnd_rua());
+    ps.setInt(2, endereco.getEnd_num());
+    ps.setString(3, endereco.getEnd_bairro());
+    ps.setInt(4, endereco.getMunicipio_Mun_cod());
+    ps.setInt(5, endereco.getTipo_Endereco_TipEnd_cod());
+    ps.setInt(6, endereco.getEnd_cod());
+    int result = ps.executeUpdate();
+} // atualizar
+
+public void excluir(EnderecoDO endereco, Transacao tr) throws Exception {
+     excluir(endereco.getEnd_cod(), tr);
+  } // excluir
+
+  public void excluir (int idobj, Transacao tr) throws Exception {
+     Connection con = tr.obterConexao();
+     String sql = "delete from Endereco where End_cod=?";
+     PreparedStatement ps = con.prepareStatement(sql);
+     ps.setInt(1, idobj);
+     int result = ps.executeUpdate();
+  } // excluir
 //
 //  public EnderecoDO buscar(int idobj, Transacao tr) throws Exception {
 //    Connection con = tr.obterConexao();

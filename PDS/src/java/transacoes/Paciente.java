@@ -170,6 +170,25 @@ public class Paciente {
     }
     return null;
   } // buscar
+  
+  public PacienteDO buscar2(int idobj) throws Exception {
+    Transacao tr = new Transacao();
+    try {
+      tr.beginReadOnly();
+      PacienteDATA pacdata = new PacienteDATA();
+      PacienteDO p = pacdata.buscar(idobj, tr);
+      tr.commit();
+      if(p.isUsu_ativo())
+        return p;
+      else
+        return null;
+    } catch (Exception e) {
+      tr.rollback();
+      System.out.println("erro ao buscar " + idobj);
+      e.printStackTrace();
+    }
+    return null;
+  } // buscar
 
   private boolean isEmpty(String s) {
     if (null == s) {

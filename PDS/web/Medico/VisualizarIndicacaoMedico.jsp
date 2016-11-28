@@ -7,6 +7,7 @@
         <title>POLIdataSUS</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     </head>
     <body>
         <%@ include file="/Geral/verifylogin.jsp" %>
@@ -21,43 +22,47 @@
                     <%@ include file="/Geral/menu.jsp" %>
                 </td>
                 <td>
-                <br>
-                <br>
-                <br>
-                Histórico de Indicações:
-                <br>
-                <table>
-                    <tr>
-                        <th>Paciente</th>
-                        <th>Indicado por</th>
-                    </tr>  
-                    <tr><% 
-                    int i;
-                    int cod_med=((Integer)session.getAttribute("cod")).intValue();
-                    int id_med_indicante;
-                    int id_paciente;
-                    String nome_medico_indicante;
-                    String nome_paciente;
-                    data.MedicoDO medico_aux = new data.MedicoDO();
-                    data.PacienteDO paciente_aux = new data.PacienteDO();
-                    java.util.Vector v_indicacoes = (new transacoes.Indicacao()).pesquisarporCRM(cod_med);
-                    for(i=0;i<v_indicacoes.size();i++){
-                        id_med_indicante = ((data.IndicacaoDO)(v_indicacoes.elementAt(i))).getMedico_Usuario_Usu_cod_indicante();
-                        medico_aux = (new transacoes.Medico()).buscar(id_med_indicante);
-                        nome_medico_indicante = medico_aux.getUsu_nome();
-                        id_paciente = ((data.IndicacaoDO)(v_indicacoes.elementAt(i))).getPaciente_Usuario_Usu_cod();
-                        paciente_aux = (new transacoes.Paciente()).buscar(id_paciente);
-                        nome_paciente = paciente_aux.getUsu_nome();
+                    <br>
+                    <br>
+                    <br>
+                    Histórico de Indicações:                    
+                    <br>
+                    <br>
+                    <table>
+                        <tr>
+                            <th>Médico Indicante</th>
+                            <th>Paciente</th>
+                        </tr>
+                        <% int cod = ((Integer) session.getAttribute("cod")).intValue();
+                            transacoes.Indicacao ti = new transacoes.Indicacao();
+                            java.util.Vector vm = new java.util.Vector();
+                            vm = ti.pesquisarporCRM(cod);
+                            if (vm.isEmpty() == false) {
+                                for (int i = 0; i < vm.size(); i++) {
+                                    data.UsuarioDO u1 = new data.UsuarioDO();
+                                    transacoes.Usuario tu = new transacoes.Usuario();
+                                    data.UsuarioDO u2 = new data.UsuarioDO();
+                                    data.IndicacaoDO ido = new data.IndicacaoDO();
+                                    ido = (data.IndicacaoDO) vm.elementAt(i);
+                                    u1 = tu.pesquisarPorId(ido.getMedico_Usuario_Usu_cod_indicante());
+                                    u2 = tu.pesquisarPorId(ido.getPaciente_Usuario_Usu_cod());
+                                    if (u1!=null && u2!=null) {
+                        %>  <tr>
+                            <td><%=u1.getUsu_nome()%></td>
+                            <td><%=u2.getUsu_nome()%></td>
+                        </tr>    <%} else {
+                        %> <td>Não há indicações!<td><%} 
+                            }
+                        } else {
+                        %> Não há indicações!<%}
                         %>                        
-                        <td><%= nome_medico_indicante%></td>
-                        <td><%= nome_paciente%> </td> <%}%>
-                </table>
+                    </table>
+                    <br>
                     <form action="IndicarPaciente.jsp" method="post">
-                        <input type="submit" name="Fazer Indicacao" value="Fazer Indicacao">                                         
+                        <input type="submit" name="Fazer Indicação" value="Fazer Indicação" />
                     </form>
-                    </tr>                
-                </td>
-            </tr>
+                </td> 
+            </tr>                
             <tr>
                 <td colspan="2">
                     <%@ include file="/Geral/footer.jsp" %>

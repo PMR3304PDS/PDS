@@ -47,6 +47,42 @@ public class Endereco {
     }
     return false;
   } // atualizar
+  
+  public boolean atualizarDados(EnderecoDO endereco) throws Exception {
+    Transacao tr = new Transacao();
+    try {
+      // inserir validacoes de regras de negocio
+      tr.begin();
+      EnderecoDATA edata = new EnderecoDATA();
+      edata.atualizarDados(endereco, tr);
+      tr.commit();
+      return true;
+    } catch (Exception e) {
+      tr.rollback();
+      System.out.println("erro ao atualizar endereco" + endereco.getEnd_rua());
+      e.printStackTrace();
+    }
+    return false;
+  } // atualizar
+  
+  public boolean remover(EnderecoDO endereco) throws Exception {
+     Transacao tr = new Transacao();
+	 try{
+	   // inserir validacoes de regras de negocio
+	   tr.begin();
+  	     EnderecoDATA edata = new EnderecoDATA();
+	     edata.excluir(endereco, tr);
+	   tr.commit();
+	   return true;
+	 } catch (Exception e) {
+	   tr.rollback();
+	   System.out.println("erro ao remover" + endereco.getEnd_rua());
+	   e.printStackTrace();
+	 }
+	 return false;
+  }
+  
+  
   public Vector pesquisarPorCodDaPessoa(int cod) throws Exception {
     Transacao tr = new Transacao();
     try {
