@@ -182,7 +182,7 @@
                             <td><input type="text" name="peso" maxlength="9" onkeypress='return isNumberKey2(event)' required/>
                         </tr>
                         <tr>
-                            <td>Altura (m)</td>
+                            <td>Altura (cm)</td>
                             <td><input type="text" name="altura" maxlength="9" onkeypress='return isNumberKey2(event)' required/>
                         </tr>
                         <tr><td><br></td></tr>
@@ -206,6 +206,9 @@
             
                     </table>
                     <input type="submit" name="incluir" value="incluir" />
+                </form>
+                <form action="/PDS/index.jsp" method="post">
+                    <input type="submit" name="voltar" value="voltar">
                 </form>
 
 <%      } else { 
