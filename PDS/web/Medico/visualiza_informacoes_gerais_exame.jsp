@@ -36,7 +36,7 @@
                         transacoes.Exame te = new transacoes.Exame(); 
                         Vector exames = te.pesquisarPorCod(pac_cod);
                         
-                        if(exames ==null)
+                        if(exames ==null || exames.size() <= 0)
                         {
                             %>
                                 Paciente não tem exames!

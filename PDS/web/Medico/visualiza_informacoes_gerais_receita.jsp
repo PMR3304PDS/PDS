@@ -37,7 +37,7 @@
                         transacoes.Receita tr = new transacoes.Receita(); 
                         Vector receitas = tr.getListaReceitas(pac_cod);
                         
-                        if(receitas == null)
+                        if(receitas == null || receitas.size()<=0)
                         {
                             %>
                                 Paciente não tem receitas!
