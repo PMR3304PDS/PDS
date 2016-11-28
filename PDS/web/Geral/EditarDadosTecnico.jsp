@@ -55,7 +55,7 @@
                         int num1 = edo1.getEnd_num();
                     %>
                     Endereço de Atedimento 1 (Obrigatório):<input type="text" value="<%=endereco1%>" name="end_1">
-                    Número: <input type="text" value="<%=num1%>" name="num_1">
+                    Número: <input type="text" value="<%=num1%>" name="num_1" onkeypress='return isNumberKey(event)'>
                     Bairro: <input type="text" value="<%=bairro1%>" name="bairro_1">
                     <%
                         transacoes.Tipo_Endereco ttip = new transacoes.Tipo_Endereco();
@@ -130,7 +130,7 @@
                             int num2 = edo2.getEnd_num();
                     %>
                     Endereço de Atedimento 2 (Opcional):<input type="text" value="<%=endereco2%>" name="end_2">
-                    Número: <input type="text" value="<%=num2%>" name="num_2">
+                    Número: <input type="text" value="<%=num2%>" name="num_2" onkeypress='return isNumberKey(event)'>
                     Bairro: <input type="text" value="<%=bairro2%>" name="bairro_2">
                     <%
                         transacoes.Tipo_Endereco ttip2 = new transacoes.Tipo_Endereco();
@@ -193,7 +193,7 @@
                         } else {
                         %>
                     Endereço de Atedimento 2 (Opcional):<input type="text" name="end_2">
-                    Número: <input type="text" name="num_2">
+                    Número: <input type="text" name="num_2" onkeypress='return isNumberKey(event)'>
                     Bairro: <input type="text" name="bairro_2">
                     <select name="tipo_end2">
                         <option value="1">Particular</option>
@@ -238,7 +238,7 @@
                             int num3 = edo3.getEnd_num();
                     %>
                     Endereço de Atedimento 3 (Opcional):<input type="text" value="<%=endereco3%>" name="end_3">
-                    Número: <input type="text" value="<%=num3%>" name="num_3">
+                    Número: <input type="text" value="<%=num3%>" name="num_3" onkeypress='return isNumberKey(event)'>
                     Bairro: <input type="text" value="<%=bairro3%>" name="bairro_3">
                     <%
                         transacoes.Tipo_Endereco ttip3 = new transacoes.Tipo_Endereco();
@@ -301,7 +301,7 @@
                         } else {
                         %>
                     Endereço de Atedimento 3 (Opcional):<input type="text" name="end_3">
-                    Número: <input type="text" name="num_3">
+                    Número: <input type="text" name="num_3" onkeypress='return isNumberKey(event)'>
                     Bairro: <input type="text" name="bairro_3">
                     <select name="tipo_end3">
                         <option value="1">Particular</option>
