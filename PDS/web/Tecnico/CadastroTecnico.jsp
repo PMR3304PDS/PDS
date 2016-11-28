@@ -127,24 +127,30 @@
     Rua    :&nbsp;&nbsp;&nbsp;<input type="text" id="iEndRua1" Name="nEndRua1" size="40" maxlength="200" placeholder="obrigatório"><br><br>
     Número :<input type="text" id="iEndNum1" Name="nEndNum1" size="40" maxlength="5" placeholder="obrigatório" onkeypress='return isNumberKey(event)' ></p>
 <p> 
-  <input type="radio" id="iPart1" Name="nTipo1" Value="Particular"><label for="iPart1">Particular</label> 	
-  <input type="radio" id="iPub1" Name="nTipo1" Value="Publico"> <label for="iPub1">Público</label> 
+    <select Name="nTipo1">
+      <Option value="Particular" >Particular</option>  
+      <option value="Publico">Publico</option>>
+    </select>   
   </p>
 <p>Endereço de Atendimento 2:</p>
    <p> Bairro :&nbsp;<input type="text" id="iEndBairro2" Name="nEndBairro2" size="40" maxlength="200"><br><br>
     Rua    :&nbsp;&nbsp;&nbsp;<input type="text" id="iEndRua2" Name="nEndRua2" size="40" maxlength="200" ><br><br>
     Número :<input type="text" id="iEndNum2" Name="nEndNum2" size="40" maxlength="5" onkeypress='return isNumberKey(event)'></p>
 <p> 
-  <input type="radio" id="iPart2" Name="nTipo2" Value="Particular"><label for="iPart2">Particular</label> 	
-  <input type="radio" id="iPub2" Name="nTipo2" Value="Publico"><label for="iPub2">Público</label>	
+    <select Name="nTipo2">
+      <Option value="Particular" >Particular</option>  
+      <option value="Publico">Publico</option>>
+    </select>   
   </p>
 <p>Endereço de Atendimento 3:</p>
      <p> Bairro :&nbsp;<input type="text" id="iEndBairro3" Name="nEndBairro3" size="40" maxlength="200" ><br><br>
     Rua    :&nbsp;&nbsp;&nbsp;<input type="text" id="iEndRua3" Name="nEndRua3" size="40" maxlength="200" ><br><br>
     Número :<input type="text" id="iEndNum3" Name="nEndNum3" size="40" maxlength="5"onkeypress='return isNumberKey(event)' ></p>
-     <p>
-  <input type="radio" id="iPart3" Name="nTipo3" Value="Particular"><label for="iPart3">Particular</label>
-  <input type="radio" id="iPub2" Name="nTipo3" Value="Publico"><label for="iPub3">Público</label>	
+  <p> 
+    <select Name="nTipo3">
+      <Option value="Particular" >Particular</option>  
+      <option value="Publico">Publico</option>>
+    </select>   
   </p>
   <p>Telefones para contato:<input type="text" id="itel1" Name="ntel1" size="20" maxlength="12" placeholder="obrigatório" onkeypress='return isNumberKey(event)'> 
    &nbsp &nbsp &nbsp &nbsp <input type="text" id="itel2" Name="nTel2" size="20" maxlength="12"  onkeypress='return isNumberKey(event)' ></p>
