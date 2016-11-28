@@ -88,13 +88,14 @@
                                     <br>
                                     <br>
                                     Data upload - <%= dateUpf %>
-                                    <br>
-                                    <br>
+                                    
 <%                                 
                                     if (exame.getExa_previsao() != null){
                                         datePrevf = form.format(exame.getExa_previsao());
 %>
-                                        Data previsao - <%= datePrevf %>
+                                    <br>
+                                    <br>
+                                     Data previsao - <%= datePrevf %>
 <%
                                     }                               
                                     
