@@ -85,6 +85,9 @@
                           <input type='hidden' name='pac_cod' value='<%=p.getUsu_cod()%>'>
                           <input type='submit' value='Adicionar Exame'>
                         </form>
+                        <form action='/PDS/Geral/temppage.jsp' method="post">
+                          <input type='submit' value='Solicitar Exame'>
+                        </form>
                         <form action='/PDS/Geral/adicionar_receita.jsp'>
                           <input type='hidden' name='pac_cod' value='<%=p.getUsu_cod()%>'>
                           <input type='submit' value='Adicionar Receita'>
