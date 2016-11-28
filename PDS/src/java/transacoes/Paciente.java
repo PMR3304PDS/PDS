@@ -136,7 +136,12 @@ public class Paciente {
   }
 
   public boolean atualizar(PacienteDO paciente) throws Exception {
-    Transacao tr = new Transacao();
+    
+      if (paciente.getPac_altura()<=0||paciente.getPac_peso()<=0) {
+      return false;
+    }
+      
+      Transacao tr = new Transacao();
     try {
       // inserir validacoes de regras de negocio
       tr.begin();
