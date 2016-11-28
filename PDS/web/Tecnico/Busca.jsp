@@ -63,7 +63,7 @@
                     <br>
                     <br>
 
-                    <input type="text" name="input"  placeholder="Buscar...">
+                    <input type="text" name="input" required placeholder="Buscar...">
                     <input type="submit" name="pesquisar" value="pesquisar" />
                     
                     <input type="submit" name="voltar1" value="voltar" />
