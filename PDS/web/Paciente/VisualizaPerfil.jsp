@@ -88,13 +88,6 @@
                     <br>
                     <%
                             }
-                    %>
-                    <form action='/PDS/Geral/visualiza_mensagem.jsp' method="post">
-                        <input type='hidden' name='cod_emi' value='<%=cod%>'>
-                        <input type="submit" name="exame" value="Enviar Mensagem">
-                    </form>
-                    <%
-                            
                         } else {
                             transacoes.Tecnico tn8 = new transacoes.Tecnico();
                             TecnicoDO tecnico = tn8.buscar(cod);
