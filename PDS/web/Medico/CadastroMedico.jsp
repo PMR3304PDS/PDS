@@ -167,8 +167,8 @@
       <Option value="Particular" >Particular</option>  
       <option value="Publico">Publico</option>>
     </select></p>
-  <p>Telefones para contato:<input type="text" id="itel1" Name="ntel1" size="20" maxlength="12" onkeypress='return isNumberKey(event)' placeholder="obrigatório"> 
-   &nbsp &nbsp &nbsp &nbsp <input type="text" id="itel2" Name="nTel2" size="20" maxlength="12"  onkeypress='return isNumberKey(event)' ></p>
+  <p>Telefones para contato:<input type="text" id="itel1" Name="ntel1" size="20" maxlength="11" onkeypress='return isNumberKey(event)' placeholder="obrigatório"> 
+   &nbsp &nbsp &nbsp &nbsp <input type="text" id="itel2" Name="nTel2" size="20" maxlength="11"  onkeypress='return isNumberKey(event)' ></p>
 
 </fieldset>
 <fieldset id="login">  
