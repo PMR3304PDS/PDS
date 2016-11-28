@@ -19,11 +19,34 @@ public class MensagemDATA {
     int result = ps.executeUpdate();
   }
 
-  public Vector pesquisarPorCodDoReceptorMaisRecente(int cod, Transacao tr) throws Exception {
+  public Vector pesquisarPorCodDoReceptorMaisRecente(int cod_rec, Transacao tr) throws Exception {
     Connection con = tr.obterConexao();
+    //String sql = "select * from (select * from mensagem where Usuario_receptor = ?) as s group by s.Usuario_emissor desc";
     String sql = "select * from (select * from mensagem group by Usuario_emissor desc) as s where s.Usuario_receptor = ?";
     PreparedStatement ps = con.prepareStatement(sql);
-    ps.setInt(1, cod);
+    ps.setInt(1, cod_rec);
+    ResultSet rs = ps.executeQuery();
+    Vector msg = new Vector();
+    while (rs.next()) {
+      MensagemDO m = new MensagemDO();
+      m.setMsg_cod(rs.getInt("Msg_cod"));
+      m.setMsg_data(rs.getDate("Msg_data"));
+      m.setMsg_msg(rs.getString("Msg_msg"));
+      m.setMsg_visualizado(rs.getBoolean("Msg_visualizado"));
+      m.setUsuario_emissor(rs.getInt("Usuario_emissor"));
+      m.setUsuario_receptor(rs.getInt("Usuario_receptor"));
+      msg.add(m);
+    }
+    return msg;
+  }
+  
+  public Vector pesquisarPorCodDoEmissorMaisRecente(int cod_emi, Transacao tr) throws Exception {
+    Connection con = tr.obterConexao();
+    //String sql = "select * from (select * from mensagem where Usuario_emissor = ?) as s group by s.Usuario_receptor desc";
+    String sql = "select * from (select * from mensagem group by Usuario_receptor desc) as s where s.Usuario_emissor = ?";
+    
+    PreparedStatement ps = con.prepareStatement(sql);
+    ps.setInt(1, cod_emi);
     ResultSet rs = ps.executeQuery();
     Vector msg = new Vector();
     while (rs.next()) {

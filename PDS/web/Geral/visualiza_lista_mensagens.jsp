@@ -35,7 +35,7 @@
                     for(int i = 0; i < v.size(); i++)
                     {
                         MensagemDO m = (MensagemDO)v.elementAt(i);
-                        if(!m.isMsg_visualizado())
+                        if(!m.isMsg_visualizado() && m.getUsuario_emissor() != codRec)
                           novas.add(m);
                         else
                           velhas.add(m);
@@ -58,16 +58,27 @@
                         <%
                         for(int i = 0; i < novas.size(); i++)
                         {
-                            UsuarioDO u = (new Usuario()).pesquisarPorIdComInativo(((MensagemDO)novas.elementAt(i)).getUsuario_emissor());
+                            UsuarioDO u = null;
+                            int cod_link;
+                            if(((MensagemDO)novas.elementAt(i)).getUsuario_emissor() != codRec)
+                            {
+                                u = (new Usuario()).pesquisarPorIdComInativo(((MensagemDO)novas.elementAt(i)).getUsuario_emissor());
+                                cod_link = ((MensagemDO)novas.elementAt(i)).getUsuario_emissor();
+                            }
+                            else
+                            {
+                                u = (new Usuario()).pesquisarPorIdComInativo(((MensagemDO)novas.elementAt(i)).getUsuario_receptor());
+                                cod_link = ((MensagemDO)novas.elementAt(i)).getUsuario_receptor();
+                            }
                         %>
                             <tr>
                                 <td>
-                                    <a href="/PDS/Geral/visualiza_mensagem.jsp?cod_emi=<%= ((MensagemDO)novas.elementAt(i)).getUsuario_emissor() %>">
+                                    <a href="/PDS/Geral/visualiza_mensagem.jsp?cod_emi=<%= cod_link %>">
                                         <%= u.getUsu_nome()%>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="/PDS/Geral/visualiza_mensagem.jsp?cod_emi=<%= ((MensagemDO)novas.elementAt(i)).getUsuario_emissor() %>">
+                                    <a href="/PDS/Geral/visualiza_mensagem.jsp?cod_emi=<%= cod_link %>">
                                       <% if(((MensagemDO)novas.elementAt(i)).getMsg_msg().length() < 50) {%>
                                           <%= ((MensagemDO)novas.elementAt(i)).getMsg_msg() %>
                                       <% } else { %>
@@ -103,16 +114,27 @@
                         <%
                         for(int i = 0; i < velhas.size(); i++)
                         {
-                            UsuarioDO u = (new Usuario()).pesquisarPorIdComInativo(((MensagemDO)velhas.elementAt(i)).getUsuario_emissor());
+                            UsuarioDO u = null;
+                            int cod_link;
+                            if(((MensagemDO)velhas.elementAt(i)).getUsuario_emissor() != codRec)
+                            {
+                                u = (new Usuario()).pesquisarPorIdComInativo(((MensagemDO)velhas.elementAt(i)).getUsuario_emissor());
+                                cod_link = ((MensagemDO)velhas.elementAt(i)).getUsuario_emissor();
+                            }
+                            else
+                            {
+                                u = (new Usuario()).pesquisarPorIdComInativo(((MensagemDO)velhas.elementAt(i)).getUsuario_receptor());
+                                cod_link = ((MensagemDO)velhas.elementAt(i)).getUsuario_receptor();
+                            }
                         %>
                             <tr>
                                 <td>
-                                    <a href="/PDS/Geral/visualiza_mensagem.jsp?cod_emi=<%= ((MensagemDO)velhas.elementAt(i)).getUsuario_emissor() %>">
+                                    <a href="/PDS/Geral/visualiza_mensagem.jsp?cod_emi=<%= cod_link %>">
                                         <%= u.getUsu_nome()%>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="/PDS/Geral/visualiza_mensagem.jsp?cod_emi=<%= ((MensagemDO)velhas.elementAt(i)).getUsuario_emissor() %>">
+                                    <a href="/PDS/Geral/visualiza_mensagem.jsp?cod_emi=<%= cod_link %>">
                                       <% if(((MensagemDO)velhas.elementAt(i)).getMsg_msg().length() < 50) {%>
                                           <%= ((MensagemDO)velhas.elementAt(i)).getMsg_msg() %>
                                       <% } else { %>
