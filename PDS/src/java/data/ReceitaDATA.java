@@ -107,7 +107,7 @@ public class ReceitaDATA {
 
   public Vector GetListaReceitas(int cod, Transacao tr) throws Exception {
     Connection con = tr.obterConexao();
-    String sql = "select * from Receita where Paciente_Usuario_Usu_cod=?";
+    String sql = "select * from Receita where Paciente_Usuario_Usu_cod=? and Rec_excluido=false";
     PreparedStatement ps = con.prepareStatement(sql);
     ps.setInt(1, cod);
     ResultSet rs = ps.executeQuery();

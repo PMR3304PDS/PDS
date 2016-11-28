@@ -27,7 +27,7 @@
                 <td>
                     <%@ include file="/Geral/menu.jsp" %>
                 </td>
-            <td>
+                <td>
                 
                 <br>
                 <h1>Dados do Exame</h1>
@@ -43,8 +43,7 @@
                         String datePrevf = null;
                         if(exame.getExa_previsao() != null)
                             datePrevf = form.format(exame.getExa_previsao());
-                    %>
-            <form action="/PDS/Geral/VisualizaExames.jsp?exame_cod=<%=exame_cod%>" method="post">   
+                    %>  
               <table>             
               <br>
               Codigo do Exame - <%= exame.getExa_cod()%>
@@ -57,12 +56,25 @@
               <br>
               <br>
               Data Previsao - <%= datePrevf%>
+              <br>
 
               <br><br>
               <br>
-            
               </table>
-            </form>
+              
+              <%
+                  int usu_cod = ((Integer)session.getAttribute("cod")).intValue();
+                  int tec_resp = exame.getTecnico_Usuario_Usu_cod_uploader();
+                  if(usu_cod==tec_resp)
+                  {
+              %>
+              <form action="/PDS/Geral/exclui_exame.jsp?exa_cod=<%=exame_cod%>" method="post">
+                  <input type="submit" name="excluir" value="Excluir Exame" />
+              </form>
+              <%
+                  }
+              %>
+            
             <form action="/PDS/Geral/AlteraStatusExame.jsp?exame_cod=<%=exame_cod%>" method="post">
                 <input type="submit" name="Editar Status" value="Editar Status" />
             </form>
@@ -86,12 +98,6 @@
         <tr>
             <td colspan="2">
                 <%@ include file="/Geral/footer.jsp" %>
-            </td>
-        </tr>
-        <tr>
-            <td><form action="/PDS/Geral/exclui_receita.jsp?pac_cod=<%=exame_cod%>" method="post">
-                    <input type="submit" name="excluir" value="Excluir Receita" />
-                </form>
             </td>
         </tr>
     </table>

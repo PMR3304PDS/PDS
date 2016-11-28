@@ -31,10 +31,20 @@
                         {
                     %>
                             Exame excluido com sucesso!
-                            <form action="../Medico/modelo.jsp" method="post">
-                                <input type="submit" name="voltar" value="Voltar" />
-                            </form>
-                    <%
+                            <%
+                                if (session.getAttribute("tipo").equals("t")){
+                                %>
+                              <form action="/PDS/Tecnico/Busca.jsp" method="post">
+                                  <input type="submit" name="voltar" value="Voltar" />
+                              </form>
+                              <%
+                                }else{              
+                  %>  
+                              <form action="/PDS/Paciente/VisualizaPropriaListaExames.jsp" method="post">
+                                  <input type="submit" name="voltar" value="Voltar" />
+                              </form>
+                  <%
+                                }
                         }
                         else
                         {
