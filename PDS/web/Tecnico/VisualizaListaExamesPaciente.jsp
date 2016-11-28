@@ -49,7 +49,7 @@
                         <tr>
                             <th>|--Codigo do Exame--|</th>                           
                             <th>|----Data----|</th>
-                            <th>|Responsavel por Adicionar Documento |</th>
+                            <th>| Tecnico Responsavel por Adicionar Documento |</th>
                         </tr>
                     
                         <tr>
@@ -70,7 +70,9 @@
                                     UsuarioDO usuario = new UsuarioDO();
                                     transacoes.Usuario tr = new transacoes.Usuario();
                                     usuario = tr.pesquisarPorId(uper_cod);
-                                    String nome_uper = usuario.getUsu_nome();
+                                    String nome_uper = "";
+                                    if(usuario != null)
+                                       nome_uper = usuario.getUsu_nome();
                                     
                                     if (exame.isExa_excluido() == false){
                             %>
@@ -82,8 +84,9 @@
                                 </td>
                                 
                                 <td><%=data%></td>
-                                
-                                <td><%=nome_uper%></td>      
+                                <%if(usuario != null){%>
+                                <td><%=nome_uper%></td> 
+                                <%}%>
                             </tr>     
                         
                         <%         
