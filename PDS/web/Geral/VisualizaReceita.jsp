@@ -39,7 +39,7 @@
                     <table align="center">
                         <tr>
                             <br>
-                            <b>Receita do paciente: </b><%= paciente.getUsu_nome() %>
+                            <b>Receita do paciente:  </b><%= paciente.getUsu_nome() %>
                             <br>
                         </tr>
                         <tr>
