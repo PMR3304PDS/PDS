@@ -399,7 +399,7 @@
                         String telefone1 = teldo1.getTel_numero();
                         String telefone2 = teldo2.getTel_numero();
                     %>
-                    Telefone 1 (Opcional):
+                    Telefone 1 (Obrigatório):
                     <input type="text" value="<%=telefone1%>" name="tel_1" maxlength="15" onkeypress='return isNumberKey(event)'>
                     <br>
                     Telefone 2 (Opcional):
@@ -407,7 +407,7 @@
                     <br>
                     <%} else if (vtel.isEmpty()) {
                     %>
-                    Telefone 1 (Opcional):
+                    Telefone 1 (Obrigatório):
                     <input type="text" name="tel_1" maxlength="15" onkeypress='return isNumberKey(event)'>
                     <br>
                     Telefone 2 (Opcional):
