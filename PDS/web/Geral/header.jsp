@@ -7,20 +7,20 @@ if (!session.getAttributeNames().hasMoreElements())
 }
 else
 {
-    String type = (String) session.getAttribute("tipo");
-    if(type.equals("m"))
+    String type_user = (String) session.getAttribute("tipo");
+    if(type_user.equals("m"))
     {
     %>
         <a href="/PDS/Medico/Home.jsp"><img src= "/PDS/Images/Logo.png"></a>
     <%
     }
-    else if(type.equals("t"))
+    else if(type_user.equals("t"))
     {
     %>
         <a href="/PDS/Tecnico/Home.jsp"><img src= "/PDS/Images/Logo.png"></a>
     <%
     }
-    else if(type.equals("p"))
+    else if(type_user.equals("p"))
     {
     %>
         <a href="/PDS/Paciente/Home.jsp"><img src= "/PDS/Images/Logo.png"></a>
