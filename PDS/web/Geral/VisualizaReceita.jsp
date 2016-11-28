@@ -55,7 +55,7 @@
                                 data.ReceitaDO receita = tn_rec.buscar(cod_receita);
                                 int resp_cod = receita.getMedico_Usuario_Usu_cod();
                                 boolean check = receita.isRec_check();
-                                check=false;
+                                //check=false;
                                 UsuarioDO resp = new UsuarioDO();
                                 transacoes.Usuario tn_usu = new transacoes.Usuario();
                                 resp = tn_usu.pesquisarPorId(resp_cod);
