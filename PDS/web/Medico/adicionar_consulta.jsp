@@ -36,7 +36,7 @@
                         String paciente_nome = paciente.getUsu_nome();
                         if(null == request.getParameter("adicionar")){
                     %>
-                    <form action="./adicionar_consulta.jsp" method="post">
+                    <form action="/PDS/Medico/adicionar_consulta.jsp" method="post">
                         <b>Nova Consulta</b>
                         <br>
                         <br>
@@ -70,11 +70,11 @@
                                 int cns_cod = consulta.getCns_cod();
                             %>
                                 Consulta adicionada
-                                <form action="./edita_resumo_consulta.jsp" method="post">
+                                <form action="/PDS/Medico/edita_resumo_consulta.jsp" method="post">
                                     <input type='hidden' name='cns_cod' value='<%=cns_cod%>'>
                                     <input type="submit" name="editar" value="Editar">
                                 </form>
-                                <form action="Geral/adicionar_receita.jsp" method="post">
+                                <form action="/PDS/Geral/adicionar_receita.jsp" method="post">
                                     <input type='hidden' name='pac_cod' value='<%=pac_cod%>'>
                                     <input type="submit" name="adicionar_receita" value="Adicionar receita">
                                 </form>
@@ -82,7 +82,7 @@
                             }else{
                             %>
                                 Erro ao adicionar consulta          
-                                <form action="./adicionar_consulta.jsp" method="post">
+                                <form action="/PDS/Medico/adicionar_consulta.jsp" method="post">
                                     <input type='hidden' name='pac_cod' value='<%=pac_cod%>'>
                                    <input type="submit" name="retry" value="Tentar novamente" />
                                 </form>

@@ -36,14 +36,17 @@
                     
                     PacienteDO p = null;
                     TecnicoDO t = null;
-//                    MedicoDO m = null;
+                    MedicoDO m = null;
                     
                     p = (new Paciente()).buscar(cod);
                     t = (new Tecnico()).buscar(cod);
-//                    m = (new Medico()).buscar(cod);
+                    m = (new Medico()).buscar(cod);
 
                     if(t != null){
                         tec_cod = cod;
+                        p = (new Paciente()).buscar(pac_cod);
+                    } else if (m != null){
+                        med_cod = cod;
                         p = (new Paciente()).buscar(pac_cod);
                     }
 
@@ -51,7 +54,7 @@
                     
                     if(null == request.getParameter("concluir")){
                         %>
-                        <form action="./adicionar_exame.jsp" method="post">
+                        <form action="/PDS/Geral/adicionar_exame.jsp" method="post">
                                 <b>Adicionar Exame</b>
                                 <br>
                                 <br>
@@ -83,7 +86,23 @@
                         <input type="submit" name="concluir" value="Concluir" />
                         
                         </form>
-                        <form action="/temppage.jsp">
+                        <%
+                        if (m != null){
+                        %>
+                        <form action="/PDS/Medico/visualiza_perfil.jsp" method="post">
+                            <input type='hidden' name='cod' value='<%=p.getUsu_cod()%>'>
+                        <%
+                        }else if (t != null){
+                        %>
+                        <form action="/PDS/Tecnico/visualiza_perfil.jsp" method="post">
+                            <input type='hidden' name='cod' value='<%=p.getUsu_cod()%>'>
+                        <%
+                        }else{
+                        %>
+                        <form action="/PDS/Usuario/VisualizaPropriaListaExames.jsp" method="post">
+                        <%
+                        }
+                        %>
                             <input type="submit" name="cancelar" value="Cancelar" />
                         </form>
                         <%
@@ -115,14 +134,28 @@
                             if(te.incluir(exame)){
                             %>
                                 Exame adicionado
-                                <form action="./temppage.jsp" method="post">
+                                <%
+                                if (m != null){
+                                %>
+                                <form action="/PDS/Medico/Home.jsp" method="post">
+                                <%
+                                }else if (t != null){
+                                %>
+                                <form action="/PDS/Tecnico/Home.jsp" method="post">
+                                <%
+                                }else{
+                                %>
+                                <form action="/PDS/Usuario/Home.jsp" method="post">
+                                <%
+                                }
+                                %>
                                     <input type="submit" name="pagina_inicial" value="Página Inicial">
                                 </form>
                             <%    
                             }else{
                             %>
                                 Erro ao adicionar exame
-                                <form action="./adicionar_exame.jsp" method="post">
+                                <form action="/PDS/Geral/adicionar_exame.jsp" method="post">
                                     <input type='hidden' name='pac_cod' value='<%=p.getUsu_cod()%>'>
                                    <input type="submit" name="retry" value="Tentar novamente" />
                                 </form>

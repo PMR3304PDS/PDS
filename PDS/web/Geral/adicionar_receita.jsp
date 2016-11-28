@@ -43,14 +43,10 @@
                         med_cod = cod;
                         p = (new Paciente()).buscar(pac_cod);
                     }
-                    
-                    if(null != request.getParameter("cancelar")){
-                        pageContext.forward("./temppage.jsp");
-                    }
 
                     if(null == request.getParameter("concluir")){
                         %>
-                        <form action="./adicionar_receita.jsp" method="post">
+                        <form action="/PDS/Geral/adicionar_receita.jsp" method="post">
                                 <b>Adicionar Receita</b>
                                 <br>
                                 <br>
@@ -65,12 +61,25 @@
                         %>
                         <input type='hidden' name='pac_cod' value='<%=p.getUsu_cod()%>'>
                         <input type="submit" name="concluir" value="Concluir" />
-                        <input type="submit" name="cancelar" value="Cancelar" />
+                        </form>
+                        <%
+                        if (m != null){
+                        %>
+                        <form action="/PDS/Medico/visualiza_perfil.jsp" method="post">
+                            <input type='hidden' name='cod' value='<%=p.getUsu_cod()%>'>
+                        <%
+                        }else{
+                        %>
+                        <form action="/PDS/Usuario/VisualizaPropriaListaReceitas.jsp" method="post">
+                        <%
+                        }
+                        %>
+                            <input type="submit" name="cancelar" value="Cancelar" />
                         </form>
                         <%
                         }else{
                             String resumo = request.getParameter("resumo");
-                            java.sql.Date dataSQL = new java.sql.Date(LocalDate.now().getYear()-1900,LocalDate.now().getMonthValue(),LocalDate.now().getDayOfMonth());
+                            java.sql.Date dataSQL = new java.sql.Date(LocalDate.now().getYear()-1900,LocalDate.now().getMonthValue()-1,LocalDate.now().getDayOfMonth());
                             boolean excluido = false;
                             boolean check = false;
                             
@@ -89,14 +98,24 @@
                             if(tr.incluir(receita)){
                             %>
                                 Receita adicionada
-                                <form action="./temppage.jsp" method="post">
+                                <%
+                                if(m != null){
+                                %>
+                                <form action="/PDS/Medico/Home.jsp" method="post">
+                                <%
+                                }else{
+                                %>
+                                <form action="/PDS/Paciente/Home.jsp"" method="post">
+                                <%
+                                }
+                                %>
                                     <input type="submit" name="pagina_inicial" value="Página Inicial">
                                 </form>
-                            <%    
+                            <%
                             }else{
                             %>
                                 Erro ao adicionar exame
-                                <form action="./adicionar_receita.jsp" method="post">
+                                <form action="/PDS/Geral//adicionar_receita.jsp" method="post">
                                     <input type='hidden' name='pac_cod' value='<%=p.getUsu_cod()%>'>
                                    <input type="submit" name="retry" value="Tentar novamente" />
                                 </form>
