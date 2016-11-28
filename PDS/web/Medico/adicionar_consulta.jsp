@@ -46,9 +46,10 @@
                         <br>
                         Resumo da consulta:
                         <br>
-                        <textarea cols="10" rows="5" style="width:500px; height:300px;"  name="resumo"></textarea>
+                        <textarea cols="10" rows="5" style="width:500px; height:300px;"  name="resumo" required></textarea>
                         <br>
                         <br>
+                        <input type='hidden' name='pac_cod' value='<%=pac_cod%>'>
                         <input type="submit" name="adicionar" value="Adicionar" />
                     </form>
                     <form action="/PDS/Medico/visualiza_perfil.jsp">
@@ -59,11 +60,11 @@
                     <%
                         }else{
                             String resumo = request.getParameter("resumo");
-                            java.sql.Date dataSQL = new java.sql.Date(LocalDate.now().getYear()-1900,LocalDate.now().getMonthValue(),LocalDate.now().getDayOfMonth());
+                            java.sql.Date dataSQL = new java.sql.Date(LocalDate.now().getYear()-1900,LocalDate.now().getMonthValue()-1,LocalDate.now().getDayOfMonth());
                             transacoes.Consulta tc = new transacoes.Consulta();
                             data.ConsultaDO consulta = new data.ConsultaDO();
                             consulta.setMedico_Usuario_Usu_cod(med_cod);
-                            consulta.setPaciente_Usuario_Usu_cod(paciente.getUsu_cod());
+                            consulta.setPaciente_Usuario_Usu_cod(pac_cod);
                             consulta.setCns_data(dataSQL);
                             consulta.setCns_resumo(resumo);
                             if(tc.incluir(consulta)){

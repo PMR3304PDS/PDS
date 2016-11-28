@@ -34,6 +34,8 @@
                     int tec_cod = -1;
                     int med_cod = -1;
                     
+                    boolean valido = true;
+                    
                     PacienteDO p = null;
                     TecnicoDO t = null;
                     MedicoDO m = null;
@@ -77,12 +79,9 @@
                                 <br>
                                 <textarea cols="10" rows="5" style="width:200px; height:50px;"  name="resumo" required/></textarea>
                                 <br><br>
-                                    <%
-                                    
-                        %>
+                                
                         <input type='hidden' name='pac_cod' value='<%=p.getUsu_cod()%>'>
                         <input type="submit" name="concluir" value="Concluir" />
-                        
                         </form>
                         <br>
                         <%
@@ -107,12 +106,29 @@
                         <%
                         }else{
                             String resumo = request.getParameter("resumo");
-                            java.sql.Date dataSQL = new java.sql.Date(LocalDate.now().getYear()-1900,LocalDate.now().getMonthValue(),LocalDate.now().getDayOfMonth());
+                            java.sql.Date dataSQL = new java.sql.Date(LocalDate.now().getYear()-1900,LocalDate.now().getMonthValue()-1,LocalDate.now().getDayOfMonth());
                             boolean excluido = false;
-                            int data_prev = Integer.parseInt(request.getParameter("data"));
-                            int mes_prev = Integer.parseInt(request.getParameter("mes"));
-                            int ano_prev = Integer.parseInt(request.getParameter("ano"));
-                            java.sql.Date data_previsao = new java.sql.Date(ano_prev-1900, mes_prev-1, data_prev);
+                            java.sql.Date data_previsao;
+                            try{
+                                int data_prev = Integer.parseInt(request.getParameter("data"));
+                                int mes_prev = Integer.parseInt(request.getParameter("mes"));
+                                int ano_prev = Integer.parseInt(request.getParameter("ano"));
+
+                                data_previsao = new java.sql.Date(ano_prev-1900, mes_prev-1, data_prev);
+                                
+                                if (data_prev < 1 || data_prev > 31 || mes_prev < 1|| mes_prev > 12 || ano_prev < 1 || LocalDate.now().isAfter(LocalDate.of(ano_prev, mes_prev, data_prev))){
+                                    valido = false;
+                                    %>
+                                    Valores inválidos de data de previsão
+                                    <br>
+                                    <br>
+                                    <%
+                                }
+
+                                
+                            }catch(NumberFormatException e){
+                                data_previsao = null;
+                            }                        
                             
                             Exame te = new Exame();
                             ExameDO exame = new ExameDO();
@@ -130,7 +146,13 @@
                             exame.setExa_previsao(data_previsao);
                             exame.setExa_Solicitar(null);
 
-                            if(te.incluir(exame)){
+                            boolean resultado = false;
+
+                            if(valido){
+                                resultado = te.incluir(exame);
+                            }
+
+                            if(resultado){
                             %>
                                 Exame adicionado
                                 <%
