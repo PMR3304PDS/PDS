@@ -70,7 +70,7 @@
                         <%
                         }else{
                         %>
-                        <form action="/PDS/Usuario/VisualizaPropriaListaReceitas.jsp" method="post">
+                        <form action="/PDS/Paciente/VisualizaPropriaListaReceitas.jsp" method="post">
                         <%
                         }
                         %>
@@ -115,7 +115,7 @@
                             }else{
                             %>
                                 Erro ao adicionar exame
-                                <form action="/PDS/Geral//adicionar_receita.jsp" method="post">
+                                <form action="/PDS/Geral/adicionar_receita.jsp" method="post">
                                     <input type='hidden' name='pac_cod' value='<%=p.getUsu_cod()%>'>
                                    <input type="submit" name="retry" value="Tentar novamente" />
                                 </form>

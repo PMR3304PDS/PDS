@@ -14,6 +14,7 @@
         <%@ page import = "transacoes.*"%>
         <%@page import = "data.*" %>
         <%@page import="java.util.*"%>
+        <%@page import= "java.time.*"%>
         <%@ include file="/Geral/verifylogin.jsp" %>
         
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -58,23 +59,22 @@
                     <%
                         }else{
                             String resumo = request.getParameter("resumo");
-                            Date data = new Date();
-                            java.sql.Date dataSQL = new java.sql.Date(data.getYear(), data.getMonth(), data.getDay());
+                            java.sql.Date dataSQL = new java.sql.Date(LocalDate.now().getYear()-1900,LocalDate.now().getMonthValue(),LocalDate.now().getDayOfMonth());
                             transacoes.Consulta tc = new transacoes.Consulta();
                             data.ConsultaDO consulta = new data.ConsultaDO();
                             consulta.setMedico_Usuario_Usu_cod(med_cod);
-                            consulta.setPaciente_Usuario_Usu_cod(pac_cod);
+                            consulta.setPaciente_Usuario_Usu_cod(paciente.getUsu_cod());
                             consulta.setCns_data(dataSQL);
                             consulta.setCns_resumo(resumo);
                             if(tc.incluir(consulta)){
                                 int cns_cod = consulta.getCns_cod();
                             %>
                                 Consulta adicionada
-                                <form action="/PDS/Medico/edita_resumo_consulta.jsp" method="post">
+                                <form action='/PDS/Medico/edita_resumo_consulta.jsp' method="post">
                                     <input type='hidden' name='cns_cod' value='<%=cns_cod%>'>
                                     <input type="submit" name="editar" value="Editar">
                                 </form>
-                                <form action="/PDS/Geral/adicionar_receita.jsp" method="post">
+                                <form action='/PDS/Geral/adicionar_receita.jsp' method="post">
                                     <input type='hidden' name='pac_cod' value='<%=pac_cod%>'>
                                     <input type="submit" name="adicionar_receita" value="Adicionar receita">
                                 </form>

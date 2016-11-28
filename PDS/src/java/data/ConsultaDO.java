@@ -7,8 +7,6 @@ public class ConsultaDO {
   private int Paciente_Usuario_Usu_cod;
   private Date Cns_data;
   private String Cns_resumo;
-  private int Exame_Exa_cod;
-  private int Receita_Rec_cod;
   
     public int getCns_cod() {
         return Cns_cod;

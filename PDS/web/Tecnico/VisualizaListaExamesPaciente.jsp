@@ -97,7 +97,7 @@
                         <br />
                         <br />
                         <br />
-                        <form action="/Geral/upload_exame_receita.jsp?cod_paciente=<%= cod %>" method="post">
+                        <form action="/PDS/Geral/adicionar_exame.jsp?pac_cod=<%= cod %>" method="post">
                             <input type="submit" name="Adicionar" value="Adicionar Exame" />
                         </form>
                         <form action="/PDS/Tecnico/Busca.jsp" method="post">

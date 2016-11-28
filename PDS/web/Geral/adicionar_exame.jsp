@@ -59,7 +59,7 @@
                                 <br>
                                 <br>
                                 Paciente: <%= p.getUsu_nome() %>
-                                <br>
+                                <br><br>
                                 Tipo de exame: <select name="tipo_exame" id="tipo_exame">
                                     <%
                                         for (Tipo_ExameDO item : lista_tipo_exame.buscar()){
@@ -69,16 +69,14 @@
                                         }
                                     %>
                                 </select>
-                                <br>
+                                <br><br>
                                 Data de previsão(dd/mm/yyyy)
                                 <input type="text" name="data" maxlength="2" size="2"> <input type="text" name="mes" maxlength="2" size="2"> <input type="text" name="ano" maxlength="4" size="4">
-                                <br>
-                                
-                                <br>
+                                <br><br>
                                 Resumo:
                                 <br>
                                 <textarea cols="10" rows="5" style="width:200px; height:50px;"  name="resumo" required/></textarea>
-                                <br>
+                                <br><br>
                                     <%
                                     
                         %>
@@ -86,6 +84,7 @@
                         <input type="submit" name="concluir" value="Concluir" />
                         
                         </form>
+                        <br>
                         <%
                         if (m != null){
                         %>
@@ -99,7 +98,7 @@
                         <%
                         }else{
                         %>
-                        <form action="/PDS/Usuario/VisualizaPropriaListaExames.jsp" method="post">
+                        <form action="/PDS/Paciente/VisualizaPropriaListaExames.jsp" method="post">
                         <%
                         }
                         %>
@@ -145,7 +144,7 @@
                                 <%
                                 }else{
                                 %>
-                                <form action="/PDS/Usuario/Home.jsp" method="post">
+                                <form action="/PDS/Paciente/Home.jsp" method="post">
                                 <%
                                 }
                                 %>

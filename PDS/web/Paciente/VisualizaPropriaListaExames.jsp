@@ -116,7 +116,13 @@
                                         }
                                     
                                 } 
-                        %>  
+                        %>
+                        <tr>
+                            <td><form action="/PDS/Geral/adicionar_exame.jsp?pac_cod=<%= cod %>" method="post">
+                                    <input type="submit" name="adicionar" value="Adicionar Exame" />
+                                </form>
+                            </td>
+                        </tr>
                     </table>
                     <%//Fim da jsp%>
                 </td>

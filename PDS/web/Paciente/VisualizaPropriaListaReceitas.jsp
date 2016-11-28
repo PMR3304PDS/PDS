@@ -73,7 +73,13 @@
                                         }//fecha for todas as receitas foram listadas 
                                     
                                 }//fecha else ((receitas.size() != 0)) 
-                        %>  
+                        %>
+                        <tr>
+                            <td><form action="/PDS/Geral/adicionar_receita.jsp?pac_cod=<%= cod %>" method="post">
+                                    <input type="submit" name="adicionar" value="Adicionar Receita" />
+                                </form>
+                            </td>
+                        </tr>
                     </table>
                     <%//Fim da jsp%>
                 </td>
