@@ -68,7 +68,7 @@
                </tr>
                <tr>
                   <td>Altura</td>
-                  <td><input type="text" name="altura" maxlength="9" onkeypress='return isNumberKey(event)' value=<%= paciente.getFormattedPac_altura() %> />
+                  <td><input type="text" name="altura" maxlength="9" onkeypress='return isNumberKey(event)' required value=<%= paciente.getFormattedPac_altura() %> />
                </tr>
                 <tr>
                   <td>Alergias</td>
