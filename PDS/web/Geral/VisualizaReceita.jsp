@@ -43,7 +43,7 @@
                             <br>
                         </tr>
                         <tr>
-                            <td><form action="/PDS/Geral/exclui_receita.jsp?pac_cod=<%= cod %>" method="post">
+                            <td><form action="/PDS/Geral/exclui_receita.jsp?pac_cod=<%=cod_receita%>" method="post">
                                     <input type="submit" name="excluir" value="Excluir Receita" />
                                 </form>
                             </td>

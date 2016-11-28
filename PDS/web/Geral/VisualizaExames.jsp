@@ -88,6 +88,12 @@
                 <%@ include file="/Geral/footer.jsp" %>
             </td>
         </tr>
+        <tr>
+            <td><form action="/PDS/Geral/exclui_receita.jsp?pac_cod=<%=exame_cod%>" method="post">
+                    <input type="submit" name="excluir" value="Excluir Receita" />
+                </form>
+            </td>
+        </tr>
     </table>
 </body>
 </html>
