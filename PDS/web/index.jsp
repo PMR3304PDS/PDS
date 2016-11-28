@@ -23,7 +23,7 @@ and open the template in the editor.
 
                 Caso contrário, faça o cadastro! Isso levará apenas alguns instantes! <br>
                 <form action="Geral/login.jsp">
-                    <input type="submit" name="ok" value="login"/>
+                    <input type="submit" name="ok" value="Login"/>
                 </form>
                 <form action="/PDS/Cadastro/PaginaInicialCadastro.jsp">
                     <input type="submit" name="ok" value="Cadastro"/>
