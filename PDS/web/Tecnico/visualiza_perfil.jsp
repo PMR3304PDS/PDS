@@ -76,6 +76,12 @@
                             <input type='hidden' name='Paciente_Usuario_Usu_cod' value='<%=p.getUsu_cod()%>'>
                             <input type="submit" name="exame" value="Visualizar Exames">
                         </form>
+                        <br>
+                        <form action='../Geral/ListaReceitas.jsp' method="post">
+                            <input type='hidden' name='Usu_buscado' value='<%=p.getUsu_nome()%>'>
+                            <input type='hidden' name='Paciente_Usuario_Usu_cod' value='<%=p.getUsu_cod()%>'>
+                            <input type="submit" name="exame" value="Visualizar Receitas">
+                        </form>    
                         <%
                         }else if(m != null){
                         %>
