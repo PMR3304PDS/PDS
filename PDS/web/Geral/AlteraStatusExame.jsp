@@ -14,7 +14,7 @@
         <%@page import="java.sql.Date"%>
         <%@page import="java.text.DateFormat"%>
         <%@page import="java.text.ParseException"%>
-        <%@ include file="/Geral/verifylogin_tecnico.jsp" %>
+        <%@ include file="/Geral/verifylogin.jsp" %>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td colspan="2">
@@ -41,6 +41,7 @@
                     
                     if (null == request.getParameter("excluir") && null == request.getParameter("editar")){
                         int Exa_cod = Integer.parseInt(request.getParameter("exame_cod"));
+                        
                         transacoes.Exame tn = new transacoes.Exame();
                         data.ExameDO exame = new data.ExameDO();
                         exame = tn.buscar(Exa_cod);
@@ -49,7 +50,7 @@
                         String data_upload = df.format(exame.getExa_data_upload());
                         String data_previsao = df.format(exame.getExa_previsao());
 %>                         
-            <form action="/PDS/Tecnico/AlteraStatusExame.jsp?exame_cod=<%=Exa_cod%>" method="post">
+            <form action="/PDS/Geral/AlteraStatusExame.jsp?exame_cod=<%=Exa_cod%>" method="post">
             <table>
             <td>
                 
@@ -81,27 +82,36 @@
              }    
        
        if (null != request.getParameter("excluir")) {
+           String t = (String) session.getAttribute("tipo"); 
            int Exa_cod = Integer.parseInt(request.getParameter("exame_cod"));
            transacoes.Exame tn = new transacoes.Exame();                     
            tn.excluir(Exa_cod);
            
        if (tn.excluir(Exa_cod)) {
+           if (t.equals("t")){
 %>
           Transação realizada com sucesso!
           <form action="/PDS/Tecnico/Home.jsp" method="post">
              <input type="submit" name="voltar" value="Voltar" />
           </form>
-<%     } else {
+<%
+          }else{              
+%>  
+          Transação realizada com sucesso!            
+          <form action="/PDS/Paciente/Home.jsp" method="post">
+                <input type="submit" name="voltar" value="Voltar" />
+          </form>
+<%          }
+       }else {
 %>
           Erro ao excluir exame         
-          <form action="/PDS/Tecnico/AlteraStatusExame.jsp?exame_cod=<%=Exa_cod%>" method="post">
+          <form action="/PDS/Geral/AlteraStatusExame.jsp?exame_cod=<%=Exa_cod%>" method="post">
              <input type="submit" name="retry" value="Repetir" />
           </form>
 <%     }
-      }
-       
+      }      
        if (null != request.getParameter("editar")) {
-       
+       String t = (String) session.getAttribute("tipo");
        String resumo = request.getParameter("resumo");    
            
        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");    
@@ -123,16 +133,24 @@
        
        tn.atualizar_status(exame);
        if (tn.atualizar_status(exame)) {
-
+           if (t.equals("t")){
 %>
           Transação realizada com sucesso!
           <form action="/PDS/Tecnico/Home.jsp" method="post">
              <input type="submit" name="voltar" value="Voltar" />
           </form>
-<%     } else {
+<%
+          }else{              
+%>  
+          Transação realizada com sucesso!            
+          <form action="/PDS/Paciente/Home.jsp" method="post">
+                <input type="submit" name="voltar" value="Voltar" />
+          </form>
+<%          }
+       } else {
 %>
           Erro ao editar status do exame         
-          <form action="/PDS/Tecnico/AlteraStatusExame.jsp?exame_cod=<%=Exa_cod%>" method="post">
+          <form action="/PDS/Geral/AlteraStatusExame.jsp?exame_cod=<%=Exa_cod%>" method="post">
              <input type="submit" name="retry" value="Repetir" />
           </form>
 <%     }

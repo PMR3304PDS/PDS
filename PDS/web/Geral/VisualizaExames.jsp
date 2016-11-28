@@ -33,7 +33,9 @@
                 <h1>Dados do Exame</h1>
                 <br>
                     
-                    <%  int exame_cod = Integer.parseInt(request.getParameter("exame_cod"));
+                    <%  
+                        String t = (String) session.getAttribute("tipo");    
+                        int exame_cod = Integer.parseInt(request.getParameter("exame_cod"));
                         transacoes.Exame tn = new transacoes.Exame();
                         data.ExameDO exame = tn.buscar(exame_cod);
                         SimpleDateFormat form = new SimpleDateFormat("dd/MM/yyyy");
@@ -61,14 +63,24 @@
             
               </table>
             </form>
-              
-            <form action="/PDS/Tecnico/AlteraStatusExame.jsp?exame_cod=<%=exame_cod%>" method="post">
+            <form action="/PDS/Geral/AlteraStatusExame.jsp?exame_cod=<%=exame_cod%>" method="post">
                 <input type="submit" name="Editar Status" value="Editar Status" />
             </form>
-                
+              <%
+              if (t.equals("t")){
+              %>
             <form action="/PDS/Tecnico/Busca.jsp" method="post">
                 <input type="submit" name="voltar" value="Voltar" />
             </form>
+            <%
+              }else{              
+%>  
+            <form action="/PDS/Paciente/VisualizaPropriaListaExames.jsp" method="post">
+                <input type="submit" name="voltar" value="Voltar" />
+            </form>
+<%
+              }
+%>
         </td>
         </tr>
         <tr>
