@@ -27,7 +27,7 @@
                 </td>
                 <td>
                     <br>
-                    <h1>Atualizar Cadastro</h1>
+                    <h1>Editar dados de cadastro</h1>
                     <br>
                     
                     <script>
@@ -336,7 +336,7 @@
 <%
                         } else {
 %>                         
-          Erro ao editar ficha médica          
+          Erro ao atualizar cadastro          
           <form action="/PDS/Paciente/Atualizar_Cadastro.jsp" method="post">
              <input type="submit" name="retry" value="Repetir" />
           </form>
