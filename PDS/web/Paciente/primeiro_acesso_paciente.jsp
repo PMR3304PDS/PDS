@@ -27,7 +27,7 @@
                     <br>
                     <h1>Cadastro Paciente</h1>
                     <br>
-<%     if ( null == request.getParameterValues("incluir") ) {
+<%     if ( null == request.getParameterValues("incluir") && null == request.getParameter("voltar") ) {
 %>
                 <form action="./primeiro_acesso_paciente.jsp" method="post">
 
@@ -205,10 +205,15 @@
                         <tr><td><br></td></tr>
             
                     </table>
-                    <input type="submit" name="incluir" value="incluir" />
+                    <input type="submit" name="incluir" value="incluir" /><br>
+                    <input type="submit" name="voltar" value="voltar" /><br>
                 </form>
 
-<%      } else { 
+<%      } 
+        if (null != request.getParameter("voltar")) {
+            response.sendRedirect("/PDS/");
+        } 
+        if (null != request.getParameter("incluir")) { 
 %>
 <! ------------------------------------------------------------------->
 <!--   se nao for o request inicial, acionar a transacao de negocio -->
