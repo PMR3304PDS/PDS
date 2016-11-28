@@ -16,6 +16,18 @@ public class Medico_has_EspecialidadeDATA {
      ps.setInt(2, medico_has_especialidade.getEspecialidade_Esp_cod());
      int result = ps.executeUpdate();
   }
+  
+  public void excluir(MedicoDO mhe, Transacao tr) throws Exception {
+     excluir(mhe.getUsu_cod(), tr);
+  } // excluir
+
+  public void excluir (int idobj, Transacao tr) throws Exception {
+     Connection con = tr.obterConexao();
+     String sql = "delete from Medico_has_Especialidade where Medico_Usuario_Usu_cod=?";
+     PreparedStatement ps = con.prepareStatement(sql);
+     ps.setInt(1, idobj);
+     int result = ps.executeUpdate();
+  } // excluir
  
   
 //  public void atualizar(Medico_has_EspecialidadeDO medico_has_especialidade, Transacao tr) throws Exception {

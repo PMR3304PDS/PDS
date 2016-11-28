@@ -33,4 +33,21 @@ public class Medico_has_Especialidade {
     return false;
   }
   
+  public boolean remover(MedicoDO mhe) throws Exception {
+     Transacao tr = new Transacao();
+	 try{
+	   // inserir validacoes de regras de negocio
+	   tr.begin();
+  	     Medico_has_EspecialidadeDATA cdata = new Medico_has_EspecialidadeDATA();
+	     cdata.excluir(mhe, tr);
+	   tr.commit();
+	   return true;
+	 } catch (Exception e) {
+	   tr.rollback();
+	   System.out.println("erro ao remover especialidades de medico");
+	   e.printStackTrace();
+	 }
+	 return false;
+  }
+  
 }

@@ -570,7 +570,7 @@
                         boolean result_mhas = false;
                         boolean result_end1 = false;
                         try {
-                            thas_up.removerPorIdMedico(mdata);
+                            thas_up.remover(mdata);
                         } catch (Exception e) {
                 %>                          <%= e.toString()%>
                 <%
@@ -646,7 +646,7 @@
                     edo_up2.setMunicipio_Mun_cod(Integer.parseInt(request.getParameter("mun_2")));
                     edo_up2.setUsuario_Usu_cod(cod);
                     try {
-                        thas_up.removerPorIdMedico(mdata);
+                        thas_up.remover(mdata);
                     } catch (Exception e) {
                 %>                          <%= e.toString()%>
                 <%
@@ -723,7 +723,7 @@
                     edo_up2.setMunicipio_Mun_cod(Integer.parseInt(request.getParameter("mun_3")));
                     edo_up2.setUsuario_Usu_cod(cod);
                     try {
-                        thas_up.removerPorIdMedico(mdata);
+                        thas_up.remover(mdata);
                     } catch (Exception e) {
                 %>                          <%= e.toString()%>
                 <%
@@ -822,7 +822,7 @@
                     edo_up3.setMunicipio_Mun_cod(Integer.parseInt(request.getParameter("mun_3")));
                     edo_up3.setUsuario_Usu_cod(cod);
                     try {
-                        thas_up.removerPorIdMedico(mdata);
+                        thas_up.remover(mdata);
                     } catch (Exception e) {
                 %>                          <%= e.toString()%>
                 <%
@@ -879,7 +879,7 @@
                         data.EnderecoDO edo_2 = (data.EnderecoDO)vend_up.elementAt(1);
                         te_up.remover(edo_2);
                         try {
-                            thas_up.removerPorIdMedico(mdata);
+                            thas_up.remover(mdata);
                         } catch (Exception e) {
                 %>                          <%= e.toString()%>
                 <%
@@ -955,7 +955,7 @@
                     }
                     edo_up2.setMunicipio_Mun_cod(Integer.parseInt(request.getParameter("mun_2")));
                     try {
-                        thas_up.removerPorIdMedico(mdata);
+                        thas_up.remover(mdata);
                     } catch (Exception e) {
                 %>                          <%= e.toString()%>
                 <%
@@ -1032,7 +1032,7 @@
                     }
                     edo_up2.setMunicipio_Mun_cod(Integer.parseInt(request.getParameter("mun_3")));
                     try {
-                        thas_up.removerPorIdMedico(mdata);
+                        thas_up.remover(mdata);
                     } catch (Exception e) {
                 %>                          <%= e.toString()%>
                 <%
@@ -1131,7 +1131,7 @@
                     edo_up3.setMunicipio_Mun_cod(Integer.parseInt(request.getParameter("mun_3")));
                     edo_up3.setUsuario_Usu_cod(cod);
                     try {
-                        thas_up.removerPorIdMedico(mdata);
+                        thas_up.remover(mdata);
                     } catch (Exception e) {
                 %>                          <%= e.toString()%>
                 <%
@@ -1190,7 +1190,7 @@
                         te_up.remover(edo_2);
                         te_up.remover(edo_3);
                         try {
-                            thas_up.removerPorIdMedico(mdata);
+                            thas_up.remover(mdata);
                         } catch (Exception e) {
                 %>                          <%= e.toString()%>
                 <%
@@ -1269,7 +1269,7 @@
                     }
                     edo_up2.setMunicipio_Mun_cod(Integer.parseInt(request.getParameter("mun_2")));
                     try {
-                        thas_up.removerPorIdMedico(mdata);
+                        thas_up.remover(mdata);
                     } catch (Exception e) {
                 %>                          <%= e.toString()%>
                 <%
@@ -1349,7 +1349,7 @@
                     }
                     edo_up2.setMunicipio_Mun_cod(Integer.parseInt(request.getParameter("mun_3")));
                     try {
-                        thas_up.removerPorIdMedico(mdata);
+                        thas_up.remover(mdata);
                     } catch (Exception e) {
                 %>                          <%= e.toString()%>
                 <%
@@ -1448,7 +1448,7 @@
                     }
                     edo_up3.setMunicipio_Mun_cod(Integer.parseInt(request.getParameter("mun_3")));
                     try {
-                        thas_up.removerPorIdMedico(mdata);
+                        thas_up.remover(mdata);
                     } catch (Exception e) {
                 %>                          <%= e.toString()%>
                 <%
@@ -1514,4 +1514,4 @@
             </tr>
         </table>
     </body>
-</html> 
+</html>

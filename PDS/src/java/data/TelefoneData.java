@@ -25,6 +25,27 @@ public class TelefoneData {
     ps.setInt(3, telefone.getTel_cod());
     int result = ps.executeUpdate();
   } // atualizar
+  
+  public void atualizarDados(TelefoneDO telefone, Transacao tr) throws Exception {
+    Connection con = tr.obterConexao();
+    String sql = "update Telefone set Tel_numero=? where Tel_cod=?";
+    PreparedStatement ps = con.prepareStatement(sql);
+    ps.setString(1, telefone.getTel_numero());
+    ps.setInt(2, telefone.getTel_cod());
+    int result = ps.executeUpdate();
+  } // atualizar
+  
+  public void excluir(TelefoneDO telefone, Transacao tr) throws Exception {
+     excluir(telefone.getTel_cod(), tr);
+  } // excluir
+
+  public void excluir (int idobj, Transacao tr) throws Exception {
+     Connection con = tr.obterConexao();
+     String sql = "delete from Telefone where Tel_cod=?";
+     PreparedStatement ps = con.prepareStatement(sql);
+     ps.setInt(1, idobj);
+     int result = ps.executeUpdate();
+  } // excluir 
 
 //  public void excluir(TelefoneDO telefone, Transacao tr) throws Exception {
 //  } // excluir
