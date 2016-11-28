@@ -81,6 +81,12 @@
                                     <br>
                                     <br>
                                 <%
+                                    }else{
+                                %>
+                                    Medico responsavel - Medico indisponivel no sistema
+                                    <br>
+                                    <br>
+                                <%                                        
                                     }
                                 
                                     int medicoatual = ((Integer)session.getAttribute("cod")).intValue();
