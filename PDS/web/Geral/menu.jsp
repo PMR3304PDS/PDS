@@ -6,7 +6,9 @@
             %>
                     <a href="/PDS/Medico/Home.jsp">Home</a><br>
                     <a href="/PDS/Medico/DadosPessoais.jsp">Dados pessoais</a><br>
+                    <a href="/PDS/Geral/EditarDadosMedico.jsp">Edita dados pessoais</a><br>
                     <a href="/PDS/Medico/Busca.jsp">Busca</a><br>
+                    <a href="/PDS/Medico/VisualizarIndicacaoMedico.jsp">Visualiza Indicação</a><br>
                     <a href="/PDS/Geral/visualiza_lista_mensagens.jsp">Mensagens</a><br>
                     <a href="/PDS/Geral/mudar_senha.jsp">Mudar Senha</a><br><br><br>
                     <a href="/PDS/Geral/Logout.jsp">Logout</a><br>
@@ -15,6 +17,7 @@
             %>
                     <a href="/PDS/Tecnico/Home.jsp">Home</a><br>
                     <a href="/PDS/Tecnico/DadosPessoais.jsp">Dados pessoais</a><br>
+                    <a href="/PDS/Geral/EditarDadosTecnico.jsp">Edita dados pessoais</a><br>
                     <a href="/PDS/Tecnico/Busca.jsp">Busca</a><br>
                     <a href="/PDS/Geral/visualiza_lista_mensagens.jsp">Mensagens</a><br>
                     <a href="/PDS/Geral/mudar_senha.jsp">Mudar Senha</a><br><br><br>
