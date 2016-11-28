@@ -40,9 +40,6 @@
                             %>
                                 Paciente não tem consultas ou foi excluido!
                                 <br><br><br>
-                                <form action="Home.jsp" method="post">
-                                    <input type="submit" name="voltar" value="Voltar" />
-                                </form>
                             <%
                         }
                         else

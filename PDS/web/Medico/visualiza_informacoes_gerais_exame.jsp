@@ -40,10 +40,6 @@
                         {
                             %>
                                 Paciente não tem exames!
-                                <br><br><br>
-                                <form action="Home.jsp" method="post">
-                                    <input type="submit" name="voltar" value="Voltar" />
-                                </form>
                             <%
                         }
                         else
@@ -109,17 +105,15 @@
                                     <br>
                                     <br>
                                     Tecnico responsável - <%= tecnico_resp %>
-  
-
-                                    <br><br><br>
-                                    <form action="VisualizaDocumentos.jsp" method="post">
-                                        <input type='hidden' name='pac_cod' value='<%=pac_cod%>'>
-                                        <input type="submit" name="voltar" value="Voltar" />
-                                    </form>
                                  <%
                                     }
                                 }
-                                %>                              
+                                %>  
+                                <br><br><br>
+                                <form action="VisualizaDocumentos.jsp" method="post">
+                                    <input type='hidden' name='pac_cod' value='<%=pac_cod%>'>
+                                    <input type="submit" name="voltar" value="Voltar" />
+                                </form>
                 </td>
             </tr>
             <tr>
