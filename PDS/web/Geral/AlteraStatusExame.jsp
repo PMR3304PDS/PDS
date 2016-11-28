@@ -48,7 +48,14 @@
                         
                         DateFormat df = new SimpleDateFormat("dd/MM/yyyy"); 
                         String data_upload = df.format(exame.getExa_data_upload());
-                        String data_previsao = df.format(exame.getExa_previsao());
+                        String data_previsao;
+                        if (exame.getExa_previsao() != null){
+                            
+                            data_previsao= df.format(exame.getExa_previsao());
+                        } else{
+                            data_previsao = "00/00/0000";
+                        }
+    
 %>                         
             <form action="/PDS/Geral/AlteraStatusExame.jsp?exame_cod=<%=Exa_cod%>" method="post">
             <table>
