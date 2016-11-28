@@ -46,7 +46,21 @@
                         <br>
                         Resumo da consulta:
                         <br>
-                        <textarea cols="10" rows="5" style="width:500px; height:300px;"  name="resumo" required></textarea>
+                        Caracteres restantes: <input disabled  maxlength="3" size="3" value="500" id="counter">
+                        <br>
+                        <textarea onkeyup="textCounter(this,'counter',500);" id="message" cols="10" rows="5" style="width:500px; height:300px;"  name="resumo" required></textarea>
+                        <script>
+                        function textCounter(field,field2,maxlimit)
+                        {
+                         var countfield = document.getElementById(field2);
+                         if ( field.value.length > maxlimit ) {
+                          field.value = field.value.substring( 0, maxlimit );
+                          return false;
+                         } else {
+                          countfield.value = maxlimit - field.value.length;
+                         }
+                        }
+                        </script>
                         <br>
                         <br>
                         <input type='hidden' name='pac_cod' value='<%=pac_cod%>'>
