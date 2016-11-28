@@ -38,9 +38,15 @@
                     %>
                     <table align="center">
                         <tr>
-                            </br>
+                            <br>
                             <b>Receita do paciente: </b><%= paciente.getUsu_nome() %>
-                            </br>
+                            <br>
+                        </tr>
+                        <tr>
+                            <td><form action="/PDS/Geral/exclui_receita.jsp?pac_cod=<%= cod %>" method="post">
+                                    <input type="submit" name="excluir" value="Excluir Receita" />
+                                </form>
+                            </td>
                         </tr>
                         <%
                             if(paciente.getUsu_nome() ==null){
